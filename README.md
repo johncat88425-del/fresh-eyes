@@ -11,18 +11,23 @@ The repository contains a portable viewer and a verified source archive. The ZIP
 contains the complete source tree, tests, local API/frontend, runner and rebuild
 scripts, rather than a compiled binary. Internal collaboration notes, account
 support drafts, keys and databases are excluded. Extract the archive first; the
-commands below run inside its `fresh-eyes` directory.
+commands below clone and extract it before testing.
 
 ```sh
+git clone https://github.com/johncat88425-del/fresh-eyes.git fresh-eyes-release
+cd fresh-eyes-release
+python3.12 -m zipfile -e fresh-eyes-source.zip source
+cd source/fresh-eyes
 PYTHONPATH=src python3.12 -B -m unittest discover -s tests
+python3.12 web/demo/build.py
 node --test web/tests/*.test.mjs
-python3.12 web/demo/build.py --replace
 python3.12 -m http.server 3001 --bind 127.0.0.1 --directory dist/demo
 ```
 
-The release passed 235 Python and 27 frontend engineering tests, including a
-fresh isolated Linux check on the owner's Mac. Another physical machine remains
-untested. Python 3.12 and Node are prerequisites; tests and viewer rebuild need no
+The B24 source passed 235 Python and 27 frontend engineering tests after clean
+extraction on the owner's Mac. A preceding B22 build also passed an isolated Linux
+check on the same Mac; this B24 frontend has not repeated that Linux check.
+Another physical machine remains untested. Python 3.12 and Node are prerequisites; tests and viewer rebuild need no
 provider account or API key. A new repository execution needs Linux Docker.
 Real model execution also needs explicit local activation and an owner key/budget.
 

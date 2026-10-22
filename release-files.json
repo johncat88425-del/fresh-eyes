@@ -1,25 +1,25 @@
 {
-  "release": "20261021-b24-v2",
+  "release": "20261021-b24-b25-v3",
   "files": {
-    "fresh-eyes-source.zip": {
-      "sha256": "77d7256ab56c9397fc7ca6a582eedb7833a20e66761c00be703d2daf21f6f0b4",
-      "bytes": 5613594
-    },
-    "index.html": {
-      "sha256": "b3779b39e4a2869f4177cc9954c75c8c382d658801aec3d6bdb6c83dd4d5e3fc",
-      "bytes": 1398939
+    ".nojekyll": {
+      "sha256": "bde3b2bf420627d31c6b9030e91283fa3f8483c79bb431690b0269601ef1b7d1",
+      "bytes": 49
     },
     "LICENSE": {
       "sha256": "c600d53d4952e8eee84755df7c176f98d113bc0f3c3087213a83ceb50086537e",
       "bytes": 1080
     },
     "README.md": {
-      "sha256": "13e9709a81fcd1d44ce84125d1281a26c25fb8e2da399dc08b958b0ea1395efe",
-      "bytes": 2453
+      "sha256": "f5dd362067857acac0cfb3f12b2686cfa1d73701b421d712655ebdcf0b091ff2",
+      "bytes": 2732
     },
-    ".nojekyll": {
-      "sha256": "bde3b2bf420627d31c6b9030e91283fa3f8483c79bb431690b0269601ef1b7d1",
-      "bytes": 49
+    "fresh-eyes-source.zip": {
+      "sha256": "0b2c26bbc1f4ea2ad87b2cb9d7a6a27af9f80cf2cc500ed9f2143c6d7c0c1901",
+      "bytes": 5616215
+    },
+    "index.html": {
+      "sha256": "b3779b39e4a2869f4177cc9954c75c8c382d658801aec3d6bdb6c83dd4d5e3fc",
+      "bytes": 1398939
     }
   },
   "public_paid_api": false,
