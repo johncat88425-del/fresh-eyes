@@ -1,28 +1,30 @@
 {
-  "release": "20261021-b24-b25-v3",
+  "release": "20261024-development-v4",
+  "prepared_at": "2026-10-24T18:36:33.761153+00:00",
   "files": {
     ".nojekyll": {
-      "sha256": "bde3b2bf420627d31c6b9030e91283fa3f8483c79bb431690b0269601ef1b7d1",
-      "bytes": 49
+      "sha256": "fff3b97ed4f0c8e693570ad4d584a3df8556abbe148b664c2c40a679f6c3bb67",
+      "bytes": 51
     },
     "LICENSE": {
       "sha256": "c600d53d4952e8eee84755df7c176f98d113bc0f3c3087213a83ceb50086537e",
       "bytes": 1080
     },
     "README.md": {
-      "sha256": "f5dd362067857acac0cfb3f12b2686cfa1d73701b421d712655ebdcf0b091ff2",
-      "bytes": 2732
+      "sha256": "4af4a60587ac9a1246b9317c7237ba2ebc168fec4d3a23bb315bda25ca6a67ec",
+      "bytes": 3738
     },
     "fresh-eyes-source.zip": {
-      "sha256": "0b2c26bbc1f4ea2ad87b2cb9d7a6a27af9f80cf2cc500ed9f2143c6d7c0c1901",
-      "bytes": 5616215
+      "sha256": "13ab27f1f94dd32d91f43afb26e4119d067939f161ff7a507d5ab141b0fe10bb",
+      "bytes": 7386390
     },
     "index.html": {
-      "sha256": "b3779b39e4a2869f4177cc9954c75c8c382d658801aec3d6bdb6c83dd4d5e3fc",
-      "bytes": 1398939
+      "sha256": "7142e5326992bb25034b8a4ba5f50bc78a8de49d9ed048b7157cd89afe1ce39d",
+      "bytes": 3145887
     }
   },
   "public_paid_api": false,
   "model_calls_on_view": 0,
+  "formal_evaluation_executed": false,
   "source_delivery": "complete source ZIP; extract before running"
 }
