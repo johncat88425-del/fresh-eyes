@@ -1,5 +1,5 @@
 {
-  "release": "20261024-development-v4",
+  "release": "20261024-development-v5",
   "prepared_at": "2026-10-24T18:36:33.761153+00:00",
   "files": {
     ".nojekyll": {
@@ -15,12 +15,12 @@
       "bytes": 3738
     },
     "fresh-eyes-source.zip": {
-      "sha256": "13ab27f1f94dd32d91f43afb26e4119d067939f161ff7a507d5ab141b0fe10bb",
-      "bytes": 7386390
+      "sha256": "1cb29875103da7b6e702afd941e6df30214c6b14c61abc4c8e3149d5361812f8",
+      "bytes": 7471349
     },
     "index.html": {
-      "sha256": "7142e5326992bb25034b8a4ba5f50bc78a8de49d9ed048b7157cd89afe1ce39d",
-      "bytes": 3145887
+      "sha256": "be24fb4ce59785d2cad790e9ad9eb0c090cd820e4a91abbc55569e487243156f",
+      "bytes": 3146039
     }
   },
   "public_paid_api": false,
