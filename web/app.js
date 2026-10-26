@@ -501,6 +501,7 @@ function bExampleText(r) {
   if (r.result_status === 'startup_only') return t('b_ex_startup');
   const k = beginnerKind(r);
   if (k === 'fixed') return t(r.repair_mode === 'model' ? 'b_ex_fix_ai' : 'b_ex_fix_person');
+  if (k === 'bad' && r.repair_mode === 'model') return t('b_ex_ai_failed');  // the AI tried and did not fix it
   if (k === 'person') return t(r.repair_mode === 'model' ? 'b_ex_ai_stop' : 'b_ex_person');
   return t(`b_ex_${k || 'other'}`);
 }
