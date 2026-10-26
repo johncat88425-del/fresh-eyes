@@ -1,6 +1,6 @@
 {
-  "release": "20261024-development-v8",
-  "prepared_at": "2026-10-24T22:53:01.294627+00:00",
+  "release": "20261026-development-v9",
+  "prepared_at": "2026-10-26T00:49:52+00:00",
   "files": {
     ".nojekyll": {
       "sha256": "fff3b97ed4f0c8e693570ad4d584a3df8556abbe148b664c2c40a679f6c3bb67",
@@ -11,22 +11,30 @@
       "bytes": 1080
     },
     "README.md": {
-      "sha256": "0b3e0c35098b5da6945032b3053ac77a1ae3ec7be4ea6426c00cdbbad2ec527d",
-      "bytes": 6378
+      "sha256": "4fe5d0ae6b7689fde78c30c6f72f5b7baa83a1096c1ab10b91665c6b2ddf1628",
+      "bytes": 5461
     },
     "fresh-eyes-source.zip": {
       "sha256": "bda281e7139f62a13db62ac3bba2cd744a4cba2f9e18ef25afd743a9b7a9205b",
       "bytes": 9509714
     },
     "index.html": {
-      "sha256": "8459efb9b138e98c11bf39422e33886fd4aae9d1803e11ec5cda9233eb300e0a",
-      "bytes": 3762197
+      "sha256": "2b28d8736d96ad8fd29cb28665860fe3e076f85b9ef08c10b0ddd35efc762d5a",
+      "bytes": 3767917
     }
   },
+  "source_delivery": "Browsable working source, commit 8723eb25ae09710d4a44101781d31f8c7ab53a5b; older v8 source ZIP preserved separately",
+  "source_commit": "8723eb25ae09710d4a44101781d31f8c7ab53a5b",
+  "source_archive_release": "20261024-development-v8",
   "public_paid_api": false,
   "model_calls_on_view": 0,
   "real_replay_records": 23,
   "optional_browser_github_reads": true,
-  "formal_evaluation_executed": false,
-  "source_delivery": "complete source ZIP; extract before running"
+  "formal_evaluation_groups_executed": [
+    "A"
+  ],
+  "formal_evaluation_results_in_viewer": false,
+  "model_evaluation_groups_executed": [],
+  "reusable_action_commit": "dfcac778f241dc598aea1fe2597d7a254d7154ee",
+  "ci_demo": "https://github.com/johncat88425-del/fresh-eyes-action-demo/actions"
 }
