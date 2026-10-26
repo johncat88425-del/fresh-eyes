@@ -44,7 +44,8 @@ class SpendGuard:
             bounded_trial = provider == 'nebius' and entry.get('funding_mode') == 'bounded_prepaid_trial'
             scoped = provider == 'nebius' and entry.get('funding_mode') == 'bounded_prepaid_authorization'
             followup = provider == 'nebius' and entry.get('funding_mode') == 'bounded_prepaid_followup'
-            if bounded_trial or scoped or followup:
+            case_job = provider == 'nebius' and entry.get('funding_mode') == 'bounded_prepaid_case'
+            if bounded_trial or scoped or followup or case_job:
                 # Token Factory's current billing docs charge the card when the balance
                 # becomes negative. This narrowly scoped trial must stay above a floor;
                 # it does NOT assert that the provider disabled automatic charging.
@@ -93,6 +94,14 @@ class SpendGuard:
                         or amount(v)!=Decimal('.029654') for k,v in acknowledged.items()) or
                     balance-cap<Decimal('.50') or expiry>verified+timedelta(minutes=15)):
                     raise SpendError('spending_policy_invalid','The separately authorized follow-up must retain the acknowledged unknown hold, its own $0.24 scope and fresh positive-balance margin.')
+            if case_job:
+                if (entry.get('authorization_id') != 'envdoctor-repair-20261026' or
+                    entry.get('case_id') != 'envdoctor-check' or entry.get('active_scope') != 'repair' or
+                    amount(entry.get('authorization_budget_usd')) != Decimal('1') or
+                    entry.get('max_requests') != 4 or
+                    cap > amount(entry.get('historical_allowance_usd')) + Decimal('1') or
+                    balance-cap < Decimal('.50') or expiry > verified+timedelta(minutes=15)):
+                    raise SpendError('spending_policy_invalid','The envdoctor grant needs its own persistent $1/four-request scope and a fresh prepaid balance with a $0.50 margin.')
             return entry
         except SpendError:
             raise
@@ -158,6 +167,12 @@ class SpendGuard:
                 if (purpose not in allowed or requested>Decimal('.08') or
                     scoped_used+requested>Decimal('.24')):
                     raise SpendError('scope_budget_exhausted','The follow-up cannot borrow another scope or exceed its persistent $0.24 ceiling.')
+            elif entry.get('funding_mode')=='bounded_prepaid_case':
+                scope=entry['authorization_id']+':repair'
+                scoped=[amount(held) for _,held,_,saved_scope in rows if saved_scope==scope]
+                if (purpose not in {'model:classify','model:diagnose','model:classify_r2','model:diagnose_r2'} or
+                    len(scoped)>=4 or sum(scoped,Decimal(0))+requested>Decimal('1')):
+                    raise SpendError('scope_budget_exhausted','The one envdoctor trial cannot exceed $1/four calls or fund another purpose.')
             token=uuid.uuid4().hex
             db.execute('INSERT INTO reservations (id,provider,held,status,purpose,scope) VALUES (?,?,?,?,?,?)',
                 (token,provider,str(requested),'reserved',str(purpose)[:100],scope))
@@ -167,7 +182,7 @@ class SpendGuard:
         entry=self.check(provider)
         with self.connection() as db:
             row=db.execute('SELECT provider,status,scope FROM reservations WHERE id=?',(token,)).fetchone()
-            expected_scope=(entry['authorization_id']+':'+entry['active_scope']) if entry.get('funding_mode') in {'bounded_prepaid_authorization','bounded_prepaid_followup'} else None
+            expected_scope=(entry['authorization_id']+':'+entry['active_scope']) if entry.get('funding_mode') in {'bounded_prepaid_authorization','bounded_prepaid_followup','bounded_prepaid_case'} else None
             if row!=(provider,'reserved',expected_scope):
                 raise SpendError('spending_reservation_missing','The provider request has no valid unconsumed global reservation.')
             self.check_unresolved(db.execute('SELECT id,held,status,scope FROM reservations WHERE provider=?',(provider,)).fetchall(),entry)

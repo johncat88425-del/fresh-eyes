@@ -140,6 +140,7 @@ def run_case(contract: Contract, source: Path, wheelhouse: Path, output: Path, r
             bundle = Path(temp).resolve() / "bootstrap"
             bundle.mkdir()
             report["source_export"] = export_source(source, d["repo"]["commit"], bundle / "repo")
+            contract.check_cwd_files(bundle / "repo")
             original_repo = Path(temp).resolve() / "original_repo"
             shutil.copytree(bundle / "repo", original_repo)
             shutil.copyfile(Path(__file__).with_name("worker.py"), bundle / "worker.py")
@@ -213,7 +214,8 @@ def run_case(contract: Contract, source: Path, wheelhouse: Path, output: Path, r
                     round_record["candidate_patch"] = proposal
                     try:
                         diff = apply_patch(bundle / "repo", patch,
-                            secrets=getattr(repairer, "control_secrets", ()))
+                            secrets=getattr(repairer, "control_secrets", ()),
+                            protected_paths={name for f in d["fixtures"] for name in f.get("cwd_files", {})})
                     except InvalidCase as exc:
                         proposal.update(status="rejected", reason=str(exc))
                         round_record.update(status="rejected", reason=str(exc))

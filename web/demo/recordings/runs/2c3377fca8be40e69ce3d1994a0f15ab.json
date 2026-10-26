@@ -1,0 +1,1130 @@
+{
+  "schema_version": 1,
+  "data_origin": "execution",
+  "executed": true,
+  "record_source": "owner_local_engine",
+  "api_persisted": false,
+  "evaluation_eligible": false,
+  "run_id": "2c3377fca8be40e69ce3d1994a0f15ab",
+  "case_id": "envdoctor-check",
+  "goal": "Report whether every key in the project's .env.example is present in the given env file, and list extra keys (README: envdoctor -e .env.local -x .env.example).",
+  "verification_level": "functional",
+  "repair_mode": "model",
+  "repo_url": "https://github.com/kianPk/envdoctor",
+  "commit_sha": "ae33ef9439c70d617911c98e178968cd7e128912",
+  "review": {
+    "status": "approved",
+    "reviewed_by": "Chris",
+    "approved_at": "2026-10-26T14:42:05.849886+00:00",
+    "scope": "team_acceptance_review",
+    "acceptance_sha256": "ae27aa64c7176738139bd59305aa2c230b2f2ccbcf4083b2be486af04c4ee85e"
+  },
+  "repair_author": "model",
+  "phase": "finished",
+  "created_at": "2026-10-26T14:46:59.061173+00:00",
+  "run_state": "completed",
+  "result_status": "verified_fix",
+  "acceptance_sha256": "ae27aa64c7176738139bd59305aa2c230b2f2ccbcf4083b2be486af04c4ee85e",
+  "dependency_mode": "pypi_live",
+  "started_at": "2026-10-26T14:46:59.061375+00:00",
+  "finished_at": "2026-10-26T14:47:19.297921+00:00",
+  "reason": null,
+  "evidence": {
+    "schema_version": 1,
+    "run_id": "2c3377fca8be40e69ce3d1994a0f15ab",
+    "started_at": "2026-10-26T14:46:59.061375+00:00",
+    "case_id": "envdoctor-check",
+    "goal": "Report whether every key in the project's .env.example is present in the given env file, and list extra keys (README: envdoctor -e .env.local -x .env.example).",
+    "contract_sha256": "6b2ff3b795f76f3024842523b1d309ac083efd2e28d33fd79cbaa428654d18ab",
+    "acceptance_sha256": "ae27aa64c7176738139bd59305aa2c230b2f2ccbcf4083b2be486af04c4ee85e",
+    "repo": {
+      "commit": "ae33ef9439c70d617911c98e178968cd7e128912",
+      "url": "https://github.com/kianPk/envdoctor"
+    },
+    "review": {
+      "acceptance_sha256": "ae27aa64c7176738139bd59305aa2c230b2f2ccbcf4083b2be486af04c4ee85e",
+      "approved_at": "2026-10-26T14:42:05.849886+00:00",
+      "reviewed_by": "Chris",
+      "scope": "team_acceptance_review",
+      "status": "approved"
+    },
+    "status": "verified_fix",
+    "attempts": [
+      {
+        "phase": "original_readme",
+        "round": null,
+        "status": "failed",
+        "acceptance_sha256": "ae27aa64c7176738139bd59305aa2c230b2f2ccbcf4083b2be486af04c4ee85e",
+        "result": {
+          "setup_ok": false,
+          "steps": [
+            {
+              "argv": [
+                "/usr/local/bin/python",
+                "-m",
+                "venv",
+                "/work/venv"
+              ],
+              "executed_argv": [
+                "/usr/local/bin/python",
+                "-m",
+                "venv",
+                "/work/venv"
+              ],
+              "exit_code": 0,
+              "duration_s": 1.434,
+              "stdout": "",
+              "stderr": "",
+              "truncated": false
+            },
+            {
+              "argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-c",
+                "import json,pathlib,subprocess,sys,uuid,pip\np=pathlib.Path(sys.prefix).resolve()\nok=(p==pathlib.Path(sys.argv[1]).resolve() and sys.prefix!=sys.base_prefix\n    and pathlib.Path(pip.__file__).resolve().is_relative_to(p))\nexecutable=False\nif ok:\n    probe=p.parent/('.fresh-eyes-exec-probe-'+uuid.uuid4().hex)\n    try:\n        probe.write_text('#!/bin/sh\\nexit 0\\n')\n        probe.chmod(0o700)\n        executable=subprocess.run([str(probe)],stdin=subprocess.DEVNULL,\n                                  stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=5).returncode==0\n    except (OSError,subprocess.TimeoutExpired):\n        executable=False\n    finally:\n        probe.unlink(missing_ok=True)\nprint(json.dumps(dict(executable=sys.executable,prefix=str(p),base_prefix=sys.base_prefix,\n                     pip_module=pip.__file__,python=sys.version.split()[0],workspace_executable=executable)))\nsys.exit(0 if ok and executable else 1)\n",
+                "/work/venv"
+              ],
+              "executed_argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-c",
+                "import json,pathlib,subprocess,sys,uuid,pip\np=pathlib.Path(sys.prefix).resolve()\nok=(p==pathlib.Path(sys.argv[1]).resolve() and sys.prefix!=sys.base_prefix\n    and pathlib.Path(pip.__file__).resolve().is_relative_to(p))\nexecutable=False\nif ok:\n    probe=p.parent/('.fresh-eyes-exec-probe-'+uuid.uuid4().hex)\n    try:\n        probe.write_text('#!/bin/sh\\nexit 0\\n')\n        probe.chmod(0o700)\n        executable=subprocess.run([str(probe)],stdin=subprocess.DEVNULL,\n                                  stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=5).returncode==0\n    except (OSError,subprocess.TimeoutExpired):\n        executable=False\n    finally:\n        probe.unlink(missing_ok=True)\nprint(json.dumps(dict(executable=sys.executable,prefix=str(p),base_prefix=sys.base_prefix,\n                     pip_module=pip.__file__,python=sys.version.split()[0],workspace_executable=executable)))\nsys.exit(0 if ok and executable else 1)\n",
+                "/work/venv"
+              ],
+              "exit_code": 0,
+              "duration_s": 0.116,
+              "stdout": "{\"executable\": \"/work/venv/bin/python\", \"prefix\": \"/work/venv\", \"base_prefix\": \"/usr/local\", \"pip_module\": \"/work/venv/lib/python3.12/site-packages/pip/__init__.py\", \"python\": \"3.12.15\", \"workspace_executable\": true}\n",
+              "stderr": "",
+              "truncated": false
+            },
+            {
+              "argv": [
+                "pip",
+                "install",
+                "envdoctor"
+              ],
+              "executed_argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-m",
+                "pip",
+                "install",
+                "envdoctor"
+              ],
+              "exit_code": 1,
+              "duration_s": 0.685,
+              "stdout": "",
+              "stderr": "ERROR: Could not find a version that satisfies the requirement envdoctor (from versions: none)\nERROR: No matching distribution found for envdoctor\n",
+              "truncated": false
+            }
+          ],
+          "outputs": [],
+          "pip_freeze": {
+            "argv": [
+              "pip",
+              "freeze",
+              "--all"
+            ],
+            "executed_argv": [
+              "/work/venv/bin/python",
+              "-I",
+              "-m",
+              "pip",
+              "freeze",
+              "--all"
+            ],
+            "exit_code": 0,
+            "duration_s": 0.368,
+            "stdout": "pip==25.0.1\n",
+            "stderr": "",
+            "truncated": false
+          },
+          "dependency_mode": "pypi_live",
+          "environment_policy": "Fresh venv; documented Python/pip aliases resolve to that interpreter; no user-site install.",
+          "container_id": "fresh-eyes-9fb0140522d34f6d",
+          "execution_image_id": "sha256:1a95b13dc9250f1ce634bfb289e9c61da864dca33a3c80a6c18392f28702439b",
+          "network_policy": {
+            "mode": "pypi_proxy_isolated",
+            "network_id": "64a0dd4487c19077c4ee9d7543131d4b9613e2454396b110faa1ab99e6584e7c",
+            "configuration_verified": true,
+            "runtime_egress_verified": false,
+            "allowed_hosts": [
+              "pypi.org:443",
+              "files.pythonhosted.org:443"
+            ],
+            "verification_scope": "Docker network configuration; actual egress probes are a separate release gate"
+          }
+        },
+        "validation": {
+          "passed": false,
+          "checks": [],
+          "reason": "Setup did not complete"
+        }
+      },
+      {
+        "phase": "candidate_patch",
+        "round": 1,
+        "status": "passed",
+        "acceptance_sha256": "ae27aa64c7176738139bd59305aa2c230b2f2ccbcf4083b2be486af04c4ee85e",
+        "result": {
+          "setup_ok": true,
+          "steps": [
+            {
+              "argv": [
+                "/usr/local/bin/python",
+                "-m",
+                "venv",
+                "/work/venv"
+              ],
+              "executed_argv": [
+                "/usr/local/bin/python",
+                "-m",
+                "venv",
+                "/work/venv"
+              ],
+              "exit_code": 0,
+              "duration_s": 1.388,
+              "stdout": "",
+              "stderr": "",
+              "truncated": false
+            },
+            {
+              "argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-c",
+                "import json,pathlib,subprocess,sys,uuid,pip\np=pathlib.Path(sys.prefix).resolve()\nok=(p==pathlib.Path(sys.argv[1]).resolve() and sys.prefix!=sys.base_prefix\n    and pathlib.Path(pip.__file__).resolve().is_relative_to(p))\nexecutable=False\nif ok:\n    probe=p.parent/('.fresh-eyes-exec-probe-'+uuid.uuid4().hex)\n    try:\n        probe.write_text('#!/bin/sh\\nexit 0\\n')\n        probe.chmod(0o700)\n        executable=subprocess.run([str(probe)],stdin=subprocess.DEVNULL,\n                                  stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=5).returncode==0\n    except (OSError,subprocess.TimeoutExpired):\n        executable=False\n    finally:\n        probe.unlink(missing_ok=True)\nprint(json.dumps(dict(executable=sys.executable,prefix=str(p),base_prefix=sys.base_prefix,\n                     pip_module=pip.__file__,python=sys.version.split()[0],workspace_executable=executable)))\nsys.exit(0 if ok and executable else 1)\n",
+                "/work/venv"
+              ],
+              "executed_argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-c",
+                "import json,pathlib,subprocess,sys,uuid,pip\np=pathlib.Path(sys.prefix).resolve()\nok=(p==pathlib.Path(sys.argv[1]).resolve() and sys.prefix!=sys.base_prefix\n    and pathlib.Path(pip.__file__).resolve().is_relative_to(p))\nexecutable=False\nif ok:\n    probe=p.parent/('.fresh-eyes-exec-probe-'+uuid.uuid4().hex)\n    try:\n        probe.write_text('#!/bin/sh\\nexit 0\\n')\n        probe.chmod(0o700)\n        executable=subprocess.run([str(probe)],stdin=subprocess.DEVNULL,\n                                  stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=5).returncode==0\n    except (OSError,subprocess.TimeoutExpired):\n        executable=False\n    finally:\n        probe.unlink(missing_ok=True)\nprint(json.dumps(dict(executable=sys.executable,prefix=str(p),base_prefix=sys.base_prefix,\n                     pip_module=pip.__file__,python=sys.version.split()[0],workspace_executable=executable)))\nsys.exit(0 if ok and executable else 1)\n",
+                "/work/venv"
+              ],
+              "exit_code": 0,
+              "duration_s": 0.116,
+              "stdout": "{\"executable\": \"/work/venv/bin/python\", \"prefix\": \"/work/venv\", \"base_prefix\": \"/usr/local\", \"pip_module\": \"/work/venv/lib/python3.12/site-packages/pip/__init__.py\", \"python\": \"3.12.15\", \"workspace_executable\": true}\n",
+              "stderr": "",
+              "truncated": false
+            },
+            {
+              "argv": [
+                "pip",
+                "install",
+                "."
+              ],
+              "executed_argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-m",
+                "pip",
+                "install",
+                "."
+              ],
+              "exit_code": 0,
+              "duration_s": 2.036,
+              "stdout": "Processing /work/repo\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Getting requirements to build wheel: started\n  Getting requirements to build wheel: finished with status 'done'\n  Preparing metadata (pyproject.toml): started\n  Preparing metadata (pyproject.toml): finished with status 'done'\nBuilding wheels for collected packages: envdoctor\n  Building wheel for envdoctor (pyproject.toml): started\n  Building wheel for envdoctor (pyproject.toml): finished with status 'done'\n  Created wheel for envdoctor: filename=envdoctor-1.1.0-py3-none-any.whl size=4504 sha256=bd0b0eed907725f3a8684c9335b5398ec2473046dea6baa05e0169dce76e738a\n  Stored in directory: /tmp/pip-ephem-wheel-cache-vov2fff6/wheels/3a/4a/18/2e0c658c99e17426cd11b3c369a39c9159b7d6a4981ab576c1\nSuccessfully built envdoctor\nInstalling collected packages: envdoctor\nSuccessfully installed envdoctor-1.1.0\n",
+              "stderr": "",
+              "truncated": false,
+              "pip_install_report": {
+                "version": "1",
+                "pip_version": "25.0.1",
+                "install": [
+                  {
+                    "download_info": {
+                      "url": "file:///work/repo",
+                      "dir_info": {}
+                    },
+                    "is_direct": true,
+                    "is_yanked": false,
+                    "requested": true,
+                    "metadata": {
+                      "metadata_version": "2.4",
+                      "name": "envdoctor",
+                      "version": "1.1.0",
+                      "dynamic": [
+                        "license-file"
+                      ],
+                      "summary": "Validate .env keys against .env.example — catch missing config before deploy",
+                      "description": "# envdoctor\n\n**Catch missing `.env` keys before they hit production.**\n\nCompares your `.env` to `.env.example` and reports what’s missing (or extra).\n\n[![CI](https://github.com/kianPk/envdoctor/actions/workflows/ci.yml/badge.svg)](https://github.com/kianPk/envdoctor/actions/workflows/ci.yml)\n[![Python](https://img.shields.io/badge/Python-3.9+-3776AB?logo=python&logoColor=white)](https://www.python.org)\n[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)\n\n## Install\n\n```bash\npip install .\n# or from source\npip install .\n```\n\n## Usage\n\n```bash\nenvdoctor\nenvdoctor -e .env.local -x .env.example\nenvdoctor --strict          # exit 2 on extra keys not in example\nenvdoctor --json            # JSON report for scripts / CI\n```\n\n### Example output\n\n```text\nexample: .env.example (12 keys)\nenv:     .env (10 keys)\n\nmissing in .env (required by example):\n  - DATABASE_URL\n  - JWT_SECRET\n```\n\nExit codes: `0` ok, `1` missing required keys, `2` extra keys (with `--strict`) or file errors.\n\n```yaml\n- run: envdoctor --strict\n```\n\n## License\n\nMIT © [kianPk](https://github.com/kianPk)\n",
+                      "description_content_type": "text/markdown",
+                      "keywords": [
+                        "dotenv",
+                        "env",
+                        "cli",
+                        "validation",
+                        "devops"
+                      ],
+                      "author_email": "Kian Zarandi <kianzarandi701@gmail.com>",
+                      "license": "MIT",
+                      "license_file": [
+                        "LICENSE"
+                      ],
+                      "classifier": [
+                        "Environment :: Console",
+                        "License :: OSI Approved :: MIT License",
+                        "Programming Language :: Python :: 3",
+                        "Topic :: Software Development :: Quality Assurance"
+                      ],
+                      "requires_python": ">=3.9",
+                      "project_url": [
+                        "Homepage, https://github.com/kianPk/envdoctor",
+                        "Repository, https://github.com/kianPk/envdoctor"
+                      ]
+                    }
+                  }
+                ],
+                "environment": {
+                  "implementation_name": "cpython",
+                  "implementation_version": "3.12.15",
+                  "os_name": "posix",
+                  "platform_machine": "aarch64",
+                  "platform_release": "7.0.0-38-generic",
+                  "platform_system": "Linux",
+                  "platform_version": "#38-Ubuntu SMP PREEMPT_DYNAMIC Fri Sep  4 09:28:02 UTC 2026",
+                  "python_full_version": "3.12.15",
+                  "platform_python_implementation": "CPython",
+                  "python_version": "3.12",
+                  "sys_platform": "linux"
+                }
+              }
+            }
+          ],
+          "outputs": [
+            {
+              "name": "app.env",
+              "exit_code": 0,
+              "content": "example: .env.example (2 keys)\nenv:     /work/inputs/app.env (2 keys)\n\n✓ all example keys present in .env\n",
+              "truncated": false,
+              "process": {
+                "argv": [
+                  "envdoctor",
+                  "-e",
+                  "/work/inputs/app.env",
+                  "-x",
+                  ".env.example"
+                ],
+                "executed_argv": [
+                  "envdoctor",
+                  "-e",
+                  "/work/inputs/app.env",
+                  "-x",
+                  ".env.example"
+                ],
+                "exit_code": 0,
+                "duration_s": 0.116,
+                "stdout": "example: .env.example (2 keys)\nenv:     /work/inputs/app.env (2 keys)\n\n✓ all example keys present in .env\n",
+                "stderr": "",
+                "truncated": false
+              }
+            },
+            {
+              "name": "staging.env",
+              "exit_code": 0,
+              "content": "example: .env.example (3 keys)\nenv:     /work/inputs/staging.env (4 keys)\n\n✓ all example keys present in .env\n\nextra in .env (not in example):\n  - DEBUG\n",
+              "truncated": false,
+              "process": {
+                "argv": [
+                  "envdoctor",
+                  "-e",
+                  "/work/inputs/staging.env",
+                  "-x",
+                  ".env.example"
+                ],
+                "executed_argv": [
+                  "envdoctor",
+                  "-e",
+                  "/work/inputs/staging.env",
+                  "-x",
+                  ".env.example"
+                ],
+                "exit_code": 0,
+                "duration_s": 0.119,
+                "stdout": "example: .env.example (3 keys)\nenv:     /work/inputs/staging.env (4 keys)\n\n✓ all example keys present in .env\n\nextra in .env (not in example):\n  - DEBUG\n",
+                "stderr": "",
+                "truncated": false
+              }
+            }
+          ],
+          "pip_freeze": {
+            "argv": [
+              "pip",
+              "freeze",
+              "--all"
+            ],
+            "executed_argv": [
+              "/work/venv/bin/python",
+              "-I",
+              "-m",
+              "pip",
+              "freeze",
+              "--all"
+            ],
+            "exit_code": 0,
+            "duration_s": 0.32,
+            "stdout": "envdoctor @ file:///work/repo\npip==25.0.1\n",
+            "stderr": "",
+            "truncated": false
+          },
+          "dependency_mode": "pypi_live",
+          "environment_policy": "Fresh venv; documented Python/pip aliases resolve to that interpreter; no user-site install.",
+          "container_id": "fresh-eyes-931620eac56a4ff4",
+          "execution_image_id": "sha256:8b6d764548ca389092e3f48b1c582a2ddc5066caab7a383441422414e141b00e",
+          "network_policy": {
+            "mode": "pypi_proxy_isolated",
+            "network_id": "f5a5307ff250f6e528f84b9f2c1f4aeb395e6b1af2fbd0b2fe6beebef72b98aa",
+            "configuration_verified": true,
+            "runtime_egress_verified": false,
+            "allowed_hosts": [
+              "pypi.org:443",
+              "files.pythonhosted.org:443"
+            ],
+            "verification_scope": "Docker network configuration; actual egress probes are a separate release gate"
+          }
+        },
+        "validation": {
+          "passed": true,
+          "checks": [
+            {
+              "name": "app.env",
+              "passed": true,
+              "reason": "Expected functional output matched"
+            },
+            {
+              "name": "staging.env",
+              "passed": true,
+              "reason": "Expected functional output matched"
+            }
+          ]
+        }
+      },
+      {
+        "phase": "fresh_verification",
+        "round": 1,
+        "status": "passed",
+        "acceptance_sha256": "ae27aa64c7176738139bd59305aa2c230b2f2ccbcf4083b2be486af04c4ee85e",
+        "result": {
+          "setup_ok": true,
+          "steps": [
+            {
+              "argv": [
+                "/usr/local/bin/python",
+                "-m",
+                "venv",
+                "/work/venv"
+              ],
+              "executed_argv": [
+                "/usr/local/bin/python",
+                "-m",
+                "venv",
+                "/work/venv"
+              ],
+              "exit_code": 0,
+              "duration_s": 1.544,
+              "stdout": "",
+              "stderr": "",
+              "truncated": false
+            },
+            {
+              "argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-c",
+                "import json,pathlib,subprocess,sys,uuid,pip\np=pathlib.Path(sys.prefix).resolve()\nok=(p==pathlib.Path(sys.argv[1]).resolve() and sys.prefix!=sys.base_prefix\n    and pathlib.Path(pip.__file__).resolve().is_relative_to(p))\nexecutable=False\nif ok:\n    probe=p.parent/('.fresh-eyes-exec-probe-'+uuid.uuid4().hex)\n    try:\n        probe.write_text('#!/bin/sh\\nexit 0\\n')\n        probe.chmod(0o700)\n        executable=subprocess.run([str(probe)],stdin=subprocess.DEVNULL,\n                                  stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=5).returncode==0\n    except (OSError,subprocess.TimeoutExpired):\n        executable=False\n    finally:\n        probe.unlink(missing_ok=True)\nprint(json.dumps(dict(executable=sys.executable,prefix=str(p),base_prefix=sys.base_prefix,\n                     pip_module=pip.__file__,python=sys.version.split()[0],workspace_executable=executable)))\nsys.exit(0 if ok and executable else 1)\n",
+                "/work/venv"
+              ],
+              "executed_argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-c",
+                "import json,pathlib,subprocess,sys,uuid,pip\np=pathlib.Path(sys.prefix).resolve()\nok=(p==pathlib.Path(sys.argv[1]).resolve() and sys.prefix!=sys.base_prefix\n    and pathlib.Path(pip.__file__).resolve().is_relative_to(p))\nexecutable=False\nif ok:\n    probe=p.parent/('.fresh-eyes-exec-probe-'+uuid.uuid4().hex)\n    try:\n        probe.write_text('#!/bin/sh\\nexit 0\\n')\n        probe.chmod(0o700)\n        executable=subprocess.run([str(probe)],stdin=subprocess.DEVNULL,\n                                  stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=5).returncode==0\n    except (OSError,subprocess.TimeoutExpired):\n        executable=False\n    finally:\n        probe.unlink(missing_ok=True)\nprint(json.dumps(dict(executable=sys.executable,prefix=str(p),base_prefix=sys.base_prefix,\n                     pip_module=pip.__file__,python=sys.version.split()[0],workspace_executable=executable)))\nsys.exit(0 if ok and executable else 1)\n",
+                "/work/venv"
+              ],
+              "exit_code": 0,
+              "duration_s": 0.117,
+              "stdout": "{\"executable\": \"/work/venv/bin/python\", \"prefix\": \"/work/venv\", \"base_prefix\": \"/usr/local\", \"pip_module\": \"/work/venv/lib/python3.12/site-packages/pip/__init__.py\", \"python\": \"3.12.15\", \"workspace_executable\": true}\n",
+              "stderr": "",
+              "truncated": false
+            },
+            {
+              "argv": [
+                "pip",
+                "install",
+                "."
+              ],
+              "executed_argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-m",
+                "pip",
+                "install",
+                "."
+              ],
+              "exit_code": 0,
+              "duration_s": 3.093,
+              "stdout": "Processing /work/repo\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Getting requirements to build wheel: started\n  Getting requirements to build wheel: finished with status 'done'\n  Preparing metadata (pyproject.toml): started\n  Preparing metadata (pyproject.toml): finished with status 'done'\nBuilding wheels for collected packages: envdoctor\n  Building wheel for envdoctor (pyproject.toml): started\n  Building wheel for envdoctor (pyproject.toml): finished with status 'done'\n  Created wheel for envdoctor: filename=envdoctor-1.1.0-py3-none-any.whl size=4504 sha256=54eca2f765a96a9d18cb71a18d536b96c352093392a30f72cf42805293d69285\n  Stored in directory: /tmp/pip-ephem-wheel-cache-9ba0pb8_/wheels/3a/4a/18/2e0c658c99e17426cd11b3c369a39c9159b7d6a4981ab576c1\nSuccessfully built envdoctor\nInstalling collected packages: envdoctor\nSuccessfully installed envdoctor-1.1.0\n",
+              "stderr": "",
+              "truncated": false,
+              "pip_install_report": {
+                "version": "1",
+                "pip_version": "25.0.1",
+                "install": [
+                  {
+                    "download_info": {
+                      "url": "file:///work/repo",
+                      "dir_info": {}
+                    },
+                    "is_direct": true,
+                    "is_yanked": false,
+                    "requested": true,
+                    "metadata": {
+                      "metadata_version": "2.4",
+                      "name": "envdoctor",
+                      "version": "1.1.0",
+                      "dynamic": [
+                        "license-file"
+                      ],
+                      "summary": "Validate .env keys against .env.example — catch missing config before deploy",
+                      "description": "# envdoctor\n\n**Catch missing `.env` keys before they hit production.**\n\nCompares your `.env` to `.env.example` and reports what’s missing (or extra).\n\n[![CI](https://github.com/kianPk/envdoctor/actions/workflows/ci.yml/badge.svg)](https://github.com/kianPk/envdoctor/actions/workflows/ci.yml)\n[![Python](https://img.shields.io/badge/Python-3.9+-3776AB?logo=python&logoColor=white)](https://www.python.org)\n[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)\n\n## Install\n\n```bash\npip install .\n# or from source\npip install .\n```\n\n## Usage\n\n```bash\nenvdoctor\nenvdoctor -e .env.local -x .env.example\nenvdoctor --strict          # exit 2 on extra keys not in example\nenvdoctor --json            # JSON report for scripts / CI\n```\n\n### Example output\n\n```text\nexample: .env.example (12 keys)\nenv:     .env (10 keys)\n\nmissing in .env (required by example):\n  - DATABASE_URL\n  - JWT_SECRET\n```\n\nExit codes: `0` ok, `1` missing required keys, `2` extra keys (with `--strict`) or file errors.\n\n```yaml\n- run: envdoctor --strict\n```\n\n## License\n\nMIT © [kianPk](https://github.com/kianPk)\n",
+                      "description_content_type": "text/markdown",
+                      "keywords": [
+                        "dotenv",
+                        "env",
+                        "cli",
+                        "validation",
+                        "devops"
+                      ],
+                      "author_email": "Kian Zarandi <kianzarandi701@gmail.com>",
+                      "license": "MIT",
+                      "license_file": [
+                        "LICENSE"
+                      ],
+                      "classifier": [
+                        "Environment :: Console",
+                        "License :: OSI Approved :: MIT License",
+                        "Programming Language :: Python :: 3",
+                        "Topic :: Software Development :: Quality Assurance"
+                      ],
+                      "requires_python": ">=3.9",
+                      "project_url": [
+                        "Homepage, https://github.com/kianPk/envdoctor",
+                        "Repository, https://github.com/kianPk/envdoctor"
+                      ]
+                    }
+                  }
+                ],
+                "environment": {
+                  "implementation_name": "cpython",
+                  "implementation_version": "3.12.15",
+                  "os_name": "posix",
+                  "platform_machine": "aarch64",
+                  "platform_release": "7.0.0-38-generic",
+                  "platform_system": "Linux",
+                  "platform_version": "#38-Ubuntu SMP PREEMPT_DYNAMIC Fri Sep  4 09:28:02 UTC 2026",
+                  "python_full_version": "3.12.15",
+                  "platform_python_implementation": "CPython",
+                  "python_version": "3.12",
+                  "sys_platform": "linux"
+                }
+              }
+            }
+          ],
+          "outputs": [
+            {
+              "name": "app.env",
+              "exit_code": 0,
+              "content": "example: .env.example (2 keys)\nenv:     /work/inputs/app.env (2 keys)\n\n✓ all example keys present in .env\n",
+              "truncated": false,
+              "process": {
+                "argv": [
+                  "envdoctor",
+                  "-e",
+                  "/work/inputs/app.env",
+                  "-x",
+                  ".env.example"
+                ],
+                "executed_argv": [
+                  "envdoctor",
+                  "-e",
+                  "/work/inputs/app.env",
+                  "-x",
+                  ".env.example"
+                ],
+                "exit_code": 0,
+                "duration_s": 0.12,
+                "stdout": "example: .env.example (2 keys)\nenv:     /work/inputs/app.env (2 keys)\n\n✓ all example keys present in .env\n",
+                "stderr": "",
+                "truncated": false
+              }
+            },
+            {
+              "name": "staging.env",
+              "exit_code": 0,
+              "content": "example: .env.example (3 keys)\nenv:     /work/inputs/staging.env (4 keys)\n\n✓ all example keys present in .env\n\nextra in .env (not in example):\n  - DEBUG\n",
+              "truncated": false,
+              "process": {
+                "argv": [
+                  "envdoctor",
+                  "-e",
+                  "/work/inputs/staging.env",
+                  "-x",
+                  ".env.example"
+                ],
+                "executed_argv": [
+                  "envdoctor",
+                  "-e",
+                  "/work/inputs/staging.env",
+                  "-x",
+                  ".env.example"
+                ],
+                "exit_code": 0,
+                "duration_s": 0.12,
+                "stdout": "example: .env.example (3 keys)\nenv:     /work/inputs/staging.env (4 keys)\n\n✓ all example keys present in .env\n\nextra in .env (not in example):\n  - DEBUG\n",
+                "stderr": "",
+                "truncated": false
+              }
+            }
+          ],
+          "pip_freeze": {
+            "argv": [
+              "pip",
+              "freeze",
+              "--all"
+            ],
+            "executed_argv": [
+              "/work/venv/bin/python",
+              "-I",
+              "-m",
+              "pip",
+              "freeze",
+              "--all"
+            ],
+            "exit_code": 0,
+            "duration_s": 0.318,
+            "stdout": "envdoctor @ file:///work/repo\npip==25.0.1\n",
+            "stderr": "",
+            "truncated": false
+          },
+          "dependency_mode": "pypi_live",
+          "environment_policy": "Fresh venv; documented Python/pip aliases resolve to that interpreter; no user-site install.",
+          "container_id": "fresh-eyes-6fc02caca4134887",
+          "execution_image_id": "sha256:fb0d6bf09a8ae3c0f6270d776c95c9b86f8b9e28af4bdec5a8c447f799c7aa0a",
+          "network_policy": {
+            "mode": "pypi_proxy_isolated",
+            "network_id": "c9110c2497fd2f6b21fe311ff976195d457cc6986736542fe35611389705deff",
+            "configuration_verified": true,
+            "runtime_egress_verified": false,
+            "allowed_hosts": [
+              "pypi.org:443",
+              "files.pythonhosted.org:443"
+            ],
+            "verification_scope": "Docker network configuration; actual egress probes are a separate release gate"
+          }
+        },
+        "validation": {
+          "passed": true,
+          "checks": [
+            {
+              "name": "app.env",
+              "passed": true,
+              "reason": "Expected functional output matched"
+            },
+            {
+              "name": "staging.env",
+              "passed": true,
+              "reason": "Expected functional output matched"
+            }
+          ]
+        }
+      }
+    ],
+    "model_calls": 2,
+    "repair_author": "model",
+    "dependency_mode": "pypi_live",
+    "max_patch_rounds": 2,
+    "repair_route": "nano_ultra",
+    "repair_rounds": [
+      {
+        "round": 1,
+        "diagnosis": {
+          "route": "nano_ultra",
+          "data_origin": "nebius_api",
+          "status": "candidate",
+          "classification": {
+            "category": "dependency",
+            "reason": "Installation command `pip install envdoctor` fails with no matching distribution; dependency declaration missing or incompatible; cannot start workflow."
+          },
+          "classification_model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+          "explanation": "The package `envdoctor` is not published on PyPI, so `pip install envdoctor` fails. The README already documents an alternative `pip install .` to install from source. Changing the install command to the local install fixes the setup.",
+          "diagnostic_model": "nvidia/Nemotron-3-Ultra-550b-a55b",
+          "ledger": {
+            "run_id": "61941dbf62544ba29dc362eb33cce73b",
+            "currency": "USD",
+            "max_usd": "1",
+            "held_usd": "0.00359120",
+            "model_calls": 2,
+            "engineering_test_calls": 0,
+            "calculated_usd": "0.00359120",
+            "billed_usd": null,
+            "calls": [
+              {
+                "call_id": "4254aff5259448ddaa509425d3017c07",
+                "run_id": "61941dbf62544ba29dc362eb33cce73b",
+                "stage": "classify",
+                "data_origin": "nebius_api",
+                "requested_model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+                "returned_model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+                "provider_request_id": "chatcmpl-540f0def-9faf-426c-abdc-8e2051acc426",
+                "started_at": "2026-10-26T14:47:04.124574+00:00",
+                "finished_at": "2026-10-26T14:47:04.755448+00:00",
+                "status": "completed",
+                "usage": {
+                  "prompt_tokens": 1684,
+                  "completion_tokens": 34,
+                  "total_tokens": 1718
+                },
+                "dispatch_started_at": "2026-10-26T14:47:04.126363+00:00",
+                "price_reference": "https://api.tokenfactory.nebius.com/v1/models?verbose=true checked 2026-10-24T17:37:23.726642+00:00",
+                "input_per_million": "0.06000000",
+                "output_per_million": "0.24000000",
+                "cached_input_per_million": null,
+                "reservation_usd": "0.00067626",
+                "calculated_usd": "0.00010920",
+                "billed_usd": null,
+                "input_tokens_upper_bound": 8199,
+                "input_bound_reference": "nvidia-byte-bpe-v1:c6021eb6847e682f89aa52d5eb6e8c7d902a23acfc8137e25211cf84828f1592:template:ab7813c3abdd9cb655905a410728b26c7884eca45ddfab8d9f931553485a7862:header=2048",
+                "billing_status": "usage_calculated_pending_reconciliation",
+                "prompt_sha256": "023e36d84d6f06f7665f610b42d3a1e35a762ba373cd9563b180ab630c50f8bd",
+                "request_options": {
+                  "chat_template_kwargs": {
+                    "enable_thinking": false
+                  }
+                },
+                "response_finish_reason": "stop",
+                "response_content_bytes": 189,
+                "latency_ms": 629
+              },
+              {
+                "call_id": "07a237d339e3423ab4322f2c79cd8160",
+                "run_id": "61941dbf62544ba29dc362eb33cce73b",
+                "stage": "diagnose",
+                "data_origin": "nebius_api",
+                "requested_model": "nvidia/Nemotron-3-Ultra-550b-a55b",
+                "returned_model": "nvidia/Nemotron-3-Ultra-550b-a55b",
+                "provider_request_id": "chatcmpl-593dc8c544771d161dac6a461b93ad65",
+                "started_at": "2026-10-26T14:47:04.759053+00:00",
+                "finished_at": "2026-10-26T14:47:07.141601+00:00",
+                "status": "completed",
+                "usage": {
+                  "prompt_tokens": 1673,
+                  "completion_tokens": 603,
+                  "total_tokens": 2276,
+                  "cached_tokens": 0,
+                  "reasoning_tokens": 446
+                },
+                "dispatch_started_at": "2026-10-26T14:47:04.760635+00:00",
+                "price_reference": "https://api.tokenfactory.nebius.com/v1/models?verbose=true checked 2026-10-24T17:37:23.726642+00:00",
+                "input_per_million": "1.000000",
+                "output_per_million": "3.000000",
+                "cached_input_per_million": "0.12000000",
+                "reservation_usd": "0.026418",
+                "calculated_usd": "0.00348200",
+                "billed_usd": null,
+                "input_tokens_upper_bound": 7986,
+                "input_bound_reference": "nvidia-byte-bpe-v1:623c34567aebb18582765289fbe23d901c62704d6518d71866e0e58db892b5b7:template:82753bef5cedc4932c1ed509b5c9a12be680fd86d1adb65bc3f7398d11c8eebc:header=2048",
+                "billing_status": "usage_calculated_pending_reconciliation",
+                "prompt_sha256": "452f0b4817d9d108daa42977d638eddf1ed3ee0ac0ca60c9a21f444c8c5b4288",
+                "request_options": {
+                  "chat_template_kwargs": {
+                    "enable_thinking": true,
+                    "medium_effort": true,
+                    "force_nonempty_content": true
+                  }
+                },
+                "response_finish_reason": "stop",
+                "response_content_bytes": 565,
+                "latency_ms": 2381
+              }
+            ]
+          }
+        },
+        "status": "verified_fix",
+        "candidate_patch": {
+          "status": "accepted_for_validation",
+          "patch": {
+            "edits": [
+              {
+                "path": "README.md",
+                "start": 14,
+                "end": 14,
+                "old": "pip install envdoctor",
+                "new": "pip install ."
+              }
+            ],
+            "setup": [
+              {
+                "argv": [
+                  "pip",
+                  "install",
+                  "."
+                ],
+                "source": "README.md:L14"
+              }
+            ]
+          }
+        },
+        "patch": {
+          "diff": "--- a/README.md\n+++ b/README.md\n@@ -11,7 +11,7 @@\n ## Install\n \n ```bash\n-pip install envdoctor\n+pip install .\n # or from source\n pip install .\n ```\n",
+          "sha256": "fe372136810bb2dc24bc19c53f3268474303e150b96da95142bb527c92300842",
+          "round": 1
+        }
+      }
+    ],
+    "time_limit_s": 600,
+    "limitations": [
+      "Live PyPI resolution; package versions may change between attempts.",
+      "Development cases have not been approved by upstream maintainers.",
+      "Passing fixtures only verifies the registered workflow."
+    ],
+    "current_phase": "finished",
+    "environment": {
+      "requested_image": "sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704",
+      "image_id": "sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704",
+      "repo_digests": [
+        "python@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704"
+      ],
+      "platform": "linux/arm64",
+      "dependency_mode": "pypi_live",
+      "network": "pypi_proxy_isolated",
+      "offline_wheelhouse": false,
+      "egress_allowlist": [
+        "pypi.org:443",
+        "files.pythonhosted.org:443"
+      ]
+    },
+    "source_export": {
+      "commit_sha": "ae33ef9439c70d617911c98e178968cd7e128912",
+      "materialized_file_links": [],
+      "notice": "Internal file links are materialized from archived target bytes; no host symlink is created."
+    },
+    "wheelhouse": [],
+    "repair_round": 1,
+    "diagnosis": {
+      "route": "nano_ultra",
+      "data_origin": "nebius_api",
+      "status": "candidate",
+      "classification": {
+        "category": "dependency",
+        "reason": "Installation command `pip install envdoctor` fails with no matching distribution; dependency declaration missing or incompatible; cannot start workflow."
+      },
+      "classification_model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+      "explanation": "The package `envdoctor` is not published on PyPI, so `pip install envdoctor` fails. The README already documents an alternative `pip install .` to install from source. Changing the install command to the local install fixes the setup.",
+      "diagnostic_model": "nvidia/Nemotron-3-Ultra-550b-a55b",
+      "ledger": {
+        "run_id": "61941dbf62544ba29dc362eb33cce73b",
+        "currency": "USD",
+        "max_usd": "1",
+        "held_usd": "0.00359120",
+        "model_calls": 2,
+        "engineering_test_calls": 0,
+        "calculated_usd": "0.00359120",
+        "billed_usd": null,
+        "calls": [
+          {
+            "call_id": "4254aff5259448ddaa509425d3017c07",
+            "run_id": "61941dbf62544ba29dc362eb33cce73b",
+            "stage": "classify",
+            "data_origin": "nebius_api",
+            "requested_model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+            "returned_model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+            "provider_request_id": "chatcmpl-540f0def-9faf-426c-abdc-8e2051acc426",
+            "started_at": "2026-10-26T14:47:04.124574+00:00",
+            "finished_at": "2026-10-26T14:47:04.755448+00:00",
+            "status": "completed",
+            "usage": {
+              "prompt_tokens": 1684,
+              "completion_tokens": 34,
+              "total_tokens": 1718
+            },
+            "dispatch_started_at": "2026-10-26T14:47:04.126363+00:00",
+            "price_reference": "https://api.tokenfactory.nebius.com/v1/models?verbose=true checked 2026-10-24T17:37:23.726642+00:00",
+            "input_per_million": "0.06000000",
+            "output_per_million": "0.24000000",
+            "cached_input_per_million": null,
+            "reservation_usd": "0.00067626",
+            "calculated_usd": "0.00010920",
+            "billed_usd": null,
+            "input_tokens_upper_bound": 8199,
+            "input_bound_reference": "nvidia-byte-bpe-v1:c6021eb6847e682f89aa52d5eb6e8c7d902a23acfc8137e25211cf84828f1592:template:ab7813c3abdd9cb655905a410728b26c7884eca45ddfab8d9f931553485a7862:header=2048",
+            "billing_status": "usage_calculated_pending_reconciliation",
+            "prompt_sha256": "023e36d84d6f06f7665f610b42d3a1e35a762ba373cd9563b180ab630c50f8bd",
+            "request_options": {
+              "chat_template_kwargs": {
+                "enable_thinking": false
+              }
+            },
+            "response_finish_reason": "stop",
+            "response_content_bytes": 189,
+            "latency_ms": 629
+          },
+          {
+            "call_id": "07a237d339e3423ab4322f2c79cd8160",
+            "run_id": "61941dbf62544ba29dc362eb33cce73b",
+            "stage": "diagnose",
+            "data_origin": "nebius_api",
+            "requested_model": "nvidia/Nemotron-3-Ultra-550b-a55b",
+            "returned_model": "nvidia/Nemotron-3-Ultra-550b-a55b",
+            "provider_request_id": "chatcmpl-593dc8c544771d161dac6a461b93ad65",
+            "started_at": "2026-10-26T14:47:04.759053+00:00",
+            "finished_at": "2026-10-26T14:47:07.141601+00:00",
+            "status": "completed",
+            "usage": {
+              "prompt_tokens": 1673,
+              "completion_tokens": 603,
+              "total_tokens": 2276,
+              "cached_tokens": 0,
+              "reasoning_tokens": 446
+            },
+            "dispatch_started_at": "2026-10-26T14:47:04.760635+00:00",
+            "price_reference": "https://api.tokenfactory.nebius.com/v1/models?verbose=true checked 2026-10-24T17:37:23.726642+00:00",
+            "input_per_million": "1.000000",
+            "output_per_million": "3.000000",
+            "cached_input_per_million": "0.12000000",
+            "reservation_usd": "0.026418",
+            "calculated_usd": "0.00348200",
+            "billed_usd": null,
+            "input_tokens_upper_bound": 7986,
+            "input_bound_reference": "nvidia-byte-bpe-v1:623c34567aebb18582765289fbe23d901c62704d6518d71866e0e58db892b5b7:template:82753bef5cedc4932c1ed509b5c9a12be680fd86d1adb65bc3f7398d11c8eebc:header=2048",
+            "billing_status": "usage_calculated_pending_reconciliation",
+            "prompt_sha256": "452f0b4817d9d108daa42977d638eddf1ed3ee0ac0ca60c9a21f444c8c5b4288",
+            "request_options": {
+              "chat_template_kwargs": {
+                "enable_thinking": true,
+                "medium_effort": true,
+                "force_nonempty_content": true
+              }
+            },
+            "response_finish_reason": "stop",
+            "response_content_bytes": 565,
+            "latency_ms": 2381
+          }
+        ]
+      }
+    },
+    "candidate_patch": {
+      "status": "accepted_for_validation",
+      "patch": {
+        "edits": [
+          {
+            "path": "README.md",
+            "start": 14,
+            "end": 14,
+            "old": "pip install envdoctor",
+            "new": "pip install ."
+          }
+        ],
+        "setup": [
+          {
+            "argv": [
+              "pip",
+              "install",
+              "."
+            ],
+            "source": "README.md:L14"
+          }
+        ]
+      }
+    },
+    "patch": {
+      "diff": "--- a/README.md\n+++ b/README.md\n@@ -11,7 +11,7 @@\n ## Install\n \n ```bash\n-pip install envdoctor\n+pip install .\n # or from source\n pip install .\n ```\n",
+      "sha256": "fe372136810bb2dc24bc19c53f3268474303e150b96da95142bb527c92300842",
+      "round": 1
+    },
+    "finished_at": "2026-10-26T14:47:19.297921+00:00",
+    "evaluation_eligible": false,
+    "trial_plan_sha256": "fe9d3c34e66ae9ad75609dde065551193d4d856134b62df3083c8e01a13b2fa6",
+    "model_ledger": {
+      "run_id": "61941dbf62544ba29dc362eb33cce73b",
+      "currency": "USD",
+      "max_usd": "1",
+      "held_usd": "0.00359120",
+      "model_calls": 2,
+      "engineering_test_calls": 0,
+      "calculated_usd": "0.00359120",
+      "billed_usd": null,
+      "calls": [
+        {
+          "call_id": "4254aff5259448ddaa509425d3017c07",
+          "run_id": "61941dbf62544ba29dc362eb33cce73b",
+          "stage": "classify",
+          "data_origin": "nebius_api",
+          "requested_model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+          "returned_model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+          "provider_request_id": "chatcmpl-540f0def-9faf-426c-abdc-8e2051acc426",
+          "started_at": "2026-10-26T14:47:04.124574+00:00",
+          "finished_at": "2026-10-26T14:47:04.755448+00:00",
+          "status": "completed",
+          "usage": {
+            "prompt_tokens": 1684,
+            "completion_tokens": 34,
+            "total_tokens": 1718
+          },
+          "dispatch_started_at": "2026-10-26T14:47:04.126363+00:00",
+          "price_reference": "https://api.tokenfactory.nebius.com/v1/models?verbose=true checked 2026-10-24T17:37:23.726642+00:00",
+          "input_per_million": "0.06000000",
+          "output_per_million": "0.24000000",
+          "cached_input_per_million": null,
+          "reservation_usd": "0.00067626",
+          "calculated_usd": "0.00010920",
+          "billed_usd": null,
+          "input_tokens_upper_bound": 8199,
+          "input_bound_reference": "nvidia-byte-bpe-v1:c6021eb6847e682f89aa52d5eb6e8c7d902a23acfc8137e25211cf84828f1592:template:ab7813c3abdd9cb655905a410728b26c7884eca45ddfab8d9f931553485a7862:header=2048",
+          "billing_status": "usage_calculated_pending_reconciliation",
+          "prompt_sha256": "023e36d84d6f06f7665f610b42d3a1e35a762ba373cd9563b180ab630c50f8bd",
+          "request_options": {
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "response_finish_reason": "stop",
+          "response_content_bytes": 189,
+          "latency_ms": 629
+        },
+        {
+          "call_id": "07a237d339e3423ab4322f2c79cd8160",
+          "run_id": "61941dbf62544ba29dc362eb33cce73b",
+          "stage": "diagnose",
+          "data_origin": "nebius_api",
+          "requested_model": "nvidia/Nemotron-3-Ultra-550b-a55b",
+          "returned_model": "nvidia/Nemotron-3-Ultra-550b-a55b",
+          "provider_request_id": "chatcmpl-593dc8c544771d161dac6a461b93ad65",
+          "started_at": "2026-10-26T14:47:04.759053+00:00",
+          "finished_at": "2026-10-26T14:47:07.141601+00:00",
+          "status": "completed",
+          "usage": {
+            "prompt_tokens": 1673,
+            "completion_tokens": 603,
+            "total_tokens": 2276,
+            "cached_tokens": 0,
+            "reasoning_tokens": 446
+          },
+          "dispatch_started_at": "2026-10-26T14:47:04.760635+00:00",
+          "price_reference": "https://api.tokenfactory.nebius.com/v1/models?verbose=true checked 2026-10-24T17:37:23.726642+00:00",
+          "input_per_million": "1.000000",
+          "output_per_million": "3.000000",
+          "cached_input_per_million": "0.12000000",
+          "reservation_usd": "0.026418",
+          "calculated_usd": "0.00348200",
+          "billed_usd": null,
+          "input_tokens_upper_bound": 7986,
+          "input_bound_reference": "nvidia-byte-bpe-v1:623c34567aebb18582765289fbe23d901c62704d6518d71866e0e58db892b5b7:template:82753bef5cedc4932c1ed509b5c9a12be680fd86d1adb65bc3f7398d11c8eebc:header=2048",
+          "billing_status": "usage_calculated_pending_reconciliation",
+          "prompt_sha256": "452f0b4817d9d108daa42977d638eddf1ed3ee0ac0ca60c9a21f444c8c5b4288",
+          "request_options": {
+            "chat_template_kwargs": {
+              "enable_thinking": true,
+              "medium_effort": true,
+              "force_nonempty_content": true
+            }
+          },
+          "response_finish_reason": "stop",
+          "response_content_bytes": 565,
+          "latency_ms": 2381
+        }
+      ]
+    }
+  },
+  "patch_available": true,
+  "costs": {
+    "currency": "USD",
+    "model_usd": 0.0035912,
+    "model_calls": [
+      {
+        "call_id": "4254aff5259448ddaa509425d3017c07",
+        "run_id": "61941dbf62544ba29dc362eb33cce73b",
+        "stage": "classify",
+        "data_origin": "nebius_api",
+        "requested_model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+        "returned_model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+        "provider_request_id": "chatcmpl-540f0def-9faf-426c-abdc-8e2051acc426",
+        "started_at": "2026-10-26T14:47:04.124574+00:00",
+        "finished_at": "2026-10-26T14:47:04.755448+00:00",
+        "status": "completed",
+        "usage": {
+          "prompt_tokens": 1684,
+          "completion_tokens": 34,
+          "total_tokens": 1718
+        },
+        "dispatch_started_at": "2026-10-26T14:47:04.126363+00:00",
+        "price_reference": "https://api.tokenfactory.nebius.com/v1/models?verbose=true checked 2026-10-24T17:37:23.726642+00:00",
+        "input_per_million": "0.06000000",
+        "output_per_million": "0.24000000",
+        "cached_input_per_million": null,
+        "reservation_usd": "0.00067626",
+        "calculated_usd": "0.00010920",
+        "billed_usd": null,
+        "input_tokens_upper_bound": 8199,
+        "input_bound_reference": "nvidia-byte-bpe-v1:c6021eb6847e682f89aa52d5eb6e8c7d902a23acfc8137e25211cf84828f1592:template:ab7813c3abdd9cb655905a410728b26c7884eca45ddfab8d9f931553485a7862:header=2048",
+        "billing_status": "usage_calculated_pending_reconciliation",
+        "prompt_sha256": "023e36d84d6f06f7665f610b42d3a1e35a762ba373cd9563b180ab630c50f8bd",
+        "request_options": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "response_finish_reason": "stop",
+        "response_content_bytes": 189,
+        "latency_ms": 629
+      },
+      {
+        "call_id": "07a237d339e3423ab4322f2c79cd8160",
+        "run_id": "61941dbf62544ba29dc362eb33cce73b",
+        "stage": "diagnose",
+        "data_origin": "nebius_api",
+        "requested_model": "nvidia/Nemotron-3-Ultra-550b-a55b",
+        "returned_model": "nvidia/Nemotron-3-Ultra-550b-a55b",
+        "provider_request_id": "chatcmpl-593dc8c544771d161dac6a461b93ad65",
+        "started_at": "2026-10-26T14:47:04.759053+00:00",
+        "finished_at": "2026-10-26T14:47:07.141601+00:00",
+        "status": "completed",
+        "usage": {
+          "prompt_tokens": 1673,
+          "completion_tokens": 603,
+          "total_tokens": 2276,
+          "cached_tokens": 0,
+          "reasoning_tokens": 446
+        },
+        "dispatch_started_at": "2026-10-26T14:47:04.760635+00:00",
+        "price_reference": "https://api.tokenfactory.nebius.com/v1/models?verbose=true checked 2026-10-24T17:37:23.726642+00:00",
+        "input_per_million": "1.000000",
+        "output_per_million": "3.000000",
+        "cached_input_per_million": "0.12000000",
+        "reservation_usd": "0.026418",
+        "calculated_usd": "0.00348200",
+        "billed_usd": null,
+        "input_tokens_upper_bound": 7986,
+        "input_bound_reference": "nvidia-byte-bpe-v1:623c34567aebb18582765289fbe23d901c62704d6518d71866e0e58db892b5b7:template:82753bef5cedc4932c1ed509b5c9a12be680fd86d1adb65bc3f7398d11c8eebc:header=2048",
+        "billing_status": "usage_calculated_pending_reconciliation",
+        "prompt_sha256": "452f0b4817d9d108daa42977d638eddf1ed3ee0ac0ca60c9a21f444c8c5b4288",
+        "request_options": {
+          "chat_template_kwargs": {
+            "enable_thinking": true,
+            "medium_effort": true,
+            "force_nonempty_content": true
+          }
+        },
+        "response_finish_reason": "stop",
+        "response_content_bytes": 565,
+        "latency_ms": 2381
+      }
+    ],
+    "paid_calls_enabled": false,
+    "billing_status": "usage_calculated_pending_reconciliation",
+    "billed_usd": null,
+    "runner_usd": null,
+    "total_usd": null
+  }
+}

@@ -34,15 +34,27 @@
       "acceptance_sha256": "78fae5502f1a52adda40364527172c9cf9fe3b031b80c933e9b04b35fb20b817",
       "recorded_at": "2026-10-20T01:38:19.096174+00:00",
       "original_fields_preserved": true
+    },
+    {
+      "case_id": "envdoctor-check",
+      "event_type": "approved",
+      "revision": 1,
+      "reviewed_by": "Chris",
+      "approved_at": "2026-10-26T14:42:05.849886+00:00",
+      "acceptance_sha256": "ae27aa64c7176738139bd59305aa2c230b2f2ccbcf4083b2be486af04c4ee85e",
+      "recorded_at": "2026-10-26T14:42:05.850786+00:00",
+      "original_fields_preserved": true
     }
   ],
   "json2yaml_source": "README.md:L11;L16;L32-L42",
-  "registered_dev_cases": 3,
+  "registered_dev_cases": 4,
   "holdout_exposed": false,
   "active_runs": [],
   "paid_calls_enabled": false,
   "model_calls_enabled": false,
   "execution_enabled": false,
   "approval_writes_by_this_check": 0,
-  "new_model_calls": 0
+  "new_model_calls": 0,
+  "last_extended_at": "2026-10-26T15:20:35.166000+00:00",
+  "extension_source": "GET /api/cases and /api/cases/envdoctor-check/approval/history; existing Chris approval; no new approval write"
 }

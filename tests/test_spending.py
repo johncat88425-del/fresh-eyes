@@ -126,6 +126,46 @@ class SpendingTests(unittest.TestCase):
             active_scope=scope,scopes={'notes':'.02','win4':'.24','drafts':'.24','formal':'1.20'})
         guard.policy_path.write_text(json.dumps(policy));return guard
 
+    def case_guard(self, **changes):
+        guard=self.bounded_trial()
+        policy=json.loads(guard.policy_path.read_text())
+        policy['providers']['nebius'].update(funding_mode='bounded_prepaid_case',
+            authorization_id='envdoctor-repair-20261026',authorization_budget_usd='1',
+            historical_allowance_usd='.25',max_total='1.25',available_prepaid='30',
+            active_scope='repair',case_id='envdoctor-check',max_requests=4)
+        policy['providers']['nebius'].update(changes)
+        guard.policy_path.write_text(json.dumps(policy))
+        with guard.connection() as db:
+            db.execute('INSERT OR IGNORE INTO reservations VALUES (?,?,?,?,?,?)',
+                       ('historical','nebius','.25','spent','model:diagnose','older-grant'))
+        return guard
+
+    def test_envdoctor_does_not_reset_history_or_borrow_more_than_one_dollar(self):
+        guard=self.case_guard()
+        token=guard.reserve('nebius','.9','model:diagnose');guard.verify_reservation(token,'nebius');guard.finish(token,'.9')
+        with self.assertRaises(SpendError): SpendGuard(self.root).reserve('nebius','.101','model:diagnose_r2')
+        self.assertEqual(guard.summary()['scopes']['older-grant']['held'],'0.25')
+
+    def test_envdoctor_stops_at_four_requests_even_with_unspent_credit(self):
+        guard=self.case_guard()
+        for stage in ('classify','diagnose','classify_r2','diagnose_r2'):
+            token=guard.reserve('nebius','.01','model:'+stage);guard.verify_reservation(token,'nebius');guard.finish(token,'.001')
+        with self.assertRaises(SpendError): guard.reserve('nebius','.001','model:classify')
+        with self.assertRaises(SpendError): guard.reserve('nebius','.001','model:maintainer_note')
+
+    def test_envdoctor_rejects_unverified_stale_or_insufficient_prepaid_margin(self):
+        for changes in ({'available_prepaid':'1.74'},{'max_total':'1.251'},
+                        {'positive_balance_verified':False},{'max_requests':5},
+                        {'authorization_budget_usd':'1.01'},{'case_id':'another-case'},
+                        {'expires_at':(datetime.now(timezone.utc)+timedelta(minutes=16)).isoformat()}):
+            with self.subTest(changes=changes),self.assertRaises(SpendError): self.case_guard(**changes).check('nebius')
+
+    def test_new_envdoctor_timeout_still_blocks_all_further_calls(self):
+        guard=self.case_guard();token=guard.reserve('nebius','.01','model:diagnose')
+        guard.verify_reservation(token,'nebius');guard.finish(token,None)
+        with self.assertRaises(SpendError) as error: guard.reserve('nebius','.01','model:classify_r2')
+        self.assertEqual(error.exception.code,'provider_usage_unknown')
+
     def test_each_authorized_scope_has_a_persistent_ceiling(self):
         guard=self.scoped_guard();token=guard.reserve('nebius','.019','model:maintainer_note')
         guard.verify_reservation(token,'nebius');guard.finish(token,'.019')

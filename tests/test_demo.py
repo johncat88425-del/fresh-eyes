@@ -11,6 +11,7 @@ PROJECT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location("demo_build", PROJECT / "web/demo/build.py")
 demo = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(demo)
+from recordings import model_fix_highlights
 LATEST = "e9a04f641acb4c71b7ff0932e58f87e8"
 
 
@@ -25,11 +26,18 @@ class DemoTests(unittest.TestCase):
             # The owner's later evaluation capture must not enter this fixture.
             shutil.copytree(PROJECT / name, self.root / name,
                             ignore=shutil.ignore_patterns("evaluation-recordings") if name == "web" else None)
+        # This fixture represents the seven release-candidate replay cases. New owner-only
+        # challenge drafts must not silently change that fixed publication fixture.
+        published_development = {"mistletoe-markdown", "md2html-markdown", "json2yaml-yaml2json", "envdoctor-check"}
+        for path in (self.root / "cases").glob("*.json"):
+            data = json.loads(path.read_text())
+            if isinstance(data, dict) and "fixtures" in data and data.get("case_id") not in published_development:
+                path.unlink()
         self.out = Path(self.temp.name) / "site"
 
     def test_build_without_reports_database_env_or_runner(self):
         result = demo.build(self.root, self.out)
-        self.assertEqual((result["cases"], result["approved"], result["recorded_runs"]), (6, 6, 23))
+        self.assertEqual((result["cases"], result["approved"], result["recorded_runs"]), (7, 7, 24))
         boundary = [c for c in json.loads((self.out / "data/cases.json").read_text())["items"] if c.get("group") == "boundary"]
         self.assertEqual(sorted(c["case_id"] for c in boundary), ["gfm-to-html-convert", "j2cli-render", "yq-query"])
         self.assertTrue(all(c["review"]["reviewed_by"] == "kevin" and not c["can_run"] for c in boundary))
@@ -95,7 +103,30 @@ class DemoTests(unittest.TestCase):
         demo.build(self.root, self.out)
         shown = {c["case_id"] for c in json.loads((self.out / "data/cases.json").read_text())["items"]}
         self.assertNotIn(snapshot["approvals"][0]["case_id"], shown)
-        self.assertEqual(len(shown), 5)
+        self.assertEqual(len(shown), 6)
+
+    def test_envdoctor_is_locked_to_chris_and_does_not_replace_first_ai_story(self):
+        demo.build(self.root, self.out)
+        cases = json.loads((self.out / "data/cases.json").read_text())["items"]
+        case = next(c for c in cases if c["case_id"] == "envdoctor-check")
+        self.assertEqual(case["review"]["reviewed_by"], "Chris")
+        self.assertEqual(case["review"]["status"], "approved")
+        self.assertEqual(case["acceptance_sha256"], "ae27aa64c7176738139bd59305aa2c230b2f2ccbcf4083b2be486af04c4ee85e")
+        self.assertTrue(all(f["cwd_files"] for f in case["fixtures"]))
+        health = json.loads((self.out / "data/health.json").read_text())
+        self.assertEqual(health["demo_highlights"][:2], [
+            {"key": "model_fix", "run_id": "5c225204bcd946228a7ef4700c8c0c8c"},
+            {"key": "model_fix_more", "run_id": "2c3377fca8be40e69ce3d1994a0f15ab"}])
+        record = json.loads((self.out / "data/runs/2c3377fca8be40e69ce3d1994a0f15ab.json").read_text())
+        self.assertEqual(record["result_status"], "verified_fix")
+        self.assertFalse(record["evaluation_eligible"])
+
+    def test_ai_highlights_count_repositories_rather_than_case_ids(self):
+        rows = [{"case_id": "one", "repo_url": "https://github.com/Owner/Repo.git", "run_id": "old", "finished_at": "2026-10-24"},
+                {"case_id": "other-case", "repo_url": "https://github.com/owner/repo/", "run_id": "new", "finished_at": "2026-10-25"},
+                {"case_id": "two", "repo_url": "https://github.com/owner/second", "run_id": "second", "finished_at": "2026-10-26"}]
+        self.assertEqual(model_fix_highlights(rows), [
+            {"key": "model_fix", "run_id": "new"}, {"key": "model_fix_more", "run_id": "second"}])
 
     def test_startup_record_index_preserves_commit_for_matching_readme_preview(self):
         demo.build(self.root, self.out)

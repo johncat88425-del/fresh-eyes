@@ -46,7 +46,7 @@ def _line_edit(name, text, edit, secrets=()):
     return start, end, new
 
 
-def apply_patch(root: Path, bundle: dict, *, secrets=()) -> str:
+def apply_patch(root: Path, bundle: dict, *, secrets=(), protected_paths=()) -> str:
     edits = bundle.get("edits", [])
     if not edits or len(edits) > 8:
         raise InvalidCase("Patch requires 1–8 exact replacements")
@@ -55,6 +55,8 @@ def apply_patch(root: Path, bundle: dict, *, secrets=()) -> str:
     by_file = {}
     for edit in edits:
         name = relative_path(edit["path"])
+        if name in protected_paths:
+            raise InvalidCase("Patch cannot modify a locked cwd_files input")
         path = root / name
         if any(p.is_symlink() for p in [path, *path.parents]) or not path.is_file():
             raise InvalidCase("Patch targets must be existing regular files")

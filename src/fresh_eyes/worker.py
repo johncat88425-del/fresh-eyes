@@ -1,8 +1,10 @@
 """Runs inside a disposable container. No expected results or credentials here."""
 
+from contextlib import contextmanager
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
@@ -10,6 +12,70 @@ import time
 import urllib.request
 
 LIMIT = 131072
+
+
+@contextmanager
+def fixture_cwd_files(repo, files):
+    """Create only new input files, then remove them even on command failure."""
+    if not isinstance(files, dict) or len(files) > 3:
+        raise ValueError("Invalid cwd_files payload")
+    folded = set()
+    for name, content in files.items():
+        if (not isinstance(name, str) or not re.fullmatch(r"[A-Za-z0-9._-]{1,64}", name)
+                or name in {".", "..", ".git"} or name.casefold() in folded
+                or not isinstance(content, str) or len(content.encode("utf-8")) >= 65536):
+            raise ValueError("Invalid cwd_files input")
+        folded.add(name.casefold())
+    if not files:
+        yield
+        return
+    # The untrusted installer may have changed the checkout. Pin a non-symlink
+    # directory descriptor and use exclusive, no-follow creation relative to it.
+    directory = os.open(repo, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+    created = []
+    try:
+        if any(os.path.lexists(repo / name) for name in files):
+            raise ValueError("A cwd_files input already exists after repository setup")
+        for name, content in files.items():
+            fd = os.open(name, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW,
+                         0o600, dir_fd=directory)
+            created.append(name)
+            with os.fdopen(fd, "w", encoding="utf-8") as stream:
+                stream.write(content)
+        yield
+    finally:
+        cleanup_failed = False
+        for name in reversed(created):
+            try:
+                os.unlink(name, dir_fd=directory)
+            except FileNotFoundError:
+                pass
+            except OSError:
+                cleanup_failed = True
+        os.close(directory)
+        if cleanup_failed:
+            raise ValueError("A cwd_files input could not be removed; no next fixture is allowed")
+
+
+def run_fixture(fixture, workflow, repo, inputs, env, root, venv, index):
+    input_path = inputs / fixture["name"]
+    input_path.parent.mkdir(parents=True, exist_ok=True)
+    input_path.write_text(fixture["input"], encoding="utf-8")
+    with fixture_cwd_files(repo, fixture.get("cwd_files", {})):
+        output_path = repo / workflow.get("output", "stdout")
+        if workflow.get("output", "stdout") != "stdout" and output_path.exists():
+            output_path.unlink()
+        argv = [part.replace("{input}", str(input_path)) for part in workflow["argv"]]
+        result = command(argv, repo, env, root / f"workflow-{index}", resolve_python_command(argv, venv))
+        content, truncated = result["stdout"], result["truncated"]
+        if workflow.get("output", "stdout") != "stdout":
+            if output_path.is_symlink() or not output_path.resolve().is_relative_to(repo.resolve()) or not output_path.is_file():
+                content = ""
+            else:
+                truncated = truncated or output_path.stat().st_size > LIMIT
+                content = output_path.read_bytes()[:LIMIT].decode("utf-8", "replace")
+        return {"name": fixture["name"], "exit_code": result["exit_code"], "content": content,
+                "truncated": truncated, "process": result}
 
 
 def command(argv, cwd, env, prefix, executable_argv=None):
@@ -142,23 +208,11 @@ def main(bootstrap=Path("/bootstrap"), root=Path("/work")):
     outputs = []
     if setup_ok:
         for i, fixture in enumerate(payload["fixtures"]):
-            input_path = inputs / fixture["name"]
-            input_path.parent.mkdir(parents=True, exist_ok=True)
-            input_path.write_text(fixture["input"], encoding="utf-8")
-            output_path = repo / payload["workflow"].get("output", "stdout")
-            if payload["workflow"].get("output", "stdout") != "stdout" and output_path.exists():
-                output_path.unlink()
-            argv = [part.replace("{input}", str(input_path)) for part in payload["workflow"]["argv"]]
-            result = command(argv, repo, env, root / f"workflow-{i}", resolve_python_command(argv, venv))
-            content, truncated = result["stdout"], result["truncated"]
-            if payload["workflow"].get("output", "stdout") != "stdout":
-                if output_path.is_symlink() or not output_path.resolve().is_relative_to(repo.resolve()) or not output_path.is_file():
-                    content = ""
-                else:
-                    truncated = truncated or output_path.stat().st_size > LIMIT
-                    content = output_path.read_bytes()[:LIMIT].decode("utf-8", "replace")
-            outputs.append({"name": fixture["name"], "exit_code": result["exit_code"], "content": content,
-                            "truncated": truncated, "process": result})
+            try:
+                outputs.append(run_fixture(fixture, payload["workflow"], repo, inputs, env, root, venv, i))
+            except (OSError, ValueError):
+                infrastructure_error = "Locked cwd_files inputs could not be prepared or cleaned safely; no next fixture was executed."
+                break
     freeze = command(["pip", "freeze", "--all"], repo, env, root / "freeze",
                      resolve_python_command(["pip", "freeze", "--all"], venv))
     evidence = {"setup_ok": setup_ok, "steps": steps, "outputs": outputs, "pip_freeze": freeze,

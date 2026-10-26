@@ -1,0 +1,11 @@
+--- a/README.md
++++ b/README.md
+@@ -11,7 +11,7 @@
+ ## Install
+ 
+ ```bash
+-pip install envdoctor
++pip install .
+ # or from source
+ pip install .
+ ```

@@ -487,7 +487,7 @@ function bExampleRuns() {
   const shown = new Set(list.map(project));
   for (const pass of [true, false]) {
     for (const r of runs) {
-      if (list.length >= 10) break;
+      if (list.length >= 12) break;
       const key = `${r.case_id}|${r.result_status}|${r.repair_mode}`;
       if (seen.has(key) || (pass && shown.has(project(r)))) continue;
       seen.add(key); shown.add(project(r)); list.push(r);
@@ -678,6 +678,16 @@ async function submitQuick() {
   q.sending = false; render();
 }
 
+// The backend's fixed check results (validators.py) in the reader's language; anything else is shown as sent.
+const CHECK_REASONS = {
+  'Expected functional output matched': 'chk_matched',
+  'Functional output differs': 'chk_differs',
+  'Output could not be parsed': 'chk_unparsed',
+  'Missing output, failed process or truncated output': 'chk_missing',
+  'Setup did not complete': 'chk_setup',
+};
+const checkReason = reason => (CHECK_REASONS[reason] ? t(CHECK_REASONS[reason]) : reason);
+
 /* ------------------------------------------------------------------ case page */
 function fixtureExpected(f) {
   if (f.validator === 'html_elements') return h('ul', { class: 'tight mono small' }, f.expected.map(([tag, text]) => h('li', {}, `<${tag}> ${text}`)));
@@ -702,7 +712,10 @@ function viewCase(id) {
   const goTo = elId => () => document.getElementById(elId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   const panel = (pos, k, ...body) => h('div', { class: `float ${pos}` }, h('span', { class: 'k' }, k), ...body);
   const io = (c.fixtures || []).map(f => h('div', { class: 'io' },
-    h('div', {}, h('div', { class: 'label' }, `${t('input')} · `, h('span', { class: 'mono' }, f.name)), h('pre', {}, f.input)),
+    h('div', {}, h('div', { class: 'label' }, `${t('input')} · `, h('span', { class: 'mono' }, f.name)), h('pre', {}, f.input),
+      // Files the command reads from its working folder are part of what the reviewer approves.
+      ...Object.entries(f.cwd_files || {}).map(([name, text]) => [
+        h('div', { class: 'label' }, `${t('cwd_file')} · `, h('span', { class: 'mono' }, name)), h('pre', {}, text)])),
     h('span', { class: 'arrow', 'aria-hidden': 'true' }, '→'),
     h('div', {}, h('div', { class: 'label' }, `${t('expected')} · `, h('span', { class: 'mono' }, f.validator)), fixtureExpected(f))));
   const canvas = h('section', { class: 'canvas', 'aria-label': t('case_promise') },
@@ -1234,11 +1247,11 @@ function attemptItem(a, runKey, level) {
         return h('div', { class: 'stack', style: 'gap:4px' },
           h('div', { class: 'out-row' }, h('span', { class: 'mono' }, o.name), h('span', { class: 'mono muted' }, `exit ${o.exit_code ?? '—'}`),
             check ? badge(check.passed ? 'passed' : 'failed', lbl('attempt', check.passed ? 'passed' : 'failed')) : null,
-            check ? h('span', { class: 'muted' }, check.reason) : null),
+            check ? h('span', { class: 'muted' }, checkReason(check.reason)) : null),
           o.content ? stream(`${key}-c${i}`, t('output_content'), o.content, o.truncated) : null,
           o.process?.stderr ? stream(`${key}-s${i}`, t('stderr'), o.process.stderr, o.process.truncated) : null);
       })) : null,
-      !outputs.length && checks.length ? h('ul', { class: 'tight small' }, checks.map(c => h('li', {}, `${c.name}: ${c.passed ? '✓' : '✗'} ${c.reason}`))) : null,
+      !outputs.length && checks.length ? h('ul', { class: 'tight small' }, checks.map(c => h('li', {}, `${c.name}: ${c.passed ? '✓' : '✗'} ${checkReason(c.reason)}`))) : null,
       envSteps.length ? foldable(`${key}-env`, `${t('env_check')} · ${envFailed ? t('env_failed', { n: envSteps.length, f: envFailed }) : t('env_ok', { n: envSteps.length })}`,
         stepTable(envSteps, `${key}-v`), envFailed > 0) : null));
 }

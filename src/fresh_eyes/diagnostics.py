@@ -187,6 +187,9 @@ def context(contract, attempt, repo, secrets=()):
     # Expose bounded availability metadata, never input bodies or expected answers.
     recorded_inputs = {item.get("name") for item in result.get("outputs", []) if isinstance(item, dict)}
     fixture_inputs = [{"name": f["name"], "utf8_bytes": len(f["input"].encode("utf-8")),
+                       **({"cwd_files": [{"name": name, "utf8_bytes": len(content.encode("utf-8"))}
+                                          for name, content in f["cwd_files"].items()]}
+                          if "cwd_files" in f else {}),
                        "workflow_attempt_recorded": f["name"] in recorded_inputs} for f in d["fixtures"]]
     # Explicit selection keeps expectations, process environment and credentials out.
     selected = {"repo": d["repo"], "goal": d["goal"], "setup": d["setup"], "workflow": d["workflow"],

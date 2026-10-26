@@ -53,6 +53,17 @@ def validate_record(record):
         raise ValueError("Replay model evidence contains synthetic or inconsistent calls")
 
 
+def model_fix_highlights(records):
+    """A later repo adds a story; another case in one repo does not add a repo."""
+    newest = {}
+    for record in records:
+        repo = (record.get("repo_url") or record["case_id"]).rstrip("/").removesuffix(".git").casefold()
+        if (record.get("finished_at") or "") >= (newest.get(repo, {}).get("finished_at") or ""):
+            newest[repo] = record
+    return [{"key": "model_fix" if i == 0 else "model_fix_more", "run_id": record["run_id"]}
+            for i, record in enumerate(sorted(newest.values(), key=lambda r: r.get("finished_at") or ""))]
+
+
 def collect(project):
     """Owner-only refresh from a fixed whitelist of existing recorded results."""
     project = Path(project)
@@ -215,9 +226,9 @@ def collect(project):
         {"key": "fail", "run_id": rows[0]["run_id"]}, {"key": "fix", "run_id": fixed["run_id"]},
         {"key": "model_rounds", "run_id": latest["run_id"]}, {"key": "healthy", "run_id": rows[2]["run_id"]},
     ]
-    if model_fixes:
-        newest = max(model_fixes, key=lambda r: r.get("finished_at") or "")
-        highlights.insert(0, {"key": "model_fix", "run_id": newest["run_id"]})
+    # One AI-fix highlight per repository (its newest verified model fix), earliest repository first, so a later
+    # repository adds a story instead of replacing the first one.
+    highlights = model_fix_highlights(model_fixes) + highlights
     # A refresh replaces this snapshot: carry owner-curated note drafts too.
     for path in sorted((project/'web/demo/recordings/notes').glob('*.json')):
         files['notes/'+path.name]=source('web/demo/recordings/notes/'+path.name)

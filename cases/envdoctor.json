@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "environment": {
+    "platform": "linux/arm64",
+    "image": "python:3.12-slim"
+  },
+  "review": {
+    "status": "draft",
+    "reviewed_by": "Claude (B) static review of README and envdoctor/cli.py at the pinned commit; not executed; needs human approval",
+    "reviewed_at": "2026-10-26"
+  },
+  "goal": "Report whether every key in the project's .env.example is present in the given env file, and list extra keys (README: envdoctor -e .env.local -x .env.example).",
+  "case_id": "envdoctor-check",
+  "repo": {
+    "url": "https://github.com/kianPk/envdoctor",
+    "commit": "ae33ef9439c70d617911c98e178968cd7e128912"
+  },
+  "readme_source": "README.md:L14;L23",
+  "setup": [
+    {
+      "argv": [
+        "pip",
+        "install",
+        "envdoctor"
+      ],
+      "source": "README.md:L14"
+    }
+  ],
+  "workflow": {
+    "argv": [
+      "envdoctor",
+      "-e",
+      "{input}",
+      "-x",
+      ".env.example"
+    ],
+    "output": "stdout"
+  },
+  "fixtures": [
+    {
+      "name": "app.env",
+      "input": "DATABASE_URL=postgres://localhost/app\nJWT_SECRET=dev-secret\n",
+      "cwd_files": {
+        ".env.example": "DATABASE_URL=\nJWT_SECRET=\n"
+      },
+      "validator": "text_lines",
+      "expected": "example: .env.example (2 keys)\nenv:     /work/inputs/app.env (2 keys)\n\n✓ all example keys present in .env\n"
+    },
+    {
+      "name": "staging.env",
+      "input": "API_KEY=abc123\nREGION=eu-west-1\nPORT=8080\nDEBUG=1\n",
+      "cwd_files": {
+        ".env.example": "# required by the app\nAPI_KEY=\nexport REGION=\nPORT=\n"
+      },
+      "validator": "text_lines",
+      "expected": "example: .env.example (3 keys)\nenv:     /work/inputs/staging.env (4 keys)\n\n✓ all example keys present in .env\n\nextra in .env (not in example):\n  - DEBUG\n"
+    }
+  ]
+}

@@ -93,6 +93,19 @@ class Contract:
             names.add(f["name"])
             if not isinstance(f.get("input"), str) or len(f["input"].encode()) > 65536:
                 raise InvalidCase("Fixture input must be text smaller than 64 KiB")
+            companions = f.get("cwd_files", {})
+            if not isinstance(companions, dict) or len(companions) > 3:
+                raise InvalidCase("cwd_files must contain at most three text files")
+            folded = set()
+            for name, content in companions.items():
+                if (not isinstance(name, str) or not re.fullmatch(r"[A-Za-z0-9._-]{1,64}", name)
+                        or name in {".", "..", ".git"} or name.casefold() in folded):
+                    raise InvalidCase("cwd_files names must be distinct, safe single filenames")
+                folded.add(name.casefold())
+                if not isinstance(content, str) or len(content.encode("utf-8")) >= 65536:
+                    raise InvalidCase("Each cwd_files value must be text smaller than 64 KiB")
+                if output != "stdout" and output == name:
+                    raise InvalidCase("Workflow output cannot overwrite a cwd_files input")
             if f.get("validator") not in {"text", "text_lines", "json", "html_elements"}:
                 raise InvalidCase("Unsupported deterministic validator")
             if "expected" not in f:
@@ -125,8 +138,18 @@ class Contract:
         return {
             "setup": setup if setup is not None else d["setup"],
             "workflow": d["workflow"],
-            "fixtures": [{"name": f["name"], "input": f["input"]} for f in d["fixtures"]],
+            "fixtures": [{"name": f["name"], "input": f["input"],
+                          **({"cwd_files": f["cwd_files"]} if "cwd_files" in f else {})}
+                         for f in d["fixtures"]],
         }
+
+    def check_cwd_files(self, source: Path) -> None:
+        """Fixture companions supplement a fixed checkout; they never replace it."""
+        for fixture in self.data["fixtures"]:
+            for name in fixture.get("cwd_files", {}):
+                path = source / name
+                if path.exists() or path.is_symlink():
+                    raise InvalidCase(f"cwd_files input already exists in the pinned checkout: {name}")
 
     def check_review(self, development: bool = False) -> None:
         status = self.data.get("review", {}).get("status")

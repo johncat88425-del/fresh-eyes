@@ -1,12 +1,13 @@
 {
   "format": "fresh-eyes-public-recordings-v1",
-  "captured_at": "2026-10-24T22:15:52.127732+00:00",
+  "captured_at": "2026-10-26T15:22:53.941435+00:00",
   "scope": "development_replays",
   "notice": "Curated recorded evidence, not an evaluation or a new execution. Hashes detect byte changes, not reviewer/provider identity.",
   "files": {
     "notes/probe-manual-20261024.json": "eddc70d4b1be5a80325cdedb03500d9b18aa996fb69d7d2731dbdd8d0b462411",
     "patches/10cef22de8974ff7b5134635e39ee0ae.diff": "e4a8bcf36f1e21faf1e16852582b9d5cce4741b1632b34fc9e00e2dc62b1ad15",
     "patches/1a5f5135c92f4d15a5ff6dabe0a78b64.diff": "0a4fe0c890f68e8d4116c5bcb44cd71383a592559fa898d0b84e3a480cffb78e",
+    "patches/2c3377fca8be40e69ce3d1994a0f15ab.diff": "fe372136810bb2dc24bc19c53f3268474303e150b96da95142bb527c92300842",
     "patches/563db9062b7b4e48a4490e41b6792ff6.diff": "e4a8bcf36f1e21faf1e16852582b9d5cce4741b1632b34fc9e00e2dc62b1ad15",
     "patches/5ac511039adb4977b32ef129e86ee006.diff": "0a4fe0c890f68e8d4116c5bcb44cd71383a592559fa898d0b84e3a480cffb78e",
     "patches/5c225204bcd946228a7ef4700c8c0c8c.diff": "e4a8bcf36f1e21faf1e16852582b9d5cce4741b1632b34fc9e00e2dc62b1ad15",
@@ -18,6 +19,7 @@
     "runs/1a5f5135c92f4d15a5ff6dabe0a78b64.json": "76c1c243821ef7bc373c4f26fa11c12516803c37fb64425e00efc5f4e6436933",
     "runs/22ca73596f9f4fbc9ce1f127e5551937.json": "6e7570f6c7b1e19de8f9b4cae3795a10d00457c8538fc92ea9dd071fdc2c0a5d",
     "runs/2978ec943b5e4bc3ae5d82a0d9cdb4e2.json": "b79a14bb0d941dd5aedabafeedd2ffda59c2a9b9b75681b1e56f1898a9892347",
+    "runs/2c3377fca8be40e69ce3d1994a0f15ab.json": "4e39fa363890f88a5d5da43d78be233553463a79dbe7588dd6fe24f562736a4d",
     "runs/34f03a385a8a4eb8b719e0a2fadb14ad.json": "35b0634284f0a7388609e6f4856c3a1e33be97e41f40b50410eb4d9f302d36d5",
     "runs/402356b03f1d4b65acaf27f5065bc11f.json": "c4bf649b5ffdb1bf136a211132c3f789d75d97ce06488e1d98334437ba044dff",
     "runs/514ca0a68ff84d6790d60b41ce6d1bd8.json": "ae7e829f95bf4052f8f8beac529791d3754fc8b47ae3f05c603b0d42cf0fdaba",
@@ -69,6 +71,13 @@
       "file": "runs/e5150fecaff34918af941bfca2ad5161.json",
       "case_id": "md2html-markdown",
       "result_status": "needs_review"
+    },
+    {
+      "run_id": "2c3377fca8be40e69ce3d1994a0f15ab",
+      "evidence_run_id": "2c3377fca8be40e69ce3d1994a0f15ab",
+      "file": "runs/2c3377fca8be40e69ce3d1994a0f15ab.json",
+      "case_id": "envdoctor-check",
+      "result_status": "verified_fix"
     },
     {
       "run_id": "e9a04f641acb4c71b7ff0932e58f87e8",
@@ -203,6 +212,10 @@
       "file": "patches/563db9062b7b4e48a4490e41b6792ff6.diff"
     },
     {
+      "run_id": "2c3377fca8be40e69ce3d1994a0f15ab",
+      "file": "patches/2c3377fca8be40e69ce3d1994a0f15ab.diff"
+    },
+    {
       "run_id": "5c225204bcd946228a7ef4700c8c0c8c",
       "file": "patches/5c225204bcd946228a7ef4700c8c0c8c.diff"
     },
@@ -223,6 +236,10 @@
     {
       "key": "model_fix",
       "run_id": "5c225204bcd946228a7ef4700c8c0c8c"
+    },
+    {
+      "key": "model_fix_more",
+      "run_id": "2c3377fca8be40e69ce3d1994a0f15ab"
     },
     {
       "key": "fail",
@@ -269,6 +286,26 @@
     {
       "path": "reports/model-pilot-20261019-once/model-ledger.json",
       "sha256": "88adc2027b8d4f49e3d59bb358276ef1db5be9590a910e5617d03176752a20b6"
+    },
+    {
+      "path": "reports/model-trial-envdoctor-20261026-1/run-record.json",
+      "sha256": "4e39fa363890f88a5d5da43d78be233553463a79dbe7588dd6fe24f562736a4d"
+    },
+    {
+      "path": "reports/model-trial-envdoctor-20261026-1/report.json",
+      "sha256": "f4d254f0383433c88a1194a6b9a3eb08fcb58a6916e6407e0d0e0f6ace11d52f"
+    },
+    {
+      "path": "reports/model-trial-envdoctor-20261026-1/trial-binding.json",
+      "sha256": "72f878d08c1f4a53c671920622452dbbe134ae01de2c2435dc57ace1ee55fd9d"
+    },
+    {
+      "path": "reports/model-trial-envdoctor-20261026-1/model-ledger.json",
+      "sha256": "456b77392d97f7db402302307970caa58e71a0ded642dc22b0633c7de25f03fc"
+    },
+    {
+      "path": "reports/model-trial-envdoctor-20261026-1/candidate.diff",
+      "sha256": "fe372136810bb2dc24bc19c53f3268474303e150b96da95142bb527c92300842"
     },
     {
       "path": "reports/model-trial-md2html-20261020-003-once/run-record.json",

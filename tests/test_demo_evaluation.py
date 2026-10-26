@@ -36,7 +36,7 @@ class EvaluationDemoTests(unittest.TestCase):
 
     def test_exported_reports_open_and_snapshot_rebuilds_without_private_records(self):
         result = demo.build(self.project, self.out, evaluation_records=[self.f.records])
-        self.assertEqual(result["recorded_runs"], 24)  # 23 saved real runs + 1 serialized synthetic record.
+        self.assertEqual(result["recorded_runs"], 25)  # 24 saved real runs + 1 serialized synthetic record.
         data = json.loads(self.results.read_text())
         run_id = data["runs"][0]["run_id"]
         report = json.loads((self.out / f"data/runs/{run_id}.json").read_text())
@@ -52,7 +52,7 @@ class EvaluationDemoTests(unittest.TestCase):
         shutil.rmtree(self.f.records)
         self.results.unlink()
         rebuilt = demo.build(self.project, self.f.root / "offline-site")
-        self.assertEqual(rebuilt["recorded_runs"], 24)
+        self.assertEqual(rebuilt["recorded_runs"], result["recorded_runs"])
         self.assertEqual(json.loads((self.f.root / "offline-site/evaluation.json").read_text()), data)
 
     def test_changed_report_stops_before_replacing_previous_demo(self):
