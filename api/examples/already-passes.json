@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "run_id": "00000000000000000000000000000003",
+  "data_origin": "example",
+  "executed": false,
+  "example_notice": "STATIC UI EXAMPLE. No repository, model or sandbox was executed. Do not include in history or evaluation.",
+  "case_id": "example-markdown",
+  "repo_url": "https://example.invalid/demo/repo",
+  "commit_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "verification_level": "functional",
+  "acceptance_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "review": {
+    "status": "example",
+    "reviewed_by": "Example reviewer, not an actual approval"
+  },
+  "repair_mode": "none",
+  "repair_author": null,
+  "run_state": "completed",
+  "result_status": "already_passes",
+  "phase": "finished",
+  "created_at": "2026-10-18T12:00:00+00:00",
+  "started_at": "2026-10-18T12:00:01+00:00",
+  "finished_at": "2026-10-18T12:00:05+00:00",
+  "reason": "Example: both registered fixtures matched.",
+  "patch_available": false,
+  "costs": {
+    "currency": "USD",
+    "model_calls": [],
+    "model_usd": null,
+    "runner_usd": null,
+    "billing_status": "example_not_executed",
+    "paid_calls_enabled": false
+  },
+  "evidence": {
+    "schema_version": 1,
+    "run_id": "00000000000000000000000000000003",
+    "case_id": "example-markdown",
+    "goal": "EXAMPLE: convert Markdown to the expected HTML structure.",
+    "repo": {
+      "url": "https://example.invalid/demo/repo",
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "review": {
+      "status": "example",
+      "reviewed_by": "Example reviewer, not an actual approval"
+    },
+    "acceptance_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "model_calls": 0,
+    "environment": {
+      "platform": "linux/arm64",
+      "image_id": "example-not-an-image",
+      "network": "none",
+      "offline_wheelhouse": true
+    },
+    "current_phase": "finished",
+    "example_notice": "STATIC UI EXAMPLE. No repository, model or sandbox was executed. Do not include in history or evaluation.",
+    "status": "already_passes",
+    "attempts": [
+      {
+        "phase": "original_readme",
+        "status": "passed",
+        "acceptance_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "result": {
+          "setup_ok": true,
+          "steps": [
+            {
+              "argv": [
+                "pip",
+                "install",
+                "."
+              ],
+              "executed_argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-m",
+                "pip",
+                "install",
+                "."
+              ],
+              "exit_code": 0,
+              "duration_s": 1.0,
+              "stdout": "EXAMPLE installer output; not executed.",
+              "stderr": "",
+              "truncated": false
+            }
+          ],
+          "outputs": [
+            {
+              "name": "intro.md",
+              "exit_code": 0,
+              "content": "<h1>Hello</h1><p>A <strong>bold</strong> start.</p>",
+              "truncated": false,
+              "process": {
+                "argv": [
+                  "example-tool",
+                  "/work/inputs/intro.md"
+                ],
+                "executed_argv": [
+                  "example-tool",
+                  "/work/inputs/intro.md"
+                ],
+                "exit_code": 0,
+                "duration_s": 0.1,
+                "stdout": "<h1>Hello</h1><p>A <strong>bold</strong> start.</p>",
+                "stderr": "",
+                "truncated": false
+              }
+            },
+            {
+              "name": "second.md",
+              "exit_code": 0,
+              "content": "<h1>Second</h1><p><em>italic</em></p>",
+              "truncated": false
+            }
+          ],
+          "container_id": "example-not-a-container",
+          "execution_image_id": "example-not-an-image"
+        },
+        "validation": {
+          "passed": true,
+          "checks": [
+            {
+              "name": "intro.md",
+              "passed": true,
+              "reason": "EXAMPLE expected output matched"
+            },
+            {
+              "name": "second.md",
+              "passed": true,
+              "reason": "EXAMPLE fixture check"
+            }
+          ]
+        }
+      }
+    ],
+    "dependency_mode": "offline_snapshot"
+  },
+  "dependency_mode": "offline_snapshot"
+}

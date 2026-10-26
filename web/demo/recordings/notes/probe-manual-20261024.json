@@ -1,0 +1,64 @@
+{
+  "title": "Fix install instruction to use pip install .",
+  "body": "A beginner trying to follow the README runs into an error because they need to install the tool first. They execute the command shown in the installation section, but the script looks for a binary that isn’t present, leading to a \"No such file or directory\" error. The project's own setup script (verified in the test run) uses `pip install .` to install the package locally. By changing the README to recommend this command instead, new contributors can set up the environment correctly without needing extra steps or troubleshooting. This small edit clarifies the expected workflow and prevents the initial confusion.",
+  "footer": "Checked with Fresh Eyes: following the README as written failed in a clean Linux container. With the change below, the documented commands produced the expected output in a fresh container and again in an independent clean re-run (run 213f4a62854b49c99a8b6274b9ab154f). The change was written by a person.",
+  "diff": "--- a/README.md\n+++ b/README.md\n@@ -36,7 +36,7 @@\n ### Installation\n \n ```bash\n-pip install -r requirements.txt\n+pip install .\n # or for editable development install\n pip install -e \".[dev]\"\n ```\n",
+  "patch_sha256": "e4a8bcf36f1e21faf1e16852582b9d5cce4741b1632b34fc9e00e2dc62b1ad15",
+  "run_id": "213f4a62854b49c99a8b6274b9ab154f",
+  "report_sha256": "1e5000a2e1a59573dfb68912f13761d013f4726634e7339f4777654ee6addcf3",
+  "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+  "status": "draft",
+  "posted": false,
+  "human_review_required": true,
+  "data_origin": "nebius_api",
+  "markdown": "# Fix install instruction to use pip install .\n\nA beginner trying to follow the README runs into an error because they need to install the tool first. They execute the command shown in the installation section, but the script looks for a binary that isn’t present, leading to a \"No such file or directory\" error. The project's own setup script (verified in the test run) uses `pip install .` to install the package locally. By changing the README to recommend this command instead, new contributors can set up the environment correctly without needing extra steps or troubleshooting. This small edit clarifies the expected workflow and prevents the initial confusion.\n\nChecked with Fresh Eyes: following the README as written failed in a clean Linux container. With the change below, the documented commands produced the expected output in a fresh container and again in an independent clean re-run (run 213f4a62854b49c99a8b6274b9ab154f). The change was written by a person.\n\n```diff\n--- a/README.md\n+++ b/README.md\n@@ -36,7 +36,7 @@\n ### Installation\n \n ```bash\n-pip install -r requirements.txt\n+pip install .\n # or for editable development install\n pip install -e \".[dev]\"\n ```\n```\n\n_Draft written by nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B from run 213f4a62854b49c99a8b6274b9ab154f. Read it before sending; nothing was posted._\n",
+  "ledger": {
+    "run_id": "c7ce3ff794794e8bb22dd7265383c6b3",
+    "currency": "USD",
+    "max_usd": "0.01",
+    "held_usd": "0.00006552",
+    "model_calls": 1,
+    "engineering_test_calls": 0,
+    "calculated_usd": "0.00006552",
+    "billed_usd": null,
+    "calls": [
+      {
+        "call_id": "7a018c2a0cce45e9849c1b41fbc98e34",
+        "run_id": "c7ce3ff794794e8bb22dd7265383c6b3",
+        "stage": "maintainer_note",
+        "data_origin": "nebius_api",
+        "requested_model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+        "returned_model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+        "provider_request_id": "chatcmpl-a8ab1a9d-3a7b-4920-8c60-36e108169f22",
+        "started_at": "2026-10-24T17:54:06.728926+00:00",
+        "finished_at": "2026-10-24T17:54:07.638170+00:00",
+        "status": "completed",
+        "usage": {
+          "prompt_tokens": 528,
+          "completion_tokens": 141,
+          "total_tokens": 669
+        },
+        "dispatch_started_at": "2026-10-24T17:54:06.730391+00:00",
+        "price_reference": "https://api.tokenfactory.nebius.com/v1/models?verbose=true checked 2026-10-24T17:37:23.726642+00:00",
+        "input_per_million": "0.06000000",
+        "output_per_million": "0.24000000",
+        "cached_input_per_million": null,
+        "reservation_usd": "0.00060336",
+        "calculated_usd": "0.00006552",
+        "billed_usd": null,
+        "input_tokens_upper_bound": 3912,
+        "input_bound_reference": "nvidia-byte-bpe-v1:c6021eb6847e682f89aa52d5eb6e8c7d902a23acfc8137e25211cf84828f1592:template:ab7813c3abdd9cb655905a410728b26c7884eca45ddfab8d9f931553485a7862:header=2048",
+        "billing_status": "usage_calculated_pending_reconciliation",
+        "prompt_sha256": "0fde9d27a3e5a5fe4b945e99590f55f5d8825406c2bda22e6da1f372f70aaffb",
+        "request_options": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "response_finish_reason": "stop",
+        "response_content_bytes": 698,
+        "latency_ms": 908
+      }
+    ]
+  }
+}

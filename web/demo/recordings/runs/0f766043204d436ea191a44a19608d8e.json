@@ -1,0 +1,604 @@
+{
+  "schema_version": 1,
+  "data_origin": "execution",
+  "record_source": "owner_local_engine",
+  "api_persisted": false,
+  "evaluation_eligible": false,
+  "recording_scope": "boundary_baseline",
+  "counted_in_fix_rate": false,
+  "run_id": "0f766043204d436ea191a44a19608d8e",
+  "case_id": "yq-query",
+  "case_available": false,
+  "repo_url": "https://github.com/kislyuk/yq",
+  "commit_sha": "a98d746b96d3e6e60d3cc6e9e38a57e5005482c6",
+  "run_state": "completed",
+  "result_status": "unresolved",
+  "phase": "finished",
+  "reason": "Original workflow failed; no repair was proposed.",
+  "repair_mode": "none",
+  "repair_author": null,
+  "patch_available": false,
+  "verification_level": "functional",
+  "dependency_mode": "pypi_live",
+  "acceptance_sha256": "ebb9dcad69e76e554f005c49b56109e8e7b04d7a8230b0a2b805ad7db945b7b0",
+  "review": {
+    "acceptance_sha256": "ebb9dcad69e76e554f005c49b56109e8e7b04d7a8230b0a2b805ad7db945b7b0",
+    "approved_at": "2026-10-22T12:56:01-04:00",
+    "reviewed_by": "kevin",
+    "status": "approved"
+  },
+  "created_at": "2026-10-24T16:55:08.752383+00:00",
+  "started_at": "2026-10-24T16:55:08.752383+00:00",
+  "finished_at": "2026-10-24T16:55:12.946701+00:00",
+  "evidence": {
+    "schema_version": 1,
+    "run_id": "0f766043204d436ea191a44a19608d8e",
+    "started_at": "2026-10-24T16:55:08.752383+00:00",
+    "case_id": "yq-query",
+    "goal": "Query a YAML file with yq and print the selected value as JSON (README: yq .foo.bar input.yml).",
+    "contract_sha256": "eb9b416ffee25b56918a34dbc80b3cdd20d4976fdf944a6a9c24a5dccb6c674e",
+    "acceptance_sha256": "ebb9dcad69e76e554f005c49b56109e8e7b04d7a8230b0a2b805ad7db945b7b0",
+    "repo": {
+      "commit": "a98d746b96d3e6e60d3cc6e9e38a57e5005482c6",
+      "url": "https://github.com/kislyuk/yq"
+    },
+    "review": {
+      "acceptance_sha256": "ebb9dcad69e76e554f005c49b56109e8e7b04d7a8230b0a2b805ad7db945b7b0",
+      "approved_at": "2026-10-22T12:56:01-04:00",
+      "reviewed_by": "kevin",
+      "status": "approved"
+    },
+    "status": "unresolved",
+    "attempts": [
+      {
+        "phase": "original_readme",
+        "round": null,
+        "status": "failed",
+        "acceptance_sha256": "ebb9dcad69e76e554f005c49b56109e8e7b04d7a8230b0a2b805ad7db945b7b0",
+        "result": {
+          "setup_ok": true,
+          "steps": [
+            {
+              "argv": [
+                "/usr/local/bin/python",
+                "-m",
+                "venv",
+                "/work/venv"
+              ],
+              "executed_argv": [
+                "/usr/local/bin/python",
+                "-m",
+                "venv",
+                "/work/venv"
+              ],
+              "exit_code": 0,
+              "duration_s": 1.331,
+              "stdout": "",
+              "stderr": "",
+              "truncated": false
+            },
+            {
+              "argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-c",
+                "import json,pathlib,subprocess,sys,uuid,pip\np=pathlib.Path(sys.prefix).resolve()\nok=(p==pathlib.Path(sys.argv[1]).resolve() and sys.prefix!=sys.base_prefix\n    and pathlib.Path(pip.__file__).resolve().is_relative_to(p))\nexecutable=False\nif ok:\n    probe=p.parent/('.fresh-eyes-exec-probe-'+uuid.uuid4().hex)\n    try:\n        probe.write_text('#!/bin/sh\\nexit 0\\n')\n        probe.chmod(0o700)\n        executable=subprocess.run([str(probe)],stdin=subprocess.DEVNULL,\n                                  stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=5).returncode==0\n    except (OSError,subprocess.TimeoutExpired):\n        executable=False\n    finally:\n        probe.unlink(missing_ok=True)\nprint(json.dumps(dict(executable=sys.executable,prefix=str(p),base_prefix=sys.base_prefix,\n                     pip_module=pip.__file__,python=sys.version.split()[0],workspace_executable=executable)))\nsys.exit(0 if ok and executable else 1)\n",
+                "/work/venv"
+              ],
+              "executed_argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-c",
+                "import json,pathlib,subprocess,sys,uuid,pip\np=pathlib.Path(sys.prefix).resolve()\nok=(p==pathlib.Path(sys.argv[1]).resolve() and sys.prefix!=sys.base_prefix\n    and pathlib.Path(pip.__file__).resolve().is_relative_to(p))\nexecutable=False\nif ok:\n    probe=p.parent/('.fresh-eyes-exec-probe-'+uuid.uuid4().hex)\n    try:\n        probe.write_text('#!/bin/sh\\nexit 0\\n')\n        probe.chmod(0o700)\n        executable=subprocess.run([str(probe)],stdin=subprocess.DEVNULL,\n                                  stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=5).returncode==0\n    except (OSError,subprocess.TimeoutExpired):\n        executable=False\n    finally:\n        probe.unlink(missing_ok=True)\nprint(json.dumps(dict(executable=sys.executable,prefix=str(p),base_prefix=sys.base_prefix,\n                     pip_module=pip.__file__,python=sys.version.split()[0],workspace_executable=executable)))\nsys.exit(0 if ok and executable else 1)\n",
+                "/work/venv"
+              ],
+              "exit_code": 0,
+              "duration_s": 0.119,
+              "stdout": "{\"executable\": \"/work/venv/bin/python\", \"prefix\": \"/work/venv\", \"base_prefix\": \"/usr/local\", \"pip_module\": \"/work/venv/lib/python3.12/site-packages/pip/__init__.py\", \"python\": \"3.12.15\", \"workspace_executable\": true}\n",
+              "stderr": "",
+              "truncated": false
+            },
+            {
+              "argv": [
+                "pip",
+                "install",
+                "yq"
+              ],
+              "executed_argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-m",
+                "pip",
+                "install",
+                "yq"
+              ],
+              "exit_code": 0,
+              "duration_s": 0.826,
+              "stdout": "Collecting yq\n  Downloading yq-4.4.5-py3-none-any.whl.metadata (10 kB)\nCollecting argcomplete>=1.8.1 (from yq)\n  Downloading argcomplete-3.7.2-py3-none-any.whl.metadata (16 kB)\nCollecting pyyaml>=5.3.1 (from yq)\n  Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (2.4 kB)\nCollecting tomlkit>=0.11.6 (from yq)\n  Downloading tomlkit-0.15.2-py3-none-any.whl.metadata (3.4 kB)\nCollecting xmltodict>=0.11.0 (from yq)\n  Downloading xmltodict-1.0.4-py3-none-any.whl.metadata (14 kB)\nDownloading yq-4.4.5-py3-none-any.whl (30 kB)\nDownloading argcomplete-3.7.2-py3-none-any.whl (43 kB)\nDownloading pyyaml-6.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (775 kB)\n   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 775.1/775.1 kB 17.5 MB/s eta 0:00:00\nDownloading tomlkit-0.15.2-py3-none-any.whl (52 kB)\nDownloading xmltodict-1.0.4-py3-none-any.whl (13 kB)\nInstalling collected packages: xmltodict, tomlkit, pyyaml, argcomplete, yq\nSuccessfully installed argcomplete-3.7.2 pyyaml-6.0.3 tomlkit-0.15.2 xmltodict-1.0.4 yq-4.4.5\n",
+              "stderr": "",
+              "truncated": false,
+              "pip_install_report": {
+                "version": "1",
+                "pip_version": "25.0.1",
+                "install": [
+                  {
+                    "download_info": {
+                      "url": "https://files.pythonhosted.org/packages/fd/38/cca2b04f284c788ded19a9401e3049fd1f82d0467c1d6bd361915a77c063/yq-4.4.5-py3-none-any.whl",
+                      "archive_info": {
+                        "hash": "sha256=4e8b4e54979b26554c72a7e669009017a7fdd3fb00bbae0b26f82a86636c289f",
+                        "hashes": {
+                          "sha256": "4e8b4e54979b26554c72a7e669009017a7fdd3fb00bbae0b26f82a86636c289f"
+                        }
+                      }
+                    },
+                    "is_direct": false,
+                    "is_yanked": false,
+                    "requested": true,
+                    "metadata": {
+                      "metadata_version": "2.5",
+                      "name": "yq",
+                      "version": "4.4.5",
+                      "summary": "Command-line YAML/XML processor - jq wrapper for YAML/XML documents",
+                      "description": "yq: Command-line YAML/XML/TOML processor - jq wrapper for YAML, XML, TOML documents\n===================================================================================\n\nInstallation\n------------\n::\n\n    pip install yq\n\nBefore using ``yq``, you also have to install its dependency, ``jq``. See the `jq installation instructions\n<https://stedolan.github.io/jq/download/>`_ for details and directions specific to your platform.\n\nOn macOS, ``yq`` is also available on `Homebrew <https://brew.sh/>`_: use ``brew install python-yq``.\n\nSynopsis\n--------\n\n``yq`` takes YAML input, converts it to JSON, and pipes it to `jq <https://stedolan.github.io/jq/>`_::\n\n    cat input.yml | yq .foo.bar\n\nLike in ``jq``, you can also specify input filename(s) as arguments::\n\n    yq .foo.bar input.yml\n\nBy default, no conversion of ``jq`` output is done. Use the ``--yaml-output``/``-y`` option to convert it back into YAML::\n\n    cat input.yml | yq -y .foo.bar\n\nMapping key order is preserved. By default, custom `YAML tags <http://www.yaml.org/spec/1.2/spec.html#id2764295>`_ and\n`styles <https://yaml.org/spec/1.2.2/#3231-node-styles>`_ in the input are ignored. Use the ``--yaml-roundtrip``/``-Y``\noption to preserve YAML tags and styles by representing them as extra items in their enclosing mappings and sequences\nwhile in JSON::\n\n    yq -Y .foo.bar input.yml\n\nyq can be called as a module if needed. With ``-y/-Y``, files can be edited in place like with ``sed -i``::\n\n    python -m yq -Y --indentless --in-place '.[\"current-context\"] = \"staging-cluster\"' ~/.kube/config\n\nUse the ``--width``/``-w`` option to pass the line wrap width for string literals; ``--width 0`` disables wrapping. Use\n``--explicit-start``/``--explicit-end`` to emit YAML start/end markers even when processing a single document.\nYAML output preserves an explicit leading ``---`` from the input and emits one for multidocument streams. All other\ncommand line arguments are forwarded to ``jq``. ``yq`` forwards the exit code ``jq`` produced, unless there was an error\nin YAML parsing, in which case the exit code is 1. See the `jq manual <https://stedolan.github.io/jq/manual/>`_ for more\ndetails on ``jq`` features and options.\n\nBecause YAML treats JSON as a dialect of YAML, you can use yq to convert JSON to YAML: ``yq -y . < in.json > out.yml``.\n\nPreserving tags, styles, and comments using the ``-Y`` (``--yaml-roundtrip``) option\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nThe ``-Y`` option helps preserve custom `string styles <https://yaml-multiline.info/>`_ and\n`tags <https://camel.readthedocs.io/en/latest/yamlref.html#tags>`_ in your document. For example, consider the following\ndocument (an `AWS CloudFormation <https://aws.amazon.com/cloudformation/>`_ template fragment)::\n\n    Resources:\n      ElasticLoadBalancer:\n        Type: 'AWS::ElasticLoadBalancing::LoadBalancer'\n        Properties:\n          AvailabilityZones: !GetAZs ''\n          Instances:\n            - !Ref Ec2Instance1\n            - !Ref Ec2Instance2\n          Description: >-\n            Load balancer for Big Important Service.\n\n            Good thing it's managed by this template.\n\nPassing this document through ``yq -y .Resources.ElasticLoadBalancer`` will drop custom tags, such as ``!Ref``,\nand styles, such as the `folded <https://yaml-multiline.info/>`_ style of the ``Description`` field::\n\n    Type: AWS::ElasticLoadBalancing::LoadBalancer\n    Properties:\n      AvailabilityZones: ''\n      Instances:\n        - Ec2Instance1\n        - Ec2Instance2\n      Description: 'Load balancer for Big Important Service.\n\n        Good thing it''s managed by this template.'\n\nBy contrast, passing it through ``yq -Y .Resources.ElasticLoadBalancer`` will preserve tags, styles, and comments::\n\n    Type: 'AWS::ElasticLoadBalancing::LoadBalancer'\n    Properties:\n      AvailabilityZones: !GetAZs ''\n      Instances:\n        - !Ref 'Ec2Instance1'\n        - !Ref 'Ec2Instance2'\n      Description: >-\n        Load balancer for Big Important Service.\n\n        Good thing it's managed by this template.\n\nTo accomplish this in ``-Y`` mode, yq carries extra metadata (mapping pairs and sequence values) in the JSON\nrepresentation of your document for any custom tags or styles that it finds. When converting the JSON back into YAML, it\nparses this metadata, re-applies the tags and styles, and discards the extra pairs and values.\n\nYAML comment metadata is attached to entries in mappings and sequences. Comments on a document whose root is a\nscalar (a string, number, boolean, or null) cannot currently roundtrip through ``-Y``: there is no enclosing collection\nto carry their metadata through jq. For example, a Markdown heading after a YAML document separator is treated as a\ncomment on a root string and is lost. Use ``--yaml-frontmatter``/``-F`` for these files to preserve the entire body.\n\n.. warning ::\n\n The ``-Y`` option is incompatible with jq filters that do not expect the extra information injected into the document\n to preserve the YAML formatting. For example, a jq filter that counts entries in the Instances array will come up with\n 4 entries instead of 2. A filter that expects all array entries to be mappings may break due to the presence of string\n metadata keys. Check your jq filter for compatibility/semantic validity when using the ``-Y`` option.\n\nYAML frontmatter\n~~~~~~~~~~~~~~~~\n\nUse ``--yaml-frontmatter``/``-F`` to process a YAML header followed by Markdown or other text::\n\n    yq -Y --yaml-frontmatter '.draft = false' post.md\n    yq -iYF '.draft = false' post.md another-post.md\n\nOnly the first document is sent to jq. An initial ``---`` opens the header; an unindented ``---`` or ``...`` document marker\ncloses it. With ``-y`` or ``-Y``, the closing delimiter and everything after it pass through unchanged, including\ncomments, whitespace, and line endings. The filter must produce exactly one document, and each invocation accepts\none input file (or multiple files with ``--in-place``). A header without a closing delimiter is processed as ordinary\nYAML. Without ``-y``/``-Y``, only the JSON query result is emitted, allowing queries such as ``yq -F .title post.md``.\nThe ``-f`` option still means jq's ``--from-file``.\n\nXML support\n-----------\n``yq`` also supports XML. The ``yq`` package installs an executable, ``xq``, which\n`transcodes XML to JSON <https://www.xml.com/pub/a/2006/05/31/converting-between-xml-and-json.html>`_ using\n`xmltodict <https://github.com/martinblech/xmltodict>`_ and pipes it to ``jq``. Roundtrip transcoding is available with\nthe ``xq --xml-output``/``xq -x`` option. Multiple XML documents can be passed in separate files/streams as\n``xq a.xml b.xml``. Use ``--xml-item-depth`` to descend into large documents, streaming their contents without loading\nthe full doc into memory (for example, stream a `Wikipedia database dump <https://dumps.wikimedia.org>`_ with\n``cat enwiki-*.xml.bz2 | bunzip2 | xq . --xml-item-depth=2``). Entity expansion and DTD resolution is disabled to avoid\nXML parsing vulnerabilities. Use ``python -m yq.xq`` if you want to ensure a specific Python runtime.\n\nTOML support\n------------\n``yq`` supports `TOML <https://toml.io/>`_ as well. The ``yq`` package installs an executable, ``tomlq``, which uses the\n`tomlkit library <https://github.com/sdispater/tomlkit>`_ to transcode TOML to JSON, then pipes it to ``jq``. Roundtrip\ntranscoding is available with the ``tomlq --toml-output``/``tomlq -t`` option. Use ``tomlq --toml-roundtrip``/``tomlq -T``\nto preserve TOML comments, whitespace, and formatting metadata while editing. Use ``python -m yq.tomlq`` if you want to\nensure a specific Python runtime.\n\n.. admonition:: Compatibility note\n\n This package's release series available on PyPI begins with version 2.0.0. Versions of ``yq`` prior to 2.0.0 are\n distributed by https://github.com/abesto/yq and are not related to this package. No guarantees of compatibility are\n made between abesto/yq and kislyuk/yq. This package follows the `Semantic Versioning 2.0.0 <http://semver.org/>`_\n standard. To ensure proper operation, declare dependency version ranges according to SemVer.\n\nAuthors\n-------\n* Andrey Kislyuk\n\nLinks\n-----\n* `Project home page (GitHub) <https://github.com/kislyuk/yq>`_\n* `Documentation <https://kislyuk.github.io/yq/>`_\n* `Package distribution (PyPI) <https://pypi.python.org/pypi/yq>`_\n* `Change log <https://github.com/kislyuk/yq/blob/master/Changes.rst>`_\n* `jq <https://stedolan.github.io/jq/>`_ - the command-line JSON processor utility powering ``yq``\n\nBugs\n~~~~\nPlease report bugs, issues, feature requests, etc. on `GitHub <https://github.com/kislyuk/yq/issues>`_.\n\nLicense\n-------\nLicensed under the terms of the `Apache License, Version 2.0 <http://www.apache.org/licenses/LICENSE-2.0>`_.\n",
+                      "description_content_type": "text/x-rst",
+                      "author": "Andrey Kislyuk",
+                      "author_email": "kislyuk@gmail.com",
+                      "maintainer": "Andrey Kislyuk",
+                      "maintainer_email": "kislyuk@gmail.com",
+                      "license": "Apache Software License",
+                      "license_file": [
+                        "LICENSE"
+                      ],
+                      "classifier": [
+                        "Development Status :: 5 - Production/Stable",
+                        "Intended Audience :: Developers",
+                        "License :: OSI Approved :: Apache Software License",
+                        "Operating System :: MacOS :: MacOS X",
+                        "Operating System :: POSIX",
+                        "Programming Language :: Python",
+                        "Programming Language :: Python :: 3",
+                        "Programming Language :: Python :: 3.8",
+                        "Programming Language :: Python :: 3.9",
+                        "Programming Language :: Python :: 3.10",
+                        "Programming Language :: Python :: 3.11",
+                        "Programming Language :: Python :: 3.12",
+                        "Programming Language :: Python :: 3.13",
+                        "Programming Language :: Python :: Implementation :: CPython",
+                        "Programming Language :: Python :: Implementation :: PyPy",
+                        "Topic :: Software Development",
+                        "Topic :: Software Development :: Libraries :: Python Modules"
+                      ],
+                      "requires_dist": [
+                        "argcomplete>=1.8.1",
+                        "pyyaml>=5.3.1",
+                        "tomlkit>=0.11.6",
+                        "xmltodict>=0.11.0",
+                        "build; extra == 'test'",
+                        "coverage; extra == 'test'",
+                        "mypy; extra == 'test'",
+                        "ruff; extra == 'test'",
+                        "wheel; extra == 'test'"
+                      ],
+                      "requires_python": ">=3.8",
+                      "project_url": [
+                        "Homepage, https://github.com/kislyuk/yq",
+                        "Documentation, https://kislyuk.github.io/yq/",
+                        "Source Code, https://github.com/kislyuk/yq",
+                        "Issue Tracker, https://github.com/kislyuk/yq/issues",
+                        "Change Log, https://github.com/kislyuk/yq/blob/main/Changes.rst"
+                      ],
+                      "provides_extra": [
+                        "test"
+                      ]
+                    }
+                  },
+                  {
+                    "download_info": {
+                      "url": "https://files.pythonhosted.org/packages/46/bd/551ee6af426af84ca33e02622be722925c196608e9127d731ef17c47f06e/argcomplete-3.7.2-py3-none-any.whl",
+                      "archive_info": {
+                        "hash": "sha256=6029205678bdd9c1c728a155f5f9ecf5812393f969eef58807641a2bc2aa5b19",
+                        "hashes": {
+                          "sha256": "6029205678bdd9c1c728a155f5f9ecf5812393f969eef58807641a2bc2aa5b19"
+                        }
+                      }
+                    },
+                    "is_direct": false,
+                    "is_yanked": false,
+                    "requested": false,
+                    "metadata": {
+                      "metadata_version": "2.4",
+                      "name": "argcomplete",
+                      "version": "3.7.2",
+                      "summary": "Bash tab completion for argparse",
+                      "description": "argcomplete - Bash/zsh tab completion for argparse\n==================================================\n*Tab complete all the things!*\n\nArgcomplete provides easy, extensible command line tab completion of arguments for your Python application.\n\nIt makes two assumptions:\n\n* You're using bash or zsh as your shell (limited support exists for other shells - see below)\n* You're using `argparse <http://docs.python.org/3/library/argparse.html>`_ to manage your command line arguments/options\n\nArgcomplete is particularly useful if your program has lots of options or subparsers, and if your program can\ndynamically suggest completions for your argument/option values (for example, if the user is browsing resources over\nthe network).\n\nInstallation\n------------\n::\n\n    pip install argcomplete\n    activate-global-python-argcomplete\n\nSee `Activating global completion`_ below for details about the second step.\n\nRefresh your shell environment (start a new shell).\n\nSynopsis\n--------\nAdd the ``PYTHON_ARGCOMPLETE_OK`` marker and a call to ``argcomplete.autocomplete()`` to your Python application as\nfollows:\n\n.. code-block:: python\n\n    #!/usr/bin/env python\n    # PYTHON_ARGCOMPLETE_OK\n    import argcomplete, argparse\n    parser = argparse.ArgumentParser()\n    ...\n    argcomplete.autocomplete(parser)\n    args = parser.parse_args()\n    ...\n\nIf using ``pyproject.toml`` ``[project.scripts]`` entry points, the ``PYTHON_ARGCOMPLETE_OK`` marker should appear\nat the beginning of the file that contains the entry point.\n\nRegister your Python application with your shell's completion framework by running ``register-python-argcomplete``::\n\n    eval \"$(register-python-argcomplete my-python-app)\"\n\nQuotes are significant; the registration will fail without them. See `Global completion`_ below for a way to enable\nargcomplete generally without registering each application individually.\n\nargcomplete.autocomplete(*parser*)\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nThis method is the entry point to the module. It must be called **after** ArgumentParser construction is complete, but\n**before** the ``ArgumentParser.parse_args()`` method is called. The method looks for an environment variable that the\ncompletion hook shellcode sets, and if it's there, collects completions, prints them to the output stream (fd 8 by\ndefault), and exits. Otherwise, it returns to the caller immediately.\n\n.. admonition:: Side effects\n\n Argcomplete gets completions by running your program. It intercepts the execution flow at the moment\n ``argcomplete.autocomplete()`` is called. After sending completions, it exits using ``exit_method`` (``os._exit``\n by default). This means if your program has any side effects that happen before ``argcomplete`` is called, those\n side effects will happen every time the user presses ``<TAB>`` (although anything your program prints to stdout or\n stderr will be suppressed). For this reason it's best to construct the argument parser and call\n ``argcomplete.autocomplete()`` as early as possible in your execution flow.\n\n.. admonition:: Performance\n\n If the program takes a long time to get to the point where ``argcomplete.autocomplete()`` is called, the tab completion\n process will feel sluggish, and the user may lose confidence in it. So it's also important to minimize the startup time\n of the program up to that point (for example, by deferring initialization or importing of large modules until after\n parsing options).\n\nSpecifying completers\n---------------------\nYou can specify custom completion functions for your options and arguments. Two styles are supported: callable and\nreadline-style. Callable completers are simpler. They are called with the following keyword arguments:\n\n* ``prefix``: The prefix text of the last word before the cursor on the command line.\n  For dynamic completers, this can be used to reduce the work required to generate possible completions.\n* ``action``: The ``argparse.Action`` instance that this completer was called for.\n* ``parser``: The ``argparse.ArgumentParser`` instance that the action was taken by.\n* ``parsed_args``: The result of argument parsing so far (the ``argparse.Namespace`` args object normally returned by\n  ``ArgumentParser.parse_args()``).\n\nCompleters can return their completions as an iterable of strings or a mapping (dict) of strings to their\ndescriptions (zsh will display the descriptions as context help alongside completions). An example completer for names\nof environment variables might look like this:\n\n.. code-block:: python\n\n    def EnvironCompleter(**kwargs):\n        return os.environ\n\nTo specify a completer for an argument or option, set the ``completer`` attribute of its associated action. An easy\nway to do this at definition time is:\n\n.. code-block:: python\n\n    from argcomplete.completers import EnvironCompleter\n\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--env-var1\").completer = EnvironCompleter\n    parser.add_argument(\"--env-var2\").completer = EnvironCompleter\n    argcomplete.autocomplete(parser)\n\nIf you specify the ``choices`` keyword for an argparse option or argument (and don't specify a completer), it will be\nused for completions.\n\nA completer that is initialized with a set of all possible choices of values for its action might look like this:\n\n.. code-block:: python\n\n    class ChoicesCompleter(object):\n        def __init__(self, choices):\n            self.choices = choices\n\n        def __call__(self, **kwargs):\n            return self.choices\n\nThe following two ways to specify a static set of choices are equivalent for completion purposes:\n\n.. code-block:: python\n\n    from argcomplete.completers import ChoicesCompleter\n\n    parser.add_argument(\"--protocol\", choices=('http', 'https', 'ssh', 'rsync', 'wss'))\n    parser.add_argument(\"--proto\").completer=ChoicesCompleter(('http', 'https', 'ssh', 'rsync', 'wss'))\n\nNote that if you use the ``choices=<completions>`` option, argparse will show\nall these choices in the ``--help`` output by default. To prevent this, set\n``metavar`` (like ``parser.add_argument(\"--protocol\", metavar=\"PROTOCOL\",\nchoices=('http', 'https', 'ssh', 'rsync', 'wss'))``).\n\nThe following `script <https://raw.github.com/kislyuk/argcomplete/master/docs/examples/describe_github_user.py>`_ uses\n``parsed_args`` and `Requests <http://python-requests.org/>`_ to query GitHub for publicly known members of an\norganization and complete their names, then prints the member description:\n\n.. code-block:: python\n\n    #!/usr/bin/env python\n    # PYTHON_ARGCOMPLETE_OK\n    import argcomplete, argparse, requests, pprint\n\n    def github_org_members(prefix, parsed_args, **kwargs):\n        resource = \"https://api.github.com/orgs/{org}/members\".format(org=parsed_args.organization)\n        return (member['login'] for member in requests.get(resource).json() if member['login'].startswith(prefix))\n\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--organization\", help=\"GitHub organization\")\n    parser.add_argument(\"--member\", help=\"GitHub member\").completer = github_org_members\n\n    argcomplete.autocomplete(parser)\n    args = parser.parse_args()\n\n    pprint.pprint(requests.get(\"https://api.github.com/users/{m}\".format(m=args.member)).json())\n\n`Try it <https://raw.github.com/kislyuk/argcomplete/master/docs/examples/describe_github_user.py>`_ like this::\n\n    ./describe_github_user.py --organization heroku --member <TAB>\n\nIf you have a useful completer to add to the `completer library\n<https://github.com/kislyuk/argcomplete/blob/master/argcomplete/completers.py>`_, send a pull request!\n\nReadline-style completers\n~~~~~~~~~~~~~~~~~~~~~~~~~\nThe readline_ module defines a completer protocol in rlcompleter_. Readline-style completers are also supported by\nargcomplete, so you can use the same completer object both in an interactive readline-powered shell and on the command\nline. For example, you can use the readline-style completer provided by IPython_ to get introspective completions like\nyou would get in the IPython shell:\n\n.. _readline: http://docs.python.org/3/library/readline.html\n.. _rlcompleter: http://docs.python.org/3/library/rlcompleter.html#completer-objects\n.. _IPython: http://ipython.org/\n\n.. code-block:: python\n\n    import IPython\n    parser.add_argument(\"--python-name\").completer = IPython.core.completer.Completer()\n\n``argcomplete.CompletionFinder.rl_complete`` can also be used to plug in an argparse parser as a readline completer.\n\nPrinting warnings in completers\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nNormal stdout/stderr output is suspended when argcomplete runs. Sometimes, though, when the user presses ``<TAB>``, it's\nappropriate to print information about why completions generation failed. To do this, use ``warn``:\n\n.. code-block:: python\n\n    from argcomplete import warn\n\n    def AwesomeWebServiceCompleter(prefix, **kwargs):\n        if login_failed:\n            warn(\"Please log in to Awesome Web Service to use autocompletion\")\n        return completions\n\nUsing a custom completion validator\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nBy default, argcomplete validates your completions by checking if they start with the prefix given to the completer. You\ncan override this validation check by supplying the ``validator`` keyword to ``argcomplete.autocomplete()``:\n\n.. code-block:: python\n\n    def my_validator(completion_candidate, current_input):\n        \"\"\"Complete non-prefix substring matches.\"\"\"\n        return current_input in completion_candidate\n\n    argcomplete.autocomplete(parser, validator=my_validator)\n\nGlobal completion\n-----------------\nIn global completion mode, you don't have to register each argcomplete-capable executable separately. Instead, the shell\nwill look for the string **PYTHON_ARGCOMPLETE_OK** in the first 1024 bytes of any executable that it's running\ncompletion for, and if it's found, follow the rest of the argcomplete protocol as described above.\n\nAdditionally, completion is activated for scripts run as ``python <script>`` and ``python -m <module>``. If you're using\nmultiple Python versions on the same system, the version being used to run the script must have argcomplete installed.\n\n.. admonition:: Bash version compatibility\n\n When using bash, global completion requires bash support for ``complete -D``, which was introduced in bash 4.2. Since\n Mac OS ships with an outdated version of Bash (3.2), you can either use zsh or install a newer version of bash using\n `Homebrew <http://brew.sh/>`_ (``brew install bash`` - you will also need to add ``/opt/homebrew/bin/bash`` to\n ``/etc/shells``, and run ``chsh`` to change your shell). You can check the version of the running copy of bash with\n ``echo $BASH_VERSION``.\n\n.. note:: If you use ``project.scripts`` directives to provide command line entry points to your package,\n argcomplete will follow the wrapper scripts to their destination and look for ``PYTHON_ARGCOMPLETE_OK`` in the\n first kilobyte of the file containing the destination code.\n\nIf you choose not to use global completion, or ship a completion module that depends on argcomplete, you must register\nyour script explicitly using ``eval \"$(register-python-argcomplete my-python-app)\"``. Standard completion module\nregistration rules apply: namely, the script name is passed directly to ``complete``, meaning it is only tab completed\nwhen invoked exactly as it was registered. In the above example, ``my-python-app`` must be on the path, and the user\nmust be attempting to complete it by that name. The above line alone would **not** allow you to complete\n``./my-python-app``, or ``/path/to/my-python-app``.\n\nActivating global completion\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nThe script ``activate-global-python-argcomplete`` installs the global completion script\n`bash_completion.d/_python-argcomplete <https://github.com/kislyuk/argcomplete/blob/master/argcomplete/bash_completion.d/_python-argcomplete>`_\ninto an appropriate location on your system for both bash and zsh. The specific location depends on your platform and\nwhether you installed argcomplete system-wide using ``sudo`` or locally (into your user's home directory).\n\nZsh Support\n-----------\nArgcomplete supports zsh. On top of plain completions like in bash, zsh allows you to see argparse help strings as\ncompletion descriptions. All shellcode included with argcomplete is compatible with both bash and zsh, so the same\ncompleter commands ``activate-global-python-argcomplete`` and ``eval \"$(register-python-argcomplete my-python-app)\"``\nwork for zsh as well.\n\nPython Support\n--------------\nArgcomplete requires Python 3.10+.\n\nSupport for other shells\n------------------------\nArgcomplete maintainers provide support only for the bash and zsh shells on Linux and MacOS. For resources related to\nother shells and platforms, including fish, tcsh, xonsh, powershell, and Windows, please see the\n`contrib <https://github.com/kislyuk/argcomplete/tree/develop/contrib>`_ directory.\n\nCommon Problems\n---------------\nIf global completion is not completing your script, bash may have registered a default completion function::\n\n    $ complete | grep my-python-app\n    complete -F _minimal my-python-app\n\nYou can fix this by restarting your shell, or by running ``complete -r my-python-app``.\n\nDebugging\n---------\nSet the ``_ARC_DEBUG`` variable in your shell to enable verbose debug output every time argcomplete runs. This will\ndisrupt the command line composition state of your terminal, but make it possible to see the internal state of the\ncompleter if it encounters problems.\n\nAcknowledgments\n---------------\nInspired and informed by the optcomplete_ module by Martin Blais.\n\n.. _optcomplete: http://pypi.python.org/pypi/optcomplete\n\nLinks\n-----\n* `Project home page (GitHub) <https://github.com/kislyuk/argcomplete>`_\n* `Documentation <https://kislyuk.github.io/argcomplete/>`_\n* `Package distribution (PyPI) <https://pypi.python.org/pypi/argcomplete>`_\n* `Change log <https://github.com/kislyuk/argcomplete/blob/master/Changes.rst>`_\n\nBugs\n~~~~\nPlease report bugs, issues, feature requests, etc. on `GitHub <https://github.com/kislyuk/argcomplete/issues>`_.\n\nLicense\n-------\nCopyright 2012-2023, Andrey Kislyuk and argcomplete contributors. Licensed under the terms of the\n`Apache License, Version 2.0 <http://www.apache.org/licenses/LICENSE-2.0>`_. Distribution of the LICENSE and NOTICE\nfiles with source copies of this package and derivative works is **REQUIRED** as specified by the Apache License.\n\n.. image:: https://github.com/kislyuk/argcomplete/workflows/Python%20package/badge.svg\n        :target: https://github.com/kislyuk/argcomplete/actions\n.. image:: https://codecov.io/github/kislyuk/argcomplete/coverage.svg?branch=master\n        :target: https://codecov.io/github/kislyuk/argcomplete?branch=master\n.. image:: https://img.shields.io/pypi/v/argcomplete.svg\n        :target: https://pypi.python.org/pypi/argcomplete\n.. image:: https://img.shields.io/pypi/l/argcomplete.svg\n        :target: https://pypi.python.org/pypi/argcomplete\n",
+                      "description_content_type": "text/x-rst",
+                      "author": "Andrey Kislyuk",
+                      "author_email": "kislyuk@gmail.com",
+                      "maintainer": "Andrey Kislyuk",
+                      "maintainer_email": "kislyuk@gmail.com",
+                      "license": "Apache Software License",
+                      "license_file": [
+                        "LICENSE.rst",
+                        "NOTICE"
+                      ],
+                      "classifier": [
+                        "Development Status :: 5 - Production/Stable",
+                        "Environment :: Console",
+                        "Intended Audience :: Developers",
+                        "License :: OSI Approved :: Apache Software License",
+                        "Operating System :: MacOS :: MacOS X",
+                        "Operating System :: POSIX",
+                        "Programming Language :: Python",
+                        "Programming Language :: Python :: 3",
+                        "Programming Language :: Python :: 3.10",
+                        "Programming Language :: Python :: 3.11",
+                        "Programming Language :: Python :: 3.12",
+                        "Programming Language :: Python :: 3.13",
+                        "Programming Language :: Python :: 3.14",
+                        "Programming Language :: Python :: Implementation :: CPython",
+                        "Programming Language :: Python :: Implementation :: PyPy",
+                        "Topic :: Software Development",
+                        "Topic :: Software Development :: Libraries :: Python Modules",
+                        "Topic :: System :: Shells",
+                        "Topic :: Terminals"
+                      ],
+                      "requires_dist": [
+                        "coverage; extra == 'test'",
+                        "mypy; extra == 'test'",
+                        "pexpect; extra == 'test'",
+                        "ruff; extra == 'test'",
+                        "wheel; extra == 'test'"
+                      ],
+                      "requires_python": ">=3.10",
+                      "project_url": [
+                        "Homepage, https://github.com/kislyuk/argcomplete",
+                        "Documentation, https://kislyuk.github.io/argcomplete",
+                        "Source Code, https://github.com/kislyuk/argcomplete",
+                        "Issue Tracker, https://github.com/kislyuk/argcomplete/issues",
+                        "Change Log, https://github.com/kislyuk/argcomplete/blob/develop/Changes.rst"
+                      ],
+                      "provides_extra": [
+                        "test"
+                      ]
+                    }
+                  },
+                  {
+                    "download_info": {
+                      "url": "https://files.pythonhosted.org/packages/ed/23/7a778b6bd0b9a8039df8b1b1d80e2e2ad78aa04171592c8a5c43a56a6af4/pyyaml-6.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl",
+                      "archive_info": {
+                        "hash": "sha256=9149cad251584d5fb4981be1ecde53a1ca46c891a79788c0df828d2f166bda28",
+                        "hashes": {
+                          "sha256": "9149cad251584d5fb4981be1ecde53a1ca46c891a79788c0df828d2f166bda28"
+                        }
+                      }
+                    },
+                    "is_direct": false,
+                    "is_yanked": false,
+                    "requested": false,
+                    "metadata": {
+                      "metadata_version": "2.4",
+                      "name": "PyYAML",
+                      "version": "6.0.3",
+                      "dynamic": [
+                        "author",
+                        "author-email",
+                        "classifier",
+                        "description",
+                        "download-url",
+                        "home-page",
+                        "license",
+                        "license-file",
+                        "platform",
+                        "project-url",
+                        "requires-python",
+                        "summary"
+                      ],
+                      "platform": [
+                        "Any"
+                      ],
+                      "summary": "YAML parser and emitter for Python",
+                      "description": "YAML is a data serialization format designed for human readability\nand interaction with scripting languages.  PyYAML is a YAML parser\nand emitter for Python.\n\nPyYAML features a complete YAML 1.1 parser, Unicode support, pickle\nsupport, capable extension API, and sensible error messages.  PyYAML\nsupports standard YAML tags and provides Python-specific tags that\nallow to represent an arbitrary Python object.\n\nPyYAML is applicable for a broad range of tasks from complex\nconfiguration files to object serialization and persistence.\n",
+                      "home_page": "https://pyyaml.org/",
+                      "download_url": "https://pypi.org/project/PyYAML/",
+                      "author": "Kirill Simonov",
+                      "author_email": "xi@resolvent.net",
+                      "license": "MIT",
+                      "license_file": [
+                        "LICENSE"
+                      ],
+                      "classifier": [
+                        "Development Status :: 5 - Production/Stable",
+                        "Intended Audience :: Developers",
+                        "License :: OSI Approved :: MIT License",
+                        "Operating System :: OS Independent",
+                        "Programming Language :: Cython",
+                        "Programming Language :: Python",
+                        "Programming Language :: Python :: 3",
+                        "Programming Language :: Python :: 3.8",
+                        "Programming Language :: Python :: 3.9",
+                        "Programming Language :: Python :: 3.10",
+                        "Programming Language :: Python :: 3.11",
+                        "Programming Language :: Python :: 3.12",
+                        "Programming Language :: Python :: 3.13",
+                        "Programming Language :: Python :: 3.14",
+                        "Programming Language :: Python :: Implementation :: CPython",
+                        "Programming Language :: Python :: Implementation :: PyPy",
+                        "Topic :: Software Development :: Libraries :: Python Modules",
+                        "Topic :: Text Processing :: Markup"
+                      ],
+                      "requires_python": ">=3.8",
+                      "project_url": [
+                        "Bug Tracker, https://github.com/yaml/pyyaml/issues",
+                        "CI, https://github.com/yaml/pyyaml/actions",
+                        "Documentation, https://pyyaml.org/wiki/PyYAMLDocumentation",
+                        "Mailing lists, http://lists.sourceforge.net/lists/listinfo/yaml-core",
+                        "Source Code, https://github.com/yaml/pyyaml"
+                      ]
+                    }
+                  },
+                  {
+                    "download_info": {
+                      "url": "https://files.pythonhosted.org/packages/da/46/7d84138a60a8bd796825b2d38ebe92d0d16501ca57d501b7c5d677401bbc/tomlkit-0.15.2-py3-none-any.whl",
+                      "archive_info": {
+                        "hash": "sha256=05562412163a3037b94497385fb7f9204c637bc605af7a48199e41cf2272f437",
+                        "hashes": {
+                          "sha256": "05562412163a3037b94497385fb7f9204c637bc605af7a48199e41cf2272f437"
+                        }
+                      }
+                    },
+                    "is_direct": false,
+                    "is_yanked": false,
+                    "requested": false,
+                    "metadata": {
+                      "metadata_version": "2.4",
+                      "name": "tomlkit",
+                      "version": "0.15.2",
+                      "summary": "Style preserving TOML library",
+                      "description": "[github_release]: https://img.shields.io/github/release/sdispater/tomlkit.svg?logo=github&logoColor=white\n[pypi_version]: https://img.shields.io/pypi/v/tomlkit.svg?logo=python&logoColor=white\n[python_versions]: https://img.shields.io/pypi/pyversions/tomlkit.svg?logo=python&logoColor=white\n[github_license]: https://img.shields.io/github/license/sdispater/tomlkit.svg?logo=github&logoColor=white\n[github_action]: https://github.com/sdispater/tomlkit/actions/workflows/tests.yml/badge.svg\n\n[![GitHub Release][github_release]](https://github.com/sdispater/tomlkit/releases/)\n[![PyPI Version][pypi_version]](https://pypi.org/project/tomlkit/)\n[![Python Versions][python_versions]](https://pypi.org/project/tomlkit/)\n[![License][github_license]](https://github.com/sdispater/tomlkit/blob/master/LICENSE)\n<br>\n[![Tests][github_action]](https://github.com/sdispater/tomlkit/actions/workflows/tests.yml)\n\n# TOML Kit - Style-preserving TOML library for Python\n\nTOML Kit is a **1.1.0-compliant** [TOML](https://toml.io/) library.\n\nIt includes a parser that preserves all comments, indentations, whitespace and internal element ordering,\nand makes them accessible and editable via an intuitive API.\n\nYou can also create new TOML documents from scratch using the provided helpers.\n\nPart of the implementation has been adapted, improved and fixed from [Molten](https://github.com/LeopoldArkham/Molten).\n\n## Usage\n\nSee the [documentation](https://tomlkit.readthedocs.io/) for more information.\n\n## Limitations\n\n`tomlkit` preserves the original layout of a document, with one exception: a\nsub-table that extends an array of tables out of order — for example a\n`[fruit.apple.texture]` header that appears after `[[fruit]]` with an unrelated\ntable in between — is normalized into the array's last element when the document\nis re-serialized, rather than kept at its original position. The data is\npreserved; only the physical placement of that sub-table changes.\n\n## Installation\n\nIf you are using [uv](https://docs.astral.sh/uv), you can\nadd `tomlkit` to your `pyproject.toml` file by using:\n\n```bash\nuv add tomlkit\n```\n\nOr just:\n\n```bash\nuv pip install tomlkit\n```\n\nIf not, you can use `pip`:\n\n```bash\npip install tomlkit\n```\n\n## Running tests\n\nPlease clone the repo with submodules with the following command:\n```bash\ngit clone --recurse-submodules https://github.com/python-poetry/tomlkit.git\n```\nThe `toml-test` submodule is required for running the tests.\n\nYou can then run the tests with\n```bash\npoetry run pytest -q tests\n```\n\n",
+                      "description_content_type": "text/markdown",
+                      "author": "Sébastien Eustace",
+                      "author_email": "sebastien@eustace.io",
+                      "license_expression": "MIT",
+                      "license_file": [
+                        "LICENSE"
+                      ],
+                      "classifier": [
+                        "Programming Language :: Python :: 3",
+                        "Programming Language :: Python :: 3.9",
+                        "Programming Language :: Python :: 3.10",
+                        "Programming Language :: Python :: 3.11",
+                        "Programming Language :: Python :: 3.12",
+                        "Programming Language :: Python :: 3.13",
+                        "Programming Language :: Python :: 3.14",
+                        "Programming Language :: Python :: 3.15"
+                      ],
+                      "requires_python": ">=3.9",
+                      "project_url": [
+                        "Changelog, https://github.com/python-poetry/tomlkit/blob/master/CHANGELOG.md",
+                        "Homepage, https://github.com/python-poetry/tomlkit",
+                        "Repository, https://github.com/python-poetry/tomlkit"
+                      ]
+                    }
+                  },
+                  {
+                    "download_info": {
+                      "url": "https://files.pythonhosted.org/packages/38/34/98a2f52245f4d47be93b580dae5f9861ef58977d73a79eb47c58f1ad1f3a/xmltodict-1.0.4-py3-none-any.whl",
+                      "archive_info": {
+                        "hash": "sha256=a4a00d300b0e1c59fc2bfccb53d7b2e88c32f200df138a0dd2229f842497026a",
+                        "hashes": {
+                          "sha256": "a4a00d300b0e1c59fc2bfccb53d7b2e88c32f200df138a0dd2229f842497026a"
+                        }
+                      }
+                    },
+                    "is_direct": false,
+                    "is_yanked": false,
+                    "requested": false,
+                    "metadata": {
+                      "metadata_version": "2.4",
+                      "name": "xmltodict",
+                      "version": "1.0.4",
+                      "dynamic": [
+                        "license-file"
+                      ],
+                      "summary": "Makes working with XML feel like you are working with JSON",
+                      "description": "# xmltodict\n\n`xmltodict` is a Python module that makes working with XML feel like you are working with [JSON](http://docs.python.org/library/json.html), as in this [\"spec\"](http://www.xml.com/pub/a/2006/05/31/converting-between-xml-and-json.html):\n\n[![Tests](https://github.com/martinblech/xmltodict/actions/workflows/test.yml/badge.svg)](https://github.com/martinblech/xmltodict/actions/workflows/test.yml)\n\n```python\n>>> print(json.dumps(xmltodict.parse(\"\"\"\n...  <mydocument has=\"an attribute\">\n...    <and>\n...      <many>elements</many>\n...      <many>more elements</many>\n...    </and>\n...    <plus a=\"complex\">\n...      element as well\n...    </plus>\n...  </mydocument>\n...  \"\"\"), indent=4))\n{\n    \"mydocument\": {\n        \"@has\": \"an attribute\",\n        \"and\": {\n            \"many\": [\n                \"elements\",\n                \"more elements\"\n            ]\n        },\n        \"plus\": {\n            \"@a\": \"complex\",\n            \"#text\": \"element as well\"\n        }\n    }\n}\n```\n\n## Namespace support\n\nBy default, `xmltodict` does no XML namespace processing (it just treats namespace declarations as regular node attributes), but passing `process_namespaces=True` will make it expand namespaces for you:\n\n```python\n>>> xml = \"\"\"\n... <root xmlns=\"http://defaultns.com/\"\n...       xmlns:a=\"http://a.com/\"\n...       xmlns:b=\"http://b.com/\">\n...   <x>1</x>\n...   <a:y>2</a:y>\n...   <b:z>3</b:z>\n... </root>\n... \"\"\"\n>>> xmltodict.parse(xml, process_namespaces=True) == {\n...     'http://defaultns.com/:root': {\n...         'http://defaultns.com/:x': '1',\n...         'http://a.com/:y': '2',\n...         'http://b.com/:z': '3',\n...     }\n... }\nTrue\n```\n\nIt also lets you collapse certain namespaces to shorthand prefixes, or skip them altogether:\n\n```python\n>>> namespaces = {\n...     'http://defaultns.com/': None, # skip this namespace\n...     'http://a.com/': 'ns_a', # collapse \"http://a.com/\" -> \"ns_a\"\n... }\n>>> xmltodict.parse(xml, process_namespaces=True, namespaces=namespaces) == {\n...     'root': {\n...         'x': '1',\n...         'ns_a:y': '2',\n...         'http://b.com/:z': '3',\n...     },\n... }\nTrue\n```\n\n## Streaming mode\n\n`xmltodict` is very fast ([Expat](http://docs.python.org/library/pyexpat.html)-based) and has a streaming mode with a small memory footprint, suitable for big XML dumps like [Discogs](http://discogs.com/data/) or [Wikipedia](http://dumps.wikimedia.org/):\n\n```python\n>>> def handle_artist(_, artist):\n...     print(artist['name'])\n...     return True\n>>>\n>>> xmltodict.parse(GzipFile('discogs_artists.xml.gz'),\n...     item_depth=2, item_callback=handle_artist)\nA Perfect Circle\nFantômas\nKing Crimson\nChris Potter\n...\n```\n\nIt can also be used from the command line to pipe objects to a script like this:\n\n```python\nimport sys, marshal\nwhile True:\n    _, article = marshal.load(sys.stdin)\n    print(article['title'])\n```\n\n```sh\n$ bunzip2 enwiki-pages-articles.xml.bz2 | xmltodict.py 2 | myscript.py\nAccessibleComputing\nAnarchism\nAfghanistanHistory\nAfghanistanGeography\nAfghanistanPeople\nAfghanistanCommunications\nAutism\n...\n```\n\nOr just cache the dicts so you don't have to parse that big XML file again. You do this only once:\n\n```sh\n$ bunzip2 enwiki-pages-articles.xml.bz2 | xmltodict.py 2 | gzip > enwiki.dicts.gz\n```\n\nAnd you reuse the dicts with every script that needs them:\n\n```sh\n$ gunzip enwiki.dicts.gz | script1.py\n$ gunzip enwiki.dicts.gz | script2.py\n...\n```\n\n## Roundtripping\n\nYou can also convert in the other direction, using the `unparse()` method:\n\n```python\n>>> mydict = {\n...     'response': {\n...             'status': 'good',\n...             'last_updated': '2014-02-16T23:10:12Z',\n...     }\n... }\n>>> print(unparse(mydict, pretty=True))\n<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<response>\n\t<status>good</status>\n\t<last_updated>2014-02-16T23:10:12Z</last_updated>\n</response>\n```\n\nText values for nodes can be specified with the `cdata_key` key in the python dict, while node properties can be specified with the `attr_prefix` prefixed to the key name in the python dict. The default value for `attr_prefix` is `@` and the default value for `cdata_key` is `#text`.\n\n```python\n>>> import xmltodict\n>>>\n>>> mydict = {\n...     'text': {\n...         '@color':'red',\n...         '@stroke':'2',\n...         '#text':'This is a test'\n...     }\n... }\n>>> print(xmltodict.unparse(mydict, pretty=True))\n<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<text stroke=\"2\" color=\"red\">This is a test</text>\n```\n\nLists that are specified under a key in a dictionary use the key as a tag for each item. But if a list does have a parent key, for example if a list exists inside another list, it does not have a tag to use and the items are converted to a string as shown in the example below.  To give tags to nested lists, use the `expand_iter` keyword argument to provide a tag as demonstrated below. Note that using `expand_iter` will break roundtripping.\n\n```python\n>>> mydict = {\n...     \"line\": {\n...         \"points\": [\n...             [1, 5],\n...             [2, 6],\n...         ]\n...     }\n... }\n>>> print(xmltodict.unparse(mydict, pretty=True))\n<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<line>\n        <points>[1, 5]</points>\n        <points>[2, 6]</points>\n</line>\n>>> print(xmltodict.unparse(mydict, pretty=True, expand_iter=\"coord\"))\n<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<line>\n        <points>\n                <coord>1</coord>\n                <coord>5</coord>\n        </points>\n        <points>\n                <coord>2</coord>\n                <coord>6</coord>\n        </points>\n</line>\n```\n\n## API Reference\n\n### xmltodict.parse()\n\nParse XML input into a Python dictionary.\n\n- `xml_input`: XML input as a string, file-like object, or generator of strings.\n- `encoding=None`: Character encoding for the input XML.\n- `expat=expat`: XML parser module to use.\n- `process_namespaces=False`: Expand XML namespaces if True.\n- `namespace_separator=':'`: Separator between namespace URI and local name.\n- `disable_entities=True`: Disable entity parsing for security.\n- `process_comments=False`: Include XML comments if True. Comments can be preserved when enabled, but by default they are ignored. Multiple top-level comments may not be preserved in exact order.\n- `xml_attribs=True`: Include attributes in output dict (with `attr_prefix`).\n- `attr_prefix='@'`: Prefix for XML attributes in the dict.\n- `cdata_key='#text'`: Key for text content in the dict.\n- `force_cdata=False`: Force text content to be wrapped as CDATA for specific elements. Can be a boolean (True/False), a tuple of element names to force CDATA for, or a callable function that receives (path, key, value) and returns True/False.\n- `cdata_separator=''`: Separator string to join multiple text nodes. This joins adjacent text nodes. For example, set to a space to avoid concatenation.\n- `postprocessor=None`: Function to modify parsed items.\n- `dict_constructor=dict`: Constructor for dictionaries (e.g., dict).\n- `strip_whitespace=True`: Remove leading/trailing whitespace in text nodes. Default is True; this trims whitespace in text nodes. Set to False to preserve whitespace exactly. When `process_comments=True`, this same flag also trims comment text; disable `strip_whitespace` if you need to preserve comment indentation or padding.\n- `namespaces=None`: Mapping of namespaces to prefixes, or None to keep full URIs.\n- `force_list=None`: Force list values for specific elements. Can be a boolean (True/False), a tuple of element names to force lists for, or a callable function that receives (path, key, value) and returns True/False. Useful for elements that may appear once or multiple times to ensure consistent list output.\n- `item_depth=0`: Depth at which to call `item_callback`.\n- `item_callback=lambda *args: True`: Function called on items at `item_depth`.\n- `comment_key='#comment'`: Key used for XML comments when `process_comments=True`. Only used when `process_comments=True`. Comments can be preserved but multiple top-level comments may not retain order.\n\n### xmltodict.unparse()\n\nConvert a Python dictionary back into XML.\n\n- `input_dict`: Dictionary to convert to XML.\n- `output=None`: File-like object to write XML to; returns string if None.\n- `encoding='utf-8'`: Encoding of the output XML.\n- `bytes_errors='replace'`: Error handler used when decoding byte values during unparse (for example `'replace'`, `'strict'`, `'ignore'`).\n- `full_document=True`: Include XML declaration if True.\n- `short_empty_elements=False`: Use short tags for empty elements (`<tag/>`).\n- `attr_prefix='@'`: Prefix for dictionary keys representing attributes.\n- `cdata_key='#text'`: Key for text content in the dictionary.\n- `pretty=False`: Pretty-print the XML output.\n- `indent='\\t'`: Indentation string for pretty printing.\n- `newl='\\n'`: Newline character for pretty printing.\n- `expand_iter=None`: Tag name to use for items in nested lists (breaks roundtripping).\n\n> **Note:** When building XML from dictionaries, keys whose values are empty\n> lists are skipped. For example, `{'a': []}` produces no `<a>` element. Add a\n> placeholder child (for example, `{'a': ['']}`) if an explicit empty container\n> element is required in the output.\n\nNote: xmltodict aims to cover the common 90% of cases. It does not preserve every XML nuance (attribute order, mixed content ordering, multiple top-level comments). For exact fidelity, use a full XML library such as lxml.\n\n## Examples\n\n### Selective force_cdata\n\nThe `force_cdata` parameter can be used to selectively force CDATA wrapping for specific elements:\n\n```python\n>>> xml = '<a><b>data1</b><c>data2</c><d>data3</d></a>'\n>>> # Force CDATA only for 'b' and 'd' elements\n>>> xmltodict.parse(xml, force_cdata=('b', 'd'))\n{'a': {'b': {'#text': 'data1'}, 'c': 'data2', 'd': {'#text': 'data3'}}}\n\n>>> # Force CDATA for all elements (original behavior)\n>>> xmltodict.parse(xml, force_cdata=True)\n{'a': {'b': {'#text': 'data1'}, 'c': {'#text': 'data2'}, 'd': {'#text': 'data3'}}}\n\n>>> # Use a callable for complex logic\n>>> def should_force_cdata(path, key, value):\n...     return key in ['b', 'd'] and len(value) > 4\n>>> xmltodict.parse(xml, force_cdata=should_force_cdata)\n{'a': {'b': {'#text': 'data1'}, 'c': 'data2', 'd': {'#text': 'data3'}}}\n```\n\n### Selective force_list\n\nThe `force_list` parameter can be used to selectively force list values for specific elements:\n\n```python\n>>> xml = '<a><b>data1</b><b>data2</b><c>data3</c></a>'\n>>> # Force lists only for 'b' elements\n>>> xmltodict.parse(xml, force_list=('b',))\n{'a': {'b': ['data1', 'data2'], 'c': 'data3'}}\n\n>>> # Force lists for all elements (original behavior)\n>>> xmltodict.parse(xml, force_list=True)\n{'a': [{'b': ['data1', 'data2'], 'c': ['data3']}]}\n\n>>> # Use a callable for complex logic\n>>> def should_force_list(path, key, value):\n...     return key in ['b'] and isinstance(value, str)\n>>> xmltodict.parse(xml, force_list=should_force_list)\n{'a': {'b': ['data1', 'data2'], 'c': 'data3'}}\n```\n\n## Ok, how do I get it?\n\n### Using pypi\n\nYou just need to\n\n```sh\n$ pip install xmltodict\n```\n\n### Using conda\n\nFor installing `xmltodict` using Anaconda/Miniconda (*conda*) from the\n[conda-forge channel][#xmltodict-conda] all you need to do is:\n\n[#xmltodict-conda]: https://anaconda.org/conda-forge/xmltodict\n\n```sh\n$ conda install -c conda-forge xmltodict\n```\n\n### RPM-based distro (Fedora, RHEL, …)\n\nThere is an [official Fedora package for xmltodict](https://packages.fedoraproject.org/pkgs/python-xmltodict/).\n\n```sh\n$ sudo yum install python3-xmltodict\n```\n\n### Arch Linux\n\nThere is an [official Arch Linux package for xmltodict](https://archlinux.org/packages/extra/any/python-xmltodict/).\n\n```sh\n$ sudo pacman -S python-xmltodict\n```\n\n### Debian-based distro (Debian, Ubuntu, …)\n\nThere is an [official Debian package for xmltodict](https://tracker.debian.org/pkg/python-xmltodict).\n\n```sh\n$ sudo apt install python-xmltodict\n```\n\n### FreeBSD\n\nThere is an [official FreeBSD port for xmltodict](https://svnweb.freebsd.org/ports/head/devel/py-xmltodict/).\n\n```sh\n$ pkg install py36-xmltodict\n```\n\n### openSUSE/SLE (SLE 15, Leap 15, Tumbleweed)\n\nThere is an [official openSUSE package for xmltodict](https://software.opensuse.org/package/python-xmltodict).\n\n```sh\n# Python2\n$ zypper in python2-xmltodict\n\n# Python3\n$ zypper in python3-xmltodict\n```\n\n## Type Annotations\n\nFor type checking support, install the external types package:\n\n```sh\n# Using pypi\n$ pip install types-xmltodict\n\n# Using conda\n$ conda install -c conda-forge types-xmltodict\n```\n\n## Security Notes\n\nA CVE (CVE-2025-9375) was filed against `xmltodict` but is [disputed](https://github.com/martinblech/xmltodict/issues/377#issuecomment-3255691923). The root issue lies in Python’s `xml.sax.saxutils.XMLGenerator` API, which does not validate XML element names and provides no built-in way to do so. Since `xmltodict` is a thin wrapper that passes keys directly to `XMLGenerator`, the same issue exists in the standard library itself.\n\nIt has been suggested that `xml.sax.saxutils.escape()` represents a secure usage path. This is incorrect: `escape()` is intended only for character data and attribute values, and can produce invalid XML when misapplied to element names. There is currently no secure, documented way in Python’s standard library to validate XML element names.\n\nDespite this, Fluid Attacks chose to assign a CVE to `xmltodict` while leaving the identical behavior in Python’s own standard library unaddressed. Their disclosure process also gave only 10 days from first contact to publication—well short of the 90-day industry norm—leaving no real opportunity for maintainer response. These actions reflect an inconsistency of standards and priorities that raise concerns about motivations, as they do not primarily serve the security of the broader community.\n\nThe maintainer considers this CVE invalid and will formally dispute it with MITRE.\n",
+                      "description_content_type": "text/markdown",
+                      "author": "Martin Blech",
+                      "license_expression": "MIT",
+                      "license_file": [
+                        "LICENSE"
+                      ],
+                      "classifier": [
+                        "Intended Audience :: Developers",
+                        "Operating System :: OS Independent",
+                        "Programming Language :: Python",
+                        "Programming Language :: Python :: 3",
+                        "Programming Language :: Python :: 3.9",
+                        "Programming Language :: Python :: 3.10",
+                        "Programming Language :: Python :: 3.11",
+                        "Programming Language :: Python :: 3.12",
+                        "Programming Language :: Python :: 3.13",
+                        "Programming Language :: Python :: 3.14",
+                        "Programming Language :: Python :: Implementation :: PyPy",
+                        "Topic :: Text Processing :: Markup :: XML"
+                      ],
+                      "requires_dist": [
+                        "pytest; extra == \"test\"",
+                        "pytest-cov; extra == \"test\""
+                      ],
+                      "requires_python": ">=3.9",
+                      "project_url": [
+                        "Homepage, https://github.com/martinblech/xmltodict"
+                      ],
+                      "provides_extra": [
+                        "test"
+                      ]
+                    }
+                  }
+                ],
+                "environment": {
+                  "implementation_name": "cpython",
+                  "implementation_version": "3.12.15",
+                  "os_name": "posix",
+                  "platform_machine": "aarch64",
+                  "platform_release": "7.0.0-38-generic",
+                  "platform_system": "Linux",
+                  "platform_version": "#38-Ubuntu SMP PREEMPT_DYNAMIC Fri Sep  4 09:28:02 UTC 2026",
+                  "python_full_version": "3.12.15",
+                  "platform_python_implementation": "CPython",
+                  "python_version": "3.12",
+                  "sys_platform": "linux"
+                }
+              }
+            }
+          ],
+          "outputs": [
+            {
+              "name": "number.yml",
+              "exit_code": 1,
+              "content": "",
+              "truncated": false,
+              "process": {
+                "argv": [
+                  "yq",
+                  ".foo.bar",
+                  "/work/inputs/number.yml"
+                ],
+                "executed_argv": [
+                  "yq",
+                  ".foo.bar",
+                  "/work/inputs/number.yml"
+                ],
+                "exit_code": 1,
+                "duration_s": 0.064,
+                "stdout": "",
+                "stderr": "yq: Error starting jq: FileNotFoundError: [Errno 2] No such file or directory: 'jq'. Is jq installed and available on PATH?\n",
+                "truncated": false
+              }
+            },
+            {
+              "name": "list.yml",
+              "exit_code": 1,
+              "content": "",
+              "truncated": false,
+              "process": {
+                "argv": [
+                  "yq",
+                  ".foo.bar",
+                  "/work/inputs/list.yml"
+                ],
+                "executed_argv": [
+                  "yq",
+                  ".foo.bar",
+                  "/work/inputs/list.yml"
+                ],
+                "exit_code": 1,
+                "duration_s": 0.064,
+                "stdout": "",
+                "stderr": "yq: Error starting jq: FileNotFoundError: [Errno 2] No such file or directory: 'jq'. Is jq installed and available on PATH?\n",
+                "truncated": false
+              }
+            }
+          ],
+          "pip_freeze": {
+            "argv": [
+              "pip",
+              "freeze",
+              "--all"
+            ],
+            "executed_argv": [
+              "/work/venv/bin/python",
+              "-I",
+              "-m",
+              "pip",
+              "freeze",
+              "--all"
+            ],
+            "exit_code": 0,
+            "duration_s": 0.328,
+            "stdout": "argcomplete==3.7.2\npip==25.0.1\nPyYAML==6.0.3\ntomlkit==0.15.2\nxmltodict==1.0.4\nyq==4.4.5\n",
+            "stderr": "",
+            "truncated": false
+          },
+          "dependency_mode": "pypi_live",
+          "environment_policy": "Fresh venv; documented Python/pip aliases resolve to that interpreter; no user-site install.",
+          "container_id": "fresh-eyes-09a9ef762d774e40",
+          "execution_image_id": "sha256:2c5c3e9a3732707b3c91967d12b9b2741bda714c9a291fc1aadd2250f2b50f41",
+          "network_policy": {
+            "mode": "pypi_proxy_isolated",
+            "network_id": "92c8923cb675f1604fea25503bf5fbfa01673b8f6476ed2e3749584e4ac8fb2a",
+            "configuration_verified": true,
+            "runtime_egress_verified": false,
+            "allowed_hosts": [
+              "pypi.org:443",
+              "files.pythonhosted.org:443"
+            ],
+            "verification_scope": "Docker network configuration; actual egress probes are a separate release gate"
+          }
+        },
+        "validation": {
+          "passed": false,
+          "checks": [
+            {
+              "name": "number.yml",
+              "passed": false,
+              "reason": "Missing output, failed process or truncated output"
+            },
+            {
+              "name": "list.yml",
+              "passed": false,
+              "reason": "Missing output, failed process or truncated output"
+            }
+          ]
+        }
+      }
+    ],
+    "model_calls": 0,
+    "repair_author": null,
+    "dependency_mode": "pypi_live",
+    "max_patch_rounds": 0,
+    "repair_route": null,
+    "repair_rounds": [],
+    "time_limit_s": 300,
+    "limitations": [
+      "Live PyPI resolution; package versions may change between attempts.",
+      "Development cases have not been approved by upstream maintainers.",
+      "Passing fixtures only verifies the registered workflow."
+    ],
+    "current_phase": "finished",
+    "environment": {
+      "requested_image": "sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704",
+      "image_id": "sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704",
+      "repo_digests": [
+        "python@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704"
+      ],
+      "platform": "linux/arm64",
+      "dependency_mode": "pypi_live",
+      "network": "pypi_proxy_isolated",
+      "offline_wheelhouse": false,
+      "egress_allowlist": [
+        "pypi.org:443",
+        "files.pythonhosted.org:443"
+      ]
+    },
+    "source_export": {
+      "commit_sha": "a98d746b96d3e6e60d3cc6e9e38a57e5005482c6",
+      "materialized_file_links": [],
+      "notice": "Internal file links are materialized from archived target bytes; no host symlink is created."
+    },
+    "wheelhouse": [],
+    "reason": "Original workflow failed; no repair was proposed.",
+    "finished_at": "2026-10-24T16:55:12.946701+00:00",
+    "execution_scope": "boundary_baseline",
+    "evaluation_eligible": false
+  },
+  "costs": {
+    "currency": "USD",
+    "model_calls": [],
+    "model_usd": 0.0,
+    "billed_usd": null,
+    "runner_usd": null,
+    "billing_status": "local_compute_not_metered",
+    "paid_calls_enabled": false
+  }
+}

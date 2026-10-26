@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "case_id": "yq-query",
+  "environment": {
+    "platform": "linux/arm64",
+    "image": "python:3.12-slim"
+  },
+  "review": {
+    "status": "draft",
+    "reviewed_by": "Claude (B) static review of README and source at the pinned commit; not executed; no human approval",
+    "reviewed_at": "2026-10-20"
+  },
+  "goal": "Query a YAML file with yq and print the selected value as JSON (README: yq .foo.bar input.yml).",
+  "repo": {
+    "url": "https://github.com/kislyuk/yq",
+    "commit": "a98d746b96d3e6e60d3cc6e9e38a57e5005482c6"
+  },
+  "readme_source": "README.rst:L8;L10-L11;L24",
+  "setup": [
+    {
+      "argv": [
+        "pip",
+        "install",
+        "yq"
+      ],
+      "source": "README.rst:L8"
+    }
+  ],
+  "workflow": {
+    "argv": [
+      "yq",
+      ".foo.bar",
+      "{input}"
+    ],
+    "output": "stdout"
+  },
+  "fixtures": [
+    {
+      "name": "number.yml",
+      "input": "foo:\n  bar: 3\n",
+      "validator": "json",
+      "expected": 3
+    },
+    {
+      "name": "list.yml",
+      "input": "foo:\n  bar:\n    - a\n    - b\n",
+      "validator": "json",
+      "expected": [
+        "a",
+        "b"
+      ]
+    }
+  ]
+}

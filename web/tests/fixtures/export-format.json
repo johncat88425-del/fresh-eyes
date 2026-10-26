@@ -1,0 +1,85 @@
+{
+ "schema_version": 1,
+ "data_origin": "evaluation",
+ "frozen_at": "2026-10-20T15:40:05.119347+00:00",
+ "freeze": {
+  "code_version": "791eb431d8873dcf272ec9a6a9913f07ddbd0e9affecf2dcc8df76cf7fbabbcf",
+  "prompts_sha256": "791eb431d8873dcf272ec9a6a9913f07ddbd0e9affecf2dcc8df76cf7fbabbcf",
+  "runner": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "dependency_mode": "offline_snapshot",
+  "wheelhouse_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+ },
+ "freeze_sha256": "4b105b7bd5e852c6801bfc84659c8d8b008c40d853d4879b6a65b46a7d095631",
+ "protocols": {
+  "A": {
+   "max_patch_rounds": 0,
+   "route": null
+  },
+  "B": {
+   "max_patch_rounds": 1,
+   "route": "nano_ultra"
+  },
+  "C": {
+   "max_patch_rounds": 2,
+   "route": "nano_ultra"
+  },
+  "D": {
+   "max_patch_rounds": 2,
+   "route": "all_ultra"
+  }
+ },
+ "limits": {
+  "case_model_usd": "0",
+  "batch_model_usd": "0",
+  "time_limit_s": 600
+ },
+ "cases": [
+  {
+   "case_id": "synthetic-unit-case",
+   "set": "holdout",
+   "repo_url": "https://example.invalid/unit",
+   "commit_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "acceptance_sha256": "a335f4cded27d4febd3b7e69fc326628a552c1856936acb3690b5fe7e3ce6513",
+   "expected_state": null
+  }
+ ],
+ "runs": [
+  {
+   "case_id": "synthetic-unit-case",
+   "group": "A",
+   "run_id": "ffdb2140869b4a2886a38f0170043187",
+   "run_state": "completed",
+   "result_status": "infrastructure_error",
+   "acceptance_sha256": "a335f4cded27d4febd3b7e69fc326628a552c1856936acb3690b5fe7e3ce6513",
+   "started_at": "2026-10-20T15:40:05.120895+00:00",
+   "duration_s": 0.000186,
+   "model_calls": 0,
+   "cost_usd": null,
+   "cost_status": "unknown",
+   "model_usd": 0,
+   "model_cost_status": "no_model_calls",
+   "runner_usd": null,
+   "human_review": null
+  }
+ ],
+ "batch_stops": [],
+ "unrun": [
+  {
+   "case_id": "synthetic-unit-case",
+   "group": "B",
+   "reason": "No execution recorded; explicit owner model activation and budget are required"
+  },
+  {
+   "case_id": "synthetic-unit-case",
+   "group": "C",
+   "reason": "No execution recorded; explicit owner model activation and budget are required"
+  },
+  {
+   "case_id": "synthetic-unit-case",
+   "group": "D",
+   "reason": "No execution recorded; explicit owner model activation and budget are required"
+  }
+ ],
+ "notice": "Unknown local runner costs remain null. Model subtotals are separate. Unrun groups are explicitly listed; no repair success is implied.",
+ "_fixture_note": "SYNTHETIC: produced on 2026-10-20 by A's evaluation.export_results from tests/test_evaluation.py's infrastructure fixture. Not an evaluation result; keeps the page's format in step with A's export."
+}

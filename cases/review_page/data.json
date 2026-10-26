@@ -1,0 +1,843 @@
+{
+ "generated_by": "cases/review_page/build_review_data.py",
+ "cases": [
+  {
+   "group": "holdout",
+   "file": "cases/holdout/markdown2.json",
+   "case_id": "markdown2-cli",
+   "goal": "Convert the supplied Markdown into HTML containing the expected heading and emphasis.",
+   "repo": {
+    "url": "https://github.com/trentm/python-markdown2",
+    "commit": "e69bbdfeca8957992ccc60e2a09d8e52ae2349ed"
+   },
+   "readme_source": "README.md:L35;L72",
+   "setup": [
+    {
+     "argv": [
+      "pip",
+      "install",
+      "markdown2"
+     ],
+     "source": "README.md:L35"
+    }
+   ],
+   "workflow": {
+    "argv": [
+     "markdown2",
+     "{input}"
+    ],
+    "output": "stdout"
+   },
+   "fixtures": [
+    {
+     "name": "intro.md",
+     "input": "# Hello\n\nA **bold** start.\n",
+     "validator": "html_elements",
+     "expected": [
+      [
+       "h1",
+       "Hello"
+      ],
+      [
+       "strong",
+       "bold"
+      ]
+     ]
+    },
+    {
+     "name": "second.md",
+     "input": "# Second\n\nAn *italic* finish.\n",
+     "validator": "html_elements",
+     "expected": [
+      [
+       "h1",
+       "Second"
+      ],
+      [
+       "em",
+       "italic"
+      ]
+     ]
+    }
+   ],
+   "acceptance_sha256": "405178ac1cc7c65d702b6cec247be2125f3fc3163116acc8c31a53ef50b04547",
+   "review_file": "evaluation/reviews-20261020-v4.json",
+   "hash_matches_review_file": true,
+   "new_version": null,
+   "review_status_in_file": "draft",
+   "expected_result_status": null,
+   "excerpts": [
+    {
+     "file": "README.md",
+     "total_lines": 159,
+     "lines": [
+      [
+       35,
+       "    pip install markdown2",
+       "cited"
+      ],
+      [
+       63,
+       "$ python markdown2.py foo.md > foo.html",
+       "context"
+      ],
+      [
+       67,
+       "$ python -m markdown2 foo.md > foo.html",
+       "context"
+      ],
+      [
+       70,
+       "I think pip-based installation will enable this as well:",
+       "context"
+      ],
+      [
+       72,
+       "$ markdown2 foo.md > foo.html",
+       "cited"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "group": "holdout",
+   "file": "cases/holdout/commonmark.json",
+   "case_id": "commonmark-cmark",
+   "goal": "Convert the supplied Markdown into HTML containing the expected heading and emphasis.",
+   "repo": {
+    "url": "https://github.com/readthedocs/commonmark.py",
+    "commit": "df7dcb7eae8b092a83654e791244b9fcaf11a871"
+   },
+   "readme_source": "README.rst:L38;L69",
+   "setup": [
+    {
+     "argv": [
+      "pip",
+      "install",
+      "commonmark"
+     ],
+     "source": "README.rst:L38"
+    }
+   ],
+   "workflow": {
+    "argv": [
+     "cmark",
+     "{input}",
+     "-o",
+     "result.html"
+    ],
+    "output": "result.html"
+   },
+   "fixtures": [
+    {
+     "name": "intro.md",
+     "input": "# Hello\n\nA **bold** start.\n",
+     "validator": "html_elements",
+     "expected": [
+      [
+       "h1",
+       "Hello"
+      ],
+      [
+       "strong",
+       "bold"
+      ]
+     ]
+    },
+    {
+     "name": "second.md",
+     "input": "# Second\n\nAn *italic* finish.\n",
+     "validator": "html_elements",
+     "expected": [
+      [
+       "h1",
+       "Second"
+      ],
+      [
+       "em",
+       "italic"
+      ]
+     ]
+    }
+   ],
+   "acceptance_sha256": "e69c2edd16f1865d80f7f8b913737ae0a5c52ec16da7853c795c0f6acfc526ed",
+   "review_file": "evaluation/reviews-20261020-v4.json",
+   "hash_matches_review_file": true,
+   "new_version": null,
+   "review_status_in_file": "draft",
+   "expected_result_status": null,
+   "excerpts": [
+    {
+     "file": "README.rst",
+     "total_lines": 150,
+     "lines": [
+      [
+       38,
+       "    $ pip install commonmark",
+       "cited"
+      ],
+      [
+       69,
+       "    $ cmark README.md -o README.html",
+       "cited"
+      ],
+      [
+       73,
+       "    usage: cmark [-h] [-o [O]] [-a] [-aj] [infile]",
+       "context"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "group": "holdout",
+   "file": "cases/holdout/markdown-it-py.json",
+   "case_id": "markdown-it-py-cli",
+   "goal": "Convert the supplied Markdown into HTML containing the expected heading and emphasis.",
+   "repo": {
+    "url": "https://github.com/executablebooks/markdown-it-py",
+    "commit": "6f586542653a56d2ee8549a0dccfaa6ba5ebe14a"
+   },
+   "readme_source": "README.md:L38;L98-L132",
+   "setup": [
+    {
+     "argv": [
+      "pip",
+      "install",
+      "markdown-it-py[plugins]"
+     ],
+     "source": "README.md:L38"
+    }
+   ],
+   "workflow": {
+    "argv": [
+     "markdown-it",
+     "{input}"
+    ],
+    "output": "stdout"
+   },
+   "fixtures": [
+    {
+     "name": "intro.md",
+     "input": "# Hello\n\nA **bold** start.\n",
+     "validator": "html_elements",
+     "expected": [
+      [
+       "h1",
+       "Hello"
+      ],
+      [
+       "strong",
+       "bold"
+      ]
+     ]
+    },
+    {
+     "name": "second.md",
+     "input": "# Second\n\nAn *italic* finish.\n",
+     "validator": "html_elements",
+     "expected": [
+      [
+       "h1",
+       "Second"
+      ],
+      [
+       "em",
+       "italic"
+      ]
+     ]
+    }
+   ],
+   "acceptance_sha256": "6447c05398c3f65e63688f3cbd38ac041aed34d8c63990985d3b901d72c24fd8",
+   "review_file": "evaluation/reviews-20261020-v4.json",
+   "hash_matches_review_file": true,
+   "new_version": null,
+   "review_status_in_file": "draft",
+   "expected_result_status": null,
+   "excerpts": [
+    {
+     "file": "README.md",
+     "total_lines": 170,
+     "lines": [
+      [
+       38,
+       "pip install markdown-it-py[plugins]",
+       "cited"
+      ],
+      [
+       98,
+       "### Command-line Usage",
+       "cited"
+      ],
+      [
+       99,
+       "",
+       "cited"
+      ],
+      [
+       100,
+       "Render markdown to HTML with markdown-it-py from the",
+       "cited"
+      ],
+      [
+       101,
+       "command-line:",
+       "cited"
+      ],
+      [
+       102,
+       "",
+       "cited"
+      ],
+      [
+       103,
+       "```console",
+       "cited"
+      ],
+      [
+       104,
+       "usage: markdown-it [-h] [-v] [--stdin] [--enable-tables] [filenames ...]",
+       "cited"
+      ],
+      [
+       105,
+       "",
+       "cited"
+      ],
+      [
+       106,
+       "Parse one or more markdown files, convert each to HTML, and print to stdout",
+       "cited"
+      ],
+      [
+       107,
+       "",
+       "cited"
+      ],
+      [
+       108,
+       "positional arguments:",
+       "cited"
+      ],
+      [
+       109,
+       "  filenames        specify an optional list of files to convert",
+       "cited"
+      ],
+      [
+       110,
+       "",
+       "cited"
+      ],
+      [
+       111,
+       "options:",
+       "cited"
+      ],
+      [
+       112,
+       "  -h, --help       show this help message and exit",
+       "cited"
+      ],
+      [
+       113,
+       "  -v, --version    show program's version number and exit",
+       "cited"
+      ],
+      [
+       114,
+       "  --stdin          read Markdown from standard input",
+       "cited"
+      ],
+      [
+       115,
+       "  --enable-tables  enable table parsing",
+       "cited"
+      ],
+      [
+       116,
+       "",
+       "cited"
+      ],
+      [
+       117,
+       "Interactive:",
+       "cited"
+      ],
+      [
+       118,
+       "",
+       "cited"
+      ],
+      [
+       119,
+       "  $ markdown-it",
+       "cited"
+      ],
+      [
+       120,
+       "  markdown-it-py [version 0.0.0] (interactive)",
+       "cited"
+      ],
+      [
+       121,
+       "  Type Ctrl-D to complete input, or Ctrl-C to exit.",
+       "cited"
+      ],
+      [
+       122,
+       "  >>> # Example",
+       "cited"
+      ],
+      [
+       123,
+       "  ... > markdown *input*",
+       "cited"
+      ],
+      [
+       124,
+       "  ...",
+       "cited"
+      ],
+      [
+       125,
+       "  <h1>Example</h1>",
+       "cited"
+      ],
+      [
+       126,
+       "  <blockquote>",
+       "cited"
+      ],
+      [
+       127,
+       "  <p>markdown <em>input</em></p>",
+       "cited"
+      ],
+      [
+       128,
+       "  </blockquote>",
+       "cited"
+      ],
+      [
+       129,
+       "",
+       "cited"
+      ],
+      [
+       130,
+       "Batch:",
+       "cited"
+      ],
+      [
+       131,
+       "",
+       "cited"
+      ],
+      [
+       132,
+       "  $ markdown-it README.md README.footer.md > index.html",
+       "cited"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "group": "holdout",
+   "file": "cases/holdout/html2text.json",
+   "case_id": "html2text-cli",
+   "goal": "Convert the supplied HTML into Markdown text (README: html2text [filename]).",
+   "repo": {
+    "url": "https://github.com/Alir3z4/html2text",
+    "commit": "5cf85510a2498546d5b48ad1bf7d75b146aac591"
+   },
+   "readme_source": "README.md:L11;L66",
+   "setup": [
+    {
+     "argv": [
+      "pip",
+      "install",
+      "html2text"
+     ],
+     "source": "README.md:L66"
+    }
+   ],
+   "workflow": {
+    "argv": [
+     "html2text",
+     "{input}"
+    ],
+    "output": "stdout"
+   },
+   "fixtures": [
+    {
+     "name": "intro.html",
+     "input": "<h1>Hello</h1><p>A <b>bold</b> start.</p>\n",
+     "validator": "text_lines",
+     "expected": "# Hello\n\nA **bold** start."
+    },
+    {
+     "name": "second.html",
+     "input": "<h2>Second</h2><p>An <em>italic</em> finish.</p>\n",
+     "validator": "text_lines",
+     "expected": "## Second\n\nAn _italic_ finish."
+    }
+   ],
+   "acceptance_sha256": "766ed9bfa1be1c09d4ce662cffaaf8ac6094d5b9d6d9100eaa01250d159f2523",
+   "review_file": "evaluation/reviews-20261020-v4.json",
+   "hash_matches_review_file": null,
+   "new_version": {
+    "replaces_acceptance_sha256": "2fab77afbe25c49f10100274c62d93a1e4d0b673772c6722e04ae65b8abb61e5",
+    "change": "比對方式由 text 改為 text_lines（kevin 10/24 的意見）；預期內容不變"
+   },
+   "review_status_in_file": "draft",
+   "expected_result_status": null,
+   "excerpts": [
+    {
+     "file": "README.md",
+     "total_lines": 102,
+     "lines": [
+      [
+       11,
+       "Usage: `html2text [filename [encoding]]`",
+       "cited"
+      ],
+      [
+       30,
+       ">>> print(html2text.html2text(\"<p><strong>Zed's</strong> dead baby, <em>Zed's</em> dead.</p>\"))",
+       "context"
+      ],
+      [
+       31,
+       "**Zed's** dead baby, _Zed's_ dead.",
+       "context"
+      ],
+      [
+       66,
+       "$ pip install html2text",
+       "cited"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "group": "boundary",
+   "file": "cases/boundary/j2cli.json",
+   "case_id": "j2cli-render",
+   "goal": "Render the supplied Jinja2 template with j2 (README: j2 config.j2, data from environment variables).",
+   "repo": {
+    "url": "https://github.com/kolypto/j2cli",
+    "commit": "2c26075c25e8c4fef9086e3bb5e6a4946f548231"
+   },
+   "readme_source": "README.md:L34;L137;L174",
+   "setup": [
+    {
+     "argv": [
+      "pip",
+      "install",
+      "j2cli"
+     ],
+     "source": "README.md:L34"
+    }
+   ],
+   "workflow": {
+    "argv": [
+     "j2",
+     "{input}"
+    ],
+    "output": "stdout"
+   },
+   "fixtures": [
+    {
+     "name": "static.j2",
+     "input": "Hello from a template\n",
+     "validator": "text",
+     "expected": "Hello from a template"
+    },
+    {
+     "name": "loop.j2",
+     "input": "{% for i in range(3) %}{{ i }}{% endfor %} items: {{ 2 + 3 }}\n",
+     "validator": "text",
+     "expected": "012 items: 5"
+    }
+   ],
+   "acceptance_sha256": "64e3553828b56cf23c6da75f69058e05e9966859907977af0f5216b763bef63f",
+   "review_file": "evaluation/boundary-reviews-20261020-v4.json",
+   "hash_matches_review_file": true,
+   "new_version": null,
+   "review_status_in_file": "draft",
+   "expected_result_status": [
+    "unsupported",
+    "needs_review",
+    "unresolved"
+   ],
+   "excerpts": [
+    {
+     "file": "README.md",
+     "total_lines": 420,
+     "lines": [
+      [
+       4,
+       "Project Closed",
+       "context"
+      ],
+      [
+       5,
+       "===============",
+       "context"
+      ],
+      [
+       6,
+       "",
+       "context"
+      ],
+      [
+       7,
+       "This project is not maintained anymore.",
+       "context"
+      ],
+      [
+       34,
+       "pip install j2cli",
+       "cited"
+      ],
+      [
+       137,
+       "    $ j2 config.j2",
+       "cited"
+      ],
+      [
+       174,
+       "* When `data` is not provided (data is `-`), `--format` defaults to `env` and thus reads environment variables",
+       "cited"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "group": "boundary",
+   "file": "cases/boundary/yq.json",
+   "case_id": "yq-query",
+   "goal": "Query a YAML file with yq and print the selected value as JSON (README: yq .foo.bar input.yml).",
+   "repo": {
+    "url": "https://github.com/kislyuk/yq",
+    "commit": "a98d746b96d3e6e60d3cc6e9e38a57e5005482c6"
+   },
+   "readme_source": "README.rst:L8;L10-L11;L24",
+   "setup": [
+    {
+     "argv": [
+      "pip",
+      "install",
+      "yq"
+     ],
+     "source": "README.rst:L8"
+    }
+   ],
+   "workflow": {
+    "argv": [
+     "yq",
+     ".foo.bar",
+     "{input}"
+    ],
+    "output": "stdout"
+   },
+   "fixtures": [
+    {
+     "name": "number.yml",
+     "input": "foo:\n  bar: 3\n",
+     "validator": "json",
+     "expected": 3
+    },
+    {
+     "name": "list.yml",
+     "input": "foo:\n  bar:\n    - a\n    - b\n",
+     "validator": "json",
+     "expected": [
+      "a",
+      "b"
+     ]
+    }
+   ],
+   "acceptance_sha256": "ebb9dcad69e76e554f005c49b56109e8e7b04d7a8230b0a2b805ad7db945b7b0",
+   "review_file": "evaluation/boundary-reviews-20261020-v4.json",
+   "hash_matches_review_file": true,
+   "new_version": null,
+   "review_status_in_file": "draft",
+   "expected_result_status": [
+    "unsupported",
+    "needs_review",
+    "unresolved"
+   ],
+   "excerpts": [
+    {
+     "file": "README.rst",
+     "total_lines": 171,
+     "lines": [
+      [
+       8,
+       "    pip install yq",
+       "cited"
+      ],
+      [
+       10,
+       "Before using ``yq``, you also have to install its dependency, ``jq``. See the `jq installation instructions",
+       "cited"
+      ],
+      [
+       11,
+       "<https://stedolan.github.io/jq/download/>`_ for details and directions specific to your platform.",
+       "cited"
+      ],
+      [
+       24,
+       "    yq .foo.bar input.yml",
+       "cited"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "group": "boundary",
+   "file": "cases/boundary/gfm-to-html.json",
+   "case_id": "gfm-to-html-convert",
+   "goal": "Convert the supplied Markdown to HTML with gh-md-to-html (README: gh-md-to-html foo.md; default core converter is the GitHub REST API).",
+   "repo": {
+    "url": "https://github.com/phseiff/github-flavored-markdown-to-html",
+    "commit": "2eb59c26001e55dbfe6a4f3c42b61a8abeb934ea"
+   },
+   "readme_source": "README.md:L110;L155;L202;L216;L233",
+   "setup": [
+    {
+     "argv": [
+      "pip3",
+      "install",
+      "gh-md-to-html"
+     ],
+     "source": "README.md:L110"
+    }
+   ],
+   "workflow": {
+    "argv": [
+     "gh-md-to-html",
+     "{input}",
+     "-n",
+     "result.html"
+    ],
+    "output": "result.html"
+   },
+   "fixtures": [
+    {
+     "name": "intro.md",
+     "input": "# Hello\n\nA **bold** start.\n",
+     "validator": "html_elements",
+     "expected": [
+      [
+       "h1",
+       "Hello"
+      ],
+      [
+       "strong",
+       "bold"
+      ]
+     ]
+    },
+    {
+     "name": "second.md",
+     "input": "# Second\n\nAn *italic* finish.\n",
+     "validator": "html_elements",
+     "expected": [
+      [
+       "h1",
+       "Second"
+      ],
+      [
+       "em",
+       "italic"
+      ]
+     ]
+    }
+   ],
+   "acceptance_sha256": "be140fb45d7eedd7dd89ea87399a5d1ec580f0309433a8fb0180cedc5f53ea62",
+   "review_file": "evaluation/boundary-reviews-20261020-v4.json",
+   "hash_matches_review_file": true,
+   "new_version": null,
+   "review_status_in_file": "draft",
+   "expected_result_status": [
+    "needs_input",
+    "unsupported",
+    "needs_review",
+    "unresolved"
+   ],
+   "excerpts": [
+    {
+     "file": "README.md",
+     "total_lines": 606,
+     "lines": [
+      [
+       110,
+       "Use `pip3 install gh-md-to-html` to install directly from the python package index, or `python3 -m pip install gh-md-to-html` if",
+       "cited"
+      ],
+      [
+       155,
+       "If you call `gh-md-to-html foo.md` without any additional options, you will get a file called `foo.html` in the same directory as `foo.md`, with all the images referenced in `foo.md` in a folder called `images` and the required CSS in a folder called `github-markdown-css` (both linked by `foo.html` using absolute relative links).",
+       "cited"
+      ],
+      [
+       191,
+       "  gh-md-to-html is written with the goal of generating a host-ready static website for you, with your current working directory as its root. Aside from using `-w` to disable this and allow you to view the generated file directly in a browser, there are a number of options that allow you to fine-tune what goes where, and most popularly, change the root of the website.",
+       "context"
+      ],
+      [
+       194,
+       "  * `--destination` (or `-d`): The path, relative to `--website-root`, in which the generated html file is stored. By default, the website root is used for this.",
+       "context"
+      ],
+      [
+       201,
+       "  * `--output-name` (or `-n`): The file name under which to store the generated html file in the destination-directory.",
+       "context"
+      ],
+      [
+       202,
+       "    You can use `<name>` anywhere in this string, and it will automatically be replaced with the name of the markdown file, so, for example, `gh-md-to-html inp.md -n \"<name>-conv.html\"` will store the result in `ino-conv.html` (this doesn't work with `--origin-type string`, of course).<br>",
+       "cited"
+      ],
+      [
+       203,
+       "    You can also use `-n print` in order to simply write the output to STDOUT (print it on the console) instead of saving it anywhere.",
+       "context"
+      ],
+      [
+       216,
+       "  gh-md-to-html doesn't actually do all that much heavy lifting itself when it comes to parsing markdown and converting it to PDF; instead, it wraps around a so-called \"core converter\" that does the basic conversion according to the markdown spec, and builds its own options, features, customizations and styling on top of that. By default, the GitHub markdown REST API is used for that, since it comes closest to what GitHub does with its READMEs, but you can also give gh-md-to-html any other basic markdown converter to work with.",
+       "cited"
+      ],
+      [
+       221,
+       "  * `--core-converter` (or `-o`): You can use this option to choose from a number of pre-defined core converters (see below) in case you want to differ from the default one.",
+       "context"
+      ],
+      [
+       233,
+       "  * `OFFLINE`: Imitates GitHub's markdown REST API, but offline using mistune. This requires the optional dependencies for \"offline_conversion\" to be satisfied, by using `pip3 install gh-md-to-html[offline_conversion]` or `pip3 install mistune>=2.0.0rc1`.",
+       "cited"
+      ],
+      [
+       317,
+       "Convert markdown to HTML using the GitHub API and some additional tweaks with",
+       "context"
+      ]
+     ]
+    }
+   ]
+  }
+ ]
+}

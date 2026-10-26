@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "environment": {
+    "platform": "linux/arm64",
+    "image": "python:3.12-slim"
+  },
+  "review": {
+    "status": "draft",
+    "reviewed_by": "Claude (B) static review of README and source at the pinned commit; not executed; no human approval",
+    "reviewed_at": "2026-10-19"
+  },
+  "goal": "Convert the supplied HTML into Markdown text (README: html2text [filename]).",
+  "case_id": "html2text-cli",
+  "repo": {
+    "url": "https://github.com/Alir3z4/html2text",
+    "commit": "5cf85510a2498546d5b48ad1bf7d75b146aac591"
+  },
+  "readme_source": "README.md:L11;L66",
+  "setup": [
+    {
+      "argv": [
+        "pip",
+        "install",
+        "html2text"
+      ],
+      "source": "README.md:L66"
+    }
+  ],
+  "workflow": {
+    "argv": [
+      "html2text",
+      "{input}"
+    ],
+    "output": "stdout"
+  },
+  "fixtures": [
+    {
+      "name": "intro.html",
+      "input": "<h1>Hello</h1><p>A <b>bold</b> start.</p>\n",
+      "validator": "text_lines",
+      "expected": "# Hello\n\nA **bold** start."
+    },
+    {
+      "name": "second.html",
+      "input": "<h2>Second</h2><p>An <em>italic</em> finish.</p>\n",
+      "validator": "text_lines",
+      "expected": "## Second\n\nAn _italic_ finish."
+    }
+  ]
+}

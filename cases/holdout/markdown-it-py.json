@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "environment": {
+    "platform": "linux/arm64",
+    "image": "python:3.12-slim"
+  },
+  "review": {
+    "status": "draft",
+    "reviewed_by": "Claude (B) static review of README and source at the pinned commit; not executed; no human approval",
+    "reviewed_at": "2026-10-19"
+  },
+  "goal": "Convert the supplied Markdown into HTML containing the expected heading and emphasis.",
+  "case_id": "markdown-it-py-cli",
+  "repo": {
+    "url": "https://github.com/executablebooks/markdown-it-py",
+    "commit": "6f586542653a56d2ee8549a0dccfaa6ba5ebe14a"
+  },
+  "readme_source": "README.md:L38;L98-L132",
+  "setup": [
+    {
+      "argv": [
+        "pip",
+        "install",
+        "markdown-it-py[plugins]"
+      ],
+      "source": "README.md:L38"
+    }
+  ],
+  "workflow": {
+    "argv": [
+      "markdown-it",
+      "{input}"
+    ],
+    "output": "stdout"
+  },
+  "fixtures": [
+    {
+      "name": "intro.md",
+      "input": "# Hello\n\nA **bold** start.\n",
+      "validator": "html_elements",
+      "expected": [
+        [
+          "h1",
+          "Hello"
+        ],
+        [
+          "strong",
+          "bold"
+        ]
+      ]
+    },
+    {
+      "name": "second.md",
+      "input": "# Second\n\nAn *italic* finish.\n",
+      "validator": "html_elements",
+      "expected": [
+        [
+          "h1",
+          "Second"
+        ],
+        [
+          "em",
+          "italic"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "kind": "holdout",
+  "source_archive_sha256": "fa25ce71449417a344f04cf2bdf2541f40f8fa4909fc91d1cca625e4e1cfbb5d",
+  "source_description": "B handoff 2026-10-19; static review; no runtime results",
+  "cases": [
+    {
+      "file": "commonmark.json",
+      "file_sha256": "33332475eae57738a5bb12983624c150e672e485f61a91b6b58e40a61c8c8c3a",
+      "case_id": "commonmark-cmark",
+      "contract_sha256": "5429aef318fc0df1fd5ec387f77e60deb9f1347f24b2fd5afd995bf5af0184e1",
+      "acceptance_sha256": "e69c2edd16f1865d80f7f8b913737ae0a5c52ec16da7853c795c0f6acfc526ed"
+    },
+    {
+      "file": "html2text.json",
+      "file_sha256": "c69fb08ca80683f8e9c93c9b1492bbae65a96b45e2aabb797b3f30ed604b363a",
+      "case_id": "html2text-cli",
+      "contract_sha256": "3995a862626a3cc2d57f163b15756b3f6b7bf7faf1cb1595f4ec297db0dde96f",
+      "acceptance_sha256": "766ed9bfa1be1c09d4ce662cffaaf8ac6094d5b9d6d9100eaa01250d159f2523"
+    },
+    {
+      "file": "markdown-it-py.json",
+      "file_sha256": "e207631fb379b300a6446696f951f5c2346a82e40b19a2a0cc594be75bd146bf",
+      "case_id": "markdown-it-py-cli",
+      "contract_sha256": "287817ac0b9a939a304856b90f25bdd20176a9b95a7ad64277a162457cdbba34",
+      "acceptance_sha256": "6447c05398c3f65e63688f3cbd38ac041aed34d8c63990985d3b901d72c24fd8"
+    },
+    {
+      "file": "markdown2.json",
+      "file_sha256": "ae37edaa95b90ef0814ee147e1182929962a2cac04f7ddfb9c501293faefc7fd",
+      "case_id": "markdown2-cli",
+      "contract_sha256": "0786bbe08f08096c88911b8c0a76ea7ceb287e995f65f5143723ea463c383b36",
+      "acceptance_sha256": "405178ac1cc7c65d702b6cec247be2125f3fc3163116acc8c31a53ef50b04547"
+    }
+  ]
+}

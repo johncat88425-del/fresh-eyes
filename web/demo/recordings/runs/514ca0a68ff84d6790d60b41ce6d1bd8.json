@@ -1,0 +1,438 @@
+{
+  "schema_version": 1,
+  "data_origin": "execution",
+  "record_source": "owner_local_engine",
+  "api_persisted": false,
+  "evaluation_eligible": false,
+  "recording_scope": "boundary_baseline",
+  "counted_in_fix_rate": false,
+  "run_id": "514ca0a68ff84d6790d60b41ce6d1bd8",
+  "case_id": "j2cli-render",
+  "case_available": false,
+  "repo_url": "https://github.com/kolypto/j2cli",
+  "commit_sha": "2c26075c25e8c4fef9086e3bb5e6a4946f548231",
+  "run_state": "completed",
+  "result_status": "unresolved",
+  "phase": "finished",
+  "reason": "Original workflow failed; no repair was proposed.",
+  "repair_mode": "none",
+  "repair_author": null,
+  "patch_available": false,
+  "verification_level": "functional",
+  "dependency_mode": "pypi_live",
+  "acceptance_sha256": "64e3553828b56cf23c6da75f69058e05e9966859907977af0f5216b763bef63f",
+  "review": {
+    "acceptance_sha256": "64e3553828b56cf23c6da75f69058e05e9966859907977af0f5216b763bef63f",
+    "approved_at": "2026-10-22T12:55:53-04:00",
+    "reviewed_by": "kevin",
+    "status": "approved"
+  },
+  "created_at": "2026-10-24T16:55:04.800122+00:00",
+  "started_at": "2026-10-24T16:55:04.800122+00:00",
+  "finished_at": "2026-10-24T16:55:08.750780+00:00",
+  "evidence": {
+    "schema_version": 1,
+    "run_id": "514ca0a68ff84d6790d60b41ce6d1bd8",
+    "started_at": "2026-10-24T16:55:04.800122+00:00",
+    "case_id": "j2cli-render",
+    "goal": "Render the supplied Jinja2 template with j2 (README: j2 config.j2, data from environment variables).",
+    "contract_sha256": "1f20e99352d5ef95e621e40a43886488ac93a9eeece2a95c1224ecf39921bffb",
+    "acceptance_sha256": "64e3553828b56cf23c6da75f69058e05e9966859907977af0f5216b763bef63f",
+    "repo": {
+      "commit": "2c26075c25e8c4fef9086e3bb5e6a4946f548231",
+      "url": "https://github.com/kolypto/j2cli"
+    },
+    "review": {
+      "acceptance_sha256": "64e3553828b56cf23c6da75f69058e05e9966859907977af0f5216b763bef63f",
+      "approved_at": "2026-10-22T12:55:53-04:00",
+      "reviewed_by": "kevin",
+      "status": "approved"
+    },
+    "status": "unresolved",
+    "attempts": [
+      {
+        "phase": "original_readme",
+        "round": null,
+        "status": "failed",
+        "acceptance_sha256": "64e3553828b56cf23c6da75f69058e05e9966859907977af0f5216b763bef63f",
+        "result": {
+          "setup_ok": true,
+          "steps": [
+            {
+              "argv": [
+                "/usr/local/bin/python",
+                "-m",
+                "venv",
+                "/work/venv"
+              ],
+              "executed_argv": [
+                "/usr/local/bin/python",
+                "-m",
+                "venv",
+                "/work/venv"
+              ],
+              "exit_code": 0,
+              "duration_s": 1.339,
+              "stdout": "",
+              "stderr": "",
+              "truncated": false
+            },
+            {
+              "argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-c",
+                "import json,pathlib,subprocess,sys,uuid,pip\np=pathlib.Path(sys.prefix).resolve()\nok=(p==pathlib.Path(sys.argv[1]).resolve() and sys.prefix!=sys.base_prefix\n    and pathlib.Path(pip.__file__).resolve().is_relative_to(p))\nexecutable=False\nif ok:\n    probe=p.parent/('.fresh-eyes-exec-probe-'+uuid.uuid4().hex)\n    try:\n        probe.write_text('#!/bin/sh\\nexit 0\\n')\n        probe.chmod(0o700)\n        executable=subprocess.run([str(probe)],stdin=subprocess.DEVNULL,\n                                  stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=5).returncode==0\n    except (OSError,subprocess.TimeoutExpired):\n        executable=False\n    finally:\n        probe.unlink(missing_ok=True)\nprint(json.dumps(dict(executable=sys.executable,prefix=str(p),base_prefix=sys.base_prefix,\n                     pip_module=pip.__file__,python=sys.version.split()[0],workspace_executable=executable)))\nsys.exit(0 if ok and executable else 1)\n",
+                "/work/venv"
+              ],
+              "executed_argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-c",
+                "import json,pathlib,subprocess,sys,uuid,pip\np=pathlib.Path(sys.prefix).resolve()\nok=(p==pathlib.Path(sys.argv[1]).resolve() and sys.prefix!=sys.base_prefix\n    and pathlib.Path(pip.__file__).resolve().is_relative_to(p))\nexecutable=False\nif ok:\n    probe=p.parent/('.fresh-eyes-exec-probe-'+uuid.uuid4().hex)\n    try:\n        probe.write_text('#!/bin/sh\\nexit 0\\n')\n        probe.chmod(0o700)\n        executable=subprocess.run([str(probe)],stdin=subprocess.DEVNULL,\n                                  stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=5).returncode==0\n    except (OSError,subprocess.TimeoutExpired):\n        executable=False\n    finally:\n        probe.unlink(missing_ok=True)\nprint(json.dumps(dict(executable=sys.executable,prefix=str(p),base_prefix=sys.base_prefix,\n                     pip_module=pip.__file__,python=sys.version.split()[0],workspace_executable=executable)))\nsys.exit(0 if ok and executable else 1)\n",
+                "/work/venv"
+              ],
+              "exit_code": 0,
+              "duration_s": 0.121,
+              "stdout": "{\"executable\": \"/work/venv/bin/python\", \"prefix\": \"/work/venv\", \"base_prefix\": \"/usr/local\", \"pip_module\": \"/work/venv/lib/python3.12/site-packages/pip/__init__.py\", \"python\": \"3.12.15\", \"workspace_executable\": true}\n",
+              "stderr": "",
+              "truncated": false
+            },
+            {
+              "argv": [
+                "pip",
+                "install",
+                "j2cli"
+              ],
+              "executed_argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-m",
+                "pip",
+                "install",
+                "j2cli"
+              ],
+              "exit_code": 0,
+              "duration_s": 0.774,
+              "stdout": "Collecting j2cli\n  Downloading j2cli-0.3.10-py2.py3-none-any.whl.metadata (1.3 kB)\nCollecting jinja2>=2.7.2 (from j2cli)\n  Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)\nCollecting MarkupSafe>=2.0 (from jinja2>=2.7.2->j2cli)\n  Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (2.7 kB)\nDownloading j2cli-0.3.10-py2.py3-none-any.whl (8.9 kB)\nDownloading jinja2-3.1.6-py3-none-any.whl (134 kB)\nDownloading markupsafe-3.0.4-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (24 kB)\nInstalling collected packages: MarkupSafe, jinja2, j2cli\nSuccessfully installed MarkupSafe-3.0.4 j2cli-0.3.10 jinja2-3.1.6\n",
+              "stderr": "  DEPRECATION: Wheel filename 'j2cli-0.3.0_1-py2-none-any.whl' is not correctly normalised. Future versions of pip will raise the following error:\n  Invalid wheel filename (invalid version): 'j2cli-0.3.0_1-py2-none-any'\n  \n   pip 25.1 will enforce this behaviour change. A possible replacement is to rename the wheel to use a correctly normalised name (this may require updating the version in the project metadata). Discussion can be found at https://github.com/pypa/pip/issues/12938\n  DEPRECATION: Wheel filename 'j2cli-0.3.1_0-py2-none-any.whl' is not correctly normalised. Future versions of pip will raise the following error:\n  Invalid wheel filename (invalid version): 'j2cli-0.3.1_0-py2-none-any'\n  \n   pip 25.1 will enforce this behaviour change. A possible replacement is to rename the wheel to use a correctly normalised name (this may require updating the version in the project metadata). Discussion can be found at https://github.com/pypa/pip/issues/12938\n",
+              "truncated": false,
+              "pip_install_report": {
+                "version": "1",
+                "pip_version": "25.0.1",
+                "install": [
+                  {
+                    "download_info": {
+                      "url": "https://files.pythonhosted.org/packages/1b/81/930d5a727d43f8d2debcafeffbe725ff23d36668dbfb750e299d6813506b/j2cli-0.3.10-py2.py3-none-any.whl",
+                      "archive_info": {
+                        "hash": "sha256=b005a40750b7b7c1c4c6e7209dc2bd6d10dee8a93a939d80884f2e2fb427d343",
+                        "hashes": {
+                          "sha256": "b005a40750b7b7c1c4c6e7209dc2bd6d10dee8a93a939d80884f2e2fb427d343"
+                        }
+                      }
+                    },
+                    "is_direct": false,
+                    "is_yanked": false,
+                    "requested": true,
+                    "metadata": {
+                      "metadata_version": "2.1",
+                      "name": "j2cli",
+                      "version": "0.3.10",
+                      "platform": [
+                        "any"
+                      ],
+                      "summary": "Command-line interface to Jinja2 for templating in shell scripts.",
+                      "description": "j2cli - Jinja2 Command-Line Tool\n================================\n\n`j2cli` is a command-line tool for templating in shell-scripts,\nleveraging the [Jinja2](http://jinja.pocoo.org/docs/) library.\n\nFeatures:\n\n* Jinja2 templating\n* INI, YAML, JSON data sources supported\n* Allows the use of environment variables in templates! Hello [Docker](http://www.docker.com/) :)\n\nInspired by [mattrobenolt/jinja2-cli](https://github.com/mattrobenolt/jinja2-cli)\n\n\n",
+                      "description_content_type": "text/markdown",
+                      "keywords": [
+                        "Jinja2",
+                        "templating",
+                        "command-line",
+                        "CLI"
+                      ],
+                      "home_page": "https://github.com/kolypto/j2cli",
+                      "author": "Mark Vartanyan",
+                      "author_email": "kolypto@gmail.com",
+                      "license": "BSD",
+                      "classifier": [
+                        "Development Status :: 5 - Production/Stable",
+                        "Intended Audience :: Developers",
+                        "Intended Audience :: System Administrators",
+                        "Operating System :: OS Independent",
+                        "Topic :: Software Development",
+                        "Natural Language :: English",
+                        "Programming Language :: Python :: 2",
+                        "Programming Language :: Python :: 3"
+                      ],
+                      "requires_dist": [
+                        "jinja2 (>=2.7.2)",
+                        "pyyaml (>=3.10) ; extra == 'yaml'"
+                      ],
+                      "provides_extra": [
+                        "yaml"
+                      ]
+                    }
+                  },
+                  {
+                    "download_info": {
+                      "url": "https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl",
+                      "archive_info": {
+                        "hash": "sha256=85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67",
+                        "hashes": {
+                          "sha256": "85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67"
+                        }
+                      }
+                    },
+                    "is_direct": false,
+                    "is_yanked": false,
+                    "requested": false,
+                    "metadata": {
+                      "metadata_version": "2.4",
+                      "name": "Jinja2",
+                      "version": "3.1.6",
+                      "summary": "A very fast and expressive template engine.",
+                      "description": "# Jinja\n\nJinja is a fast, expressive, extensible templating engine. Special\nplaceholders in the template allow writing code similar to Python\nsyntax. Then the template is passed data to render the final document.\n\nIt includes:\n\n-   Template inheritance and inclusion.\n-   Define and import macros within templates.\n-   HTML templates can use autoescaping to prevent XSS from untrusted\n    user input.\n-   A sandboxed environment can safely render untrusted templates.\n-   AsyncIO support for generating templates and calling async\n    functions.\n-   I18N support with Babel.\n-   Templates are compiled to optimized Python code just-in-time and\n    cached, or can be compiled ahead-of-time.\n-   Exceptions point to the correct line in templates to make debugging\n    easier.\n-   Extensible filters, tests, functions, and even syntax.\n\nJinja's philosophy is that while application logic belongs in Python if\npossible, it shouldn't make the template designer's job difficult by\nrestricting functionality too much.\n\n\n## In A Nutshell\n\n```jinja\n{% extends \"base.html\" %}\n{% block title %}Members{% endblock %}\n{% block content %}\n  <ul>\n  {% for user in users %}\n    <li><a href=\"{{ user.url }}\">{{ user.username }}</a></li>\n  {% endfor %}\n  </ul>\n{% endblock %}\n```\n\n## Donate\n\nThe Pallets organization develops and supports Jinja and other popular\npackages. In order to grow the community of contributors and users, and\nallow the maintainers to devote more time to the projects, [please\ndonate today][].\n\n[please donate today]: https://palletsprojects.com/donate\n\n## Contributing\n\nSee our [detailed contributing documentation][contrib] for many ways to\ncontribute, including reporting issues, requesting features, asking or answering\nquestions, and making PRs.\n\n[contrib]: https://palletsprojects.com/contributing/\n\n",
+                      "description_content_type": "text/markdown",
+                      "maintainer_email": "Pallets <contact@palletsprojects.com>",
+                      "license_file": [
+                        "LICENSE.txt"
+                      ],
+                      "classifier": [
+                        "Development Status :: 5 - Production/Stable",
+                        "Environment :: Web Environment",
+                        "Intended Audience :: Developers",
+                        "License :: OSI Approved :: BSD License",
+                        "Operating System :: OS Independent",
+                        "Programming Language :: Python",
+                        "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+                        "Topic :: Text Processing :: Markup :: HTML",
+                        "Typing :: Typed"
+                      ],
+                      "requires_dist": [
+                        "MarkupSafe>=2.0",
+                        "Babel>=2.7 ; extra == \"i18n\""
+                      ],
+                      "requires_python": ">=3.7",
+                      "project_url": [
+                        "Changes, https://jinja.palletsprojects.com/changes/",
+                        "Chat, https://discord.gg/pallets",
+                        "Documentation, https://jinja.palletsprojects.com/",
+                        "Donate, https://palletsprojects.com/donate",
+                        "Source, https://github.com/pallets/jinja/"
+                      ],
+                      "provides_extra": [
+                        "i18n"
+                      ]
+                    }
+                  },
+                  {
+                    "download_info": {
+                      "url": "https://files.pythonhosted.org/packages/0d/f2/8f18e0b806eb13c1f8d07d917a720831ead54253a6dec011fbc78098a6f8/markupsafe-3.0.4-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl",
+                      "archive_info": {
+                        "hash": "sha256=6a45c3d514f2436064db00d7fc8778d888f0236ebfed649b53d13a59e69ad51b",
+                        "hashes": {
+                          "sha256": "6a45c3d514f2436064db00d7fc8778d888f0236ebfed649b53d13a59e69ad51b"
+                        }
+                      }
+                    },
+                    "is_direct": false,
+                    "is_yanked": false,
+                    "requested": false,
+                    "metadata": {
+                      "metadata_version": "2.4",
+                      "name": "MarkupSafe",
+                      "version": "3.0.4",
+                      "dynamic": [
+                        "license-file"
+                      ],
+                      "summary": "Safely add untrusted strings to HTML/XML markup.",
+                      "description": "<div align=\"center\"><img src=\"https://raw.githubusercontent.com/pallets/markupsafe/refs/heads/stable/docs/_static/markupsafe-name.svg\" alt=\"\" height=\"150\"></div>\n\n# MarkupSafe\n\nMarkupSafe implements a text object that escapes characters so it is\nsafe to use in HTML and XML. Characters that have special meanings are\nreplaced so that they display as the actual characters. This mitigates\ninjection attacks, meaning untrusted user input can safely be displayed\non a page.\n\n\n## Examples\n\n```pycon\n>>> from markupsafe import Markup, escape\n\n>>> # escape replaces special characters and wraps in Markup\n>>> escape(\"<script>alert(document.cookie);</script>\")\nMarkup('&lt;script&gt;alert(document.cookie);&lt;/script&gt;')\n\n>>> # wrap in Markup to mark text \"safe\" and prevent escaping\n>>> Markup(\"<strong>Hello</strong>\")\nMarkup('<strong>hello</strong>')\n\n>>> escape(Markup(\"<strong>Hello</strong>\"))\nMarkup('<strong>hello</strong>')\n\n>>> # Markup is a str subclass\n>>> # methods and operators escape their arguments\n>>> template = Markup(\"Hello <em>{name}</em>\")\n>>> template.format(name='\"World\"')\nMarkup('Hello <em>&#34;World&#34;</em>')\n```\n\n## Donate\n\nThe Pallets organization develops and supports MarkupSafe and other\npopular packages. In order to grow the community of contributors and\nusers, and allow the maintainers to devote more time to the projects,\n[please donate today][].\n\n[please donate today]: https://palletsprojects.com/donate\n\n## Contributing\n\nSee our [detailed contributing documentation][contrib] for many ways to\ncontribute, including reporting issues, requesting features, asking or answering\nquestions, and making PRs.\n\n[contrib]: https://palletsprojects.com/contributing/\n",
+                      "description_content_type": "text/markdown",
+                      "maintainer_email": "Pallets <contact@palletsprojects.com>",
+                      "license_expression": "BSD-3-Clause",
+                      "license_file": [
+                        "LICENSE.txt"
+                      ],
+                      "classifier": [
+                        "Development Status :: 5 - Production/Stable",
+                        "Environment :: Web Environment",
+                        "Intended Audience :: Developers",
+                        "Operating System :: OS Independent",
+                        "Programming Language :: Python",
+                        "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+                        "Topic :: Text Processing :: Markup :: HTML",
+                        "Typing :: Typed"
+                      ],
+                      "requires_python": ">=3.9",
+                      "project_url": [
+                        "Donate, https://palletsprojects.com/donate",
+                        "Documentation, https://markupsafe.palletsprojects.com/",
+                        "Changes, https://markupsafe.palletsprojects.com/page/changes/",
+                        "Source, https://github.com/pallets/markupsafe/",
+                        "Chat, https://discord.gg/pallets"
+                      ]
+                    }
+                  }
+                ],
+                "environment": {
+                  "implementation_name": "cpython",
+                  "implementation_version": "3.12.15",
+                  "os_name": "posix",
+                  "platform_machine": "aarch64",
+                  "platform_release": "7.0.0-38-generic",
+                  "platform_system": "Linux",
+                  "platform_version": "#38-Ubuntu SMP PREEMPT_DYNAMIC Fri Sep  4 09:28:02 UTC 2026",
+                  "python_full_version": "3.12.15",
+                  "platform_python_implementation": "CPython",
+                  "python_version": "3.12",
+                  "sys_platform": "linux"
+                }
+              }
+            }
+          ],
+          "outputs": [
+            {
+              "name": "static.j2",
+              "exit_code": 1,
+              "content": "",
+              "truncated": false,
+              "process": {
+                "argv": [
+                  "j2",
+                  "/work/inputs/static.j2"
+                ],
+                "executed_argv": [
+                  "j2",
+                  "/work/inputs/static.j2"
+                ],
+                "exit_code": 1,
+                "duration_s": 0.032,
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/work/venv/bin/j2\", line 5, in <module>\n    from j2cli import main\n  File \"/work/venv/lib/python3.12/site-packages/j2cli/__init__.py\", line 4, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+                "truncated": false
+              }
+            },
+            {
+              "name": "loop.j2",
+              "exit_code": 1,
+              "content": "",
+              "truncated": false,
+              "process": {
+                "argv": [
+                  "j2",
+                  "/work/inputs/loop.j2"
+                ],
+                "executed_argv": [
+                  "j2",
+                  "/work/inputs/loop.j2"
+                ],
+                "exit_code": 1,
+                "duration_s": 0.032,
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/work/venv/bin/j2\", line 5, in <module>\n    from j2cli import main\n  File \"/work/venv/lib/python3.12/site-packages/j2cli/__init__.py\", line 4, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+                "truncated": false
+              }
+            }
+          ],
+          "pip_freeze": {
+            "argv": [
+              "pip",
+              "freeze",
+              "--all"
+            ],
+            "executed_argv": [
+              "/work/venv/bin/python",
+              "-I",
+              "-m",
+              "pip",
+              "freeze",
+              "--all"
+            ],
+            "exit_code": 0,
+            "duration_s": 0.328,
+            "stdout": "j2cli==0.3.10\nJinja2==3.1.6\nMarkupSafe==3.0.4\npip==25.0.1\n",
+            "stderr": "",
+            "truncated": false
+          },
+          "dependency_mode": "pypi_live",
+          "environment_policy": "Fresh venv; documented Python/pip aliases resolve to that interpreter; no user-site install.",
+          "container_id": "fresh-eyes-b98e2d591184443d",
+          "execution_image_id": "sha256:c4494391a9dc9629a2c9609ef28f2d35cc6f33522a8364fe3aadc84e4ed3c3ce",
+          "network_policy": {
+            "mode": "pypi_proxy_isolated",
+            "network_id": "b34ad8f88ba62604015b453f75226f58883de9eb24f9ce42b08e0ab190b808ac",
+            "configuration_verified": true,
+            "runtime_egress_verified": false,
+            "allowed_hosts": [
+              "pypi.org:443",
+              "files.pythonhosted.org:443"
+            ],
+            "verification_scope": "Docker network configuration; actual egress probes are a separate release gate"
+          }
+        },
+        "validation": {
+          "passed": false,
+          "checks": [
+            {
+              "name": "static.j2",
+              "passed": false,
+              "reason": "Missing output, failed process or truncated output"
+            },
+            {
+              "name": "loop.j2",
+              "passed": false,
+              "reason": "Missing output, failed process or truncated output"
+            }
+          ]
+        }
+      }
+    ],
+    "model_calls": 0,
+    "repair_author": null,
+    "dependency_mode": "pypi_live",
+    "max_patch_rounds": 0,
+    "repair_route": null,
+    "repair_rounds": [],
+    "time_limit_s": 300,
+    "limitations": [
+      "Live PyPI resolution; package versions may change between attempts.",
+      "Development cases have not been approved by upstream maintainers.",
+      "Passing fixtures only verifies the registered workflow."
+    ],
+    "current_phase": "finished",
+    "environment": {
+      "requested_image": "sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704",
+      "image_id": "sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704",
+      "repo_digests": [
+        "python@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704"
+      ],
+      "platform": "linux/arm64",
+      "dependency_mode": "pypi_live",
+      "network": "pypi_proxy_isolated",
+      "offline_wheelhouse": false,
+      "egress_allowlist": [
+        "pypi.org:443",
+        "files.pythonhosted.org:443"
+      ]
+    },
+    "source_export": {
+      "commit_sha": "2c26075c25e8c4fef9086e3bb5e6a4946f548231",
+      "materialized_file_links": [],
+      "notice": "Internal file links are materialized from archived target bytes; no host symlink is created."
+    },
+    "wheelhouse": [],
+    "reason": "Original workflow failed; no repair was proposed.",
+    "finished_at": "2026-10-24T16:55:08.750780+00:00",
+    "execution_scope": "boundary_baseline",
+    "evaluation_eligible": false
+  },
+  "costs": {
+    "currency": "USD",
+    "model_calls": [],
+    "model_usd": 0.0,
+    "billed_usd": null,
+    "runner_usd": null,
+    "billing_status": "local_compute_not_metered",
+    "paid_calls_enabled": false
+  }
+}

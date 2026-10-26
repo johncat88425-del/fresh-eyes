@@ -1,0 +1,656 @@
+{
+  "schema_version": 1,
+  "run_id": "example-two-round-success",
+  "case_id": "example-two-round-workflow",
+  "data_origin": "example",
+  "executed": false,
+  "fixture_notice": "SYNTHETIC engineering response fixture. No provider or third-party repository was called. Prices are test constants, not a quote.",
+  "verification_level": "functional",
+  "repair_mode": "example_two_round",
+  "repair_author": "engineering_test",
+  "run_state": "completed",
+  "result_status": "verified_fix",
+  "phase": "finished",
+  "reason": null,
+  "created_at": "2026-10-19T23:22:21.172118+00:00",
+  "started_at": "2026-10-19T23:22:21.172118+00:00",
+  "finished_at": "2026-10-19T23:22:21.198957+00:00",
+  "acceptance_sha256": "e197b4073ed67495891df123bf0f318a87af4d041be10d28d26ed60282109b24",
+  "repo_url": "https://example.invalid/synthetic-unit",
+  "costs": {
+    "currency": "USD",
+    "model_usd": null,
+    "runner_usd": null,
+    "model_calls": [],
+    "billing_status": "example_not_billed"
+  },
+  "evidence": {
+    "schema_version": 1,
+    "run_id": "51cb975be1fe4dfba21de65ee8cfe443",
+    "started_at": "2026-10-19T23:22:21.172118+00:00",
+    "case_id": "synthetic-unit-case",
+    "goal": "Return the input JSON accurately",
+    "contract_sha256": "10a15d0b46bdeef283985ff1937ceb59c396a1e91f130af47155103ca506ae33",
+    "acceptance_sha256": "e197b4073ed67495891df123bf0f318a87af4d041be10d28d26ed60282109b24",
+    "repo": {
+      "commit": "f4a279fba179778c7da5bcccaa7900023ee7d468",
+      "url": "https://example.invalid/unit"
+    },
+    "review": {
+      "reviewed_by": "unit test",
+      "status": "development_reviewed"
+    },
+    "status": "verified_fix",
+    "attempts": [
+      {
+        "phase": "original_readme",
+        "round": null,
+        "status": "failed",
+        "acceptance_sha256": "e197b4073ed67495891df123bf0f318a87af4d041be10d28d26ed60282109b24",
+        "result": {
+          "setup_ok": true,
+          "steps": [],
+          "outputs": [
+            {
+              "name": "one.json",
+              "exit_code": 0,
+              "content": "{}",
+              "truncated": false
+            },
+            {
+              "name": "two.json",
+              "exit_code": 0,
+              "content": "{}",
+              "truncated": false
+            }
+          ]
+        },
+        "validation": {
+          "passed": false,
+          "checks": [
+            {
+              "name": "one.json",
+              "passed": false,
+              "reason": "Functional output differs"
+            },
+            {
+              "name": "two.json",
+              "passed": false,
+              "reason": "Functional output differs"
+            }
+          ]
+        }
+      },
+      {
+        "phase": "candidate_patch",
+        "round": 1,
+        "status": "failed",
+        "acceptance_sha256": "e197b4073ed67495891df123bf0f318a87af4d041be10d28d26ed60282109b24",
+        "result": {
+          "setup_ok": true,
+          "steps": [],
+          "outputs": [
+            {
+              "name": "one.json",
+              "exit_code": 0,
+              "content": "{}",
+              "truncated": false
+            },
+            {
+              "name": "two.json",
+              "exit_code": 0,
+              "content": "{}",
+              "truncated": false
+            }
+          ]
+        },
+        "validation": {
+          "passed": false,
+          "checks": [
+            {
+              "name": "one.json",
+              "passed": false,
+              "reason": "Functional output differs"
+            },
+            {
+              "name": "two.json",
+              "passed": false,
+              "reason": "Functional output differs"
+            }
+          ]
+        }
+      },
+      {
+        "phase": "candidate_patch",
+        "round": 2,
+        "status": "passed",
+        "acceptance_sha256": "e197b4073ed67495891df123bf0f318a87af4d041be10d28d26ed60282109b24",
+        "result": {
+          "setup_ok": true,
+          "steps": [],
+          "outputs": [
+            {
+              "name": "one.json",
+              "exit_code": 0,
+              "content": "{\"n\":1}",
+              "truncated": false
+            },
+            {
+              "name": "two.json",
+              "exit_code": 0,
+              "content": "{\"n\":2}",
+              "truncated": false
+            }
+          ]
+        },
+        "validation": {
+          "passed": true,
+          "checks": [
+            {
+              "name": "one.json",
+              "passed": true,
+              "reason": "Expected functional output matched"
+            },
+            {
+              "name": "two.json",
+              "passed": true,
+              "reason": "Expected functional output matched"
+            }
+          ]
+        }
+      },
+      {
+        "phase": "fresh_verification",
+        "round": 2,
+        "status": "passed",
+        "acceptance_sha256": "e197b4073ed67495891df123bf0f318a87af4d041be10d28d26ed60282109b24",
+        "result": {
+          "setup_ok": true,
+          "steps": [],
+          "outputs": [
+            {
+              "name": "one.json",
+              "exit_code": 0,
+              "content": "{\"n\":1}",
+              "truncated": false
+            },
+            {
+              "name": "two.json",
+              "exit_code": 0,
+              "content": "{\"n\":2}",
+              "truncated": false
+            }
+          ]
+        },
+        "validation": {
+          "passed": true,
+          "checks": [
+            {
+              "name": "one.json",
+              "passed": true,
+              "reason": "Expected functional output matched"
+            },
+            {
+              "name": "two.json",
+              "passed": true,
+              "reason": "Expected functional output matched"
+            }
+          ]
+        }
+      }
+    ],
+    "model_calls": 0,
+    "repair_author": "engineering_test",
+    "dependency_mode": "offline_snapshot",
+    "max_patch_rounds": 2,
+    "repair_route": "nano_ultra",
+    "repair_rounds": [
+      {
+        "round": 1,
+        "diagnosis": {
+          "route": "nano_ultra",
+          "data_origin": "engineering_test",
+          "status": "candidate",
+          "classification": {
+            "category": "documentation",
+            "reason": "Synthetic documented install mismatch"
+          },
+          "classification_model": "nano-test",
+          "explanation": "Synthetic candidate",
+          "diagnostic_model": "ultra-test",
+          "ledger": {
+            "run_id": "run",
+            "currency": "USD",
+            "max_usd": "1",
+            "held_usd": "0.000268",
+            "model_calls": 0,
+            "engineering_test_calls": 2,
+            "calculated_usd": "0.000268",
+            "billed_usd": null,
+            "calls": [
+              {
+                "call_id": "eeb924a915a54247bbeba36d96c80791",
+                "run_id": "run",
+                "stage": "classify",
+                "data_origin": "engineering_test",
+                "requested_model": "nano-test",
+                "returned_model": "nano-test",
+                "provider_request_id": "chatcmpl-synthetic",
+                "started_at": "2026-10-19T23:22:21.192978+00:00",
+                "finished_at": "2026-10-19T23:22:21.193711+00:00",
+                "status": "completed",
+                "usage": {
+                  "prompt_tokens": 100,
+                  "completion_tokens": 50,
+                  "total_tokens": 150
+                },
+                "dispatch_started_at": "2026-10-19T23:22:21.193324+00:00",
+                "price_reference": "synthetic test rates; not a provider quote",
+                "input_per_million": "0.06",
+                "output_per_million": "0.24",
+                "cached_input_per_million": null,
+                "reservation_usd": "0.00036864",
+                "calculated_usd": "0.000018",
+                "billed_usd": null,
+                "input_tokens_upper_bound": 4096,
+                "input_bound_reference": "full_model_context",
+                "billing_status": "usage_calculated_pending_reconciliation",
+                "prompt_sha256": "9a071dd2deb5a226ad6a7dcd52a157f24800e5ce5af59619ccc4639a8e28de3a",
+                "latency_ms": 0
+              },
+              {
+                "call_id": "86f816a23f1d4d87bb20c6e9ac6310ea",
+                "run_id": "run",
+                "stage": "diagnose",
+                "data_origin": "engineering_test",
+                "requested_model": "ultra-test",
+                "returned_model": "ultra-test",
+                "provider_request_id": "chatcmpl-synthetic",
+                "started_at": "2026-10-19T23:22:21.194095+00:00",
+                "finished_at": "2026-10-19T23:22:21.194692+00:00",
+                "status": "completed",
+                "usage": {
+                  "prompt_tokens": 100,
+                  "completion_tokens": 50,
+                  "total_tokens": 150
+                },
+                "dispatch_started_at": "2026-10-19T23:22:21.194393+00:00",
+                "price_reference": "synthetic test rates; not a provider quote",
+                "input_per_million": "1",
+                "output_per_million": "3",
+                "cached_input_per_million": null,
+                "reservation_usd": "0.005632",
+                "calculated_usd": "0.00025",
+                "billed_usd": null,
+                "input_tokens_upper_bound": 4096,
+                "input_bound_reference": "full_model_context",
+                "billing_status": "usage_calculated_pending_reconciliation",
+                "prompt_sha256": "00d8d3c139370b96e0bfcd7b90bb5e08fc83e940cc98ea976911c38d4217d84d",
+                "latency_ms": 0
+              }
+            ]
+          }
+        },
+        "status": "validation_failed",
+        "candidate_patch": {
+          "status": "accepted_for_validation",
+          "patch": {
+            "edits": [
+              {
+                "path": "README.md",
+                "old": "old",
+                "new": "new"
+              }
+            ]
+          }
+        },
+        "patch": {
+          "diff": "--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-pip install old\n+pip install new\n NEBIUS_API_KEY=synthetic-control-secret\n",
+          "sha256": "96267addec13d6743541577fce21db672c3402ba36cfe65b43b7b7e597be4d5c",
+          "round": 1
+        }
+      },
+      {
+        "round": 2,
+        "diagnosis": {
+          "route": "nano_ultra",
+          "data_origin": "engineering_test",
+          "status": "candidate",
+          "classification": {
+            "category": "documentation",
+            "reason": "Synthetic documented install mismatch"
+          },
+          "classification_model": "nano-test",
+          "explanation": "Synthetic candidate",
+          "diagnostic_model": "ultra-test",
+          "ledger": {
+            "run_id": "run",
+            "currency": "USD",
+            "max_usd": "1",
+            "held_usd": "0.000536",
+            "model_calls": 0,
+            "engineering_test_calls": 4,
+            "calculated_usd": "0.000536",
+            "billed_usd": null,
+            "calls": [
+              {
+                "call_id": "eeb924a915a54247bbeba36d96c80791",
+                "run_id": "run",
+                "stage": "classify",
+                "data_origin": "engineering_test",
+                "requested_model": "nano-test",
+                "returned_model": "nano-test",
+                "provider_request_id": "chatcmpl-synthetic",
+                "started_at": "2026-10-19T23:22:21.192978+00:00",
+                "finished_at": "2026-10-19T23:22:21.193711+00:00",
+                "status": "completed",
+                "usage": {
+                  "prompt_tokens": 100,
+                  "completion_tokens": 50,
+                  "total_tokens": 150
+                },
+                "dispatch_started_at": "2026-10-19T23:22:21.193324+00:00",
+                "price_reference": "synthetic test rates; not a provider quote",
+                "input_per_million": "0.06",
+                "output_per_million": "0.24",
+                "cached_input_per_million": null,
+                "reservation_usd": "0.00036864",
+                "calculated_usd": "0.000018",
+                "billed_usd": null,
+                "input_tokens_upper_bound": 4096,
+                "input_bound_reference": "full_model_context",
+                "billing_status": "usage_calculated_pending_reconciliation",
+                "prompt_sha256": "9a071dd2deb5a226ad6a7dcd52a157f24800e5ce5af59619ccc4639a8e28de3a",
+                "latency_ms": 0
+              },
+              {
+                "call_id": "86f816a23f1d4d87bb20c6e9ac6310ea",
+                "run_id": "run",
+                "stage": "diagnose",
+                "data_origin": "engineering_test",
+                "requested_model": "ultra-test",
+                "returned_model": "ultra-test",
+                "provider_request_id": "chatcmpl-synthetic",
+                "started_at": "2026-10-19T23:22:21.194095+00:00",
+                "finished_at": "2026-10-19T23:22:21.194692+00:00",
+                "status": "completed",
+                "usage": {
+                  "prompt_tokens": 100,
+                  "completion_tokens": 50,
+                  "total_tokens": 150
+                },
+                "dispatch_started_at": "2026-10-19T23:22:21.194393+00:00",
+                "price_reference": "synthetic test rates; not a provider quote",
+                "input_per_million": "1",
+                "output_per_million": "3",
+                "cached_input_per_million": null,
+                "reservation_usd": "0.005632",
+                "calculated_usd": "0.00025",
+                "billed_usd": null,
+                "input_tokens_upper_bound": 4096,
+                "input_bound_reference": "full_model_context",
+                "billing_status": "usage_calculated_pending_reconciliation",
+                "prompt_sha256": "00d8d3c139370b96e0bfcd7b90bb5e08fc83e940cc98ea976911c38d4217d84d",
+                "latency_ms": 0
+              },
+              {
+                "call_id": "0c886b8994324222a6be0835683f40a8",
+                "run_id": "run",
+                "stage": "classify_r2",
+                "data_origin": "engineering_test",
+                "requested_model": "nano-test",
+                "returned_model": "nano-test",
+                "provider_request_id": "chatcmpl-synthetic",
+                "started_at": "2026-10-19T23:22:21.196076+00:00",
+                "finished_at": "2026-10-19T23:22:21.196762+00:00",
+                "status": "completed",
+                "usage": {
+                  "prompt_tokens": 100,
+                  "completion_tokens": 50,
+                  "total_tokens": 150
+                },
+                "dispatch_started_at": "2026-10-19T23:22:21.196451+00:00",
+                "price_reference": "synthetic test rates; not a provider quote",
+                "input_per_million": "0.06",
+                "output_per_million": "0.24",
+                "cached_input_per_million": null,
+                "reservation_usd": "0.00036864",
+                "calculated_usd": "0.000018",
+                "billed_usd": null,
+                "input_tokens_upper_bound": 4096,
+                "input_bound_reference": "full_model_context",
+                "billing_status": "usage_calculated_pending_reconciliation",
+                "prompt_sha256": "adb76dbb360d78f847db232fd5214b20613b1368814e26fa3b026b595202c1ff",
+                "latency_ms": 0
+              },
+              {
+                "call_id": "c199db0a84304952a568b50e88baa18a",
+                "run_id": "run",
+                "stage": "diagnose_r2",
+                "data_origin": "engineering_test",
+                "requested_model": "ultra-test",
+                "returned_model": "ultra-test",
+                "provider_request_id": "chatcmpl-synthetic",
+                "started_at": "2026-10-19T23:22:21.197086+00:00",
+                "finished_at": "2026-10-19T23:22:21.197765+00:00",
+                "status": "completed",
+                "usage": {
+                  "prompt_tokens": 100,
+                  "completion_tokens": 50,
+                  "total_tokens": 150
+                },
+                "dispatch_started_at": "2026-10-19T23:22:21.197408+00:00",
+                "price_reference": "synthetic test rates; not a provider quote",
+                "input_per_million": "1",
+                "output_per_million": "3",
+                "cached_input_per_million": null,
+                "reservation_usd": "0.005632",
+                "calculated_usd": "0.00025",
+                "billed_usd": null,
+                "input_tokens_upper_bound": 4096,
+                "input_bound_reference": "full_model_context",
+                "billing_status": "usage_calculated_pending_reconciliation",
+                "prompt_sha256": "03c1ea14de31c0a16b549a380ff068118cc0538d1c49ec816274552e66af0a3a",
+                "latency_ms": 0
+              }
+            ]
+          }
+        },
+        "status": "verified_fix",
+        "candidate_patch": {
+          "status": "accepted_for_validation",
+          "patch": {
+            "edits": [
+              {
+                "path": "README.md",
+                "old": "old",
+                "new": "new"
+              }
+            ]
+          }
+        },
+        "patch": {
+          "diff": "--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-pip install old\n+pip install new\n NEBIUS_API_KEY=synthetic-control-secret\n",
+          "sha256": "96267addec13d6743541577fce21db672c3402ba36cfe65b43b7b7e597be4d5c",
+          "round": 2
+        }
+      }
+    ],
+    "time_limit_s": 60,
+    "limitations": [
+      "Offline snapshot; cannot observe new upstream package releases.",
+      "Development cases have not been approved by upstream maintainers.",
+      "Passing fixtures only verifies the registered workflow."
+    ],
+    "current_phase": "finished",
+    "environment": {
+      "test_double": true,
+      "network": "none"
+    },
+    "wheelhouse": [],
+    "repair_round": 2,
+    "diagnosis": {
+      "route": "nano_ultra",
+      "data_origin": "engineering_test",
+      "status": "candidate",
+      "classification": {
+        "category": "documentation",
+        "reason": "Synthetic documented install mismatch"
+      },
+      "classification_model": "nano-test",
+      "explanation": "Synthetic candidate",
+      "diagnostic_model": "ultra-test",
+      "ledger": {
+        "run_id": "run",
+        "currency": "USD",
+        "max_usd": "1",
+        "held_usd": "0.000536",
+        "model_calls": 0,
+        "engineering_test_calls": 4,
+        "calculated_usd": "0.000536",
+        "billed_usd": null,
+        "calls": [
+          {
+            "call_id": "eeb924a915a54247bbeba36d96c80791",
+            "run_id": "run",
+            "stage": "classify",
+            "data_origin": "engineering_test",
+            "requested_model": "nano-test",
+            "returned_model": "nano-test",
+            "provider_request_id": "chatcmpl-synthetic",
+            "started_at": "2026-10-19T23:22:21.192978+00:00",
+            "finished_at": "2026-10-19T23:22:21.193711+00:00",
+            "status": "completed",
+            "usage": {
+              "prompt_tokens": 100,
+              "completion_tokens": 50,
+              "total_tokens": 150
+            },
+            "dispatch_started_at": "2026-10-19T23:22:21.193324+00:00",
+            "price_reference": "synthetic test rates; not a provider quote",
+            "input_per_million": "0.06",
+            "output_per_million": "0.24",
+            "cached_input_per_million": null,
+            "reservation_usd": "0.00036864",
+            "calculated_usd": "0.000018",
+            "billed_usd": null,
+            "input_tokens_upper_bound": 4096,
+            "input_bound_reference": "full_model_context",
+            "billing_status": "usage_calculated_pending_reconciliation",
+            "prompt_sha256": "9a071dd2deb5a226ad6a7dcd52a157f24800e5ce5af59619ccc4639a8e28de3a",
+            "latency_ms": 0
+          },
+          {
+            "call_id": "86f816a23f1d4d87bb20c6e9ac6310ea",
+            "run_id": "run",
+            "stage": "diagnose",
+            "data_origin": "engineering_test",
+            "requested_model": "ultra-test",
+            "returned_model": "ultra-test",
+            "provider_request_id": "chatcmpl-synthetic",
+            "started_at": "2026-10-19T23:22:21.194095+00:00",
+            "finished_at": "2026-10-19T23:22:21.194692+00:00",
+            "status": "completed",
+            "usage": {
+              "prompt_tokens": 100,
+              "completion_tokens": 50,
+              "total_tokens": 150
+            },
+            "dispatch_started_at": "2026-10-19T23:22:21.194393+00:00",
+            "price_reference": "synthetic test rates; not a provider quote",
+            "input_per_million": "1",
+            "output_per_million": "3",
+            "cached_input_per_million": null,
+            "reservation_usd": "0.005632",
+            "calculated_usd": "0.00025",
+            "billed_usd": null,
+            "input_tokens_upper_bound": 4096,
+            "input_bound_reference": "full_model_context",
+            "billing_status": "usage_calculated_pending_reconciliation",
+            "prompt_sha256": "00d8d3c139370b96e0bfcd7b90bb5e08fc83e940cc98ea976911c38d4217d84d",
+            "latency_ms": 0
+          },
+          {
+            "call_id": "0c886b8994324222a6be0835683f40a8",
+            "run_id": "run",
+            "stage": "classify_r2",
+            "data_origin": "engineering_test",
+            "requested_model": "nano-test",
+            "returned_model": "nano-test",
+            "provider_request_id": "chatcmpl-synthetic",
+            "started_at": "2026-10-19T23:22:21.196076+00:00",
+            "finished_at": "2026-10-19T23:22:21.196762+00:00",
+            "status": "completed",
+            "usage": {
+              "prompt_tokens": 100,
+              "completion_tokens": 50,
+              "total_tokens": 150
+            },
+            "dispatch_started_at": "2026-10-19T23:22:21.196451+00:00",
+            "price_reference": "synthetic test rates; not a provider quote",
+            "input_per_million": "0.06",
+            "output_per_million": "0.24",
+            "cached_input_per_million": null,
+            "reservation_usd": "0.00036864",
+            "calculated_usd": "0.000018",
+            "billed_usd": null,
+            "input_tokens_upper_bound": 4096,
+            "input_bound_reference": "full_model_context",
+            "billing_status": "usage_calculated_pending_reconciliation",
+            "prompt_sha256": "adb76dbb360d78f847db232fd5214b20613b1368814e26fa3b026b595202c1ff",
+            "latency_ms": 0
+          },
+          {
+            "call_id": "c199db0a84304952a568b50e88baa18a",
+            "run_id": "run",
+            "stage": "diagnose_r2",
+            "data_origin": "engineering_test",
+            "requested_model": "ultra-test",
+            "returned_model": "ultra-test",
+            "provider_request_id": "chatcmpl-synthetic",
+            "started_at": "2026-10-19T23:22:21.197086+00:00",
+            "finished_at": "2026-10-19T23:22:21.197765+00:00",
+            "status": "completed",
+            "usage": {
+              "prompt_tokens": 100,
+              "completion_tokens": 50,
+              "total_tokens": 150
+            },
+            "dispatch_started_at": "2026-10-19T23:22:21.197408+00:00",
+            "price_reference": "synthetic test rates; not a provider quote",
+            "input_per_million": "1",
+            "output_per_million": "3",
+            "cached_input_per_million": null,
+            "reservation_usd": "0.005632",
+            "calculated_usd": "0.00025",
+            "billed_usd": null,
+            "input_tokens_upper_bound": 4096,
+            "input_bound_reference": "full_model_context",
+            "billing_status": "usage_calculated_pending_reconciliation",
+            "prompt_sha256": "03c1ea14de31c0a16b549a380ff068118cc0538d1c49ec816274552e66af0a3a",
+            "latency_ms": 0
+          }
+        ]
+      }
+    },
+    "data_origin": "engineering_test",
+    "candidate_patch": {
+      "status": "accepted_for_validation",
+      "patch": {
+        "edits": [
+          {
+            "path": "README.md",
+            "old": "old",
+            "new": "new"
+          }
+        ]
+      }
+    },
+    "patch": {
+      "diff": "--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-pip install old\n+pip install new\n NEBIUS_API_KEY=synthetic-control-secret\n",
+      "sha256": "96267addec13d6743541577fce21db672c3402ba36cfe65b43b7b7e597be4d5c",
+      "round": 2
+    },
+    "finished_at": "2026-10-19T23:22:21.198957+00:00"
+  }
+}

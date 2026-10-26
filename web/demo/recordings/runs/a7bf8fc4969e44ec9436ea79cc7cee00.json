@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "run_id": "a7bf8fc4969e44ec9436ea79cc7cee00",
+  "data_origin": "execution",
+  "case_id": "mistletoe-markdown",
+  "repo_url": "https://github.com/miyuchina/mistletoe",
+  "commit_sha": "ebf9ae4e9279f3d8c79b7cf2710f7e73ea6438a7",
+  "verification_level": "functional",
+  "acceptance_sha256": "78fae5502f1a52adda40364527172c9cf9fe3b031b80c933e9b04b35fb20b817",
+  "review": {
+    "reviewed_at": "2026-10-18",
+    "reviewed_by": "Codex development review; no upstream maintainer approval",
+    "status": "development_reviewed"
+  },
+  "repair_mode": "none",
+  "repair_author": null,
+  "dependency_mode": "pypi_live",
+  "run_state": "completed",
+  "result_status": "already_passes",
+  "phase": "finished",
+  "created_at": "2026-10-19T19:23:11.987377+00:00",
+  "started_at": "2026-10-19T19:23:11.988882+00:00",
+  "finished_at": "2026-10-19T19:23:19.820113+00:00",
+  "reason": null,
+  "patch_available": false,
+  "costs": {
+    "currency": "USD",
+    "model_calls": [],
+    "model_usd": 0.0,
+    "runner_usd": null,
+    "billing_status": "local_compute_not_metered",
+    "paid_calls_enabled": false
+  },
+  "evidence": {
+    "schema_version": 1,
+    "run_id": "8a71c9fb86e144d3bbbce9fb6b545e6c",
+    "started_at": "2026-10-19T19:23:11.989742+00:00",
+    "case_id": "mistletoe-markdown",
+    "goal": "Convert the documented Markdown input into HTML containing the expected heading and emphasis.",
+    "contract_sha256": "1174bb0e4cdadc5e2995f88ec4d404b6e64ddb86f153d66d20da65442d7566f1",
+    "acceptance_sha256": "78fae5502f1a52adda40364527172c9cf9fe3b031b80c933e9b04b35fb20b817",
+    "repo": {
+      "commit": "ebf9ae4e9279f3d8c79b7cf2710f7e73ea6438a7",
+      "url": "https://github.com/miyuchina/mistletoe"
+    },
+    "review": {
+      "reviewed_at": "2026-10-18",
+      "reviewed_by": "Codex development review; no upstream maintainer approval",
+      "status": "development_reviewed"
+    },
+    "status": "already_passes",
+    "attempts": [
+      {
+        "phase": "original_readme",
+        "status": "passed",
+        "acceptance_sha256": "78fae5502f1a52adda40364527172c9cf9fe3b031b80c933e9b04b35fb20b817",
+        "result": {
+          "setup_ok": true,
+          "steps": [
+            {
+              "argv": [
+                "/usr/local/bin/python",
+                "-m",
+                "venv",
+                "/work/venv"
+              ],
+              "executed_argv": [
+                "/usr/local/bin/python",
+                "-m",
+                "venv",
+                "/work/venv"
+              ],
+              "exit_code": 0,
+              "duration_s": 1.386,
+              "stdout": "",
+              "stderr": "",
+              "truncated": false
+            },
+            {
+              "argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-c",
+                "import json,pathlib,subprocess,sys,uuid,pip\np=pathlib.Path(sys.prefix).resolve()\nok=(p==pathlib.Path(sys.argv[1]).resolve() and sys.prefix!=sys.base_prefix\n    and pathlib.Path(pip.__file__).resolve().is_relative_to(p))\nexecutable=False\nif ok:\n    probe=p.parent/('.fresh-eyes-exec-probe-'+uuid.uuid4().hex)\n    try:\n        probe.write_text('#!/bin/sh\\nexit 0\\n')\n        probe.chmod(0o700)\n        executable=subprocess.run([str(probe)],stdin=subprocess.DEVNULL,\n                                  stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=5).returncode==0\n    except (OSError,subprocess.TimeoutExpired):\n        executable=False\n    finally:\n        probe.unlink(missing_ok=True)\nprint(json.dumps(dict(executable=sys.executable,prefix=str(p),base_prefix=sys.base_prefix,\n                     pip_module=pip.__file__,python=sys.version.split()[0],workspace_executable=executable)))\nsys.exit(0 if ok and executable else 1)\n",
+                "/work/venv"
+              ],
+              "executed_argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-c",
+                "import json,pathlib,subprocess,sys,uuid,pip\np=pathlib.Path(sys.prefix).resolve()\nok=(p==pathlib.Path(sys.argv[1]).resolve() and sys.prefix!=sys.base_prefix\n    and pathlib.Path(pip.__file__).resolve().is_relative_to(p))\nexecutable=False\nif ok:\n    probe=p.parent/('.fresh-eyes-exec-probe-'+uuid.uuid4().hex)\n    try:\n        probe.write_text('#!/bin/sh\\nexit 0\\n')\n        probe.chmod(0o700)\n        executable=subprocess.run([str(probe)],stdin=subprocess.DEVNULL,\n                                  stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=5).returncode==0\n    except (OSError,subprocess.TimeoutExpired):\n        executable=False\n    finally:\n        probe.unlink(missing_ok=True)\nprint(json.dumps(dict(executable=sys.executable,prefix=str(p),base_prefix=sys.base_prefix,\n                     pip_module=pip.__file__,python=sys.version.split()[0],workspace_executable=executable)))\nsys.exit(0 if ok and executable else 1)\n",
+                "/work/venv"
+              ],
+              "exit_code": 0,
+              "duration_s": 0.116,
+              "stdout": "{\"executable\": \"/work/venv/bin/python\", \"prefix\": \"/work/venv\", \"base_prefix\": \"/usr/local\", \"pip_module\": \"/work/venv/lib/python3.12/site-packages/pip/__init__.py\", \"python\": \"3.12.15\", \"workspace_executable\": true}\n",
+              "stderr": "",
+              "truncated": false
+            },
+            {
+              "argv": [
+                "pip3",
+                "install",
+                "-e",
+                "."
+              ],
+              "executed_argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-m",
+                "pip",
+                "install",
+                "-e",
+                "."
+              ],
+              "exit_code": 0,
+              "duration_s": 3.877,
+              "stdout": "Obtaining file:///work/repo\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Checking if build backend supports build_editable: started\n  Checking if build backend supports build_editable: finished with status 'done'\n  Getting requirements to build editable: started\n  Getting requirements to build editable: finished with status 'done'\n  Preparing editable metadata (pyproject.toml): started\n  Preparing editable metadata (pyproject.toml): finished with status 'done'\nBuilding wheels for collected packages: mistletoe\n  Building editable for mistletoe (pyproject.toml): started\n  Building editable for mistletoe (pyproject.toml): finished with status 'done'\n  Created wheel for mistletoe: filename=mistletoe-1.7.0.dev0-0.editable-py3-none-any.whl size=7654 sha256=d069c92cabe990b6e6c952341e903abe08043ba1098c278437e85f999e35807d\n  Stored in directory: /tmp/pip-ephem-wheel-cache-g6tf7mhf/wheels/3a/4a/18/2e0c658c99e17426cd11b3c369a39c9159b7d6a4981ab576c1\nSuccessfully built mistletoe\nInstalling collected packages: mistletoe\nSuccessfully installed mistletoe-1.7.0.dev0\n",
+              "stderr": "",
+              "truncated": false,
+              "pip_install_report": {
+                "version": "1",
+                "pip_version": "25.0.1",
+                "install": [
+                  {
+                    "download_info": {
+                      "url": "file:///work/repo",
+                      "dir_info": {
+                        "editable": true
+                      }
+                    },
+                    "is_direct": true,
+                    "is_yanked": false,
+                    "requested": true,
+                    "metadata": {
+                      "metadata_version": "2.4",
+                      "name": "mistletoe",
+                      "version": "1.7.0.dev0",
+                      "dynamic": [
+                        "author",
+                        "author-email",
+                        "classifier",
+                        "description",
+                        "description-content-type",
+                        "home-page",
+                        "keywords",
+                        "license",
+                        "license-file",
+                        "requires-python",
+                        "summary"
+                      ],
+                      "summary": "A fast, extensible Markdown parser in pure Python.",
+                      "description": "<h1>mistletoe<img src='https://cdn.rawgit.com/miyuchina/mistletoe/master/resources/logo.svg' align='right' width='128' height='128'></h1>\n\n[![Build Status][build-badge]][github-actions]\n[![Coverage Status][cover-badge]][coveralls]\n[![PyPI][pypi-badge]][pypi]\n[![is wheel][wheel-badge]][pypi]\n\nmistletoe is a Markdown parser in pure Python,\ndesigned to be fast, spec-compliant and fully customizable.\n\nApart from being the fastest\nCommonMark-compliant Markdown parser implementation in pure Python,\nmistletoe also supports easy definitions of custom tokens.\nParsing Markdown into an abstract syntax tree\nalso allows us to swap out renderers for different output formats,\nwithout touching any of the core components.\n\nRemember to spell mistletoe in lowercase!\n\nFeatures\n--------\n* **Fast**:\n  mistletoe is the fastest implementation of CommonMark in Python.\n  See the [performance][performance] section for details.\n\n* **Spec-compliant**:\n  CommonMark is [a useful, high-quality project][oilshell].\n  mistletoe follows the [CommonMark specification][commonmark]\n  to resolve ambiguities during parsing.\n  Outputs are predictable and well-defined.\n\n* **Extensible**:\n  Strikethrough and tables are supported natively,\n  and custom block-level and span-level tokens can easily be added.\n  Writing a new renderer for mistletoe is a relatively\n  trivial task.\n  \n  You can even write [a Lisp][scheme] in it.\n  \nOutput formats\n--------------\n\nRenderers for the following \"core\" output formats exist within the mistletoe\nmain package:\n\n* HTML\n* LaTeX\n* AST (Abstract Syntax Tree; handy for debugging the parsing process)\n* Markdown (Can be used to reflow the text, or make other types of automated\n  changes to Markdown documents)\n\nRenderers for the following output formats can be found\nin the [contrib][contrib] package:\n\n* HTML with MathJax (_mathjax.py_)\n* HTML with code highlighting (using Pygments) (_pygments\\_renderer.py_)\n* HTML with TOC (for programmatical use) (_toc\\_renderer.py_)\n* HTML with support for GitHub wiki links (_github\\_wiki.py_)\n* Jira Markdown (_jira\\_renderer.py_)\n* XWiki Syntax (_xwiki20\\_renderer.py_)\n* Scheme (_scheme.py_)\n\nInstallation\n------------\nmistletoe is tested for Python 3.5 and above. Install mistletoe with pip:\n\n```sh\npip3 install mistletoe\n```\n\nAlternatively, clone the repo:\n\n```sh\ngit clone https://github.com/miyuchina/mistletoe.git\ncd mistletoe\npip3 install -e .\n```\n\nThis installs mistletoe in \"editable\" mode (because of the `-e` option).\nThat means that any changes made to the source code will get visible\nimmediately - that's because Python only makes a link to the specified\ndirectory (`.`) instead of copying the files to the standard packages\nfolder.\n\nSee the [contributing][contributing] doc for how to contribute to mistletoe.\n\nUsage\n-----\n\n### Usage from Python\n\nHere's how you can use mistletoe in a Python script:\n\n```python\nimport mistletoe\n\nwith open('foo.md', 'r') as fin:\n    rendered = mistletoe.markdown(fin)\n```\n\n`mistletoe.markdown()` uses mistletoe's default settings: allowing HTML mixins\nand rendering to HTML. The function also accepts an additional argument\n`renderer`. To produce LaTeX output:\n\n```python\nimport mistletoe\nfrom mistletoe.latex_renderer import LaTeXRenderer\n\nwith open('foo.md', 'r') as fin:\n    rendered = mistletoe.markdown(fin, LaTeXRenderer)\n```\n\nTo reflow the text in a Markdown document with a max line length of 20 characters:\n\n```python\nimport mistletoe\nfrom mistletoe.markdown_renderer import MarkdownRenderer\n\nwith open('dev-guide.md', 'r') as fin:\n    with MarkdownRenderer(max_line_length=20) as renderer:\n        print(renderer.render(mistletoe.Document(fin)))\n```\n\nFinally, here's how you would manually specify extra tokens via a renderer.\nIn the following example, we use `HtmlRenderer` to render\nthe AST. The renderer itself adds `HtmlBlock` and `HtmlSpan` tokens to the parsing\nprocess. The result should be equal to the output obtained from\nthe first example above.\n\n```python\nfrom mistletoe import Document, HtmlRenderer\n\nwith open('foo.md', 'r') as fin:\n    with HtmlRenderer() as renderer:     # or: `with HtmlRenderer(AnotherToken1, AnotherToken2) as renderer:`\n        doc = Document(fin)              # parse the lines into AST\n        rendered = renderer.render(doc)  # render the AST\n        # internal lists of tokens to be parsed are automatically reset when exiting this `with` block\n```\n\n**Important**: As can be seen from the example above,\nthe parsing phase is currently tightly connected with initiation\nand closing of a renderer. Therefore, you should never call `Document(...)`\noutside of a `with ... as renderer` block, unless you know what you are doing.\n\n### Usage from command-line\n\npip installation enables mistletoe's command-line utility. Type the following\ndirectly into your shell:\n\n```sh\nmistletoe foo.md\n```\n\nThis will transpile `foo.md` into HTML, and dump the output to stdout. To save\nthe HTML, direct the output into a file:\n\n```sh\nmistletoe foo.md > out.html\n```\n\nYou can use a different renderer by including the full path to the renderer\nclass after a `-r` or `--renderer` flag. For example, to transpile into\nLaTeX:\n\n```sh\nmistletoe foo.md --renderer mistletoe.latex_renderer.LaTeXRenderer\n```\n\nand similarly for a renderer in the contrib package:\n\n```sh\nmistletoe foo.md --renderer mistletoe.contrib.jira_renderer.JiraRenderer\n```\n\n\n### mistletoe interactive mode\n\nRunning `mistletoe` without specifying a file will land you in interactive\nmode.  Like Python's REPL, interactive mode allows you to test how your\nMarkdown will be interpreted by mistletoe:\n\n```html\nmistletoe [version 0.7.2] (interactive)\nType Ctrl-D to complete input, or Ctrl-C to exit.\n>>> some **bold** text\n... and some *italics*\n...\n<p>some <strong>bold</strong> text\nand some <em>italics</em></p>\n>>>\n```\n\nThe interactive mode also accepts the `--renderer` flag:\n\n```latex\nmistletoe [version 0.7.2] (interactive)\nType Ctrl-D to complete input, or Ctrl-C to exit.\nUsing renderer: LaTeXRenderer\n>>> some **bold** text\n... and some *italics*\n...\n\\documentclass{article}\n\\begin{document}\n\nsome \\textbf{bold} text\nand some \\textit{italics}\n\\end{document}\n>>>\n```\n\nWho uses mistletoe?\n-------------------\n\nmistletoe is used by projects of various target audience.\nYou can find some concrete projects in the \"Used by\" section\non [Libraries.io][libraries-mistletoe], but this is definitely not a complete\nlist.\nAlso a list of [Dependents][github-dependents] is tracked by GitHub directly.\n\n### Run mistletoe from CopyQ\n\nOne notable example is running mistletoe as a Markdown converter from the\nadvanced clipboard manager called [CopyQ][copyq]. One just needs to install\nthe [Convert Markdown to ...][copyq-convert-md] custom script command\nand then run this command on any selected Markdown text.\n\nWhy mistletoe?\n--------------\n\n\"For fun,\" says David Beazley.\n\nFurther reading\n---------------\n\n* [Performance][performance]\n* [Developer's Guide](dev-guide.md)\n\nCopyright & License\n-------------------\n* mistletoe's logo uses artwork by [Freepik][icon], under\n  [CC BY 3.0][cc-by].\n* mistletoe is released under [MIT][license].\n\n[build-badge]: https://img.shields.io/github/actions/workflow/status/miyuchina/mistletoe/python-package.yml?style=flat-square\n[cover-badge]: https://img.shields.io/coveralls/miyuchina/mistletoe.svg?style=flat-square\n[pypi-badge]: https://img.shields.io/pypi/v/mistletoe.svg?style=flat-square\n[wheel-badge]: https://img.shields.io/pypi/wheel/mistletoe.svg?style=flat-square\n[github-actions]: https://github.com/miyuchina/mistletoe/actions/workflows/python-package.yml\n[coveralls]: https://coveralls.io/github/miyuchina/mistletoe?branch=master\n[pypi]: https://pypi.python.org/pypi/mistletoe\n[mistune]: https://github.com/lepture/mistune\n[python-markdown]: https://github.com/waylan/Python-Markdown\n[python-markdown2]: https://github.com/trentm/python-markdown2\n[commonmark-py]: https://github.com/rtfd/CommonMark-py\n[performance]: performance.md\n[oilshell]: https://www.oilshell.org/blog/2018/02/14.html\n[commonmark]: https://spec.commonmark.org/\n[contrib]: https://github.com/miyuchina/mistletoe/tree/master/mistletoe/contrib\n[scheme]: https://github.com/miyuchina/mistletoe/blob/master/mistletoe/contrib/scheme.py\n[contributing]: CONTRIBUTING.md\n[icon]: https://www.freepik.com\n[cc-by]: https://creativecommons.org/licenses/by/3.0/us/\n[license]: LICENSE\n[pythonpath]: https://stackoverflow.com/questions/16107526/how-to-flexibly-change-pythonpath\n[libraries-mistletoe]: https://libraries.io/pypi/mistletoe\n[copyq]: https://hluk.github.io/CopyQ/\n[copyq-convert-md]: https://github.com/hluk/copyq-commands/tree/master/Global#convert-markdown-to-\n[github-dependents]: https://github.com/miyuchina/mistletoe/network/dependents\n",
+                      "description_content_type": "text/markdown",
+                      "keywords": [
+                        "markdown",
+                        "lexer",
+                        "parser",
+                        "development"
+                      ],
+                      "home_page": "https://github.com/miyuchina/mistletoe",
+                      "author": "Mi Yu",
+                      "author_email": "hello@afteryu.me",
+                      "license": "MIT",
+                      "license_file": [
+                        "LICENSE"
+                      ],
+                      "classifier": [
+                        "Development Status :: 5 - Production/Stable",
+                        "Intended Audience :: Developers",
+                        "License :: OSI Approved :: MIT License",
+                        "Programming Language :: Python :: 3",
+                        "Programming Language :: Python :: 3.5",
+                        "Programming Language :: Python :: 3.6",
+                        "Programming Language :: Python :: 3.7",
+                        "Programming Language :: Python :: 3.8",
+                        "Programming Language :: Python :: 3.9",
+                        "Programming Language :: Python :: 3.10",
+                        "Programming Language :: Python :: 3.11",
+                        "Programming Language :: Python :: 3.12",
+                        "Programming Language :: Python :: 3.13",
+                        "Programming Language :: Python :: 3.14",
+                        "Programming Language :: Python :: Implementation :: CPython",
+                        "Programming Language :: Python :: Implementation :: PyPy",
+                        "Topic :: Software Development :: Libraries :: Python Modules",
+                        "Topic :: Text Processing :: Markup :: Markdown"
+                      ],
+                      "requires_python": "~=3.5"
+                    }
+                  }
+                ],
+                "environment": {
+                  "implementation_name": "cpython",
+                  "implementation_version": "3.12.15",
+                  "os_name": "posix",
+                  "platform_machine": "aarch64",
+                  "platform_release": "7.0.0-34-generic",
+                  "platform_system": "Linux",
+                  "platform_version": "#34-Ubuntu SMP PREEMPT_DYNAMIC Wed Sep  2 14:34:54 UTC 2026",
+                  "python_full_version": "3.12.15",
+                  "platform_python_implementation": "CPython",
+                  "python_version": "3.12",
+                  "sys_platform": "linux"
+                }
+              }
+            }
+          ],
+          "outputs": [
+            {
+              "name": "intro.md",
+              "exit_code": 0,
+              "content": "<h1>Hello</h1>\n<p>A <strong>bold</strong> start.</p>\n",
+              "truncated": false,
+              "process": {
+                "argv": [
+                  "mistletoe",
+                  "/work/inputs/intro.md"
+                ],
+                "executed_argv": [
+                  "mistletoe",
+                  "/work/inputs/intro.md"
+                ],
+                "exit_code": 0,
+                "duration_s": 0.17,
+                "stdout": "<h1>Hello</h1>\n<p>A <strong>bold</strong> start.</p>\n",
+                "stderr": "",
+                "truncated": false
+              }
+            },
+            {
+              "name": "second.md",
+              "exit_code": 0,
+              "content": "<h1>Second</h1>\n<p>An <em>italic</em> finish.</p>\n",
+              "truncated": false,
+              "process": {
+                "argv": [
+                  "mistletoe",
+                  "/work/inputs/second.md"
+                ],
+                "executed_argv": [
+                  "mistletoe",
+                  "/work/inputs/second.md"
+                ],
+                "exit_code": 0,
+                "duration_s": 0.168,
+                "stdout": "<h1>Second</h1>\n<p>An <em>italic</em> finish.</p>\n",
+                "stderr": "",
+                "truncated": false
+              }
+            }
+          ],
+          "pip_freeze": {
+            "argv": [
+              "pip",
+              "freeze",
+              "--all"
+            ],
+            "executed_argv": [
+              "/work/venv/bin/python",
+              "-I",
+              "-m",
+              "pip",
+              "freeze",
+              "--all"
+            ],
+            "exit_code": 0,
+            "duration_s": 0.327,
+            "stdout": "# Editable install with no version control (mistletoe==1.7.0.dev0)\n-e /work/repo\npip==25.0.1\n",
+            "stderr": "",
+            "truncated": false
+          },
+          "dependency_mode": "pypi_live",
+          "environment_policy": "Fresh venv; documented Python/pip aliases resolve to that interpreter; no user-site install.",
+          "container_id": "fresh-eyes-02341e70f9e24de5",
+          "execution_image_id": "sha256:3ed5b044dc00552df5b1c5b0791bdf06b2927f84425e424f72d2f1710002cbd2",
+          "network_policy": {
+            "mode": "pypi_proxy_isolated",
+            "network_id": "617541781bc83ba04eb0f8bdc2a475a6c30736bb19602085aa1d429c0108b98f",
+            "configuration_verified": true,
+            "runtime_egress_verified": false,
+            "allowed_hosts": [
+              "pypi.org:443",
+              "files.pythonhosted.org:443"
+            ],
+            "verification_scope": "Docker network configuration; actual egress probes are a separate release gate"
+          }
+        },
+        "validation": {
+          "passed": true,
+          "checks": [
+            {
+              "name": "intro.md",
+              "passed": true,
+              "reason": "Expected functional output matched"
+            },
+            {
+              "name": "second.md",
+              "passed": true,
+              "reason": "Expected functional output matched"
+            }
+          ]
+        }
+      }
+    ],
+    "model_calls": 0,
+    "repair_author": null,
+    "dependency_mode": "pypi_live",
+    "limitations": [
+      "Live PyPI resolution; package versions may change between attempts.",
+      "Development cases have not been approved by upstream maintainers.",
+      "Passing fixtures only verifies the registered workflow."
+    ],
+    "current_phase": "finished",
+    "environment": {
+      "requested_image": "python:3.12-slim",
+      "image_id": "sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1",
+      "repo_digests": [
+        "python@sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1"
+      ],
+      "platform": "linux/arm64",
+      "dependency_mode": "pypi_live",
+      "network": "pypi_proxy_isolated",
+      "offline_wheelhouse": false,
+      "egress_allowlist": [
+        "pypi.org:443",
+        "files.pythonhosted.org:443"
+      ]
+    },
+    "wheelhouse": [],
+    "finished_at": "2026-10-19T19:23:19.817859+00:00"
+  }
+}

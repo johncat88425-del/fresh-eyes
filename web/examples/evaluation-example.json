@@ -1,0 +1,294 @@
+{
+  "schema_version": 1,
+  "data_origin": "example",
+  "example_notice": "STATIC UI EXAMPLE. Invented cases and numbers for checking the evaluation page. Not a result of any run.",
+  "frozen_at": "2026-10-23T18:00:00Z",
+  "freeze": {
+    "code_version": "example",
+    "prompts_sha256": "8888888888888888888888888888888888888888888888888888888888888888",
+    "runner": "example-not-a-runner",
+    "dependency_mode": "offline_snapshot"
+  },
+  "cases": [
+    {
+      "case_id": "example-1",
+      "set": "holdout",
+      "repo_url": "https://example.invalid/holdout-1",
+      "commit_sha": "1111111111111111111111111111111111111111",
+      "acceptance_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "expected_state": null
+    },
+    {
+      "case_id": "example-2",
+      "set": "holdout",
+      "repo_url": "https://example.invalid/holdout-2",
+      "commit_sha": "2222222222222222222222222222222222222222",
+      "acceptance_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "expected_state": null
+    },
+    {
+      "case_id": "example-3",
+      "set": "holdout",
+      "repo_url": "https://example.invalid/holdout-3",
+      "commit_sha": "3333333333333333333333333333333333333333",
+      "acceptance_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "expected_state": null
+    },
+    {
+      "case_id": "example-4",
+      "set": "holdout",
+      "repo_url": "https://example.invalid/holdout-4",
+      "commit_sha": "4444444444444444444444444444444444444444",
+      "acceptance_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "expected_state": null
+    },
+    {
+      "case_id": "example-b1",
+      "set": "boundary",
+      "repo_url": "https://example.invalid/boundary-1",
+      "commit_sha": "5555555555555555555555555555555555555555",
+      "acceptance_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "expected_state": "unsupported"
+    },
+    {
+      "case_id": "example-b2",
+      "set": "boundary",
+      "repo_url": "https://example.invalid/boundary-2",
+      "commit_sha": "6666666666666666666666666666666666666666",
+      "acceptance_sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "expected_state": "needs_input"
+    },
+    {
+      "case_id": "example-b3",
+      "set": "boundary",
+      "repo_url": "https://example.invalid/boundary-3",
+      "commit_sha": "7777777777777777777777777777777777777777",
+      "acceptance_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_state": "unsupported"
+    }
+  ],
+  "runs": [
+    {
+      "case_id": "example-1",
+      "group": "A",
+      "run_id": "example-example-1-A",
+      "run_state": "completed",
+      "result_status": "already_passes",
+      "acceptance_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "started_at": "2026-10-24T09:00:00Z",
+      "duration_s": 70.0,
+      "model_calls": 0,
+      "cost_usd": 0,
+      "cost_status": "no_model_calls",
+      "human_review": null
+    },
+    {
+      "case_id": "example-1",
+      "group": "C",
+      "run_id": "example-example-1-C",
+      "run_state": "completed",
+      "result_status": "already_passes",
+      "acceptance_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "started_at": "2026-10-24T09:00:00Z",
+      "duration_s": 72.5,
+      "model_calls": 0,
+      "cost_usd": 0,
+      "cost_status": "no_model_calls",
+      "human_review": null
+    },
+    {
+      "case_id": "example-1",
+      "group": "D",
+      "run_id": "example-example-1-D",
+      "run_state": "completed",
+      "result_status": "already_passes",
+      "acceptance_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "started_at": "2026-10-24T09:00:00Z",
+      "duration_s": 71.0,
+      "model_calls": 0,
+      "cost_usd": 0,
+      "cost_status": "no_model_calls",
+      "human_review": null
+    },
+    {
+      "case_id": "example-2",
+      "group": "A",
+      "run_id": "example-example-2-A",
+      "run_state": "completed",
+      "result_status": "unresolved",
+      "acceptance_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "started_at": "2026-10-24T09:00:00Z",
+      "duration_s": 68.0,
+      "model_calls": 0,
+      "cost_usd": 0,
+      "cost_status": "no_model_calls",
+      "human_review": null
+    },
+    {
+      "case_id": "example-2",
+      "group": "B",
+      "run_id": "example-example-2-B",
+      "run_state": "completed",
+      "result_status": "unresolved",
+      "acceptance_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "started_at": "2026-10-24T09:00:00Z",
+      "duration_s": 150.0,
+      "model_calls": 2,
+      "cost_usd": 0.012,
+      "cost_status": "usage_calculated_pending_reconciliation",
+      "human_review": null
+    },
+    {
+      "case_id": "example-2",
+      "group": "C",
+      "run_id": "example-example-2-C",
+      "run_state": "completed",
+      "result_status": "verified_fix",
+      "acceptance_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "started_at": "2026-10-24T09:00:00Z",
+      "duration_s": 210.0,
+      "model_calls": 3,
+      "cost_usd": 0.019,
+      "cost_status": "usage_calculated_pending_reconciliation",
+      "human_review": {
+        "verdict": "accepted",
+        "reviewer": "Example reviewer",
+        "note": "Example only"
+      }
+    },
+    {
+      "case_id": "example-2",
+      "group": "D",
+      "run_id": "example-example-2-D",
+      "run_state": "completed",
+      "result_status": "verified_fix",
+      "acceptance_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "started_at": "2026-10-24T09:00:00Z",
+      "duration_s": 240.0,
+      "model_calls": 3,
+      "cost_usd": 0.051,
+      "cost_status": "usage_calculated_pending_reconciliation",
+      "human_review": null
+    },
+    {
+      "case_id": "example-3",
+      "group": "A",
+      "run_id": "example-example-3-A",
+      "run_state": "completed",
+      "result_status": "unresolved",
+      "acceptance_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "started_at": "2026-10-24T09:00:00Z",
+      "duration_s": 66.0,
+      "model_calls": 0,
+      "cost_usd": 0,
+      "cost_status": "no_model_calls",
+      "human_review": null
+    },
+    {
+      "case_id": "example-3",
+      "group": "B",
+      "run_id": "example-example-3-B",
+      "run_state": "completed",
+      "result_status": "verified_fix",
+      "acceptance_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "started_at": "2026-10-24T09:00:00Z",
+      "duration_s": 160.0,
+      "model_calls": 2,
+      "cost_usd": 0.01,
+      "cost_status": "usage_calculated_pending_reconciliation",
+      "human_review": {
+        "verdict": "rejected",
+        "reviewer": "Example reviewer",
+        "note": "Example: patch pinned an unrelated package"
+      }
+    },
+    {
+      "case_id": "example-3",
+      "group": "C",
+      "run_id": "example-example-3-C",
+      "run_state": "completed",
+      "result_status": "verified_fix",
+      "acceptance_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "started_at": "2026-10-24T09:00:00Z",
+      "duration_s": 205.0,
+      "model_calls": 3,
+      "cost_usd": null,
+      "cost_status": "unknown",
+      "human_review": {
+        "verdict": "accepted",
+        "reviewer": "Example reviewer",
+        "note": "Example only"
+      }
+    },
+    {
+      "case_id": "example-4",
+      "group": "A",
+      "run_id": "example-example-4-A",
+      "run_state": "completed",
+      "result_status": "infrastructure_error",
+      "acceptance_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "started_at": "2026-10-24T09:00:00Z",
+      "duration_s": 300.0,
+      "model_calls": 0,
+      "cost_usd": 0,
+      "cost_status": "no_model_calls",
+      "human_review": null
+    },
+    {
+      "case_id": "example-4",
+      "group": "C",
+      "run_id": "example-example-4-C",
+      "run_state": "completed",
+      "result_status": "unresolved",
+      "acceptance_sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+      "started_at": "2026-10-24T09:00:00Z",
+      "duration_s": 190.0,
+      "model_calls": 3,
+      "cost_usd": 0.02,
+      "cost_status": "usage_calculated_pending_reconciliation",
+      "human_review": null
+    },
+    {
+      "case_id": "example-b1",
+      "group": "C",
+      "run_id": "example-example-b1-C",
+      "run_state": "completed",
+      "result_status": "unsupported",
+      "acceptance_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "started_at": "2026-10-24T09:00:00Z",
+      "duration_s": 40.0,
+      "model_calls": 1,
+      "cost_usd": 0.001,
+      "cost_status": "usage_calculated_pending_reconciliation",
+      "human_review": null
+    },
+    {
+      "case_id": "example-b2",
+      "group": "C",
+      "run_id": "example-example-b2-C",
+      "run_state": "completed",
+      "result_status": "needs_input",
+      "acceptance_sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "started_at": "2026-10-24T09:00:00Z",
+      "duration_s": 35.0,
+      "model_calls": 0,
+      "cost_usd": 0,
+      "cost_status": "no_model_calls",
+      "human_review": null
+    },
+    {
+      "case_id": "example-b3",
+      "group": "C",
+      "run_id": "example-example-b3-C",
+      "run_state": "completed",
+      "result_status": "unresolved",
+      "acceptance_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "started_at": "2026-10-24T09:00:00Z",
+      "duration_s": 260.0,
+      "model_calls": 3,
+      "cost_usd": 0.03,
+      "cost_status": "usage_calculated_pending_reconciliation",
+      "human_review": null
+    }
+  ]
+}

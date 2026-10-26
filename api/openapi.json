@@ -1,0 +1,1574 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Fresh Eyes local teammate API",
+    "version": "0.2.1",
+    "description": "Loopback API, models disabled by default. An explicitly owner-armed fixed development plan may run once through the queue. HTTP clients cannot change its budget, sources, models or reviews. Live PyPI uses an isolated PyPI-only proxy. Explicitly enabled public GitHub startup checks support bounded Python CLI README installation and help/version commands without model calls or functional acceptance. Sandboxes and nightly checks remain unimplemented."
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8765"
+    }
+  ],
+  "paths": {
+    "/api/health": {
+      "get": {
+        "summary": "Actual backend capabilities",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/cases": {
+      "get": {
+        "summary": "Pinned registered acceptance contracts",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "schema_version": {
+                      "const": 1
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Case"
+                      }
+                    }
+                  },
+                  "required": [
+                    "schema_version",
+                    "items"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/cases/{case_id}/approval": {
+      "post": {
+        "summary": "Record team acceptance review for the exact current hash",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Case"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Acceptance changed or approval exists with a different reviewer; use explicit correction"
+          },
+          "413": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApprovalRequest"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "case_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/runs": {
+      "get": {
+        "summary": "Recent local execution and read-only inspection jobs; up to 100 newest",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "schema_version": {
+                      "const": 1
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RunSummary"
+                      }
+                    }
+                  },
+                  "required": [
+                    "schema_version",
+                    "items"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Queue a reviewed functional run or an explicitly enabled bounded GitHub startup check",
+        "responses": {
+          "202": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Run"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RunRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/runs/{run_id}": {
+      "get": {
+        "summary": "Persisted run and raw evidence",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Run"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/runs/{run_id}/patch": {
+      "get": {
+        "summary": "Download an actual candidate diff; inspect run.result_status for verification",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Actual patch, possibly unverified",
+            "content": {
+              "text/x-diff": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No such run or no actual patch",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Loopback/origin required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/examples": {
+      "get": {
+        "summary": "Static examples, never actual executions",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data_origin": {
+                      "const": "example"
+                    },
+                    "executed": {
+                      "const": false
+                    },
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "$ref": "#/components/schemas/Run"
+                      }
+                    }
+                  },
+                  "required": [
+                    "data_origin",
+                    "executed",
+                    "items"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/examples/{name}": {
+      "get": {
+        "summary": "One labelled example",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Run"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/openapi.json": {
+      "get": {
+        "summary": "This interface contract",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/cases/{case_id}/approval/history": {
+      "get": {
+        "operationId": "approvalHistory",
+        "summary": "Read append-only team approval history",
+        "parameters": [
+          {
+            "name": "case_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "History with revisions, attribution and migration notice"
+          },
+          "404": {
+            "description": "Unknown case"
+          }
+        }
+      }
+    },
+    "/api/cases/{case_id}/approval/correction": {
+      "post": {
+        "operationId": "correctApproval",
+        "summary": "Explicit attributed correction; preserves old approval and timestamp",
+        "parameters": [
+          {
+            "name": "case_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "acceptance_sha256",
+                  "reviewed_by",
+                  "corrected_by",
+                  "reason",
+                  "expected_revision"
+                ],
+                "properties": {
+                  "acceptance_sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "reviewed_by": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "corrected_by": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 1000
+                  },
+                  "expected_revision": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Case with new review revision"
+          },
+          "400": {
+            "description": "Reason, author or revision missing, or reviewer unchanged"
+          },
+          "404": {
+            "description": "Case or approval missing"
+          },
+          "409": {
+            "description": "Acceptance/revision changed"
+          }
+        }
+      }
+    },
+    "/api/repo-inspections": {
+      "post": {
+        "summary": "Queue bounded public source/README inspection; never runs repository commands or calls a model",
+        "responses": {
+          "202": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Run"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "See api/README.md for error codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RepoInspectionRequest"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "code",
+              "message"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "additionalProperties": false
+      },
+      "Costs": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "const": "USD"
+          },
+          "model_calls": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "model_usd": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "runner_usd": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "billing_status": {
+            "type": "string"
+          },
+          "paid_calls_enabled": {
+            "const": false
+          }
+        },
+        "required": [
+          "currency",
+          "model_calls",
+          "model_usd",
+          "runner_usd",
+          "billing_status",
+          "paid_calls_enabled"
+        ],
+        "additionalProperties": false
+      },
+      "Review": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "approved",
+              "development_reviewed",
+              "draft",
+              "example"
+            ]
+          },
+          "reviewed_by": {
+            "type": "string"
+          },
+          "approved_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "acceptance_sha256": {
+            "type": "string"
+          },
+          "review_revision": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Monotonic approval revision; required for explicit corrections"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "additionalProperties": true
+      },
+      "Fixture": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "input": {
+            "type": "string"
+          },
+          "validator": {
+            "enum": [
+              "text",
+              "json",
+              "html_elements",
+              "text_lines"
+            ]
+          },
+          "expected": {}
+        },
+        "required": [
+          "name",
+          "input",
+          "validator",
+          "expected"
+        ],
+        "additionalProperties": false
+      },
+      "Case": {
+        "type": "object",
+        "properties": {
+          "case_id": {
+            "type": "string"
+          },
+          "data_origin": {
+            "const": "registered_contract"
+          },
+          "repo_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "commit_sha": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{40}$"
+          },
+          "goal": {
+            "type": "string"
+          },
+          "readme_source": {
+            "type": "string"
+          },
+          "environment": {
+            "type": "object"
+          },
+          "acceptance_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "contract_sha256": {
+            "type": "string"
+          },
+          "review": {
+            "$ref": "#/components/schemas/Review"
+          },
+          "upstream_maintainer_approval": {
+            "const": false
+          },
+          "fixtures": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "$ref": "#/components/schemas/Fixture"
+            }
+          },
+          "manual_candidate_available": {
+            "type": "boolean"
+          },
+          "execution_enabled": {
+            "type": "boolean"
+          },
+          "can_run": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "case_id",
+          "data_origin",
+          "repo_url",
+          "commit_sha",
+          "goal",
+          "readme_source",
+          "environment",
+          "acceptance_sha256",
+          "contract_sha256",
+          "review",
+          "upstream_maintainer_approval",
+          "fixtures",
+          "manual_candidate_available",
+          "execution_enabled",
+          "can_run"
+        ],
+        "additionalProperties": false
+      },
+      "Run": {
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": 1
+          },
+          "run_id": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{32}$"
+          },
+          "data_origin": {
+            "enum": [
+              "execution",
+              "example",
+              "inspection"
+            ]
+          },
+          "case_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "repo_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "commit_sha": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[a-f0-9]{40}$"
+          },
+          "verification_level": {
+            "enum": [
+              "startup",
+              "functional"
+            ]
+          },
+          "acceptance_sha256": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "review": {
+            "$ref": "#/components/schemas/Review"
+          },
+          "repair_mode": {
+            "enum": [
+              "none",
+              "manual_candidate",
+              "model"
+            ]
+          },
+          "repair_author": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "run_state": {
+            "enum": [
+              "queued",
+              "running",
+              "completed",
+              "failed"
+            ]
+          },
+          "result_status": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "already_passes",
+              "verified_fix",
+              "startup_only",
+              "needs_review",
+              "needs_input",
+              "unsupported",
+              "unresolved",
+              "infrastructure_error",
+              null
+            ]
+          },
+          "phase": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "started_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "finished_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "patch_available": {
+            "type": "boolean"
+          },
+          "costs": {
+            "$ref": "#/components/schemas/Costs"
+          },
+          "evidence": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "description": "Raw engine report, including attempts, validation, process logs, image IDs and any actual patch. Never use its provisional status before run_state is terminal.",
+            "additionalProperties": true
+          },
+          "dependency_mode": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "offline_snapshot",
+              "pypi_live",
+              null
+            ],
+            "default": "offline_snapshot"
+          },
+          "case_available": {
+            "type": "boolean"
+          },
+          "execution_requested": {
+            "type": "boolean"
+          },
+          "evaluation_eligible": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "schema_version",
+          "run_id",
+          "data_origin",
+          "case_id",
+          "repo_url",
+          "commit_sha",
+          "verification_level",
+          "acceptance_sha256",
+          "review",
+          "repair_mode",
+          "repair_author",
+          "run_state",
+          "result_status",
+          "phase",
+          "created_at",
+          "started_at",
+          "finished_at",
+          "reason",
+          "patch_available",
+          "costs",
+          "evidence"
+        ],
+        "additionalProperties": true
+      },
+      "RunSummary": {
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": 1
+          },
+          "run_id": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{32}$"
+          },
+          "data_origin": {
+            "enum": [
+              "execution",
+              "example",
+              "inspection"
+            ]
+          },
+          "case_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "repo_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "commit_sha": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[a-f0-9]{40}$"
+          },
+          "verification_level": {
+            "enum": [
+              "startup",
+              "functional"
+            ]
+          },
+          "acceptance_sha256": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "review": {
+            "$ref": "#/components/schemas/Review"
+          },
+          "repair_mode": {
+            "enum": [
+              "none",
+              "manual_candidate",
+              "model"
+            ]
+          },
+          "repair_author": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "run_state": {
+            "enum": [
+              "queued",
+              "running",
+              "completed",
+              "failed"
+            ]
+          },
+          "result_status": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "already_passes",
+              "verified_fix",
+              "startup_only",
+              "needs_review",
+              "needs_input",
+              "unsupported",
+              "unresolved",
+              "infrastructure_error",
+              null
+            ]
+          },
+          "phase": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "started_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "finished_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "patch_available": {
+            "type": "boolean"
+          },
+          "costs": {
+            "$ref": "#/components/schemas/Costs"
+          },
+          "dependency_mode": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "offline_snapshot",
+              "pypi_live",
+              null
+            ],
+            "default": "offline_snapshot"
+          },
+          "case_available": {
+            "type": "boolean"
+          },
+          "execution_requested": {
+            "type": "boolean"
+          },
+          "evaluation_eligible": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "schema_version",
+          "run_id",
+          "data_origin",
+          "case_id",
+          "repo_url",
+          "commit_sha",
+          "verification_level",
+          "acceptance_sha256",
+          "review",
+          "repair_mode",
+          "repair_author",
+          "run_state",
+          "result_status",
+          "phase",
+          "created_at",
+          "started_at",
+          "finished_at",
+          "reason",
+          "patch_available",
+          "costs"
+        ],
+        "additionalProperties": true
+      },
+      "RunRequest": {
+        "type": "object",
+        "properties": {
+          "case_id": {
+            "type": "string"
+          },
+          "repo_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "ref": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{40}$"
+          },
+          "verification_level": {
+            "enum": [
+              "startup",
+              "functional"
+            ],
+            "default": "functional"
+          },
+          "repair_mode": {
+            "enum": [
+              "none",
+              "manual_candidate",
+              "model"
+            ],
+            "default": "none"
+          },
+          "dependency_mode": {
+            "type": "string",
+            "enum": [
+              "offline_snapshot",
+              "pypi_live"
+            ],
+            "default": "offline_snapshot"
+          }
+        },
+        "required": [],
+        "additionalProperties": false,
+        "anyOf": [
+          {
+            "required": [
+              "verification_level"
+            ],
+            "properties": {
+              "verification_level": {
+                "const": "startup"
+              }
+            }
+          },
+          {
+            "required": [
+              "case_id"
+            ],
+            "properties": {
+              "verification_level": {
+                "const": "functional"
+              }
+            }
+          }
+        ]
+      },
+      "ApprovalRequest": {
+        "type": "object",
+        "properties": {
+          "reviewed_by": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "acceptance_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "reviewed_by",
+          "acceptance_sha256"
+        ],
+        "additionalProperties": false
+      },
+      "Health": {
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": 1
+          },
+          "service": {
+            "type": "string"
+          },
+          "display_timezone": {
+            "const": "Europe/London"
+          },
+          "execution_enabled": {
+            "type": "boolean"
+          },
+          "reviewed_cases_only": {
+            "const": true
+          },
+          "paid_calls_enabled": {
+            "type": "boolean",
+            "description": "True only while one explicit owner plan is armed and unconsumed; false by default."
+          },
+          "model_calls_enabled": {
+            "type": "boolean",
+            "description": "True only while one explicit owner plan is armed and unconsumed; false by default."
+          },
+          "arbitrary_repo_execution": {
+            "type": "boolean",
+            "default": false
+          },
+          "dependency_modes": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "offline_snapshot",
+                "pypi_live"
+              ]
+            }
+          },
+          "live_pypi_enabled": {
+            "type": "boolean"
+          },
+          "live_pypi_platform_verified": {
+            "const": false
+          },
+          "run_states": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "queued",
+                "running",
+                "completed",
+                "failed"
+              ]
+            }
+          },
+          "result_statuses": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "already_passes",
+                "verified_fix",
+                "startup_only",
+                "needs_review",
+                "needs_input",
+                "unsupported",
+                "unresolved",
+                "infrastructure_error"
+              ]
+            }
+          },
+          "api_version": {
+            "const": "0.2.1"
+          },
+          "autonomous_repair": {
+            "type": "boolean",
+            "description": "True only while one explicit owner plan is armed and unconsumed; false by default."
+          },
+          "model_trial_plan": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "description": "Public limits for one immutable owner development plan; never contains credentials or local paths.",
+                "properties": {
+                  "case_id": {
+                    "type": "string"
+                  },
+                  "acceptance_sha256": {
+                    "type": "string"
+                  },
+                  "plan_sha256": {
+                    "type": "string"
+                  },
+                  "route": {
+                    "enum": [
+                      "nano_ultra",
+                      "all_ultra"
+                    ]
+                  },
+                  "dependency_mode": {
+                    "enum": [
+                      "offline_snapshot",
+                      "pypi_live"
+                    ]
+                  },
+                  "budget_usd": {
+                    "type": "string"
+                  },
+                  "max_patch_rounds": {
+                    "enum": [
+                      1,
+                      2
+                    ]
+                  },
+                  "max_model_requests": {
+                    "enum": [
+                      2,
+                      4
+                    ]
+                  },
+                  "time_limit_s": {
+                    "type": "integer"
+                  },
+                  "available": {
+                    "type": "boolean"
+                  },
+                  "consumed": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              }
+            ]
+          },
+          "github_import": {
+            "type": "boolean",
+            "default": false
+          },
+          "startup_scope": {
+            "const": "small_public_github_python_cli_help_only"
+          },
+          "functional_reviews_required": {
+            "const": true
+          },
+          "startup_checks": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "schema_version",
+          "display_timezone",
+          "execution_enabled",
+          "paid_calls_enabled",
+          "model_calls_enabled",
+          "arbitrary_repo_execution"
+        ],
+        "additionalProperties": true
+      },
+      "RepoInspectionRequest": {
+        "type": "object",
+        "properties": {
+          "repo_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "ref": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{40}$"
+          }
+        },
+        "required": [
+          "repo_url"
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+}

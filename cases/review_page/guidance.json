@@ -1,0 +1,72 @@
+{
+  "_source": "Restated from cases/HOLDOUT_REVIEW.md, cases/boundary/REVIEW.md and cases/win5/README.md (B, 2026-10-22). Questions only; no answers.",
+  "markdown2-cli": {
+    "title": "markdown2：Markdown 轉 HTML",
+    "summary": "照 README 安裝 markdown2，用它的命令把筆記轉成 HTML，輸出印在畫面上（stdout）。",
+    "questions": [
+      "README 給了三種命令列寫法（L63、L67、L72）。案例選 L72 的 `markdown2 foo.md`。但 README 在 L70 自己說「我想 pip 安裝也會有這個命令」，語氣不確定。這是 README 真實的模糊之處，案例照原樣保留。你接受用 L72 的寫法嗎？",
+      "`> foo.html` 只是把畫面輸出存成檔，所以案例直接讀畫面輸出，算是同一件事嗎？"
+    ]
+  },
+  "commonmark-cmark": {
+    "title": "commonmark：Markdown 轉 HTML",
+    "summary": "照 README 安裝 commonmark，執行 `cmark 輸入檔 -o result.html`，讀 result.html。",
+    "questions": [
+      "這是最直接的一案：只把 README 範例的檔名換成輸入檔和 result.html。指令和預期輸出合理嗎？",
+      "這個 repo 已封存（archived），結果真的未知，所以適合當保留案例。"
+    ]
+  },
+  "markdown-it-py-cli": {
+    "title": "markdown-it-py：Markdown 轉 HTML",
+    "summary": "照 README 安裝 `markdown-it-py[plugins]`，執行 `markdown-it 輸入檔`，輸出印在畫面上。",
+    "questions": [
+      "README 的範例一次轉兩個檔（L132），案例一次只轉一個。L104 寫明可以給一個或多個檔名，L106 寫明結果印到畫面上。一次一個檔可以接受嗎？"
+    ]
+  },
+  "html2text-cli": {
+    "title": "html2text：HTML 轉 Markdown（新版，請重新判斷）",
+    "summary": "照 README 安裝 html2text，執行 `html2text 輸入檔`，輸出印在畫面上。這一版依你上次的意見修改了比對方式，預期內容沒有改。",
+    "questions": [
+      "你上次不接受的原因：預期輸出忽略了標籤之間的換行，而且逐字全等太嚴格。",
+      "這一版的比對方式改成 `text_lines`：只比對**非空白行**的內容和順序，不計較空行有幾行、行尾空白、開頭結尾的換行。每一行的文字和先後順序仍然要對，多一行或少一行都算不過。",
+      "預期內容沒變：第一個輸入要得到 `# Hello` 和 `A **bold** start.` 兩行，第二個要得到 `## Second` 和 `An _italic_ finish.` 兩行（依據 README L30–L31 的範例）。",
+      "這樣有回應你的兩點意見嗎？如果你認為還是會失敗（例如它會把一行拆成兩行），請不接受並寫下你預期的輸出。"
+    ]
+  },
+  "j2cli-render": {
+    "title": "j2cli：範本轉文字（邊界案例：預期要停下）",
+    "summary": "照 README 安裝 j2cli，執行 `j2 範本檔`。預期修不好，系統應該停下，不該硬修。",
+    "why_stop": "`j2cli/cli.py` L8 有 `import imp`，Python 3.12 已經移除這個模組；`j2cli/__init__.py` L4 有 `import pkg_resources`，Python 3.12 的新環境預設沒有 setuptools。兩個都在 import 時就失敗。",
+    "questions": [
+      "用「不需要任何資料的範本」代表 L137 的用法可以嗎？這樣結果才固定，不受容器裡的環境變數影響。",
+      "預期輸出是不是 Jinja2 的結果：`range(3)` 印出 `012`，`2 + 3` 印出 `5`？",
+      "分組決定：v1 把它留在邊界組，並接受它可能被合法的依賴修改修好（PyPI 的 `zombie-imp` 加 setuptools 是否足夠，還沒實測）。請在下面選你的看法。"
+    ],
+    "extra_choice": {
+      "id": "grouping",
+      "label": "這個案例放在哪一組？",
+      "options": [
+        "留在邊界組（照 v1）",
+        "改列開發案例",
+        "先和 A、B 討論"
+      ]
+    }
+  },
+  "yq-query": {
+    "title": "yq：查詢 YAML（邊界案例：預期要停下）",
+    "summary": "照 README 安裝 yq，執行 `yq .foo.bar 輸入檔`，結果當 JSON 比對。預期修不好。",
+    "why_stop": "README L10–L11 說還要另外安裝系統程式 `jq`，pip 裝不了。PyPI 上叫 `jq` 的套件是 Python bindings，不提供 `jq` 指令。",
+    "questions": [
+      "預期輸出是不是 jq 對 `.foo.bar` 的結果：數字 `3`，和字串列表 `[\"a\", \"b\"]`？"
+    ]
+  },
+  "gfm-to-html-convert": {
+    "title": "gh-md-to-html：Markdown 轉 HTML（邊界案例：預期要停下）",
+    "summary": "照 README 安裝 gh-md-to-html，執行 `gh-md-to-html 輸入檔 -n result.html`，讀 result.html。預期修不好。",
+    "why_stop": "預設要連 GitHub API（L216、L317），但執行環境只放行 PyPI，所以應該會失敗。離線模式要另外裝套件、加非預設選項（L221、L233），等於換了 README 寫的指令，修補規則不允許。",
+    "questions": [
+      "加 `-n result.html` 指定輸出檔名可以嗎？依據是 L201，加上 L191、L194 說檔案會寫在目前目錄。這不是 L155 的原樣，但是 README 寫明的選項；另一個寫明的做法是 `-n print`（L203，直接印到畫面上）。",
+      "「GitHub API 連不上就該停下」這個理由成立嗎？結果可能是缺網路或服務（needs_input），或不支援（unsupported）。"
+    ]
+  }
+}

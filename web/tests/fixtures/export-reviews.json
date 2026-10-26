@@ -1,0 +1,201 @@
+{
+ "schema_version": 1,
+ "data_origin": "example",
+ "example_notice": "SYNTHETIC review-format fixture made with A's result_reviews.template/apply_reviews (B19). Not an evaluation result.",
+ "frozen_at": "2026-10-23T18:00:00+01:00",
+ "freeze_sha256": "12dd9774cc96e18b5b1b5d4a4b1e0724c4b3e3f37a3eed1af6a1dac7cfdbc3e3",
+ "freeze": {
+  "code_version": "5694d08a2e53ffcae0c3103e5ad6f6076abd960eb1f8a56577040bc1028f702b",
+  "prompts_sha256": "eb7526362ee7678cb5650f67d90cfdb84485363ca148ff3993ded032560941fb",
+  "runner": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "dependency_mode": "pypi_live"
+ },
+ "limits": {
+  "case_model_usd": "0.03",
+  "batch_model_usd": "0.36",
+  "time_limit_s": 600
+ },
+ "cases": [
+  {
+   "case_id": "synthetic-review-1",
+   "set": "holdout",
+   "acceptance_sha256": "b44bedcb1d0305728754627215e9f6b3db23dbbaa02d2e45f031ffe16648b541",
+   "expected_state": null,
+   "repo_url": "https://example.invalid/synthetic",
+   "commit_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  {
+   "case_id": "synthetic-review-2",
+   "set": "holdout",
+   "acceptance_sha256": "c6b30de5b3248ea788787d1b9c344cb13bbb25313070faed24ef41e6c86b196c",
+   "expected_state": null,
+   "repo_url": "https://example.invalid/synthetic",
+   "commit_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  {
+   "case_id": "synthetic-review-3",
+   "set": "holdout",
+   "acceptance_sha256": "c7f4f311b2af6af8901c531aca00e6bcdc7d1f86dfaba291417de309a40c54d9",
+   "expected_state": null,
+   "repo_url": "https://example.invalid/synthetic",
+   "commit_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  }
+ ],
+ "runs": [
+  {
+   "case_id": "synthetic-review-1",
+   "acceptance_sha256": "b44bedcb1d0305728754627215e9f6b3db23dbbaa02d2e45f031ffe16648b541",
+   "started_at": "2026-10-24T10:00:00+01:00",
+   "duration_s": 61.0,
+   "cost_usd": null,
+   "cost_status": "unknown",
+   "runner_usd": null,
+   "human_review": null,
+   "group": "A",
+   "run_id": "f55ff16f66f43360266b95db6f8fec01",
+   "run_state": "completed",
+   "result_status": "unresolved",
+   "model_calls": 0,
+   "model_usd": 0,
+   "model_cost_status": "no_model_calls",
+   "report_sha256": "1af96ef622a56faba1b05f6cb30a2163c73430e652f19de0c201c0355d5c5615"
+  },
+  {
+   "case_id": "synthetic-review-1",
+   "acceptance_sha256": "b44bedcb1d0305728754627215e9f6b3db23dbbaa02d2e45f031ffe16648b541",
+   "started_at": "2026-10-24T10:00:00+01:00",
+   "duration_s": 61.0,
+   "cost_usd": null,
+   "cost_status": "unknown",
+   "runner_usd": null,
+   "human_review": {
+    "verdict": "accepted",
+    "reviewer": "SYNTHETIC REVIEWER",
+    "reviewed_at": "2026-10-25T12:00:00+01:00",
+    "note": "Patch only changes the README install line; both outputs match.",
+    "report_sha256": "ca6cb4bea7c5b95f3312897dfc0cd551c2d095065606f16cfe583c682f0ce51f",
+    "scope": "team_patch_output_review"
+   },
+   "group": "C",
+   "run_id": "d0f631ca1ddba8db3bcfcb9e057cdc98",
+   "run_state": "completed",
+   "result_status": "verified_fix",
+   "model_calls": 4,
+   "model_usd": 0.0136,
+   "model_cost_status": "usage_calculated_pending_reconciliation",
+   "report_sha256": "ca6cb4bea7c5b95f3312897dfc0cd551c2d095065606f16cfe583c682f0ce51f"
+  },
+  {
+   "case_id": "synthetic-review-2",
+   "acceptance_sha256": "c6b30de5b3248ea788787d1b9c344cb13bbb25313070faed24ef41e6c86b196c",
+   "started_at": "2026-10-24T10:00:00+01:00",
+   "duration_s": 62.0,
+   "cost_usd": null,
+   "cost_status": "unknown",
+   "runner_usd": null,
+   "human_review": null,
+   "group": "A",
+   "run_id": "2c3a4249d77070058649dbd822dcaf79",
+   "run_state": "completed",
+   "result_status": "unresolved",
+   "model_calls": 0,
+   "model_usd": 0,
+   "model_cost_status": "no_model_calls",
+   "report_sha256": "b4a1e4d29819e6ccbecabc22c66c1b658556939070ceacfa2ae512da9bfb2a5a"
+  },
+  {
+   "case_id": "synthetic-review-2",
+   "acceptance_sha256": "c6b30de5b3248ea788787d1b9c344cb13bbb25313070faed24ef41e6c86b196c",
+   "started_at": "2026-10-24T10:00:00+01:00",
+   "duration_s": 62.0,
+   "cost_usd": null,
+   "cost_status": "unknown",
+   "runner_usd": null,
+   "human_review": {
+    "verdict": "rejected",
+    "reviewer": "SYNTHETIC REVIEWER",
+    "reviewed_at": "2026-10-25T12:00:00+01:00",
+    "note": "Patch pins an unrelated package; the outputs match for the wrong reason.",
+    "report_sha256": "4099c0d16a5c3c7380e26dd85abf92a237947b799363da44ef7b4d7e2efa4e2d",
+    "scope": "team_patch_output_review"
+   },
+   "group": "C",
+   "run_id": "9c0abe51c6e6655d81de2d044d4fb194",
+   "run_state": "completed",
+   "result_status": "verified_fix",
+   "model_calls": 4,
+   "model_usd": 0.0136,
+   "model_cost_status": "usage_calculated_pending_reconciliation",
+   "report_sha256": "4099c0d16a5c3c7380e26dd85abf92a237947b799363da44ef7b4d7e2efa4e2d"
+  },
+  {
+   "case_id": "synthetic-review-3",
+   "acceptance_sha256": "c7f4f311b2af6af8901c531aca00e6bcdc7d1f86dfaba291417de309a40c54d9",
+   "started_at": "2026-10-24T10:00:00+01:00",
+   "duration_s": 63.0,
+   "cost_usd": null,
+   "cost_status": "unknown",
+   "runner_usd": null,
+   "human_review": null,
+   "group": "A",
+   "run_id": "f46dd28a5499d8efef0b8fb8ee1ec1c5",
+   "run_state": "completed",
+   "result_status": "unresolved",
+   "model_calls": 0,
+   "model_usd": 0,
+   "model_cost_status": "no_model_calls",
+   "report_sha256": "b8c460ee6bd2274fea374e9977c44915ba4c8a7a81b1c087e466eb328ca74bc7"
+  },
+  {
+   "case_id": "synthetic-review-3",
+   "acceptance_sha256": "c7f4f311b2af6af8901c531aca00e6bcdc7d1f86dfaba291417de309a40c54d9",
+   "started_at": "2026-10-24T10:00:00+01:00",
+   "duration_s": 63.0,
+   "cost_usd": null,
+   "cost_status": "unknown",
+   "runner_usd": null,
+   "human_review": null,
+   "group": "C",
+   "run_id": "7c1c97df17c066924822b0af09a65251",
+   "run_state": "completed",
+   "result_status": "verified_fix",
+   "model_calls": 4,
+   "model_usd": 0.0136,
+   "model_cost_status": "usage_calculated_pending_reconciliation",
+   "report_sha256": "b8dc11337a1a3e19cc371b51a6ecc09665eb12ced69bb7ea46c8d60a50a68a6b"
+  }
+ ],
+ "unrun": [
+  {
+   "case_id": "synthetic-review-1",
+   "group": "B",
+   "reason": "SYNTHETIC: not part of this fixture"
+  },
+  {
+   "case_id": "synthetic-review-1",
+   "group": "D",
+   "reason": "SYNTHETIC: not part of this fixture"
+  },
+  {
+   "case_id": "synthetic-review-2",
+   "group": "B",
+   "reason": "SYNTHETIC: not part of this fixture"
+  },
+  {
+   "case_id": "synthetic-review-2",
+   "group": "D",
+   "reason": "SYNTHETIC: not part of this fixture"
+  },
+  {
+   "case_id": "synthetic-review-3",
+   "group": "B",
+   "reason": "SYNTHETIC: not part of this fixture"
+  },
+  {
+   "case_id": "synthetic-review-3",
+   "group": "D",
+   "reason": "SYNTHETIC: not part of this fixture"
+  }
+ ],
+ "batch_stops": []
+}

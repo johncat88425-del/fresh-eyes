@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "environment": {
+    "platform": "linux/arm64",
+    "image": "python:3.12-slim"
+  },
+  "review": {
+    "status": "draft",
+    "reviewed_by": "Claude (B) static review of README and source at the pinned commit; not executed; no human approval",
+    "reviewed_at": "2026-10-19"
+  },
+  "goal": "Convert the supplied YAML file to JSON on stdout (README: yaml2json input.yaml; output defaults to stdout).",
+  "case_id": "json2yaml-yaml2json",
+  "repo": {
+    "url": "https://github.com/drbild/json2yaml",
+    "commit": "b06ea713f6c817dc0af0f259da5c5afe7352174f"
+  },
+  "readme_source": "README.md:L11;L16;L32-L42",
+  "setup": [
+    {
+      "argv": [
+        "pip",
+        "install",
+        "json2yaml"
+      ],
+      "source": "README.md:L11"
+    }
+  ],
+  "workflow": {
+    "argv": [
+      "yaml2json",
+      "{input}"
+    ],
+    "output": "stdout"
+  },
+  "fixtures": [
+    {
+      "name": "person.yaml",
+      "input": "name: Ada\nlangs:\n  - en\n  - fr\n",
+      "validator": "json",
+      "expected": {
+        "name": "Ada",
+        "langs": [
+          "en",
+          "fr"
+        ]
+      }
+    },
+    {
+      "name": "settings.yaml",
+      "input": "count: 3\nenabled: true\nnested:\n  key: value\n",
+      "validator": "json",
+      "expected": {
+        "count": 3,
+        "enabled": true,
+        "nested": {
+          "key": "value"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,516 @@
+{
+  "schema_version": 1,
+  "data_origin": "execution",
+  "executed": true,
+  "record_source": "owner_local_engine",
+  "api_persisted": false,
+  "run_id": "9a4e3a87ecfc4051a6c355d1c86b7b16",
+  "run_state": "completed",
+  "result_status": "already_passes",
+  "case_id": "json2yaml-yaml2json",
+  "goal": "Convert the supplied YAML file to JSON on stdout (README: yaml2json input.yaml; output defaults to stdout).",
+  "acceptance_sha256": "59cb51e6e9377c61233719531b9bb980ace65fe0b3aa587b74fe1022f553aff5",
+  "verification_level": "functional",
+  "repair_mode": "none",
+  "dependency_mode": "offline_snapshot",
+  "started_at": "2026-10-20T01:35:07.608958+00:00",
+  "finished_at": "2026-10-20T01:35:11.152952+00:00",
+  "reason": null,
+  "evidence": {
+    "schema_version": 1,
+    "run_id": "9a4e3a87ecfc4051a6c355d1c86b7b16",
+    "started_at": "2026-10-20T01:35:07.608958+00:00",
+    "case_id": "json2yaml-yaml2json",
+    "goal": "Convert the supplied YAML file to JSON on stdout (README: yaml2json input.yaml; output defaults to stdout).",
+    "contract_sha256": "844bc267341fbeedd794ddc7f778d1d46901e9e0d94e2abc94c808e96ab91ebb",
+    "acceptance_sha256": "59cb51e6e9377c61233719531b9bb980ace65fe0b3aa587b74fe1022f553aff5",
+    "repo": {
+      "commit": "b06ea713f6c817dc0af0f259da5c5afe7352174f",
+      "url": "https://github.com/drbild/json2yaml"
+    },
+    "review": {
+      "acceptance_sha256": "59cb51e6e9377c61233719531b9bb980ace65fe0b3aa587b74fe1022f553aff5",
+      "approved_at": "2026-10-19T23:43:16.141877+00:00",
+      "reviewed_by": "kevin",
+      "scope": "team_acceptance_review",
+      "status": "approved"
+    },
+    "status": "already_passes",
+    "attempts": [
+      {
+        "phase": "original_readme",
+        "round": null,
+        "status": "passed",
+        "acceptance_sha256": "59cb51e6e9377c61233719531b9bb980ace65fe0b3aa587b74fe1022f553aff5",
+        "result": {
+          "setup_ok": true,
+          "steps": [
+            {
+              "argv": [
+                "/usr/local/bin/python",
+                "-m",
+                "venv",
+                "/work/venv"
+              ],
+              "executed_argv": [
+                "/usr/local/bin/python",
+                "-m",
+                "venv",
+                "/work/venv"
+              ],
+              "exit_code": 0,
+              "duration_s": 1.394,
+              "stdout": "",
+              "stderr": "",
+              "truncated": false
+            },
+            {
+              "argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-c",
+                "import json,pathlib,subprocess,sys,uuid,pip\np=pathlib.Path(sys.prefix).resolve()\nok=(p==pathlib.Path(sys.argv[1]).resolve() and sys.prefix!=sys.base_prefix\n    and pathlib.Path(pip.__file__).resolve().is_relative_to(p))\nexecutable=False\nif ok:\n    probe=p.parent/('.fresh-eyes-exec-probe-'+uuid.uuid4().hex)\n    try:\n        probe.write_text('#!/bin/sh\\nexit 0\\n')\n        probe.chmod(0o700)\n        executable=subprocess.run([str(probe)],stdin=subprocess.DEVNULL,\n                                  stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=5).returncode==0\n    except (OSError,subprocess.TimeoutExpired):\n        executable=False\n    finally:\n        probe.unlink(missing_ok=True)\nprint(json.dumps(dict(executable=sys.executable,prefix=str(p),base_prefix=sys.base_prefix,\n                     pip_module=pip.__file__,python=sys.version.split()[0],workspace_executable=executable)))\nsys.exit(0 if ok and executable else 1)\n",
+                "/work/venv"
+              ],
+              "executed_argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-c",
+                "import json,pathlib,subprocess,sys,uuid,pip\np=pathlib.Path(sys.prefix).resolve()\nok=(p==pathlib.Path(sys.argv[1]).resolve() and sys.prefix!=sys.base_prefix\n    and pathlib.Path(pip.__file__).resolve().is_relative_to(p))\nexecutable=False\nif ok:\n    probe=p.parent/('.fresh-eyes-exec-probe-'+uuid.uuid4().hex)\n    try:\n        probe.write_text('#!/bin/sh\\nexit 0\\n')\n        probe.chmod(0o700)\n        executable=subprocess.run([str(probe)],stdin=subprocess.DEVNULL,\n                                  stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=5).returncode==0\n    except (OSError,subprocess.TimeoutExpired):\n        executable=False\n    finally:\n        probe.unlink(missing_ok=True)\nprint(json.dumps(dict(executable=sys.executable,prefix=str(p),base_prefix=sys.base_prefix,\n                     pip_module=pip.__file__,python=sys.version.split()[0],workspace_executable=executable)))\nsys.exit(0 if ok and executable else 1)\n",
+                "/work/venv"
+              ],
+              "exit_code": 0,
+              "duration_s": 0.116,
+              "stdout": "{\"executable\": \"/work/venv/bin/python\", \"prefix\": \"/work/venv\", \"base_prefix\": \"/usr/local\", \"pip_module\": \"/work/venv/lib/python3.12/site-packages/pip/__init__.py\", \"python\": \"3.12.15\", \"workspace_executable\": true}\n",
+              "stderr": "",
+              "truncated": false
+            },
+            {
+              "argv": [
+                "pip",
+                "install",
+                "json2yaml"
+              ],
+              "executed_argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-m",
+                "pip",
+                "install",
+                "json2yaml"
+              ],
+              "exit_code": 0,
+              "duration_s": 0.468,
+              "stdout": "Looking in links: /bootstrap/wheels\nProcessing /bootstrap/wheels/json2yaml-1.2.0-py3-none-any.whl\nProcessing /bootstrap/wheels/pyyaml-6.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (from json2yaml)\nProcessing /bootstrap/wheels/pyaml-26.7.0-py3-none-any.whl (from json2yaml)\nProcessing /bootstrap/wheels/docopt-0.6.2-py2.py3-none-any.whl (from json2yaml)\nInstalling collected packages: docopt, pyyaml, pyaml, json2yaml\nSuccessfully installed docopt-0.6.2 json2yaml-1.2.0 pyaml-26.7.0 pyyaml-6.0.3\n",
+              "stderr": "",
+              "truncated": false,
+              "pip_install_report": {
+                "version": "1",
+                "pip_version": "25.0.1",
+                "install": [
+                  {
+                    "download_info": {
+                      "url": "file:///bootstrap/wheels/json2yaml-1.2.0-py3-none-any.whl",
+                      "archive_info": {
+                        "hash": "sha256=ec0cce92586cc06cecf35ac4ea770d5070e26facebd68a5f7c29ab50e35066eb",
+                        "hashes": {
+                          "sha256": "ec0cce92586cc06cecf35ac4ea770d5070e26facebd68a5f7c29ab50e35066eb"
+                        }
+                      }
+                    },
+                    "is_direct": false,
+                    "is_yanked": false,
+                    "requested": true,
+                    "metadata": {
+                      "metadata_version": "2.4",
+                      "name": "json2yaml",
+                      "version": "1.2.0",
+                      "dynamic": [
+                        "author",
+                        "author-email",
+                        "classifier",
+                        "home-page",
+                        "keywords",
+                        "requires-dist",
+                        "summary"
+                      ],
+                      "summary": "Convert JSON to YAML or vice versa, while preserving the order of associative arrays.",
+                      "keywords": [
+                        "yaml",
+                        "json",
+                        "converter",
+                        "ordered",
+                        "order",
+                        "preserving"
+                      ],
+                      "home_page": "https://github.com/drbild/json2yaml",
+                      "author": "David R. Bild",
+                      "author_email": "david@davidbild.org",
+                      "classifier": [
+                        "License :: OSI Approved :: Apache Software License",
+                        "Programming Language :: Python"
+                      ],
+                      "requires_dist": [
+                        "pyyaml",
+                        "pyaml",
+                        "docopt"
+                      ]
+                    }
+                  },
+                  {
+                    "download_info": {
+                      "url": "file:///bootstrap/wheels/docopt-0.6.2-py2.py3-none-any.whl",
+                      "archive_info": {
+                        "hash": "sha256=9a07e6fe4f6d5efff25f6f19f38187f84e5ac9999c27583c5f24ed250fb89c10",
+                        "hashes": {
+                          "sha256": "9a07e6fe4f6d5efff25f6f19f38187f84e5ac9999c27583c5f24ed250fb89c10"
+                        }
+                      }
+                    },
+                    "is_direct": false,
+                    "is_yanked": false,
+                    "requested": false,
+                    "metadata": {
+                      "metadata_version": "2.4",
+                      "name": "docopt",
+                      "version": "0.6.2",
+                      "dynamic": [
+                        "author",
+                        "author-email",
+                        "classifier",
+                        "description",
+                        "home-page",
+                        "keywords",
+                        "license",
+                        "license-file",
+                        "summary"
+                      ],
+                      "summary": "Pythonic argument parser, that will make you smile",
+                      "description": "``docopt`` creates *beautiful* command-line interfaces\n======================================================================\n\nVideo introduction to **docopt**: `PyCon UK 2012: Create *beautiful*\ncommand-line interfaces with Python <http://youtu.be/pXhcPJK5cMc>`_\n\n    New in version 0.6.1:\n\n    - Fix issue `#85 <https://github.com/docopt/docopt/issues/85>`_\n      which caused improper handling of ``[options]`` shortcut\n      if it was present several times.\n\n    New in version 0.6.0:\n\n    - New argument ``options_first``, disallows interspersing options\n      and arguments.  If you supply ``options_first=True`` to\n      ``docopt``, it will interpret all arguments as positional\n      arguments after first positional argument.\n\n    - If option with argument could be repeated, its default value\n      will be interpreted as space-separated list. E.g. with\n      ``[default: ./here ./there]`` will be interpreted as\n      ``['./here', './there']``.\n\n    Breaking changes:\n\n    - Meaning of ``[options]`` shortcut slightly changed. Previously\n      it ment *\"any known option\"*. Now it means *\"any option not in\n      usage-pattern\"*.  This avoids the situation when an option is\n      allowed to be repeated unintentionaly.\n\n    - ``argv`` is ``None`` by default, not ``sys.argv[1:]``.\n      This allows ``docopt`` to always use the *latest* ``sys.argv``,\n      not ``sys.argv`` during import time.\n\nIsn't it awesome how ``optparse`` and ``argparse`` generate help\nmessages based on your code?!\n\n*Hell no!*  You know what's awesome?  It's when the option parser *is*\ngenerated based on the beautiful help message that you write yourself!\nThis way you don't need to write this stupid repeatable parser-code,\nand instead can write only the help message--*the way you want it*.\n\n**docopt** helps you create most beautiful command-line interfaces\n*easily*:\n\n.. code:: python\n\n    \"\"\"Naval Fate.\n\n    Usage:\n      naval_fate.py ship new <name>...\n      naval_fate.py ship <name> move <x> <y> [--speed=<kn>]\n      naval_fate.py ship shoot <x> <y>\n      naval_fate.py mine (set|remove) <x> <y> [--moored | --drifting]\n      naval_fate.py (-h | --help)\n      naval_fate.py --version\n\n    Options:\n      -h --help     Show this screen.\n      --version     Show version.\n      --speed=<kn>  Speed in knots [default: 10].\n      --moored      Moored (anchored) mine.\n      --drifting    Drifting mine.\n\n    \"\"\"\n    from docopt import docopt\n\n\n    if __name__ == '__main__':\n        arguments = docopt(__doc__, version='Naval Fate 2.0')\n        print(arguments)\n\nBeat that! The option parser is generated based on the docstring above\nthat is passed to ``docopt`` function.  ``docopt`` parses the usage\npattern (``\"Usage: ...\"``) and option descriptions (lines starting\nwith dash \"``-``\") and ensures that the program invocation matches the\nusage pattern; it parses options, arguments and commands based on\nthat. The basic idea is that *a good help message has all necessary\ninformation in it to make a parser*.\n\nAlso, `PEP 257 <http://www.python.org/dev/peps/pep-0257/>`_ recommends\nputting help message in the module docstrings.\n\nInstallation\n======================================================================\n\nUse `pip <http://pip-installer.org>`_ or easy_install::\n\n    pip install docopt==0.6.2\n\nAlternatively, you can just drop ``docopt.py`` file into your\nproject--it is self-contained.\n\n**docopt** is tested with Python 2.5, 2.6, 2.7, 3.2, 3.3 and PyPy.\n\nAPI\n======================================================================\n\n.. code:: python\n\n    from docopt import docopt\n\n.. code:: python\n\n    docopt(doc, argv=None, help=True, version=None, options_first=False)\n\n``docopt`` takes 1 required and 4 optional arguments:\n\n- ``doc`` could be a module docstring (``__doc__``) or some other\n  string that contains a **help message** that will be parsed to\n  create the option parser.  The simple rules of how to write such a\n  help message are given in next sections.  Here is a quick example of\n  such a string:\n\n.. code:: python\n\n    \"\"\"Usage: my_program.py [-hso FILE] [--quiet | --verbose] [INPUT ...]\n\n    -h --help    show this\n    -s --sorted  sorted output\n    -o FILE      specify output file [default: ./test.txt]\n    --quiet      print less text\n    --verbose    print more text\n\n    \"\"\"\n\n- ``argv`` is an optional argument vector; by default ``docopt`` uses\n  the argument vector passed to your program (``sys.argv[1:]``).\n  Alternatively you can supply a list of strings like ``['--verbose',\n  '-o', 'hai.txt']``.\n\n- ``help``, by default ``True``, specifies whether the parser should\n  automatically print the help message (supplied as ``doc``) and\n  terminate, in case ``-h`` or ``--help`` option is encountered\n  (options should exist in usage pattern, more on that below). If you\n  want to handle ``-h`` or ``--help`` options manually (as other\n  options), set ``help=False``.\n\n- ``version``, by default ``None``, is an optional argument that\n  specifies the version of your program. If supplied, then, (assuming\n  ``--version`` option is mentioned in usage pattern) when parser\n  encounters the ``--version`` option, it will print the supplied\n  version and terminate.  ``version`` could be any printable object,\n  but most likely a string, e.g. ``\"2.1.0rc1\"``.\n\n    Note, when ``docopt`` is set to automatically handle ``-h``,\n    ``--help`` and ``--version`` options, you still need to mention\n    them in usage pattern for this to work. Also, for your users to\n    know about them.\n\n- ``options_first``, by default ``False``.  If set to ``True`` will\n  disallow mixing options and positional argument.  I.e. after first\n  positional argument, all arguments will be interpreted as positional\n  even if the look like options.  This can be used for strict\n  compatibility with POSIX, or if you want to dispatch your arguments\n  to other programs.\n\nThe **return** value is a simple dictionary with options, arguments\nand commands as keys, spelled exactly like in your help message.  Long\nversions of options are given priority. For example, if you invoke the\ntop example as::\n\n    naval_fate.py ship Guardian move 100 150 --speed=15\n\nthe return dictionary will be:\n\n.. code:: python\n\n    {'--drifting': False,    'mine': False,\n     '--help': False,        'move': True,\n     '--moored': False,      'new': False,\n     '--speed': '15',        'remove': False,\n     '--version': False,     'set': False,\n     '<name>': ['Guardian'], 'ship': True,\n     '<x>': '100',           'shoot': False,\n     '<y>': '150'}\n\nHelp message format\n======================================================================\n\nHelp message consists of 2 parts:\n\n- Usage pattern, e.g.::\n\n    Usage: my_program.py [-hso FILE] [--quiet | --verbose] [INPUT ...]\n\n- Option descriptions, e.g.::\n\n    -h --help    show this\n    -s --sorted  sorted output\n    -o FILE      specify output file [default: ./test.txt]\n    --quiet      print less text\n    --verbose    print more text\n\nTheir format is described below; other text is ignored.\n\nUsage pattern format\n----------------------------------------------------------------------\n\n**Usage pattern** is a substring of ``doc`` that starts with\n``usage:`` (case *insensitive*) and ends with a *visibly* empty line.\nMinimum example:\n\n.. code:: python\n\n    \"\"\"Usage: my_program.py\n\n    \"\"\"\n\nThe first word after ``usage:`` is interpreted as your program's name.\nYou can specify your program's name several times to signify several\nexclusive patterns:\n\n.. code:: python\n\n    \"\"\"Usage: my_program.py FILE\n              my_program.py COUNT FILE\n\n    \"\"\"\n\nEach pattern can consist of the following elements:\n\n- **<arguments>**, **ARGUMENTS**. Arguments are specified as either\n  upper-case words, e.g. ``my_program.py CONTENT-PATH`` or words\n  surrounded by angular brackets: ``my_program.py <content-path>``.\n- **--options**.  Options are words started with dash (``-``), e.g.\n  ``--output``, ``-o``.  You can \"stack\" several of one-letter\n  options, e.g. ``-oiv`` which will be the same as ``-o -i -v``. The\n  options can have arguments, e.g.  ``--input=FILE`` or ``-i FILE`` or\n  even ``-iFILE``. However it is important that you specify option\n  descriptions if you want for option to have an argument, a default\n  value, or specify synonymous short/long versions of option (see next\n  section on option descriptions).\n- **commands** are words that do *not* follow the described above\n  conventions of ``--options`` or ``<arguments>`` or ``ARGUMENTS``,\n  plus two special commands: dash \"``-``\" and double dash \"``--``\"\n  (see below).\n\nUse the following constructs to specify patterns:\n\n- **[ ]** (brackets) **optional** elements.  e.g.: ``my_program.py\n  [-hvqo FILE]``\n- **( )** (parens) **required** elements.  All elements that are *not*\n  put in **[ ]** are also required, e.g.: ``my_program.py\n  --path=<path> <file>...`` is the same as ``my_program.py\n  (--path=<path> <file>...)``.  (Note, \"required options\" might be not\n  a good idea for your users).\n- **|** (pipe) **mutualy exclusive** elements. Group them using **(\n  )** if one of the mutually exclusive elements is required:\n  ``my_program.py (--clockwise | --counter-clockwise) TIME``. Group\n  them using **[ ]** if none of the mutually-exclusive elements are\n  required: ``my_program.py [--left | --right]``.\n- **...** (ellipsis) **one or more** elements. To specify that\n  arbitrary number of repeating elements could be accepted, use\n  ellipsis (``...``), e.g.  ``my_program.py FILE ...`` means one or\n  more ``FILE``-s are accepted.  If you want to accept zero or more\n  elements, use brackets, e.g.: ``my_program.py [FILE ...]``. Ellipsis\n  works as a unary operator on the expression to the left.\n- **[options]** (case sensitive) shortcut for any options.  You can\n  use it if you want to specify that the usage pattern could be\n  provided with any options defined below in the option-descriptions\n  and do not want to enumerate them all in usage-pattern.  -\n  \"``[--]``\". Double dash \"``--``\" is used by convention to separate\n  positional arguments that can be mistaken for options. In order to\n  support this convention add \"``[--]``\" to you usage patterns.  -\n  \"``[-]``\". Single dash \"``-``\" is used by convention to signify that\n  ``stdin`` is used instead of a file. To support this add \"``[-]``\"\n  to you usage patterns. \"``-``\" act as a normal command.\n\nIf your pattern allows to match argument-less option (a flag) several\ntimes::\n\n    Usage: my_program.py [-v | -vv | -vvv]\n\nthen number of occurences of the option will be counted. I.e.\n``args['-v']`` will be ``2`` if program was invoked as ``my_program\n-vv``. Same works for commands.\n\nIf your usage patterns allows to match same-named option with argument\nor positional argument several times, the matched arguments will be\ncollected into a list::\n\n    Usage: my_program.py <file> <file> --path=<path>...\n\nI.e. invoked with ``my_program.py file1 file2 --path=./here\n--path=./there`` the returned dict will contain ``args['<file>'] ==\n['file1', 'file2']`` and ``args['--path'] == ['./here', './there']``.\n\n\nOption descriptions format\n----------------------------------------------------------------------\n\n**Option descriptions** consist of a list of options that you put\nbelow your usage patterns.\n\nIt is necessary to list option descriptions in order to specify:\n\n- synonymous short and long options,\n- if an option has an argument,\n- if option's argument has a default value.\n\nThe rules are as follows:\n\n- Every line in ``doc`` that starts with ``-`` or ``--`` (not counting\n  spaces) is treated as an option description, e.g.::\n\n    Options:\n      --verbose   # GOOD\n      -o FILE     # GOOD\n    Other: --bad  # BAD, line does not start with dash \"-\"\n\n- To specify that option has an argument, put a word describing that\n  argument after space (or equals \"``=``\" sign) as shown below. Follow\n  either <angular-brackets> or UPPER-CASE convention for options'\n  arguments.  You can use comma if you want to separate options. In\n  the example below, both lines are valid, however you are recommended\n  to stick to a single style.::\n\n    -o FILE --output=FILE       # without comma, with \"=\" sign\n    -i <file>, --input <file>   # with comma, wihtout \"=\" sing\n\n- Use two spaces to separate options with their informal description::\n\n    --verbose More text.   # BAD, will be treated as if verbose option had\n                           # an argument \"More\", so use 2 spaces instead\n    -q        Quit.        # GOOD\n    -o FILE   Output file. # GOOD\n    --stdout  Use stdout.  # GOOD, 2 spaces\n\n- If you want to set a default value for an option with an argument,\n  put it into the option-description, in form ``[default:\n  <my-default-value>]``::\n\n    --coefficient=K  The K coefficient [default: 2.95]\n    --output=FILE    Output file [default: test.txt]\n    --directory=DIR  Some directory [default: ./]\n\n- If the option is not repeatable, the value inside ``[default: ...]``\n  will be interpeted as string.  If it *is* repeatable, it will be\n  splited into a list on whitespace::\n\n    Usage: my_program.py [--repeatable=<arg> --repeatable=<arg>]\n                         [--another-repeatable=<arg>]...\n                         [--not-repeatable=<arg>]\n\n    # will be ['./here', './there']\n    --repeatable=<arg>          [default: ./here ./there]\n\n    # will be ['./here']\n    --another-repeatable=<arg>  [default: ./here]\n\n    # will be './here ./there', because it is not repeatable\n    --not-repeatable=<arg>      [default: ./here ./there]\n\nExamples\n----------------------------------------------------------------------\n\nWe have an extensive list of `examples\n<https://github.com/docopt/docopt/tree/master/examples>`_ which cover\nevery aspect of functionality of **docopt**.  Try them out, read the\nsource if in doubt.\n\nSubparsers, multi-level help and *huge* applications (like git)\n----------------------------------------------------------------------\n\nIf you want to split your usage-pattern into several, implement\nmulti-level help (whith separate help-screen for each subcommand),\nwant to interface with existing scripts that don't use **docopt**, or\nyou're building the next \"git\", you will need the new ``options_first``\nparameter (described in API section above). To get you started quickly\nwe implemented a subset of git command-line interface as an example:\n`examples/git\n<https://github.com/docopt/docopt/tree/master/examples/git>`_\n\n\nData validation\n----------------------------------------------------------------------\n\n**docopt** does one thing and does it well: it implements your\ncommand-line interface.  However it does not validate the input data.\nOn the other hand there are libraries like `python schema\n<https://github.com/halst/schema>`_ which make validating data a\nbreeze.  Take a look at `validation_example.py\n<https://github.com/docopt/docopt/tree/master/examples/validation_example.py>`_\nwhich uses **schema** to validate data and report an error to the\nuser.\n\nDevelopment\n======================================================================\n\nWe would *love* to hear what you think about **docopt** on our `issues\npage <http://github.com/docopt/docopt/issues>`_\n\nMake pull requrests, report bugs, suggest ideas and discuss\n**docopt**. You can also drop a line directly to\n<vladimir@keleshev.com>.\n\nPorting ``docopt`` to other languages\n======================================================================\n\nWe think **docopt** is so good, we want to share it beyond the Python\ncommunity!\n\nThe follosing ports are available:\n\n- `Ruby port <http://github.com/docopt/docopt.rb>`_\n- `CoffeeScript port <http://github.com/docopt/docopt.coffee>`_\n- `Lua port <http://github.com/docopt/docopt.lua>`_\n- `PHP port <http://github.com/docopt/docopt.php>`_\n\nBut you can always create a port for your favorite language!  You are\nencouraged to use the Python version as a reference implementation.  A\nLanguage-agnostic test suite is bundled with `Python implementation\n<http://github.com/docopt/docopt>`_.\n\nPorting discussion is on `issues page\n<http://github.com/docopt/docopt/issues>`_.\n\nChangelog\n======================================================================\n\n**docopt** follows `semantic versioning <http://semver.org>`_.  The\nfirst release with stable API will be 1.0.0 (soon).  Until then, you\nare encouraged to specify explicitly the version in your dependency\ntools, e.g.::\n\n    pip install docopt==0.6.2\n\n- 0.6.2 `Wheel <http://pythonwheels.com/>`_ support.\n- 0.6.1 Bugfix release.\n- 0.6.0 ``options_first`` parameter.\n  **Breaking changes**: Corrected ``[options]`` meaning.\n  ``argv`` defaults to ``None``.\n- 0.5.0 Repeated options/commands are counted or accumulated into a\n  list.\n- 0.4.2 Bugfix release.\n- 0.4.0 Option descriptions become optional,\n  support for \"``--``\" and \"``-``\" commands.\n- 0.3.0 Support for (sub)commands like `git remote add`.\n  Introduce ``[options]`` shortcut for any options.\n  **Breaking changes**: ``docopt`` returns dictionary.\n- 0.2.0 Usage pattern matching. Positional arguments parsing based on\n  usage patterns.\n  **Breaking changes**: ``docopt`` returns namespace (for arguments),\n  not list. Usage pattern is formalized.\n- 0.1.0 Initial release. Options-parsing only (based on options\n  description).\n",
+                      "keywords": [
+                        "option",
+                        "arguments",
+                        "parsing",
+                        "optparse",
+                        "argparse",
+                        "getopt"
+                      ],
+                      "home_page": "http://docopt.org",
+                      "author": "Vladimir Keleshev",
+                      "author_email": "vladimir@keleshev.com",
+                      "license": "MIT",
+                      "license_file": [
+                        "LICENSE-MIT"
+                      ],
+                      "classifier": [
+                        "Development Status :: 3 - Alpha",
+                        "Topic :: Utilities",
+                        "Programming Language :: Python :: 2.5",
+                        "Programming Language :: Python :: 2.6",
+                        "Programming Language :: Python :: 2.7",
+                        "Programming Language :: Python :: 3.2",
+                        "Programming Language :: Python :: 3.3",
+                        "License :: OSI Approved :: MIT License"
+                      ]
+                    }
+                  },
+                  {
+                    "download_info": {
+                      "url": "file:///bootstrap/wheels/pyaml-26.7.0-py3-none-any.whl",
+                      "archive_info": {
+                        "hash": "sha256=cfa382780c43ae660669b87d394d550a41856ef175f5749f51f753e12d7077ac",
+                        "hashes": {
+                          "sha256": "cfa382780c43ae660669b87d394d550a41856ef175f5749f51f753e12d7077ac"
+                        }
+                      }
+                    },
+                    "is_direct": false,
+                    "is_yanked": false,
+                    "requested": false,
+                    "metadata": {
+                      "metadata_version": "2.4",
+                      "name": "pyaml",
+                      "version": "26.7.0",
+                      "dynamic": [
+                        "author",
+                        "home-page",
+                        "license-file"
+                      ],
+                      "summary": "PyYAML-based module to produce a bit more pretty and readable YAML-serialized data",
+                      "description": "pretty-yaml (or pyaml)\n======================\n\nPyYAML_-based python module to produce a bit more pretty and human-readable YAML-serialized data.\n\nThis module is for serialization only, see `ruamel.yaml`_ module for literate\nYAML parsing (keeping track of comments, spacing, line/column numbers of values, etc).\n\n(side-note: to dump stuff parsed by ruamel.yaml with this module, use only ``YAML(typ='safe')`` there)\n\nIt's a small module, and for projects that only need part of its functionality,\nI'd recommend copy-pasting that in, instead of adding janky dependency.\n\n.. _PyYAML: http://pyyaml.org/\n.. _ruamel.yaml: https://bitbucket.org/ruamel/yaml/\n\n.. contents::\n  :backlinks: none\n\nRepository URLs:\n\n- https://github.com/mk-fg/pretty-yaml\n- https://codeberg.org/mk-fg/pretty-yaml\n- https://fraggod.net/code/git/pretty-yaml\n\n\nWarning\n-------\n\nPrime goal of this module is to produce human-readable output that can be\neasily diff'ed, manipulated and re-used, but maybe with occasional issues.\n\nSo please do not rely on the thing to produce output that can always be\ndeserialized exactly to what was exported, at least - use PyYAML directly\nfor that (but maybe with options from the next section).\n\nOutput also isn't guaranteed to be stable between module versions,\nas new representation tweaks get added occasionally, but these can usually\nbe disabled via module parameters, to get output stability over improvements.\n\n\nWhat this module does and why\n-----------------------------\n\nYAML is generally nice and easy format to read *if* it was written by humans.\n\nPyYAML can a do fairly decent job of making stuff readable, and the best\ncombination of parameters for such output that I've seen so far is probably this one::\n\n  >>> m = [123, 45.67, {1: None, 2: False}, 'some text']\n  >>> data = dict(a='asldnsa\\nasldpáknsa\\n', b='whatever text', ma=m, mb=m)\n  >>> yaml.safe_dump( data, sys.stdout,\n    width=100, allow_unicode=True, default_flow_style=False )\n  a: 'asldnsa\n\n    asldpáknsa\n\n    '\n  b: whatever text\n  ma: &id001\n  - 123\n  - 45.67\n  - 1: null\n    2: false\n  - some text\n  mb: *id001\n\npyaml (this module) tries to improve on that a bit, with the following tweaks:\n\n* Most human-friendly representation options in PyYAML (that I know of)\n  are used as defaults - unicode, flow-style, width=100 (old default is 80).\n\n* Dump \"null\" values as empty values, if possible, which have the same meaning\n  but reduce visual clutter and are easier to edit.\n\n* Dicts, sets, OrderedDicts, defaultdicts, namedtuples, enums, dataclasses, etc\n  are represented as their safe YAML-compatible base (like int, list or mapping),\n  with mappings key-sorted by default for more diff-friendly output.\n\n* Use shorter and simpler yes/no for booleans.\n\n* List items get indented, as they should be.\n\n* Attempt is made to pick more readable string representation styles, depending\n  on the value, e.g.::\n\n    >>> yaml.safe_dump(cert, sys.stdout)\n    cert: '-----BEGIN CERTIFICATE-----\n\n      MIIH3jCCBcagAwIBAgIJAJi7AjQ4Z87OMA0GCSqGSIb3DQEBCwUAMIHBMRcwFQYD\n\n      VQQKFA52YWxlcm9uLm5vX2lzcDEeMBwGA1UECxMVQ2VydGlmaWNhdGUgQXV0aG9y\n    ...\n\n    >>> pyaml.p(cert):\n    cert: |\n      -----BEGIN CERTIFICATE-----\n      MIIH3jCCBcagAwIBAgIJAJi7AjQ4Z87OMA0GCSqGSIb3DQEBCwUAMIHBMRcwFQYD\n      VQQKFA52YWxlcm9uLm5vX2lzcDEeMBwGA1UECxMVQ2VydGlmaWNhdGUgQXV0aG9y\n    ...\n\n* \"force_embed\" option (default=yes) to avoid having &id stuff scattered all\n  over the output. Might be more useful to disable it in some specific cases though.\n\n* \"&idXYZ\" anchors, when needed, get labels from the keys they get attached to,\n  not just meaningless enumerators, e.g. \"&users_-_admin\" instead.\n\n* \"string_val_style\" option to only apply to strings that are values, not keys,\n  i.e::\n\n    >>> pyaml.p(data, string_val_style='\"')\n    key: \"value\\nasldpáknsa\\n\"\n    >>> yaml.safe_dump(data, sys.stdout, allow_unicode=True, default_style='\"')\n    \"key\": \"value\\nasldpáknsa\\n\"\n\n* Add vertical spacing (empty lines) between keys on different depths,\n  to separate long YAML sections in the output visually, make it more seekable.\n\n* Discard end-of-document \"...\" indicators for simple values.\n\nResult for the (rather meaningless) example above::\n\n  >>> pyaml.p(data, force_embed=False, vspacing=dict(split_lines=10))\n\n  a: |\n    asldnsa\n    asldpáknsa\n\n  b: whatever text\n\n  ma: &ma\n    - 123\n    - 45.67\n    - 1:\n      2: no\n    - some text\n\n  mb: *ma\n\n(force_embed=False enabled deduplication with ``&ma`` anchor,\nvspacing is adjusted to split even this tiny output)\n\n----------\n\nExtended example::\n\n  >>> pyaml.dump(data, vspacing=dict(split_lines=10))\n\n  destination:\n\n    encoding:\n      xz:\n        enabled: yes\n        min_size: 5120\n        options:\n        path_filter:\n          - \\.(gz|bz2|t[gb]z2?|xz|lzma|7z|zip|rar)$\n          - \\.(rpm|deb|iso)$\n          - \\.(jpe?g|gif|png|mov|avi|ogg|mkv|webm|mp[34g]|flv|flac|ape|pdf|djvu)$\n          - \\.(sqlite3?|fossil|fsl)$\n          - \\.git/objects/[0-9a-f]+/[0-9a-f]+$\n\n    result:\n      append_to_file:\n      append_to_lafs_dir:\n      print_to_stdout: yes\n\n    url: http://localhost:3456/uri\n\n  filter:\n    - /(CVS|RCS|SCCS|_darcs|\\{arch\\})/$\n    - /\\.(git|hg|bzr|svn|cvs)(/|ignore|attributes|tags)?$\n    - /=(RELEASE-ID|meta-update|update)$\n\n  http:\n    ca_certs_files: /etc/ssl/certs/ca-certificates.crt\n    debug_requests: no\n    request_pool_options:\n      cachedConnectionTimeout: 600\n      maxPersistentPerHost: 10\n      retryAutomatically: yes\n\n  logging:\n\n    formatters:\n      basic:\n        datefmt: '%Y-%m-%d %H:%M:%S'\n        format: '%(asctime)s :: %(name)s :: %(levelname)s: %(message)s'\n\n    handlers:\n      console:\n        class: logging.StreamHandler\n        formatter: basic\n        level: custom\n        stream: ext://sys.stderr\n\n    loggers:\n      twisted:\n        handlers:\n          - console\n        level: 0\n\n    root:\n      handlers:\n        - console\n      level: custom\n\nNote that unless there are many moderately wide and deep trees of data,\nwhich are expected to be read and edited by people, it might be preferrable\nto directly use PyYAML regardless, as it won't introduce another\n(rather pointless in that case) dependency and a point of failure.\n\n\nFeatures and Tricks\n-------------------\n\n* Pretty-print any yaml or json (yaml subset) file from the shell::\n\n    % python -m pyaml /path/to/some/file.yaml\n    % pyaml < myfile.yml\n    % curl -s https://www.githubstatus.com/api/v2/summary.json | pyaml\n\n  ``pipx install pyaml`` can be a good way to only install \"pyaml\" command-line script.\n\n* Process and replace json/yaml file in-place::\n\n    % python -m pyaml -r mydata.yml\n\n* Easier \"debug printf to YAML\" for some complex data::\n\n    pyaml.debug(data)\n    pyaml.debug(node_graph, ifaces, group_vars)\n\n  debug() is an alias for pprint(repr_unknown=True) to dump non-YAML types as well.\n\n  More strict YAML-print funcs (all aliases to same thing)::\n\n    pyaml.p(stuff)\n    pyaml.pprint(my_data)\n    pyaml.pprint('----- HOW DOES THAT BREAKS!?!?', input_data, some_var, more_stuff)\n    pyaml.print(data, file=sys.stderr)\n\n* Force all string values to a certain style (see info on these in `PyYAML docs`_)::\n\n    pyaml.dump(many_weird_strings, string_val_style='|')\n    pyaml.dump(multiline_words, string_val_style='>')\n    pyaml.dump(no_want_quotes, string_val_style='plain')\n\n  Using ``pyaml.add_representer()`` (note \\*p\\*yaml) as suggested in\n  `this SO thread`_ (or `github-issue-7`_) should also work.\n\n  See also this `amazing reply to StackOverflow#3790454`_ for everything about\n  the many different string styles in YAML.\n\n* Control indent and width of the results::\n\n    pyaml.dump(wide_and_deep, indent=4, width=120)\n\n  These are actually keywords for PyYAML Emitter (passed to it from Dumper),\n  see more info on these in `PyYAML docs`_.\n\n* Dump multiple yaml documents into a file: ``pyaml.dump_all([data1, data2, data3], dst_file)``\n\n  explicit_start=True is implied, unless overidden by explicit_start=False.\n\n* Control thresholds for vertical spacing of values (0 = always space stuff out),\n  and clump all oneliner ones at the top::\n\n    >>> pyaml.p( data,\n      sort_dicts=pyaml.PYAMLSort.oneline_group,\n      vspacing=dict(split_lines=0, split_count=0) )\n\n    chart:\n      axisCenteredZero: no\n      axisColorMode: text\n      axisLabel: ''\n      axisPlacement: auto\n      barAlignment: 0\n      drawStyle: line\n      ...\n\n      hideFrom:\n        legend: no\n        tooltip: no\n        viz: no\n\n      scaleDistribution:\n        type: linear\n\n      stacking:\n        group: A\n        mode: none\n\n  Or same thing with cli tool ``-v/--vspacing`` option: ``pyaml -v 0/0g mydata.yaml``\n\n* Dump any non-YAML-type values when debugging or to replace later::\n\n    >>> test2 = type('test2', (object,), dict(a='b'))()\n    >>> test3 = type('test3', (object,), dict(__repr__=lambda s: '# test3 repr'+' '*80))()\n    >>> pyaml.p(dict(test1='test1', test2=test2, test3=test3), repr_unknown=True)\n\n    test1: test1\n    test2: <__main__.test2 object at 0x7f00ccd1ade0> # python value\n    test3: '# test3 repr                                       ...[50/92]' # python __main__.test3\n\n  Such unknown-type values get truncated if their repr() is too long, which can\n  be controlled by passing int max-length to repr_unknown instead of bool.\n  pyaml.debug() alias also implies repr_unknown=True flag.\n\n.. _PyYAML docs: http://pyyaml.org/wiki/PyYAMLDocumentation#Scalars\n.. _this SO thread: http://stackoverflow.com/a/7445560\n.. _github-issue-7: https://github.com/mk-fg/pretty-yaml/issues/7\n.. _amazing reply to StackOverflow#3790454:\n  https://stackoverflow.com/questions/3790454/how-do-i-break-a-string-in-yaml-over-multiple-lines/21699210#21699210\n\n\nInstallation\n------------\n\nIt's a regular Python 3.8+ module/package, published on PyPI (as pyaml_).\n\nModule uses PyYAML_ for processing of the actual YAML files\nand should pull it in as a dependency.\n\nDependency on unidecode_ module is optional and only used with\nforce_embed=False keyword (defaults to True), and same-id objects\nor recursion within serialized data - i.e. only when generating\n&some_key_id anchors is actually needed.\nIf module is unavailable at runtime, anchor ids might be less like their\nkeys and maybe not as nice.\n\nUsing pip_ is how you generally install it, usually coupled with venv_ usage\n(which will also provide \"pip\" tool itself)::\n\n  % pip install pyaml\n\nCurrent-git version can be installed like this::\n\n  % pip install git+https://github.com/mk-fg/pretty-yaml\n\npip will default to installing into currently-active venv, then user's home\ndirectory (under ``~/.local/lib/python...``), and maybe system-wide when running\nas root (only useful in specialized environments like docker containers).\n\nThere are many other python packaging tools - pipenv_, poetry_, pdm_, etc -\nuse whatever is most suitable for specific project/environment.\npipx_ can be used to install command-line script without a module.\n\nMore general info on python packaging can be found at `packaging.python.org`_.\n\nWhen changing code, unit tests can be run with ``python -m unittest``\nfrom a local repository checkout.\n\n.. _pyaml: https://pypi.org/project/pyaml/\n.. _unidecode: https://pypi.python.org/pypi/Unidecode\n.. _pip: https://pip.pypa.io/en/stable/\n.. _venv: https://docs.python.org/3/library/venv.html\n.. _poetry: https://python-poetry.org/\n.. _pipenv: https://pipenv.pypa.io/\n.. _pdm: https://pdm.fming.dev/\n.. _pipx: https://pypa.github.io/pipx/\n.. _packaging.python.org: https://packaging.python.org/installing/\n",
+                      "description_content_type": "text/x-rst",
+                      "keywords": [
+                        "yaml",
+                        "serialization",
+                        "pretty-print",
+                        "formatter",
+                        "human",
+                        "readability"
+                      ],
+                      "home_page": "https://github.com/mk-fg/pretty-yaml",
+                      "author": "Mike Kazantsev",
+                      "author_email": "Mike Kazantsev <mk.fraggod@gmail.com>",
+                      "license": "WTFPL",
+                      "license_file": [
+                        "COPYING"
+                      ],
+                      "classifier": [
+                        "Development Status :: 4 - Beta",
+                        "Intended Audience :: Developers",
+                        "License :: Public Domain",
+                        "Programming Language :: Python",
+                        "Programming Language :: Python :: 3.8",
+                        "Topic :: Software Development",
+                        "Topic :: Software Development :: Libraries :: Python Modules",
+                        "Topic :: Utilities"
+                      ],
+                      "requires_dist": [
+                        "PyYAML",
+                        "unidecode; extra == \"anchors\""
+                      ],
+                      "requires_python": ">=3.8",
+                      "project_url": [
+                        "Homepage, https://github.com/mk-fg/pretty-yaml"
+                      ],
+                      "provides_extra": [
+                        "anchors"
+                      ]
+                    }
+                  },
+                  {
+                    "download_info": {
+                      "url": "file:///bootstrap/wheels/pyyaml-6.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl",
+                      "archive_info": {
+                        "hash": "sha256=9149cad251584d5fb4981be1ecde53a1ca46c891a79788c0df828d2f166bda28",
+                        "hashes": {
+                          "sha256": "9149cad251584d5fb4981be1ecde53a1ca46c891a79788c0df828d2f166bda28"
+                        }
+                      }
+                    },
+                    "is_direct": false,
+                    "is_yanked": false,
+                    "requested": false,
+                    "metadata": {
+                      "metadata_version": "2.4",
+                      "name": "PyYAML",
+                      "version": "6.0.3",
+                      "dynamic": [
+                        "author",
+                        "author-email",
+                        "classifier",
+                        "description",
+                        "download-url",
+                        "home-page",
+                        "license",
+                        "license-file",
+                        "platform",
+                        "project-url",
+                        "requires-python",
+                        "summary"
+                      ],
+                      "platform": [
+                        "Any"
+                      ],
+                      "summary": "YAML parser and emitter for Python",
+                      "description": "YAML is a data serialization format designed for human readability\nand interaction with scripting languages.  PyYAML is a YAML parser\nand emitter for Python.\n\nPyYAML features a complete YAML 1.1 parser, Unicode support, pickle\nsupport, capable extension API, and sensible error messages.  PyYAML\nsupports standard YAML tags and provides Python-specific tags that\nallow to represent an arbitrary Python object.\n\nPyYAML is applicable for a broad range of tasks from complex\nconfiguration files to object serialization and persistence.\n",
+                      "home_page": "https://pyyaml.org/",
+                      "download_url": "https://pypi.org/project/PyYAML/",
+                      "author": "Kirill Simonov",
+                      "author_email": "xi@resolvent.net",
+                      "license": "MIT",
+                      "license_file": [
+                        "LICENSE"
+                      ],
+                      "classifier": [
+                        "Development Status :: 5 - Production/Stable",
+                        "Intended Audience :: Developers",
+                        "License :: OSI Approved :: MIT License",
+                        "Operating System :: OS Independent",
+                        "Programming Language :: Cython",
+                        "Programming Language :: Python",
+                        "Programming Language :: Python :: 3",
+                        "Programming Language :: Python :: 3.8",
+                        "Programming Language :: Python :: 3.9",
+                        "Programming Language :: Python :: 3.10",
+                        "Programming Language :: Python :: 3.11",
+                        "Programming Language :: Python :: 3.12",
+                        "Programming Language :: Python :: 3.13",
+                        "Programming Language :: Python :: 3.14",
+                        "Programming Language :: Python :: Implementation :: CPython",
+                        "Programming Language :: Python :: Implementation :: PyPy",
+                        "Topic :: Software Development :: Libraries :: Python Modules",
+                        "Topic :: Text Processing :: Markup"
+                      ],
+                      "requires_python": ">=3.8",
+                      "project_url": [
+                        "Bug Tracker, https://github.com/yaml/pyyaml/issues",
+                        "CI, https://github.com/yaml/pyyaml/actions",
+                        "Documentation, https://pyyaml.org/wiki/PyYAMLDocumentation",
+                        "Mailing lists, http://lists.sourceforge.net/lists/listinfo/yaml-core",
+                        "Source Code, https://github.com/yaml/pyyaml"
+                      ]
+                    }
+                  }
+                ],
+                "environment": {
+                  "implementation_name": "cpython",
+                  "implementation_version": "3.12.15",
+                  "os_name": "posix",
+                  "platform_machine": "aarch64",
+                  "platform_release": "7.0.0-34-generic",
+                  "platform_system": "Linux",
+                  "platform_version": "#34-Ubuntu SMP PREEMPT_DYNAMIC Wed Sep  2 14:34:54 UTC 2026",
+                  "python_full_version": "3.12.15",
+                  "platform_python_implementation": "CPython",
+                  "python_version": "3.12",
+                  "sys_platform": "linux"
+                }
+              }
+            }
+          ],
+          "outputs": [
+            {
+              "name": "person.yaml",
+              "exit_code": 0,
+              "content": "{\n    \"name\": \"Ada\",\n    \"langs\": [\n        \"en\",\n        \"fr\"\n    ]\n}\n",
+              "truncated": false,
+              "process": {
+                "argv": [
+                  "yaml2json",
+                  "/work/inputs/person.yaml"
+                ],
+                "executed_argv": [
+                  "yaml2json",
+                  "/work/inputs/person.yaml"
+                ],
+                "exit_code": 0,
+                "duration_s": 0.068,
+                "stdout": "{\n    \"name\": \"Ada\",\n    \"langs\": [\n        \"en\",\n        \"fr\"\n    ]\n}\n",
+                "stderr": "",
+                "truncated": false
+              }
+            },
+            {
+              "name": "settings.yaml",
+              "exit_code": 0,
+              "content": "{\n    \"count\": 3,\n    \"enabled\": true,\n    \"nested\": {\n        \"key\": \"value\"\n    }\n}\n",
+              "truncated": false,
+              "process": {
+                "argv": [
+                  "yaml2json",
+                  "/work/inputs/settings.yaml"
+                ],
+                "executed_argv": [
+                  "yaml2json",
+                  "/work/inputs/settings.yaml"
+                ],
+                "exit_code": 0,
+                "duration_s": 0.067,
+                "stdout": "{\n    \"count\": 3,\n    \"enabled\": true,\n    \"nested\": {\n        \"key\": \"value\"\n    }\n}\n",
+                "stderr": "",
+                "truncated": false
+              }
+            }
+          ],
+          "pip_freeze": {
+            "argv": [
+              "pip",
+              "freeze",
+              "--all"
+            ],
+            "executed_argv": [
+              "/work/venv/bin/python",
+              "-I",
+              "-m",
+              "pip",
+              "freeze",
+              "--all"
+            ],
+            "exit_code": 0,
+            "duration_s": 0.369,
+            "stdout": "docopt==0.6.2\njson2yaml==1.2.0\npip==25.0.1\npyaml==26.7.0\nPyYAML==6.0.3\n",
+            "stderr": "",
+            "truncated": false
+          },
+          "dependency_mode": "offline_snapshot",
+          "environment_policy": "Fresh venv; documented Python/pip aliases resolve to that interpreter; no user-site install.",
+          "container_id": "fresh-eyes-ebfaec2c217141e4",
+          "execution_image_id": "sha256:746c51fba1eb37366cd77c00b5e959f641d824bd0aa478a56c3461479660d6bb",
+          "network_policy": {
+            "mode": "none",
+            "configuration_verified": true
+          }
+        },
+        "validation": {
+          "passed": true,
+          "checks": [
+            {
+              "name": "person.yaml",
+              "passed": true,
+              "reason": "Expected functional output matched"
+            },
+            {
+              "name": "settings.yaml",
+              "passed": true,
+              "reason": "Expected functional output matched"
+            }
+          ]
+        }
+      }
+    ],
+    "model_calls": 0,
+    "repair_author": null,
+    "dependency_mode": "offline_snapshot",
+    "max_patch_rounds": 0,
+    "repair_route": null,
+    "repair_rounds": [],
+    "time_limit_s": 600,
+    "limitations": [
+      "Offline snapshot; cannot observe new upstream package releases.",
+      "Development cases have not been approved by upstream maintainers.",
+      "Passing fixtures only verifies the registered workflow."
+    ],
+    "current_phase": "finished",
+    "environment": {
+      "requested_image": "sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1",
+      "image_id": "sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1",
+      "repo_digests": [
+        "python@sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1"
+      ],
+      "platform": "linux/arm64",
+      "dependency_mode": "offline_snapshot",
+      "network": "none",
+      "offline_wheelhouse": true,
+      "egress_allowlist": []
+    },
+    "wheelhouse": [
+      {
+        "name": "docopt-0.6.2-py2.py3-none-any.whl",
+        "sha256": "9a07e6fe4f6d5efff25f6f19f38187f84e5ac9999c27583c5f24ed250fb89c10"
+      },
+      {
+        "name": "json2yaml-1.2.0-py3-none-any.whl",
+        "sha256": "ec0cce92586cc06cecf35ac4ea770d5070e26facebd68a5f7c29ab50e35066eb"
+      },
+      {
+        "name": "pyaml-26.7.0-py3-none-any.whl",
+        "sha256": "cfa382780c43ae660669b87d394d550a41856ef175f5749f51f753e12d7077ac"
+      },
+      {
+        "name": "pyyaml-6.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl",
+        "sha256": "9149cad251584d5fb4981be1ecde53a1ca46c891a79788c0df828d2f166bda28"
+      }
+    ],
+    "finished_at": "2026-10-20T01:35:11.152952+00:00"
+  },
+  "costs": {
+    "model_calls": [],
+    "model_usd": 0,
+    "runner_usd": null,
+    "search_usd": 0,
+    "billed_usd": null,
+    "billing_status": "local_compute_not_metered"
+  },
+  "patch_available": false,
+  "notice": "Actual local engine execution; not submitted to the formal API history. No model repair or formal holdout evaluation."
+}

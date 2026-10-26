@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "case_id": "j2cli-render",
+  "environment": {
+    "platform": "linux/arm64",
+    "image": "python:3.12-slim"
+  },
+  "review": {
+    "status": "draft",
+    "reviewed_by": "Claude (B) static review of README and source at the pinned commit; not executed; no human approval",
+    "reviewed_at": "2026-10-20"
+  },
+  "goal": "Render the supplied Jinja2 template with j2 (README: j2 config.j2, data from environment variables).",
+  "repo": {
+    "url": "https://github.com/kolypto/j2cli",
+    "commit": "2c26075c25e8c4fef9086e3bb5e6a4946f548231"
+  },
+  "readme_source": "README.md:L34;L137;L174",
+  "setup": [
+    {
+      "argv": [
+        "pip",
+        "install",
+        "j2cli"
+      ],
+      "source": "README.md:L34"
+    }
+  ],
+  "workflow": {
+    "argv": [
+      "j2",
+      "{input}"
+    ],
+    "output": "stdout"
+  },
+  "fixtures": [
+    {
+      "name": "static.j2",
+      "input": "Hello from a template\n",
+      "validator": "text",
+      "expected": "Hello from a template"
+    },
+    {
+      "name": "loop.j2",
+      "input": "{% for i in range(3) %}{{ i }}{% endfor %} items: {{ 2 + 3 }}\n",
+      "validator": "text",
+      "expected": "012 items: 5"
+    }
+  ]
+}

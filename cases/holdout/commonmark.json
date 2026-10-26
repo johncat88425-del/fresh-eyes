@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "environment": {
+    "platform": "linux/arm64",
+    "image": "python:3.12-slim"
+  },
+  "review": {
+    "status": "draft",
+    "reviewed_by": "Claude (B) static review of README and source at the pinned commit; not executed; no human approval",
+    "reviewed_at": "2026-10-19"
+  },
+  "goal": "Convert the supplied Markdown into HTML containing the expected heading and emphasis.",
+  "case_id": "commonmark-cmark",
+  "repo": {
+    "url": "https://github.com/readthedocs/commonmark.py",
+    "commit": "df7dcb7eae8b092a83654e791244b9fcaf11a871"
+  },
+  "readme_source": "README.rst:L38;L69",
+  "setup": [
+    {
+      "argv": [
+        "pip",
+        "install",
+        "commonmark"
+      ],
+      "source": "README.rst:L38"
+    }
+  ],
+  "workflow": {
+    "argv": [
+      "cmark",
+      "{input}",
+      "-o",
+      "result.html"
+    ],
+    "output": "result.html"
+  },
+  "fixtures": [
+    {
+      "name": "intro.md",
+      "input": "# Hello\n\nA **bold** start.\n",
+      "validator": "html_elements",
+      "expected": [
+        [
+          "h1",
+          "Hello"
+        ],
+        [
+          "strong",
+          "bold"
+        ]
+      ]
+    },
+    {
+      "name": "second.md",
+      "input": "# Second\n\nAn *italic* finish.\n",
+      "validator": "html_elements",
+      "expected": [
+        [
+          "h1",
+          "Second"
+        ],
+        [
+          "em",
+          "italic"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "environment": {
+    "platform": "linux/arm64",
+    "image": "python:3.12-slim"
+  },
+  "review": {
+    "status": "development_reviewed",
+    "reviewed_by": "Codex development review; no upstream maintainer approval",
+    "reviewed_at": "2026-10-18"
+  },
+  "goal": "Convert the documented Markdown input into HTML containing the expected heading and emphasis.",
+  "case_id": "md2html-markdown",
+  "repo": {
+    "url": "https://github.com/neobuilding/md2html",
+    "commit": "e0175df5d2144f671435ff32b5d5e9a7d9f8bc86"
+  },
+  "readme_source": "README.md:L36-L45;L144-L153",
+  "setup": [
+    {
+      "argv": [
+        "pip",
+        "install",
+        "-r",
+        "requirements.txt"
+      ],
+      "source": "README.md:L36-L45;L144-L150"
+    }
+  ],
+  "workflow": {
+    "argv": [
+      "md2html",
+      "{input}",
+      "-o",
+      "result.html"
+    ],
+    "output": "result.html"
+  },
+  "fixtures": [
+    {
+      "name": "intro.md",
+      "input": "# Hello\n\nA **bold** start.\n",
+      "validator": "html_elements",
+      "expected": [
+        [
+          "h1",
+          "Hello"
+        ],
+        [
+          "strong",
+          "bold"
+        ]
+      ]
+    },
+    {
+      "name": "second.md",
+      "input": "# Second\n\nAn *italic* finish.\n",
+      "validator": "html_elements",
+      "expected": [
+        [
+          "h1",
+          "Second"
+        ],
+        [
+          "em",
+          "italic"
+        ]
+      ]
+    }
+  ]
+}

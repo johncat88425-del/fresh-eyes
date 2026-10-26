@@ -1,0 +1,127 @@
+[
+  {
+    "repo": "https://github.com/miyuchina/mistletoe",
+    "commit": "ebf9ae4e9279f3d8c79b7cf2710f7e73ea6438a7",
+    "status": "static_review_complete",
+    "runtime_result": "not_run",
+    "role": "candidate healthy control",
+    "license": "MIT",
+    "evidence": "README clone/editable installation and documented CLI workflow; setup.py lists Python 3.12."
+  },
+  {
+    "repo": "https://github.com/neobuilding/md2html",
+    "commit": "e0175df5d2144f671435ff32b5d5e9a7d9f8bc86",
+    "status": "hypothesis_to_verify",
+    "runtime_result": "not_run",
+    "role": "possible installation/documentation gap",
+    "license": "MIT",
+    "evidence": "README recommends installing runtime requirements, then invokes md2html CLI; project.scripts defines entry point. Need actual clean execution."
+  },
+  {
+    "repo": "https://github.com/wireservice/csvkit",
+    "commit": "6d19c625214977ab2988e674441ca24638bc12d3",
+    "status": "needs_review",
+    "runtime_result": "not_run",
+    "role": "excluded from holdout: README has no CLI example",
+    "license": "MIT",
+    "evidence": "README delegates usage to documentation. Installation/usage branch and expected output still need a complete confirmed contract."
+  },
+  {
+    "repo": "https://github.com/trentm/python-markdown2",
+    "commit": "e69bbdfeca8957992ccc60e2a09d8e52ae2349ed",
+    "status": "frozen_draft",
+    "runtime_result": "not_run",
+    "role": "holdout: markdown2-cli (cases/holdout/markdown2.json), PyPI install path",
+    "license": "MIT (repo LICENSE.txt; GitHub reports NOASSERTION)",
+    "evidence": "README.md:L33-L39 lists `easy_install markdown2` and `python setup.py install`; L63 `python markdown2.py foo.md` but the file lives at lib/markdown2.py; L70 'I think pip-based installation will enable this as well'. setup.py defines a console script. Whether Python 3.12 lacks setuptools in the runner image is unverified."
+  },
+  {
+    "repo": "https://github.com/kellyjonbrazil/jc",
+    "commit": "73fa7d5572dd730076723bd6280786bb9101d32f",
+    "status": "static_review_complete",
+    "runtime_result": "not_run",
+    "role": "excluded from holdout: needs stdin mode",
+    "license": "MIT",
+    "evidence": "README `pip3 install jc`, stdin usage such as `cat table.txt | jc --asciitable`; JSON output suits the json validator. Workflow needs stdin input support in the contract."
+  },
+  {
+    "repo": "https://github.com/vinay20045/json-to-csv",
+    "commit": "b0216eff6fa95407535f19f5496f69cb610c35d4",
+    "status": "hypothesis_to_verify",
+    "runtime_result": "not_run",
+    "role": "excluded from holdout: no install step, Python 2.7 era, brittle CSV match",
+    "license": "MIT",
+    "evidence": "No install step; usage `python /path/to/json_to_csv.py node in.json out.csv`. samples/sample.json and samples/sample.csv give a documented input/output pair. Exact CSV comparison may be brittle (column order, line endings)."
+  },
+  {
+    "repo": "https://github.com/aaronsw/html2text",
+    "commit": "8ddc844b03042faf4875d465580ad122f9292978",
+    "status": "needs_review",
+    "runtime_result": "not_run",
+    "role": "boundary alternate (ancestor of the html2text holdout case)",
+    "license": "GPL-3.0",
+    "evidence": "README usage `html2text.py [(filename|url) [encoding]]`. Expected outcome: stop as unsupported/unresolved rather than patching .py files."
+  },
+  {
+    "repo": "https://github.com/drbild/json2yaml",
+    "commit": "b06ea713f6c817dc0af0f259da5c5afe7352174f",
+    "status": "contract_draft",
+    "runtime_result": "not_run",
+    "license": "Apache-2.0",
+    "role": "development: json2yaml-yaml2json (cases/json2yaml.json), likely healthy",
+    "evidence": "README.md:L11 pip install json2yaml; L16 yaml2json; output JSON checked structurally. Unpinned pyyaml/pyaml/docopt; sdist-only json2yaml and docopt."
+  },
+  {
+    "repo": "https://github.com/readthedocs/commonmark.py",
+    "commit": "df7dcb7eae8b092a83654e791244b9fcaf11a871",
+    "status": "frozen_draft",
+    "runtime_result": "not_run",
+    "license": "BSD-style licence text in LICENSE (GitHub reports NOASSERTION)",
+    "role": "holdout: commonmark-cmark (cases/holdout/)",
+    "evidence": "See CASE_NOTES.md holdout table; frozen 2026-10-19 before any runtime result."
+  },
+  {
+    "repo": "https://github.com/executablebooks/markdown-it-py",
+    "commit": "6f586542653a56d2ee8549a0dccfaa6ba5ebe14a",
+    "status": "frozen_draft",
+    "runtime_result": "not_run",
+    "license": "MIT",
+    "role": "holdout: markdown-it-py-cli (cases/holdout/)",
+    "evidence": "See CASE_NOTES.md holdout table; frozen 2026-10-19 before any runtime result."
+  },
+  {
+    "repo": "https://github.com/Alir3z4/html2text",
+    "commit": "5cf85510a2498546d5b48ad1bf7d75b146aac591",
+    "status": "frozen_draft",
+    "runtime_result": "not_run",
+    "license": "GPL-3.0",
+    "role": "holdout: html2text-cli (cases/holdout/)",
+    "evidence": "See CASE_NOTES.md holdout table; frozen 2026-10-19 before any runtime result."
+  },
+  {
+    "repo": "https://github.com/kolypto/j2cli",
+    "commit": "2c26075c25e8c4fef9086e3bb5e6a4946f548231",
+    "status": "boundary",
+    "runtime_result": "not_run",
+    "license": "BSD-2-Clause",
+    "role": "boundary: expected unsupported",
+    "evidence": "j2cli/cli.py:L8 import imp (removed in 3.12); j2cli/__init__.py:L4 import pkg_resources."
+  },
+  {
+    "repo": "https://github.com/kislyuk/yq",
+    "commit": "a98d746b96d3e6e60d3cc6e9e38a57e5005482c6",
+    "status": "boundary",
+    "runtime_result": "not_run",
+    "license": "Apache-2.0",
+    "role": "boundary: expected unsupported",
+    "evidence": "README.rst:L10-L11 requires system jq."
+  },
+  {
+    "repo": "https://github.com/phseiff/github-flavored-markdown-to-html",
+    "commit": "2eb59c26001e55dbfe6a4f3c42b61a8abeb934ea",
+    "status": "boundary",
+    "runtime_result": "not_run",
+    "role": "boundary: expected needs_input/unsupported",
+    "evidence": "README.md:L317 converts using the GitHub API by default."
+  }
+]

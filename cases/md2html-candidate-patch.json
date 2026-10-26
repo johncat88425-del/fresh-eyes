@@ -1,0 +1,21 @@
+{
+  "author": "manual-development-candidate",
+  "hypothesis": "Install the project itself to register the documented CLI; unverified until clean runs pass.",
+  "edits": [
+    {
+      "path": "README.md",
+      "old": "pip install -r requirements.txt",
+      "new": "pip install ."
+    }
+  ],
+  "setup": [
+    {
+      "argv": [
+        "pip",
+        "install",
+        "."
+      ],
+      "source": "patched README.md:L39"
+    }
+  ]
+}

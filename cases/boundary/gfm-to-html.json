@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "case_id": "gfm-to-html-convert",
+  "environment": {
+    "platform": "linux/arm64",
+    "image": "python:3.12-slim"
+  },
+  "review": {
+    "status": "draft",
+    "reviewed_by": "Claude (B) static review of README and source at the pinned commit; not executed; no human approval",
+    "reviewed_at": "2026-10-20"
+  },
+  "goal": "Convert the supplied Markdown to HTML with gh-md-to-html (README: gh-md-to-html foo.md; default core converter is the GitHub REST API).",
+  "repo": {
+    "url": "https://github.com/phseiff/github-flavored-markdown-to-html",
+    "commit": "2eb59c26001e55dbfe6a4f3c42b61a8abeb934ea"
+  },
+  "readme_source": "README.md:L110;L155;L202;L216;L233",
+  "setup": [
+    {
+      "argv": [
+        "pip3",
+        "install",
+        "gh-md-to-html"
+      ],
+      "source": "README.md:L110"
+    }
+  ],
+  "workflow": {
+    "argv": [
+      "gh-md-to-html",
+      "{input}",
+      "-n",
+      "result.html"
+    ],
+    "output": "result.html"
+  },
+  "fixtures": [
+    {
+      "name": "intro.md",
+      "input": "# Hello\n\nA **bold** start.\n",
+      "validator": "html_elements",
+      "expected": [
+        [
+          "h1",
+          "Hello"
+        ],
+        [
+          "strong",
+          "bold"
+        ]
+      ]
+    },
+    {
+      "name": "second.md",
+      "input": "# Second\n\nAn *italic* finish.\n",
+      "validator": "html_elements",
+      "expected": [
+        [
+          "h1",
+          "Second"
+        ],
+        [
+          "em",
+          "italic"
+        ]
+      ]
+    }
+  ]
+}

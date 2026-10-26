@@ -1,0 +1,1046 @@
+{
+  "schema_version": 1,
+  "data_origin": "execution",
+  "executed": true,
+  "record_source": "owner_local_engine",
+  "api_persisted": false,
+  "evaluation_eligible": false,
+  "run_id": "18dd07f0164142fc80df20d362c7a86b",
+  "case_id": "md2html-markdown",
+  "goal": "Convert the documented Markdown input into HTML containing the expected heading and emphasis.",
+  "verification_level": "functional",
+  "repair_mode": "model",
+  "repo_url": "https://github.com/neobuilding/md2html",
+  "commit_sha": "e0175df5d2144f671435ff32b5d5e9a7d9f8bc86",
+  "review": {
+    "status": "approved",
+    "reviewed_by": "kevin",
+    "approved_at": "2026-10-19T22:58:24.855846+00:00",
+    "scope": "team_acceptance_review",
+    "acceptance_sha256": "476312080ff301755f0efdc94177eb3bffb1228b258089ab9790fc3449bb749a"
+  },
+  "repair_author": null,
+  "phase": "finished",
+  "created_at": "2026-10-24T17:58:33.554225+00:00",
+  "run_state": "completed",
+  "result_status": "unresolved",
+  "acceptance_sha256": "476312080ff301755f0efdc94177eb3bffb1228b258089ab9790fc3449bb749a",
+  "dependency_mode": "pypi_live",
+  "started_at": "2026-10-24T17:58:33.554585+00:00",
+  "finished_at": "2026-10-24T17:59:40.817174+00:00",
+  "reason": "request_error",
+  "evidence": {
+    "schema_version": 1,
+    "run_id": "18dd07f0164142fc80df20d362c7a86b",
+    "started_at": "2026-10-24T17:58:33.554585+00:00",
+    "case_id": "md2html-markdown",
+    "goal": "Convert the documented Markdown input into HTML containing the expected heading and emphasis.",
+    "contract_sha256": "f9a6ea0b561f25c18198d691e0eb24d2b16f2641364dbe15d1376a4e2918b403",
+    "acceptance_sha256": "476312080ff301755f0efdc94177eb3bffb1228b258089ab9790fc3449bb749a",
+    "repo": {
+      "commit": "e0175df5d2144f671435ff32b5d5e9a7d9f8bc86",
+      "url": "https://github.com/neobuilding/md2html"
+    },
+    "review": {
+      "acceptance_sha256": "476312080ff301755f0efdc94177eb3bffb1228b258089ab9790fc3449bb749a",
+      "approved_at": "2026-10-19T22:58:24.855846+00:00",
+      "reviewed_by": "kevin",
+      "scope": "team_acceptance_review",
+      "status": "approved"
+    },
+    "status": "unresolved",
+    "attempts": [
+      {
+        "phase": "original_readme",
+        "round": null,
+        "status": "failed",
+        "acceptance_sha256": "476312080ff301755f0efdc94177eb3bffb1228b258089ab9790fc3449bb749a",
+        "result": {
+          "setup_ok": true,
+          "steps": [
+            {
+              "argv": [
+                "/usr/local/bin/python",
+                "-m",
+                "venv",
+                "/work/venv"
+              ],
+              "executed_argv": [
+                "/usr/local/bin/python",
+                "-m",
+                "venv",
+                "/work/venv"
+              ],
+              "exit_code": 0,
+              "duration_s": 1.349,
+              "stdout": "",
+              "stderr": "",
+              "truncated": false
+            },
+            {
+              "argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-c",
+                "import json,pathlib,subprocess,sys,uuid,pip\np=pathlib.Path(sys.prefix).resolve()\nok=(p==pathlib.Path(sys.argv[1]).resolve() and sys.prefix!=sys.base_prefix\n    and pathlib.Path(pip.__file__).resolve().is_relative_to(p))\nexecutable=False\nif ok:\n    probe=p.parent/('.fresh-eyes-exec-probe-'+uuid.uuid4().hex)\n    try:\n        probe.write_text('#!/bin/sh\\nexit 0\\n')\n        probe.chmod(0o700)\n        executable=subprocess.run([str(probe)],stdin=subprocess.DEVNULL,\n                                  stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=5).returncode==0\n    except (OSError,subprocess.TimeoutExpired):\n        executable=False\n    finally:\n        probe.unlink(missing_ok=True)\nprint(json.dumps(dict(executable=sys.executable,prefix=str(p),base_prefix=sys.base_prefix,\n                     pip_module=pip.__file__,python=sys.version.split()[0],workspace_executable=executable)))\nsys.exit(0 if ok and executable else 1)\n",
+                "/work/venv"
+              ],
+              "executed_argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-c",
+                "import json,pathlib,subprocess,sys,uuid,pip\np=pathlib.Path(sys.prefix).resolve()\nok=(p==pathlib.Path(sys.argv[1]).resolve() and sys.prefix!=sys.base_prefix\n    and pathlib.Path(pip.__file__).resolve().is_relative_to(p))\nexecutable=False\nif ok:\n    probe=p.parent/('.fresh-eyes-exec-probe-'+uuid.uuid4().hex)\n    try:\n        probe.write_text('#!/bin/sh\\nexit 0\\n')\n        probe.chmod(0o700)\n        executable=subprocess.run([str(probe)],stdin=subprocess.DEVNULL,\n                                  stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=5).returncode==0\n    except (OSError,subprocess.TimeoutExpired):\n        executable=False\n    finally:\n        probe.unlink(missing_ok=True)\nprint(json.dumps(dict(executable=sys.executable,prefix=str(p),base_prefix=sys.base_prefix,\n                     pip_module=pip.__file__,python=sys.version.split()[0],workspace_executable=executable)))\nsys.exit(0 if ok and executable else 1)\n",
+                "/work/venv"
+              ],
+              "exit_code": 0,
+              "duration_s": 0.119,
+              "stdout": "{\"executable\": \"/work/venv/bin/python\", \"prefix\": \"/work/venv\", \"base_prefix\": \"/usr/local\", \"pip_module\": \"/work/venv/lib/python3.12/site-packages/pip/__init__.py\", \"python\": \"3.12.15\", \"workspace_executable\": true}\n",
+              "stderr": "",
+              "truncated": false
+            },
+            {
+              "argv": [
+                "pip",
+                "install",
+                "-r",
+                "requirements.txt"
+              ],
+              "executed_argv": [
+                "/work/venv/bin/python",
+                "-I",
+                "-m",
+                "pip",
+                "install",
+                "-r",
+                "requirements.txt"
+              ],
+              "exit_code": 0,
+              "duration_s": 1.328,
+              "stdout": "Collecting markdown>=3.5 (from -r requirements.txt (line 1))\n  Downloading markdown-3.11.2-py3-none-any.whl.metadata (5.1 kB)\nCollecting pymdown-extensions>=10.0 (from -r requirements.txt (line 2))\n  Downloading pymdown_extensions-12.3-py3-none-any.whl.metadata (2.9 kB)\nCollecting pygments>=2.15 (from -r requirements.txt (line 3))\n  Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)\nCollecting charset-normalizer>=3.0 (from -r requirements.txt (line 4))\n  Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (46 kB)\nCollecting pyyaml (from pymdown-extensions>=10.0->-r requirements.txt (line 2))\n  Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (2.4 kB)\nDownloading markdown-3.11.2-py3-none-any.whl (114 kB)\nDownloading pymdown_extensions-12.3-py3-none-any.whl (277 kB)\nDownloading pygments-2.21.0-py3-none-any.whl (1.3 MB)\n   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 27.2 MB/s eta 0:00:00\nDownloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (246 kB)\nDownloading pyyaml-6.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (775 kB)\n   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 775.1/775.1 kB 38.4 MB/s eta 0:00:00\nInstalling collected packages: pyyaml, pygments, markdown, charset-normalizer, pymdown-extensions\nSuccessfully installed charset-normalizer-3.5.2 markdown-3.11.2 pygments-2.21.0 pymdown-extensions-12.3 pyyaml-6.0.3\n",
+              "stderr": "",
+              "truncated": false,
+              "pip_install_report": {
+                "version": "1",
+                "pip_version": "25.0.1",
+                "install": [
+                  {
+                    "download_info": {
+                      "url": "https://files.pythonhosted.org/packages/fe/66/bcab3b677b71ad286b4e607e3427499537c76e13ad2e22584ba7a7d9882c/markdown-3.11.2-py3-none-any.whl",
+                      "archive_info": {
+                        "hash": "sha256=f80390747a2a0ff2ba54da074ce4f862f72a6685f608cd2637b646a6d83993f5",
+                        "hashes": {
+                          "sha256": "f80390747a2a0ff2ba54da074ce4f862f72a6685f608cd2637b646a6d83993f5"
+                        }
+                      }
+                    },
+                    "is_direct": false,
+                    "is_yanked": false,
+                    "requested": true,
+                    "metadata": {
+                      "metadata_version": "2.4",
+                      "name": "Markdown",
+                      "version": "3.11.2",
+                      "dynamic": [
+                        "license-file"
+                      ],
+                      "summary": "Python implementation of John Gruber's Markdown.",
+                      "description": "[Python-Markdown][]\n===================\n\n[![Build Status][build-button]][build]\n[![Coverage Status][codecov-button]][codecov]\n[![Latest Version][mdversion-button]][md-pypi]\n[![Python Versions][pyversion-button]][md-pypi]\n[![BSD License][bsdlicense-button]][bsdlicense]\n[![Code of Conduct][codeofconduct-button]][Code of Conduct]\n\n[build-button]: https://github.com/Python-Markdown/markdown/actions/workflows/tox.yml/badge.svg\n[build]: https://github.com/Python-Markdown/markdown/actions/workflows/tox.yml\n[codecov-button]: https://codecov.io/gh/Python-Markdown/markdown/branch/master/graph/badge.svg\n[codecov]: https://codecov.io/gh/Python-Markdown/markdown\n[mdversion-button]: https://img.shields.io/pypi/v/Markdown.svg\n[md-pypi]: https://pypi.org/project/Markdown/\n[pyversion-button]: https://img.shields.io/pypi/pyversions/Markdown.svg\n[bsdlicense-button]: https://img.shields.io/badge/license-BSD-yellow.svg\n[bsdlicense]: https://opensource.org/licenses/BSD-3-Clause\n[codeofconduct-button]: https://img.shields.io/badge/code%20of%20conduct-contributor%20covenant-green.svg?style=flat-square\n[Code of Conduct]: https://github.com/Python-Markdown/markdown/blob/master/CODE_OF_CONDUCT.md\n\nThis is a Python implementation of John Gruber's [Markdown][].\nIt is almost completely compliant with the reference implementation,\nthough there are a few known issues. See [Features][] for information\non what exactly is supported and what is not. Additional features are\nsupported by the [Available Extensions][].\n\n[Python-Markdown]: https://Python-Markdown.github.io/\n[Markdown]: https://daringfireball.net/projects/markdown/\n[Features]: https://Python-Markdown.github.io#Features\n[Available Extensions]: https://Python-Markdown.github.io/extensions\n\nDocumentation\n-------------\n\n```bash\npip install markdown\n```\n```python\nimport markdown\nhtml = markdown.markdown(your_text_string)\n```\n\nFor more advanced [installation] and [usage] documentation, see the `docs/` directory\nof the distribution or the project website at <https://Python-Markdown.github.io/>.\n\n[installation]: https://python-markdown.github.io/install/\n[usage]: https://python-markdown.github.io/reference/\n\nSee the change log at <https://python-markdown.github.io/changelog/>.\n\nSupport\n-------\n\nYou may report bugs, ask for help, and discuss various other issues on the [bug tracker][].\n\n[bug tracker]: https://github.com/Python-Markdown/markdown/issues\n\nCode of Conduct\n---------------\n\nEveryone interacting in the Python-Markdown project's code bases, issue trackers,\nand mailing lists is expected to follow the [Code of Conduct].\n",
+                      "description_content_type": "text/markdown",
+                      "keywords": [
+                        "markdown",
+                        "markdown-parser",
+                        "python-markdown",
+                        "markdown-to-html"
+                      ],
+                      "author": "Manfred Stienstra, Yuri Takhteyev",
+                      "author_email": "Waylan limberg <python.markdown@gmail.com>",
+                      "maintainer": "Isaac Muse",
+                      "maintainer_email": "Waylan Limberg <python.markdown@gmail.com>",
+                      "license_expression": "BSD-3-Clause",
+                      "license_file": [
+                        "LICENSE.md"
+                      ],
+                      "classifier": [
+                        "Development Status :: 5 - Production/Stable",
+                        "Operating System :: OS Independent",
+                        "Programming Language :: Python",
+                        "Programming Language :: Python :: 3",
+                        "Programming Language :: Python :: 3.11",
+                        "Programming Language :: Python :: 3.12",
+                        "Programming Language :: Python :: 3.13",
+                        "Programming Language :: Python :: 3.14",
+                        "Programming Language :: Python :: 3.15",
+                        "Programming Language :: Python :: 3 :: Only",
+                        "Programming Language :: Python :: Implementation :: CPython",
+                        "Programming Language :: Python :: Implementation :: PyPy",
+                        "Topic :: Communications :: Email :: Filters",
+                        "Topic :: Internet :: WWW/HTTP :: Dynamic Content :: CGI Tools/Libraries",
+                        "Topic :: Internet :: WWW/HTTP :: Site Management",
+                        "Topic :: Software Development :: Documentation",
+                        "Topic :: Software Development :: Libraries :: Python Modules",
+                        "Topic :: Text Processing :: Filters",
+                        "Topic :: Text Processing :: Markup :: HTML",
+                        "Topic :: Text Processing :: Markup :: Markdown"
+                      ],
+                      "requires_dist": [
+                        "coverage; extra == \"testing\"",
+                        "pyyaml; extra == \"testing\"",
+                        "zensical==0.0.62; extra == \"docs\"",
+                        "mdx_gh_links==0.4; extra == \"docs\"",
+                        "mkdocstrings==1.0.6; extra == \"docs\"",
+                        "mkdocstrings-python==1.16.8; extra == \"docs\"",
+                        "pygments==2.21.0; extra == \"docs\"",
+                        "pymdown-extensions==11.0.2; extra == \"docs\"",
+                        "justhtml==3.11.2; extra == \"docs\"",
+                        "ghp-import==2.1.0; extra == \"docs\""
+                      ],
+                      "requires_python": ">=3.11",
+                      "project_url": [
+                        "Homepage, https://Python-Markdown.github.io/",
+                        "Documentation, https://Python-Markdown.github.io/",
+                        "Repository, https://github.com/Python-Markdown/markdown",
+                        "Issue Tracker, https://github.com/Python-Markdown/markdown/issues",
+                        "Changelog, https://python-markdown.github.io/changelog/"
+                      ],
+                      "provides_extra": [
+                        "testing",
+                        "docs"
+                      ]
+                    }
+                  },
+                  {
+                    "download_info": {
+                      "url": "https://files.pythonhosted.org/packages/8a/d0/758afe732c2da502c051b4d03ff88daa3c0fc1a1e671e6c5a6318177bab4/pymdown_extensions-12.3-py3-none-any.whl",
+                      "archive_info": {
+                        "hash": "sha256=345493a8e3497e24382902903a1c43a28e34a52f2b7571a1c9641429b820ca74",
+                        "hashes": {
+                          "sha256": "345493a8e3497e24382902903a1c43a28e34a52f2b7571a1c9641429b820ca74"
+                        }
+                      }
+                    },
+                    "is_direct": false,
+                    "is_yanked": false,
+                    "requested": true,
+                    "metadata": {
+                      "metadata_version": "2.5",
+                      "name": "pymdown-extensions",
+                      "version": "12.3",
+                      "summary": "Extension pack for Python Markdown.",
+                      "description": "[![Donate via PayPal][donate-image]][donate-link]\n[![Coverage Status][codecov-image]][codecov-link]\n[![PyPI Version][pypi-image]][pypi-link]\n[![PyPI Downloads][pypi-down]][pypi-link]\n[![PyPI - Python Version][python-image]][pypi-link]\n[![License][license-image-mit]][license-link]\n\n# PyMdown Extensions\n\nExtensions for [Python Markdown](https://python-markdown.github.io).\n\n## Documentation\n\nExtension documentation is found here: https://facelessuser.github.io/pymdown-extensions/.\n\n## License\n\nLicense is MIT.  See [LICENSE](https://github.com/facelessuser/pymdown-extensions/blob/master/LICENSE.md) for more info.\n\n[codecov-image]: https://img.shields.io/codecov/c/github/facelessuser/pymdown-extensions/main.svg?logo=codecov&logoColor=aaaaaa&labelColor=333333\n[codecov-link]: https://codecov.io/github/facelessuser/pymdown-extensions\n[pypi-image]: https://img.shields.io/pypi/v/pymdown-extensions.svg?logo=pypi&logoColor=aaaaaa&labelColor=333333\n[pypi-link]: https://pypi.python.org/pypi/pymdown-extensions\n[python-image]: https://img.shields.io/pypi/pyversions/pymdown-extensions?logo=python&logoColor=aaaaaa&labelColor=333333\n[pypi-down]: https://img.shields.io/pypi/dm/pymdown-extensions.svg?logo=pypi&logoColor=aaaaaa&labelColor=333333\n[license-image-mit]: https://img.shields.io/badge/license-MIT-blue.svg?labelColor=333333\n[license-link]: https://github.com/facelessuser/pymdown-extensions/blob/main/LICENSE.md\n[donate-image]: https://img.shields.io/badge/Donate-PayPal-3fabd1?logo=paypal\n[donate-link]: https://www.paypal.me/facelessuser\n",
+                      "description_content_type": "text/markdown",
+                      "keywords": [
+                        "extensions",
+                        "markdown"
+                      ],
+                      "author_email": "Isaac Muse <Isaac.Muse@gmail.com>",
+                      "license_expression": "MIT",
+                      "license_file": [
+                        "LICENSE.md"
+                      ],
+                      "classifier": [
+                        "Development Status :: 5 - Production/Stable",
+                        "Environment :: Console",
+                        "Intended Audience :: Developers",
+                        "License :: OSI Approved :: MIT License",
+                        "Operating System :: OS Independent",
+                        "Programming Language :: Python :: 3",
+                        "Programming Language :: Python :: 3.10",
+                        "Programming Language :: Python :: 3.11",
+                        "Programming Language :: Python :: 3.12",
+                        "Programming Language :: Python :: 3.13",
+                        "Programming Language :: Python :: 3.14",
+                        "Programming Language :: Python :: 3.15",
+                        "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+                        "Topic :: Software Development :: Libraries :: Python Modules",
+                        "Topic :: Text Processing :: Filters",
+                        "Topic :: Text Processing :: Markup :: HTML"
+                      ],
+                      "requires_dist": [
+                        "markdown>=3.6",
+                        "pyyaml",
+                        "pygments>=2.19.1; extra == 'extra'"
+                      ],
+                      "requires_python": ">=3.10",
+                      "project_url": [
+                        "Homepage, https://github.com/facelessuser/pymdown-extensions"
+                      ],
+                      "provides_extra": [
+                        "extra"
+                      ]
+                    }
+                  },
+                  {
+                    "download_info": {
+                      "url": "https://files.pythonhosted.org/packages/71/46/17f022dd3e953bf20a04a028a21ec746d942f8d2af30fa0f124fa0e6a684/pygments-2.21.0-py3-none-any.whl",
+                      "archive_info": {
+                        "hash": "sha256=2363c69b61c4a97c838da3b130dcd6468f4848992b21a82f2a63ec34377137d9",
+                        "hashes": {
+                          "sha256": "2363c69b61c4a97c838da3b130dcd6468f4848992b21a82f2a63ec34377137d9"
+                        }
+                      }
+                    },
+                    "is_direct": false,
+                    "is_yanked": false,
+                    "requested": true,
+                    "metadata": {
+                      "metadata_version": "2.5",
+                      "name": "Pygments",
+                      "version": "2.21.0",
+                      "summary": "Pygments is a syntax highlighting package written in Python.",
+                      "description": "Pygments\n~~~~~~~~\n\nPygments is a syntax highlighting package written in Python.\n\nIt is a generic syntax highlighter suitable for use in code hosting, forums,\nwikis or other applications that need to prettify source code.  Highlights\nare:\n\n* a wide range of over 500 languages and other text formats is supported\n* special attention is paid to details, increasing quality by a fair amount\n* support for new languages and formats are added easily\n* a number of output formats, presently HTML, LaTeX, RTF, SVG, all image\n  formats that PIL supports and ANSI sequences\n* it is usable as a command-line tool and as a library\n\nCopyright 2006-present by the Pygments team, see ``AUTHORS``.\nLicensed under the BSD, see ``LICENSE`` for details.\n",
+                      "description_content_type": "text/x-rst",
+                      "keywords": [
+                        "syntax",
+                        "highlighting"
+                      ],
+                      "author_email": "Georg Brandl <georg@python.org>",
+                      "maintainer": "Matthäus G. Chajdas",
+                      "maintainer_email": "Georg Brandl <georg@python.org>, Jean Abou Samra <jean@abou-samra.fr>",
+                      "license_expression": "BSD-2-Clause",
+                      "license_file": [
+                        "AUTHORS",
+                        "LICENSE"
+                      ],
+                      "classifier": [
+                        "Development Status :: 6 - Mature",
+                        "Intended Audience :: Developers",
+                        "Intended Audience :: End Users/Desktop",
+                        "Intended Audience :: System Administrators",
+                        "Operating System :: OS Independent",
+                        "Programming Language :: Python",
+                        "Programming Language :: Python :: 3",
+                        "Programming Language :: Python :: 3.9",
+                        "Programming Language :: Python :: 3.10",
+                        "Programming Language :: Python :: 3.11",
+                        "Programming Language :: Python :: 3.12",
+                        "Programming Language :: Python :: 3.13",
+                        "Programming Language :: Python :: 3.14",
+                        "Programming Language :: Python :: 3.15",
+                        "Programming Language :: Python :: Implementation :: CPython",
+                        "Programming Language :: Python :: Implementation :: PyPy",
+                        "Topic :: Text Processing :: Filters",
+                        "Topic :: Utilities"
+                      ],
+                      "requires_dist": [
+                        "colorama>=0.4.6; extra == 'windows-terminal'"
+                      ],
+                      "requires_python": ">=3.9",
+                      "project_url": [
+                        "Homepage, https://pygments.org",
+                        "Documentation, https://pygments.org/docs",
+                        "Source, https://github.com/pygments/pygments",
+                        "Bug Tracker, https://github.com/pygments/pygments/issues",
+                        "Changelog, https://github.com/pygments/pygments/blob/master/CHANGES"
+                      ],
+                      "provides_extra": [
+                        "plugins",
+                        "windows-terminal"
+                      ]
+                    }
+                  },
+                  {
+                    "download_info": {
+                      "url": "https://files.pythonhosted.org/packages/c9/87/2fea8c13dc24b3ca9c6f803a5b2dfdeae73eb4f9e12c7885ed908ff0433c/charset_normalizer-3.5.2-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl",
+                      "archive_info": {
+                        "hash": "sha256=b91363207bd9dc966a691e959bb47f64b30f7ac4b072be9968b366982f7db77c",
+                        "hashes": {
+                          "sha256": "b91363207bd9dc966a691e959bb47f64b30f7ac4b072be9968b366982f7db77c"
+                        }
+                      }
+                    },
+                    "is_direct": false,
+                    "is_yanked": false,
+                    "requested": true,
+                    "metadata": {
+                      "metadata_version": "2.4",
+                      "name": "charset-normalizer",
+                      "version": "3.5.2",
+                      "dynamic": [
+                        "license-file"
+                      ],
+                      "summary": "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet.",
+                      "description": "<h1 align=\"center\">Charset Detection, for Everyone 👋</h1>\n\n<p align=\"center\">\n  <sup>The Real First Universal Charset Detector</sup><br>\n  <a href=\"https://pypi.org/project/charset-normalizer\">\n    <img src=\"https://img.shields.io/pypi/pyversions/charset_normalizer.svg?orange=blue\" />\n  </a>\n  <a href=\"https://pepy.tech/project/charset-normalizer/\">\n    <img alt=\"Download Count Total\" src=\"https://static.pepy.tech/badge/charset-normalizer/month\" />\n  </a>\n  <a href=\"https://bestpractices.coreinfrastructure.org/projects/7297\">\n    <img src=\"https://bestpractices.coreinfrastructure.org/projects/7297/badge\">\n  </a>\n</p>\n<p align=\"center\">\n  <sup><i>Featured Packages</i></sup><br>\n  <a href=\"https://github.com/jawah/niquests\">\n   <img alt=\"Static Badge\" src=\"https://img.shields.io/badge/Niquests-Most_Advanced_HTTP_Client-cyan\">\n  </a>\n  <a href=\"https://github.com/jawah/wassima\">\n   <img alt=\"Static Badge\" src=\"https://img.shields.io/badge/Wassima-Certifi_Replacement-cyan\">\n  </a>\n</p>\n<p align=\"center\">\n  <sup><i>In other language (unofficial port - by the community)</i></sup><br>\n  <a href=\"https://github.com/nickspring/charset-normalizer-rs\">\n   <img alt=\"Static Badge\" src=\"https://img.shields.io/badge/Rust-red\">\n  </a>\n</p>\n\n> A library that helps you read text from an unknown charset encoding.<br /> Motivated by `chardet`,\n> I'm trying to resolve the issue by taking a new approach.\n> All IANA character set names for which the Python core library provides codecs are supported.\n> You can also register your own set of codecs, and yes, it would work as-is.\n\nThis project offers you an alternative to **Universal Charset Encoding Detector**, also known as **Chardet**.\n\n| Feature                                          | [Chardet](https://github.com/chardet/chardet) |                                       Charset Normalizer                                        | [cChardet](https://github.com/PyYoshi/cChardet) |\n|--------------------------------------------------|:---------------------------------------------:|:-----------------------------------------------------------------------------------------------:|:-----------------------------------------------:|\n| `Fast`                                           |                       ✅                       |                                                ✅                                                |                        ✅                        |\n| `Fast on large content (uncapped)`               |                       ❌                       |                                                ✅                                                |                        ❌                        |\n| `Universal`[^1]                                  |                       ❌                       |                                                ✅                                                |                        ❌                        |\n| `Reliable` **without** distinguishable standards |                       ✅                       |                                                ✅                                                |                        ✅                        |\n| `Reliable` **with** distinguishable standards    |                       ✅                       |                                                ✅                                                |                        ✅                        |\n| `License`                                        |           _0BSD_[^2]<br>_disputed_            |                                               MIT                                               |            MPL-1.1<br>_restrictive_             |\n| `Native Python`                                  |                       ✅                       |                                                ✅                                                |                        ❌                        |\n| `Detect spoken language`                         |                       ✅                       |                                                ✅                                                |                       N/A                       |\n| `UnicodeDecodeError Safety`                      |                       ❌                       |                                                ✅                                                |                        ❌                        |\n| `Whl Size`                                       |                   ~1200 kB                    |                                             ~250 kB                                             |                     ~200 kB                     |\n| `Supported Encoding`                             |                      99                       | [99](https://charset-normalizer.readthedocs.io/en/latest/user/support.html#supported-encodings) |                       40                        |\n| `Can register custom encoding`                   |                       ❌                       |                                                ✅                                                |                        ❌                        |\n\n<p align=\"center\">\n<img src=\"https://i.imgflip.com/373iay.gif\" alt=\"Reading Normalized Text\" width=\"226\"/><img src=\"https://media.tenor.com/images/c0180f70732a18b4965448d33adba3d0/tenor.gif\" alt=\"Cat Reading Text\" width=\"200\"/>\n</p>\n\n[^1]: They are clearly using specific code for a specific encoding even if covering most of them.\n[^2]: Chardet 7 replaced the historical LGPL-licensed implementation with an AI-assisted rewrite, initially distributed under MIT and later under 0BSD. The original author [contests](https://github.com/chardet/chardet/issues/327) that the rewrite was sufficiently independent to permit relicensing, while Chardet's maintainer maintains that it is a new, non-derivative implementation. A separate [discussion](https://github.com/chardet/chardet/issues/334) raises questions about copyright ownership and licensing of substantially AI-generated code. Neither unresolved question is presented here as settled law. The concern is broader than whether ideas, APIs, or observable behavior are copyrightable. Independent implementations are essential to open-source competition. The ethical question is whether a maintainer with extensive access to a reciprocal project's source, architecture, tests, behavior, community, and reputation can use an LLM to recreate the same product under the same package identity, then treat the generated implementation as a provenance reset that extinguishes the project's reciprocal licensing obligations and contributor expectations. Responsible AI use in open source requires more than producing text that differs from the historical source: it requires transparent provenance, respect for project lineage, meaningful attribution, accountable human review, and consideration for the social agreement under which earlier contributors participated. If automated rewriting becomes an accepted way to retain a project's name, users, and accumulated reputation while discarding its reciprocal license, it risks weakening the trust and incentives on which FOSS depends. Early Chardet 7.x development and evaluation also incorporated files originating from charset-normalizer's test corpus. Results measured on data that influenced implementation or model development are not independent validation. Charset-normalizer has been MIT-licensed since inception and originates from a continuous human-designed, encoding-agnostic project history. AI assistance may be used, but every proposed change remains subject to maintainer review, adjustment, testing, and accountability; AI is an engineering aid, not a mechanism for erasing provenance or project lineage. An attentive eye will see that some aspects lead by us are magically found in Chardet.\n\n## ⚡ Performance\n\nThis package offer similar performances in general against Chardet. Expect 10X faster with large contents when you uncap Chardet max_bytes default assumption.\n\n| Package            | Accuracy |  Mean per file (ms)   |\n|--------------------|:--------:|:---------------------:|\n| Chardet            |   99 %   | 0.4 ms[^4] 0.6 ms[^5] |\n| charset-normalizer |   98 %   |        0.4 ms         |\n| cchardet[^3]       |   94 %   |        0.6 ms         |\n\n_Well, sub-ms detectors made them extremely discrete in the overall runtime.\nCompetitors can still win individual measurements, especially capped Chardet on\nsmall-file median latency. But when performance, accuracy, binary handling, validation\nstrength, portability, and maintainability are considered together, charset-normalizer\nis the stronger package._\n\n| Package            |   99th percentile    | 95th percentile | 50th percentile |\n|--------------------|:--------------------:|:---------------:|:---------------:|\n| Chardet            | 2.5 ms[^4] 4.2ms[^5] |      1 ms       |     0.2 ms      |\n| charset-normalizer |        2.7 ms        |     1.5 ms      |     0.2 ms      |\n| cchardet           |        2.7 ms        |      2 ms       |     0.3 ms      |\n\n_updated as of August 2026 using CPython 3.12, Charset-Normalizer 3.5.1, and Chardet 7.5 inside a (libc Debian) container. The host CPU is a 13th gen Intel mobile CPU. We'll no longer update regularly those since the sub-ms changes aren't meaningful to anyone anymore._\n\n> Stats are generated using 477 files using default parameters. More details on used files, see GHA workflows.\n> And yes, these results might change at any time. The dataset can be updated to include more files.\n> The actual delays heavily depends on your CPU capabilities. The factors should remain the same.\n> Chardet claims on his documentation to have a greater accuracy than us based on the dataset they trained Chardet on(...)\n> Whereas charset-normalizer don't train on anything, our solution is based on a completely different algorithm, still heuristic\n> through, it does not need weights across every encoding tables.\n\n[^3]: cchardet main repository/package was discontinued. we're relying on a known fork namely faust-cchardet. the idea remained the same: uchardet bindings.\n[^4]: Chardet does not feed the complete body but rather a limited part of it, because the algorithm doesn't scale properly with larger samples. Feeding the whole content slow things to 0.8 ms (from the 0.5ms avg). While we do not skip content in order for us to guarantee a usable result each and every time. We attempted to feed a 272 MiB UTF-8 (Reddit archive on comments/posts) file in Chardet uncapped and waited 3.4s while Charset-Normalizer took 0.3s, this is a 10-fold speedup.\n[^5]: Uncapped max_bytes (no truncating of content)\n\n## ✨ Installation\n\nUsing pip:\n\n```sh\npip install charset-normalizer -U\n```\n\n## 🚀 Basic Usage\n\n### CLI\nThis package comes with a CLI.\n\n```\nusage: normalizer [-h] [-v] [-a] [-n] [-m] [-r] [-f] [-t THRESHOLD]\n                  file [file ...]\n\nThe Real First Universal Charset Detector. Discover originating encoding used\non text file. Normalize text to unicode.\n\npositional arguments:\n  files                 File(s) to be analysed\n\noptional arguments:\n  -h, --help            show this help message and exit\n  -v, --verbose         Display complementary information about file if any.\n                        Stdout will contain logs about the detection process.\n  -a, --with-alternative\n                        Output complementary possibilities if any. Top-level\n                        JSON WILL be a list.\n  -n, --normalize       Permit to normalize input file. If not set, program\n                        does not write anything.\n  -m, --minimal         Only output the charset detected to STDOUT. Disabling\n                        JSON output.\n  -r, --replace         Replace file when trying to normalize it instead of\n                        creating a new one.\n  -f, --force           Replace file without asking if you are sure, use this\n                        flag with caution.\n  -t THRESHOLD, --threshold THRESHOLD\n                        Define a custom maximum amount of chaos allowed in\n                        decoded content. 0. <= chaos <= 1.\n  --version             Show version information and exit.\n```\n\n```bash\nnormalizer ./data/sample.1.fr.srt\n```\n\nor\n\n```bash\npython -m charset_normalizer ./data/sample.1.fr.srt\n```\n\n🎉 Since version 1.4.0 the CLI produce easily usable stdout result in JSON format.\n\n```json\n{\n    \"path\": \"/home/default/projects/charset_normalizer/data/sample.1.fr.srt\",\n    \"encoding\": \"cp1252\",\n    \"encoding_aliases\": [\n        \"1252\",\n        \"windows_1252\"\n    ],\n    \"alternative_encodings\": [\n        \"cp1254\",\n        \"cp1256\",\n        \"cp1258\",\n        \"iso8859_14\",\n        \"iso8859_15\",\n        \"iso8859_16\",\n        \"iso8859_3\",\n        \"iso8859_9\",\n        \"latin_1\",\n        \"mbcs\"\n    ],\n    \"language\": \"French\",\n    \"alphabets\": [\n        \"Basic Latin\",\n        \"Latin-1 Supplement\"\n    ],\n    \"has_sig_or_bom\": false,\n    \"chaos\": 0.149,\n    \"coherence\": 97.152,\n    \"unicode_path\": null,\n    \"is_preferred\": true\n}\n```\n\n### Python\n*Just print out normalized text*\n```python\nfrom charset_normalizer import from_path\n\nresults = from_path('./my_subtitle.srt')\n\nprint(str(results.best()))\n```\n\n*Upgrade your code without effort*\n```python\nfrom charset_normalizer import detect\n```\n\nThe above code will behave the same as **chardet**. We ensure that we offer the best (reasonable) BC result possible.\n\nSee the docs for advanced usage : [readthedocs.io](https://charset-normalizer.readthedocs.io/en/latest/)\n\n## 😇 Why\n\nWhen I started using Chardet, I noticed that it was not suited to my expectations, and I wanted to propose a\nreliable alternative using a completely different method. Also! I never back down on a good challenge!\n\nI **don't care** about the **originating charset** encoding, because **two different tables** can\nproduce **two identical rendered string.**\nWhat I want is to get readable text, the best I can.\n\nIn a way, **I'm brute forcing text decoding.** How cool is that ? 😎\n\nDon't confuse package **ftfy** with charset-normalizer or chardet. ftfy goal is to repair Unicode string whereas charset-normalizer to convert raw file in unknown encoding to unicode.\n\n## 🍰 How\n\n  - Discard all charset encoding table that could not fit the binary content.\n  - Measure noise, or the mess once opened (by chunks) with a corresponding charset encoding.\n  - Extract matches with the lowest mess detected.\n  - Additionally, we measure coherence / probe for a language.\n\n**Wait a minute**, what is noise/mess and coherence according to **YOU ?**\n\n*Noise :* I opened hundred of text files, **written by humans**, with the wrong encoding table. **I observed**, then\n**I established** some ground rules about **what is obvious** when **it seems like** a mess (aka. defining noise in rendered text).\n I know that my interpretation of what is noise is probably incomplete, feel free to contribute in order to\n improve or rewrite it.\n\n*Coherence :* For each language there is on earth, we have computed ranked letter appearance occurrences (the best we can). So I thought\nthat intel is worth something here. So I use those records against decoded text to check if I can detect intelligent design.\n\n## ⚡ Known limitations\n\n  - Language detection is unreliable when text contains two or more languages sharing identical letters. (eg. HTML (english tags) + Turkish content (Sharing Latin characters))\n  - Every charset detector heavily depends on sufficient content. In common cases, do not bother run detection on very tiny content.\n\n## ⚠️ About Python EOLs\n\n**If you are running:**\n\n- Python >=2.7,<3.5: Unsupported\n- Python 3.5: charset-normalizer < 2.1\n- Python 3.6: charset-normalizer < 3.1\n\nUpgrade your Python interpreter as soon as possible.\n\n## 👤 Contributing\n\nContributions, issues and feature requests are very much welcome.<br />\nFeel free to check [issues page](https://github.com/ousret/charset_normalizer/issues) if you want to contribute.\n\n## 📝 License\n\nCopyright © [Ahmed TAHRI @Ousret](https://github.com/Ousret).<br />\nThis project is [MIT](https://github.com/Ousret/charset_normalizer/blob/master/LICENSE) licensed.\n\nCharacters frequencies used in this project © 2012 [Denny Vrandečić](http://simia.net/letters/)\n\n## 💼 For Enterprise\n\nProfessional support for charset-normalizer is available as part of the [Tidelift\nSubscription][1]. Tidelift gives software development teams a single source for\npurchasing and maintaining their software, with professional grade assurances\nfrom the experts who know it best, while seamlessly integrating with existing\ntools.\n\n[1]: https://tidelift.com/subscription/pkg/pypi-charset-normalizer?utm_source=pypi-charset-normalizer&utm_medium=readme\n\n[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/7297/badge)](https://www.bestpractices.dev/projects/7297)\n\n# Changelog\nAll notable changes to charset-normalizer will be documented in this file. This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).\n\n## [3.5.2](https://github.com/Ousret/charset_normalizer/compare/3.5.1...3.5.2) (2026-09-29)\n\n### Changed\n\n- Raised the Cython upper bound to `<3.4` for native builds. The bound remains `<3.3` for\n  `abi3` builds to preserve compatibility with the Python 3.7 Limited API.\n\n### Fixed\n\n- Valid UTF-8 Chinese JSON incorrectly detected as PTCP154 due to excessive noise penalties\n  for uncommon CJK characters. (#796)\n- Supported encodings without aliases failing name resolution or being ignored in charset\n  declarations. (#800)\n\n## [3.5.1](https://github.com/Ousret/charset_normalizer/compare/3.5.0...3.5.1) (2026-08-15)\n\n### Changed\n- Raised upper bound of setuptools to v84 (#794)\n- Cache performance access optimization for our CharInfo struct (prebuilt only).\n\n### Fixed\n- No longer decoding large content when the noise detector output give a high entropy.\n  Only impacted large content input >1M bytes.\n\n## [3.5.0](https://github.com/Ousret/charset_normalizer/compare/3.4.9...3.5.0) (2026-08-12)\n\n### Added\n- Explicit support for Python 3.15\n\n### Fixed\n- Comparing a CharsetMatch to a non-alias encoding strings (#773)\n- Return 0.0 CharsetMatch.multi_byte_usage for empty payloads instead of crashing (#774)\n- A file with both a charset declaration and BOM/SIG did not verify first the BOM/SIG charset.\n- iso2022* cases misdetected due to a flaw in our multibyte chunking logic.\n\n### Changed\n- Replaced the optional mypyc build with Cython extensions while retaining the\n  pure Python fallback. The previous engine (mypyc) started to hit rough limit around\n  the optimization of our noise/coherence detector while Cython allows us to\n  steer the engine toward the right generated optimized sources.\n  This change SHOULD not impact bundler (e.g. Pyinstaller) as the module are\n  immediately discoverable (i.e. not hidden import like mypyc did).\n  Moreover, a long wished distribution is the abi3 wheels, this will allow us\n  to no longer rush each year when a new Python interpreter is released.\n  We still distribute the interpreter specific wheels for faster performance.\n- Applied micro-optimization on several utils.\n- CharsetMatches no longer sort on each match insertion.\n\n### Misc\n- Removed an old performance optimization attempt in apy.py (success_fast_tracked+payload_result_cache).\n\n## [3.4.9](https://github.com/Ousret/charset_normalizer/compare/3.4.8...3.4.9) (2026-07-07)\n\n### Fixed\n- Regression in our fallback path leading to a decode error. (#771)\n  We've yanked 3.4.8 as a result of that bug.\n\n## [3.4.8](https://github.com/Ousret/charset_normalizer/compare/3.4.7...3.4.8) (2026-07-06)\n\n### Fixed\n- Wall import time due to cascade codec imports for our multibyte first sort of iana supported codecs (#742)\n- Unnecessary json import at runtime (#753)\n- Inverse capitalization not seen by noise detector (#731)\n\n### Changed\n- No longer holding a global cache for our noise / coherence measurements. Relax RSS memory usage.\n- Micro-optimizations in our noise / coherence measurements.\n- No longer using regex search by default for our preemptive charset mark algorithm.\n- Raised upperbound of setuptools to v83.\n- Raised upperbound of mypy(c) to v2.1.\n\n### Removed\n- Redundant UTF7 BOM marker (#730)\n\n## [3.4.7](https://github.com/Ousret/charset_normalizer/compare/3.4.6...3.4.7) (2026-04-02)\n\n### Changed\n- Pre-built optimized version using mypy[c] v1.20.\n- Relax `setuptools` constraint to `setuptools>=68,<82.1`.\n\n### Fixed\n- Correctly remove SIG remnant in utf-7 decoded string. (#718) (#716)\n\n## [3.4.6](https://github.com/Ousret/charset_normalizer/compare/3.4.5...3.4.6) (2026-03-15)\n\n### Changed\n- Flattened the logic in `charset_normalizer.md` for higher performance. Removed `eligible(..)` and `feed(...)`\n  in favor of `feed_info(...)`.\n- Raised upper bound for mypy[c] to 1.20, for our optimized version.\n- Updated `UNICODE_RANGES_COMBINED` using Unicode blocks v17.\n\n### Fixed\n- Edge case where noise difference between two candidates can be almost insignificant. (#672)\n- CLI `--normalize` writing to wrong path when passing multiple files in. (#702)\n\n### Misc\n- Freethreaded pre-built wheels now shipped in PyPI starting with 3.14t. (#616)\n\n## [3.4.5](https://github.com/Ousret/charset_normalizer/compare/3.4.4...3.4.5) (2026-03-06)\n\n### Changed\n- Update `setuptools` constraint to `setuptools>=68,<=82`.\n- Raised upper bound of mypyc for the optional pre-built extension to v1.19.1\n\n### Fixed\n- Add explicit link to lib math in our optimized build. (#692)\n- Logger level not restored correctly for empty byte sequences. (#701)\n- TypeError when passing bytearray to from_bytes. (#703)\n\n### Misc\n- Applied safe micro-optimizations in both our noise detector and language detector.\n- Rewrote the `query_yes_no` function (inside CLI) to avoid using ambiguous licensed code.\n- Added `cd.py` submodule into mypyc optional compilation to reduce further the performance impact.\n\n## [3.4.4](https://github.com/Ousret/charset_normalizer/compare/3.4.2...3.4.4) (2025-10-13)\n\n### Changed\n- Bound `setuptools` to a specific constraint `setuptools>=68,<=81`.\n- Raised upper bound of mypyc for the optional pre-built extension to v1.18.2\n\n### Removed\n- `setuptools-scm` as a build dependency.\n\n### Misc\n- Enforced hashes in `dev-requirements.txt` and created `ci-requirements.txt` for security purposes.\n- Additional pre-built wheels for riscv64, s390x, and armv7l architectures.\n- Restore ` multiple.intoto.jsonl` in GitHub releases in addition to individual attestation file per wheel.\n\n## [3.4.3](https://github.com/Ousret/charset_normalizer/compare/3.4.2...3.4.3) (2025-08-09)\n\n### Changed\n- mypy(c) is no longer a required dependency at build time if `CHARSET_NORMALIZER_USE_MYPYC` isn't set to `1`. (#595) (#583)\n- automatically lower confidence on small bytes samples that are not Unicode in `detect` output legacy function. (#391)\n\n### Added\n- Custom build backend to overcome inability to mark mypy as an optional dependency in the build phase.\n- Support for Python 3.14\n\n### Fixed\n- sdist archive contained useless directories.\n- automatically fallback on valid UTF-16 or UTF-32 even if the md says it's noisy. (#633)\n\n### Misc\n- SBOM are automatically published to the relevant GitHub release to comply with regulatory changes.\n  Each published wheel comes with its SBOM. We choose CycloneDX as the format.\n- Prebuilt optimized wheel are no longer distributed by default for CPython 3.7 due to a change in cibuildwheel.\n\n## [3.4.2](https://github.com/Ousret/charset_normalizer/compare/3.4.1...3.4.2) (2025-05-02)\n\n### Fixed\n- Addressed the DeprecationWarning in our CLI regarding `argparse.FileType` by backporting the target class into the package. (#591)\n- Improved the overall reliability of the detector with CJK Ideographs. (#605) (#587)\n\n### Changed\n- Optional mypyc compilation upgraded to version 1.15 for Python >= 3.8\n\n## [3.4.1](https://github.com/Ousret/charset_normalizer/compare/3.4.0...3.4.1) (2024-12-24)\n\n### Changed\n- Project metadata are now stored using `pyproject.toml` instead of `setup.cfg` using setuptools as the build backend.\n- Enforce annotation delayed loading for a simpler and consistent types in the project.\n- Optional mypyc compilation upgraded to version 1.14 for Python >= 3.8\n\n### Added\n- pre-commit configuration.\n- noxfile.\n\n### Removed\n- `build-requirements.txt` as per using `pyproject.toml` native build configuration.\n- `bin/integration.py` and `bin/serve.py` in favor of downstream integration test (see noxfile).\n- `setup.cfg` in favor of `pyproject.toml` metadata configuration.\n- Unused `utils.range_scan` function.\n\n### Fixed\n- Converting content to Unicode bytes may insert `utf_8` instead of preferred `utf-8`. (#572)\n- Deprecation warning \"'count' is passed as positional argument\" when converting to Unicode bytes on Python 3.13+\n\n## [3.4.0](https://github.com/Ousret/charset_normalizer/compare/3.3.2...3.4.0) (2024-10-08)\n\n### Added\n- Argument `--no-preemptive` in the CLI to prevent the detector to search for hints.\n- Support for Python 3.13 (#512)\n\n### Fixed\n- Relax the TypeError exception thrown when trying to compare a CharsetMatch with anything else than a CharsetMatch.\n- Improved the general reliability of the detector based on user feedbacks. (#520) (#509) (#498) (#407) (#537)\n- Declared charset in content (preemptive detection) not changed when converting to utf-8 bytes. (#381)\n\n## [3.3.2](https://github.com/Ousret/charset_normalizer/compare/3.3.1...3.3.2) (2023-10-31)\n\n### Fixed\n- Unintentional memory usage regression when using large payload that match several encoding (#376)\n- Regression on some detection case showcased in the documentation (#371)\n\n### Added\n- Noise (md) probe that identify malformed arabic representation due to the presence of letters in isolated form (credit to my wife)\n\n## [3.3.1](https://github.com/Ousret/charset_normalizer/compare/3.3.0...3.3.1) (2023-10-22)\n\n### Changed\n- Optional mypyc compilation upgraded to version 1.6.1 for Python >= 3.8\n- Improved the general detection reliability based on reports from the community\n\n## [3.3.0](https://github.com/Ousret/charset_normalizer/compare/3.2.0...3.3.0) (2023-09-30)\n\n### Added\n- Allow to execute the CLI (e.g. normalizer) through `python -m charset_normalizer.cli` or `python -m charset_normalizer`\n- Support for 9 forgotten encoding that are supported by Python but unlisted in `encoding.aliases` as they have no alias (#323)\n\n### Removed\n- (internal) Redundant utils.is_ascii function and unused function is_private_use_only\n- (internal) charset_normalizer.assets is moved inside charset_normalizer.constant\n\n### Changed\n- (internal) Unicode code blocks in constants are updated using the latest v15.0.0 definition to improve detection\n- Optional mypyc compilation upgraded to version 1.5.1 for Python >= 3.8\n\n### Fixed\n- Unable to properly sort CharsetMatch when both chaos/noise and coherence were close due to an unreachable condition in \\_\\_lt\\_\\_ (#350)\n\n## [3.2.0](https://github.com/Ousret/charset_normalizer/compare/3.1.0...3.2.0) (2023-06-07)\n\n### Changed\n- Typehint for function `from_path` no longer enforce `PathLike` as its first argument\n- Minor improvement over the global detection reliability\n\n### Added\n- Introduce function `is_binary` that relies on main capabilities, and optimized to detect binaries\n- Propagate `enable_fallback` argument throughout `from_bytes`, `from_path`, and `from_fp` that allow a deeper control over the detection (default True)\n- Explicit support for Python 3.12\n\n### Fixed\n- Edge case detection failure where a file would contain 'very-long' camel cased word (Issue #289)\n\n## [3.1.0](https://github.com/Ousret/charset_normalizer/compare/3.0.1...3.1.0) (2023-03-06)\n\n### Added\n- Argument `should_rename_legacy` for legacy function `detect` and disregard any new arguments without errors (PR #262)\n\n### Removed\n- Support for Python 3.6 (PR #260)\n\n### Changed\n- Optional speedup provided by mypy/c 1.0.1\n\n## [3.0.1](https://github.com/Ousret/charset_normalizer/compare/3.0.0...3.0.1) (2022-11-18)\n\n### Fixed\n- Multi-bytes cutter/chunk generator did not always cut correctly (PR #233)\n\n### Changed\n- Speedup provided by mypy/c 0.990 on Python >= 3.7\n\n## [3.0.0](https://github.com/Ousret/charset_normalizer/compare/2.1.1...3.0.0) (2022-10-20)\n\n### Added\n- Extend the capability of explain=True when cp_isolation contains at most two entries (min one), will log in details of the Mess-detector results\n- Support for alternative language frequency set in charset_normalizer.assets.FREQUENCIES\n- Add parameter `language_threshold` in `from_bytes`, `from_path` and `from_fp` to adjust the minimum expected coherence ratio\n- `normalizer --version` now specify if current version provide extra speedup (meaning mypyc compilation whl)\n\n### Changed\n- Build with static metadata using 'build' frontend\n- Make the language detection stricter\n- Optional: Module `md.py` can be compiled using Mypyc to provide an extra speedup up to 4x faster than v2.1\n\n### Fixed\n- CLI with opt --normalize fail when using full path for files\n- TooManyAccentuatedPlugin induce false positive on the mess detection when too few alpha character have been fed to it\n- Sphinx warnings when generating the documentation\n\n### Removed\n- Coherence detector no longer return 'Simple English' instead return 'English'\n- Coherence detector no longer return 'Classical Chinese' instead return 'Chinese'\n- Breaking: Method `first()` and `best()` from CharsetMatch\n- UTF-7 will no longer appear as \"detected\" without a recognized SIG/mark (is unreliable/conflict with ASCII)\n- Breaking: Class aliases CharsetDetector, CharsetDoctor, CharsetNormalizerMatch and CharsetNormalizerMatches\n- Breaking: Top-level function `normalize`\n- Breaking: Properties `chaos_secondary_pass`, `coherence_non_latin` and `w_counter` from CharsetMatch\n- Support for the backport `unicodedata2`\n\n## [3.0.0rc1](https://github.com/Ousret/charset_normalizer/compare/3.0.0b2...3.0.0rc1) (2022-10-18)\n\n### Added\n- Extend the capability of explain=True when cp_isolation contains at most two entries (min one), will log in details of the Mess-detector results\n- Support for alternative language frequency set in charset_normalizer.assets.FREQUENCIES\n- Add parameter `language_threshold` in `from_bytes`, `from_path` and `from_fp` to adjust the minimum expected coherence ratio\n\n### Changed\n- Build with static metadata using 'build' frontend\n- Make the language detection stricter\n\n### Fixed\n- CLI with opt --normalize fail when using full path for files\n- TooManyAccentuatedPlugin induce false positive on the mess detection when too few alpha character have been fed to it\n\n### Removed\n- Coherence detector no longer return 'Simple English' instead return 'English'\n- Coherence detector no longer return 'Classical Chinese' instead return 'Chinese'\n\n## [3.0.0b2](https://github.com/Ousret/charset_normalizer/compare/3.0.0b1...3.0.0b2) (2022-08-21)\n\n### Added\n- `normalizer --version` now specify if current version provide extra speedup (meaning mypyc compilation whl)\n\n### Removed\n- Breaking: Method `first()` and `best()` from CharsetMatch\n- UTF-7 will no longer appear as \"detected\" without a recognized SIG/mark (is unreliable/conflict with ASCII)\n\n### Fixed\n- Sphinx warnings when generating the documentation\n\n## [3.0.0b1](https://github.com/Ousret/charset_normalizer/compare/2.1.0...3.0.0b1) (2022-08-15)\n\n### Changed\n- Optional: Module `md.py` can be compiled using Mypyc to provide an extra speedup up to 4x faster than v2.1\n\n### Removed\n- Breaking: Class aliases CharsetDetector, CharsetDoctor, CharsetNormalizerMatch and CharsetNormalizerMatches\n- Breaking: Top-level function `normalize`\n- Breaking: Properties `chaos_secondary_pass`, `coherence_non_latin` and `w_counter` from CharsetMatch\n- Support for the backport `unicodedata2`\n\n## [2.1.1](https://github.com/Ousret/charset_normalizer/compare/2.1.0...2.1.1) (2022-08-19)\n\n### Deprecated\n- Function `normalize` scheduled for removal in 3.0\n\n### Changed\n- Removed useless call to decode in fn is_unprintable (#206)\n\n### Fixed\n- Third-party library (i18n xgettext) crashing not recognizing utf_8 (PEP 263) with underscore from [@aleksandernovikov](https://github.com/aleksandernovikov) (#204)\n\n## [2.1.0](https://github.com/Ousret/charset_normalizer/compare/2.0.12...2.1.0) (2022-06-19)\n\n### Added\n- Output the Unicode table version when running the CLI with `--version` (PR #194)\n\n### Changed\n- Reuse decoded buffer for single byte character sets from [@nijel](https://github.com/nijel) (PR #175)\n- Fixing some performance bottlenecks from [@deedy5](https://github.com/deedy5) (PR #183)\n\n### Fixed\n- Workaround potential bug in cpython with Zero Width No-Break Space located in Arabic Presentation Forms-B, Unicode 1.1 not acknowledged as space (PR #175)\n- CLI default threshold aligned with the API threshold from [@oleksandr-kuzmenko](https://github.com/oleksandr-kuzmenko) (PR #181)\n\n### Removed\n- Support for Python 3.5 (PR #192)\n\n### Deprecated\n- Use of backport unicodedata from `unicodedata2` as Python is quickly catching up, scheduled for removal in 3.0 (PR #194)\n\n## [2.0.12](https://github.com/Ousret/charset_normalizer/compare/2.0.11...2.0.12) (2022-02-12)\n\n### Fixed\n- ASCII miss-detection on rare cases (PR #170)\n\n## [2.0.11](https://github.com/Ousret/charset_normalizer/compare/2.0.10...2.0.11) (2022-01-30)\n\n### Added\n- Explicit support for Python 3.11 (PR #164)\n\n### Changed\n- The logging behavior have been completely reviewed, now using only TRACE and DEBUG levels (PR #163 #165)\n\n## [2.0.10](https://github.com/Ousret/charset_normalizer/compare/2.0.9...2.0.10) (2022-01-04)\n\n### Fixed\n- Fallback match entries might lead to UnicodeDecodeError for large bytes sequence (PR #154)\n\n### Changed\n- Skipping the language-detection (CD) on ASCII (PR #155)\n\n## [2.0.9](https://github.com/Ousret/charset_normalizer/compare/2.0.8...2.0.9) (2021-12-03)\n\n### Changed\n- Moderating the logging impact (since 2.0.8) for specific environments (PR #147)\n\n### Fixed\n- Wrong logging level applied when setting kwarg `explain` to True (PR #146)\n\n## [2.0.8](https://github.com/Ousret/charset_normalizer/compare/2.0.7...2.0.8) (2021-11-24)\n### Changed\n- Improvement over Vietnamese detection (PR #126)\n- MD improvement on trailing data and long foreign (non-pure latin) data (PR #124)\n- Efficiency improvements in cd/alphabet_languages from [@adbar](https://github.com/adbar) (PR #122)\n- call sum() without an intermediary list following PEP 289 recommendations from [@adbar](https://github.com/adbar) (PR #129)\n- Code style as refactored by Sourcery-AI (PR #131)\n- Minor adjustment on the MD around european words (PR #133)\n- Remove and replace SRTs from assets / tests (PR #139)\n- Initialize the library logger with a `NullHandler` by default from [@nmaynes](https://github.com/nmaynes) (PR #135)\n- Setting kwarg `explain` to True will add provisionally (bounded to function lifespan) a specific stream handler (PR #135)\n\n### Fixed\n- Fix large (misleading) sequence giving UnicodeDecodeError (PR #137)\n- Avoid using too insignificant chunk (PR #137)\n\n### Added\n- Add and expose function `set_logging_handler` to configure a specific StreamHandler from [@nmaynes](https://github.com/nmaynes) (PR #135)\n- Add `CHANGELOG.md` entries, format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) (PR #141)\n\n## [2.0.7](https://github.com/Ousret/charset_normalizer/compare/2.0.6...2.0.7) (2021-10-11)\n### Added\n- Add support for Kazakh (Cyrillic) language detection (PR #109)\n\n### Changed\n- Further, improve inferring the language from a given single-byte code page (PR #112)\n- Vainly trying to leverage PEP263 when PEP3120 is not supported (PR #116)\n- Refactoring for potential performance improvements in loops from [@adbar](https://github.com/adbar) (PR #113)\n- Various detection improvement (MD+CD) (PR #117)\n\n### Removed\n- Remove redundant logging entry about detected language(s) (PR #115)\n\n### Fixed\n- Fix a minor inconsistency between Python 3.5 and other versions regarding language detection (PR #117 #102)\n\n## [2.0.6](https://github.com/Ousret/charset_normalizer/compare/2.0.5...2.0.6) (2021-09-18)\n### Fixed\n- Unforeseen regression with the loss of the backward-compatibility with some older minor of Python 3.5.x (PR #100)\n- Fix CLI crash when using --minimal output in certain cases (PR #103)\n\n### Changed\n- Minor improvement to the detection efficiency (less than 1%) (PR #106 #101)\n\n## [2.0.5](https://github.com/Ousret/charset_normalizer/compare/2.0.4...2.0.5) (2021-09-14)\n### Changed\n- The project now comply with: flake8, mypy, isort and black to ensure a better overall quality (PR #81)\n- The BC-support with v1.x was improved, the old staticmethods are restored (PR #82)\n- The Unicode detection is slightly improved (PR #93)\n- Add syntax sugar \\_\\_bool\\_\\_ for results CharsetMatches list-container (PR #91)\n\n### Removed\n- The project no longer raise warning on tiny content given for detection, will be simply logged as warning instead (PR #92)\n\n### Fixed\n- In some rare case, the chunks extractor could cut in the middle of a multi-byte character and could mislead the mess detection (PR #95)\n- Some rare 'space' characters could trip up the UnprintablePlugin/Mess detection (PR #96)\n- The MANIFEST.in was not exhaustive (PR #78)\n\n## [2.0.4](https://github.com/Ousret/charset_normalizer/compare/2.0.3...2.0.4) (2021-07-30)\n### Fixed\n- The CLI no longer raise an unexpected exception when no encoding has been found (PR #70)\n- Fix accessing the 'alphabets' property when the payload contains surrogate characters (PR #68)\n- The logger could mislead (explain=True) on detected languages and the impact of one MBCS match (PR #72)\n- Submatch factoring could be wrong in rare edge cases (PR #72)\n- Multiple files given to the CLI were ignored when publishing results to STDOUT. (After the first path) (PR #72)\n- Fix line endings from CRLF to LF for certain project files (PR #67)\n\n### Changed\n- Adjust the MD to lower the sensitivity, thus improving the global detection reliability (PR #69 #76)\n- Allow fallback on specified encoding if any (PR #71)\n\n## [2.0.3](https://github.com/Ousret/charset_normalizer/compare/2.0.2...2.0.3) (2021-07-16)\n### Changed\n- Part of the detection mechanism has been improved to be less sensitive, resulting in more accurate detection results. Especially ASCII. (PR #63)\n- According to the community wishes, the detection will fall back on ASCII or UTF-8 in a last-resort case. (PR #64)\n\n## [2.0.2](https://github.com/Ousret/charset_normalizer/compare/2.0.1...2.0.2) (2021-07-15)\n### Fixed\n- Empty/Too small JSON payload miss-detection fixed. Report from [@tseaver](https://github.com/tseaver) (PR #59)\n\n### Changed\n- Don't inject unicodedata2 into sys.modules from [@akx](https://github.com/akx) (PR #57)\n\n## [2.0.1](https://github.com/Ousret/charset_normalizer/compare/2.0.0...2.0.1) (2021-07-13)\n### Fixed\n- Make it work where there isn't a filesystem available, dropping assets frequencies.json. Report from [@sethmlarson](https://github.com/sethmlarson). (PR #55)\n- Using explain=False permanently disable the verbose output in the current runtime (PR #47)\n- One log entry (language target preemptive) was not show in logs when using explain=True (PR #47)\n- Fix undesired exception (ValueError) on getitem of instance CharsetMatches (PR #52)\n\n### Changed\n- Public function normalize default args values were not aligned with from_bytes (PR #53)\n\n### Added\n- You may now use charset aliases in cp_isolation and cp_exclusion arguments (PR #47)\n\n## [2.0.0](https://github.com/Ousret/charset_normalizer/compare/1.4.1...2.0.0) (2021-07-02)\n### Changed\n- 4x to 5 times faster than the previous 1.4.0 release. At least 2x faster than Chardet.\n- Accent has been made on UTF-8 detection, should perform rather instantaneous.\n- The backward compatibility with Chardet has been greatly improved. The legacy detect function returns an identical charset name whenever possible.\n- The detection mechanism has been slightly improved, now Turkish content is detected correctly (most of the time)\n- The program has been rewritten to ease the readability and maintainability. (+Using static typing)+\n- utf_7 detection has been reinstated.\n\n### Removed\n- This package no longer require anything when used with Python 3.5 (Dropped cached_property)\n- Removed support for these languages: Catalan, Esperanto, Kazakh, Baque, Volapük, Azeri, Galician, Nynorsk, Macedonian, and Serbocroatian.\n- The exception hook on UnicodeDecodeError has been removed.\n\n### Deprecated\n- Methods coherence_non_latin, w_counter, chaos_secondary_pass of the class CharsetMatch are now deprecated and scheduled for removal in v3.0\n\n### Fixed\n- The CLI output used the relative path of the file(s). Should be absolute.\n\n## [1.4.1](https://github.com/Ousret/charset_normalizer/compare/1.4.0...1.4.1) (2021-05-28)\n### Fixed\n- Logger configuration/usage no longer conflict with others (PR #44)\n\n## [1.4.0](https://github.com/Ousret/charset_normalizer/compare/1.3.9...1.4.0) (2021-05-21)\n### Removed\n- Using standard logging instead of using the package loguru.\n- Dropping nose test framework in favor of the maintained pytest.\n- Choose to not use dragonmapper package to help with gibberish Chinese/CJK text.\n- Require cached_property only for Python 3.5 due to constraint. Dropping for every other interpreter version.\n- Stop support for UTF-7 that does not contain a SIG.\n- Dropping PrettyTable, replaced with pure JSON output in CLI.\n\n### Fixed\n- BOM marker in a CharsetNormalizerMatch instance could be False in rare cases even if obviously present. Due to the sub-match factoring process.\n- Not searching properly for the BOM when trying utf32/16 parent codec.\n\n### Changed\n- Improving the package final size by compressing frequencies.json.\n- Huge improvement over the larges payload.\n\n### Added\n- CLI now produces JSON consumable output.\n- Return ASCII if given sequences fit. Given reasonable confidence.\n\n## [1.3.9](https://github.com/Ousret/charset_normalizer/compare/1.3.8...1.3.9) (2021-05-13)\n\n### Fixed\n- In some very rare cases, you may end up getting encode/decode errors due to a bad bytes payload (PR #40)\n\n## [1.3.8](https://github.com/Ousret/charset_normalizer/compare/1.3.7...1.3.8) (2021-05-12)\n\n### Fixed\n- Empty given payload for detection may cause an exception if trying to access the `alphabets` property. (PR #39)\n\n## [1.3.7](https://github.com/Ousret/charset_normalizer/compare/1.3.6...1.3.7) (2021-05-12)\n\n### Fixed\n- The legacy detect function should return UTF-8-SIG if sig is present in the payload. (PR #38)\n\n## [1.3.6](https://github.com/Ousret/charset_normalizer/compare/1.3.5...1.3.6) (2021-02-09)\n\n### Changed\n- Amend the previous release to allow prettytable 2.0 (PR #35)\n\n## [1.3.5](https://github.com/Ousret/charset_normalizer/compare/1.3.4...1.3.5) (2021-02-08)\n\n### Fixed\n- Fix error while using the package with a python pre-release interpreter (PR #33)\n\n### Changed\n- Dependencies refactoring, constraints revised.\n\n### Added\n- Add python 3.9 and 3.10 to the supported interpreters\n\nMIT License\n\nCopyright (c) 2025 TAHRI Ahmed R.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+                      "description_content_type": "text/markdown",
+                      "keywords": [
+                        "encoding",
+                        "charset",
+                        "charset-detector",
+                        "detector",
+                        "normalization",
+                        "unicode",
+                        "chardet",
+                        "detect"
+                      ],
+                      "author_email": "\"Ahmed R. TAHRI\" <tahri.ahmed@proton.me>",
+                      "maintainer_email": "\"Ahmed R. TAHRI\" <tahri.ahmed@proton.me>",
+                      "license": "MIT",
+                      "license_file": [
+                        "LICENSE"
+                      ],
+                      "classifier": [
+                        "Development Status :: 5 - Production/Stable",
+                        "Intended Audience :: Developers",
+                        "Operating System :: OS Independent",
+                        "Programming Language :: Python",
+                        "Programming Language :: Python :: 3",
+                        "Programming Language :: Python :: 3.7",
+                        "Programming Language :: Python :: 3.8",
+                        "Programming Language :: Python :: 3.9",
+                        "Programming Language :: Python :: 3.10",
+                        "Programming Language :: Python :: 3.11",
+                        "Programming Language :: Python :: 3.12",
+                        "Programming Language :: Python :: 3.13",
+                        "Programming Language :: Python :: 3.14",
+                        "Programming Language :: Python :: 3.15",
+                        "Programming Language :: Python :: 3 :: Only",
+                        "Programming Language :: Python :: Implementation :: CPython",
+                        "Programming Language :: Python :: Implementation :: PyPy",
+                        "Programming Language :: Python :: Free Threading :: 4 - Resilient",
+                        "Environment :: WebAssembly",
+                        "Environment :: WebAssembly :: Emscripten",
+                        "Topic :: Text Processing :: Linguistic",
+                        "Topic :: Utilities",
+                        "Typing :: Typed"
+                      ],
+                      "requires_python": ">=3.7",
+                      "project_url": [
+                        "Changelog, https://github.com/jawah/charset_normalizer/blob/master/CHANGELOG.md",
+                        "Documentation, https://charset-normalizer.readthedocs.io/",
+                        "Code, https://github.com/jawah/charset_normalizer",
+                        "Issue tracker, https://github.com/jawah/charset_normalizer/issues"
+                      ],
+                      "provides_extra": [
+                        "unicode-backport"
+                      ]
+                    }
+                  },
+                  {
+                    "download_info": {
+                      "url": "https://files.pythonhosted.org/packages/ed/23/7a778b6bd0b9a8039df8b1b1d80e2e2ad78aa04171592c8a5c43a56a6af4/pyyaml-6.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl",
+                      "archive_info": {
+                        "hash": "sha256=9149cad251584d5fb4981be1ecde53a1ca46c891a79788c0df828d2f166bda28",
+                        "hashes": {
+                          "sha256": "9149cad251584d5fb4981be1ecde53a1ca46c891a79788c0df828d2f166bda28"
+                        }
+                      }
+                    },
+                    "is_direct": false,
+                    "is_yanked": false,
+                    "requested": false,
+                    "metadata": {
+                      "metadata_version": "2.4",
+                      "name": "PyYAML",
+                      "version": "6.0.3",
+                      "dynamic": [
+                        "author",
+                        "author-email",
+                        "classifier",
+                        "description",
+                        "download-url",
+                        "home-page",
+                        "license",
+                        "license-file",
+                        "platform",
+                        "project-url",
+                        "requires-python",
+                        "summary"
+                      ],
+                      "platform": [
+                        "Any"
+                      ],
+                      "summary": "YAML parser and emitter for Python",
+                      "description": "YAML is a data serialization format designed for human readability\nand interaction with scripting languages.  PyYAML is a YAML parser\nand emitter for Python.\n\nPyYAML features a complete YAML 1.1 parser, Unicode support, pickle\nsupport, capable extension API, and sensible error messages.  PyYAML\nsupports standard YAML tags and provides Python-specific tags that\nallow to represent an arbitrary Python object.\n\nPyYAML is applicable for a broad range of tasks from complex\nconfiguration files to object serialization and persistence.\n",
+                      "home_page": "https://pyyaml.org/",
+                      "download_url": "https://pypi.org/project/PyYAML/",
+                      "author": "Kirill Simonov",
+                      "author_email": "xi@resolvent.net",
+                      "license": "MIT",
+                      "license_file": [
+                        "LICENSE"
+                      ],
+                      "classifier": [
+                        "Development Status :: 5 - Production/Stable",
+                        "Intended Audience :: Developers",
+                        "License :: OSI Approved :: MIT License",
+                        "Operating System :: OS Independent",
+                        "Programming Language :: Cython",
+                        "Programming Language :: Python",
+                        "Programming Language :: Python :: 3",
+                        "Programming Language :: Python :: 3.8",
+                        "Programming Language :: Python :: 3.9",
+                        "Programming Language :: Python :: 3.10",
+                        "Programming Language :: Python :: 3.11",
+                        "Programming Language :: Python :: 3.12",
+                        "Programming Language :: Python :: 3.13",
+                        "Programming Language :: Python :: 3.14",
+                        "Programming Language :: Python :: Implementation :: CPython",
+                        "Programming Language :: Python :: Implementation :: PyPy",
+                        "Topic :: Software Development :: Libraries :: Python Modules",
+                        "Topic :: Text Processing :: Markup"
+                      ],
+                      "requires_python": ">=3.8",
+                      "project_url": [
+                        "Bug Tracker, https://github.com/yaml/pyyaml/issues",
+                        "CI, https://github.com/yaml/pyyaml/actions",
+                        "Documentation, https://pyyaml.org/wiki/PyYAMLDocumentation",
+                        "Mailing lists, http://lists.sourceforge.net/lists/listinfo/yaml-core",
+                        "Source Code, https://github.com/yaml/pyyaml"
+                      ]
+                    }
+                  }
+                ],
+                "environment": {
+                  "implementation_name": "cpython",
+                  "implementation_version": "3.12.15",
+                  "os_name": "posix",
+                  "platform_machine": "aarch64",
+                  "platform_release": "7.0.0-38-generic",
+                  "platform_system": "Linux",
+                  "platform_version": "#38-Ubuntu SMP PREEMPT_DYNAMIC Fri Sep  4 09:28:02 UTC 2026",
+                  "python_full_version": "3.12.15",
+                  "platform_python_implementation": "CPython",
+                  "python_version": "3.12",
+                  "sys_platform": "linux"
+                }
+              }
+            }
+          ],
+          "outputs": [
+            {
+              "name": "intro.md",
+              "exit_code": 127,
+              "content": "",
+              "truncated": false,
+              "process": {
+                "argv": [
+                  "md2html",
+                  "/work/inputs/intro.md",
+                  "-o",
+                  "result.html"
+                ],
+                "executed_argv": [
+                  "md2html",
+                  "/work/inputs/intro.md",
+                  "-o",
+                  "result.html"
+                ],
+                "exit_code": 127,
+                "duration_s": 0.0,
+                "stdout": "",
+                "stderr": "[Errno 2] No such file or directory: 'md2html'",
+                "truncated": false
+              }
+            },
+            {
+              "name": "second.md",
+              "exit_code": 127,
+              "content": "",
+              "truncated": false,
+              "process": {
+                "argv": [
+                  "md2html",
+                  "/work/inputs/second.md",
+                  "-o",
+                  "result.html"
+                ],
+                "executed_argv": [
+                  "md2html",
+                  "/work/inputs/second.md",
+                  "-o",
+                  "result.html"
+                ],
+                "exit_code": 127,
+                "duration_s": 0.0,
+                "stdout": "",
+                "stderr": "[Errno 2] No such file or directory: 'md2html'",
+                "truncated": false
+              }
+            }
+          ],
+          "pip_freeze": {
+            "argv": [
+              "pip",
+              "freeze",
+              "--all"
+            ],
+            "executed_argv": [
+              "/work/venv/bin/python",
+              "-I",
+              "-m",
+              "pip",
+              "freeze",
+              "--all"
+            ],
+            "exit_code": 0,
+            "duration_s": 0.326,
+            "stdout": "charset-normalizer==3.5.2\nMarkdown==3.11.2\npip==25.0.1\nPygments==2.21.0\npymdown-extensions==12.3\nPyYAML==6.0.3\n",
+            "stderr": "",
+            "truncated": false
+          },
+          "dependency_mode": "pypi_live",
+          "environment_policy": "Fresh venv; documented Python/pip aliases resolve to that interpreter; no user-site install.",
+          "container_id": "fresh-eyes-5d6f28630dfa4bb5",
+          "execution_image_id": "sha256:36538dc2335f298de0d190fccf2370655d5e49e47d6ea5abd82f575954e622ff",
+          "network_policy": {
+            "mode": "pypi_proxy_isolated",
+            "network_id": "f3f11225400886a153c790e3ff935e2903fb9c91dc43bc8871fa11cece5eb1bc",
+            "configuration_verified": true,
+            "runtime_egress_verified": false,
+            "allowed_hosts": [
+              "pypi.org:443",
+              "files.pythonhosted.org:443"
+            ],
+            "verification_scope": "Docker network configuration; actual egress probes are a separate release gate"
+          }
+        },
+        "validation": {
+          "passed": false,
+          "checks": [
+            {
+              "name": "intro.md",
+              "passed": false,
+              "reason": "Missing output, failed process or truncated output"
+            },
+            {
+              "name": "second.md",
+              "passed": false,
+              "reason": "Missing output, failed process or truncated output"
+            }
+          ]
+        }
+      }
+    ],
+    "model_calls": 2,
+    "repair_author": null,
+    "dependency_mode": "pypi_live",
+    "max_patch_rounds": 2,
+    "repair_route": "nano_ultra",
+    "repair_rounds": [
+      {
+        "round": 1,
+        "diagnosis": {
+          "route": "nano_ultra",
+          "data_origin": "nebius_api",
+          "status": "unresolved",
+          "classification": {
+            "category": "documentation",
+            "reason": "The README documents both pip install commands but omits the required `pip install -e .[dev]` step for the CLI entrypoint used in the workflow; although setup installs runtime dependencies, the documented usage of `md2html` cannot succeed without the dev extras."
+          },
+          "classification_model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+          "web_research": [
+            {
+              "round": 1,
+              "query": "neobuilding/md2html md2html Python package installation command",
+              "searched_at": "2026-10-24T17:58:39.304713+00:00",
+              "data_origin": "tavily_api",
+              "status": "ok",
+              "results": [
+                {
+                  "title": "md2html/README.md at main · neobuilding/md2html · GitHub",
+                  "url": "https://github.com/neobuilding/md2html/blob/main/README.md",
+                  "content": "## Quick Start\n\n### Requirements\n\n Python 3.9 or higher\n\n### Installation\n\n```\n# or for editable development install #\".[dev]\" \" \"\n```\n\n>  `-r requirements.txt`: standard install, runtime dependencies only. Use this for everyday use.\n>  `-e \".[dev]\"`: editable install + testing tools. Code changes take effect immediately — for development / contributing.\n\n### Standalone Executable (.exe) [...] m\n[TRUNCATED]\n| Command | Notes |\n --- \n| CLI entry point | `md2html input.md` | Requires `pip install -e .`; available globally after install |\n| Package module | `python -m md2html input.md` | No install needed; works from project root |\n| Single script | `python md2html.py input.md` | Standalone, no package structure |\n| Windows wrapper | `md2html.bat input.md` | Auto-activates venv; good for Windows users |"
+                }
+              ],
+              "credits": 1,
+              "latency_ms": 1453,
+              "request_id": "dcc04fed-57e1-48fd-847c-890b5fa64cee"
+            }
+          ],
+          "reason": "request_error",
+          "ledger": {
+            "run_id": "544eb45fae4646d18ee7d7a8c86d141f",
+            "currency": "USD",
+            "max_usd": "0.08",
+            "held_usd": "0.02981666",
+            "model_calls": 2,
+            "engineering_test_calls": 0,
+            "calculated_usd": null,
+            "billed_usd": null,
+            "calls": [
+              {
+                "call_id": "545bdc9db0b34dcfbb33cc1b583bcba2",
+                "run_id": "544eb45fae4646d18ee7d7a8c86d141f",
+                "stage": "classify",
+                "data_origin": "nebius_api",
+                "requested_model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+                "returned_model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+                "provider_request_id": "chatcmpl-8b894a71-e292-460d-bbec-315c661141e7",
+                "started_at": "2026-10-24T17:58:38.328028+00:00",
+                "finished_at": "2026-10-24T17:58:39.302593+00:00",
+                "status": "completed",
+                "usage": {
+                  "prompt_tokens": 2427,
+                  "completion_tokens": 71,
+                  "total_tokens": 2498
+                },
+                "dispatch_started_at": "2026-10-24T17:58:38.329360+00:00",
+                "price_reference": "https://api.tokenfactory.nebius.com/v1/models?verbose=true checked 2026-10-24T17:37:23.726642+00:00",
+                "input_per_million": "0.06000000",
+                "output_per_million": "0.24000000",
+                "cached_input_per_million": null,
+                "reservation_usd": "0.00079380",
+                "calculated_usd": "0.00016266",
+                "billed_usd": null,
+                "input_tokens_upper_bound": 10158,
+                "input_bound_reference": "nvidia-byte-bpe-v1:c6021eb6847e682f89aa52d5eb6e8c7d902a23acfc8137e25211cf84828f1592:template:ab7813c3abdd9cb655905a410728b26c7884eca45ddfab8d9f931553485a7862:header=2048",
+                "billing_status": "usage_calculated_pending_reconciliation",
+                "prompt_sha256": "6c95e4051ccce5af4a4dde53a11973d43b9dce3cd40338e3123dc46977e71983",
+                "request_options": {
+                  "chat_template_kwargs": {
+                    "enable_thinking": false
+                  }
+                },
+                "response_finish_reason": "stop",
+                "response_content_bytes": 311,
+                "latency_ms": 974
+              },
+              {
+                "call_id": "bf5322705b544a43939bdd9ba3d778c4",
+                "run_id": "544eb45fae4646d18ee7d7a8c86d141f",
+                "stage": "diagnose",
+                "data_origin": "nebius_api",
+                "requested_model": "nvidia/Nemotron-3-Ultra-550b-a55b",
+                "returned_model": null,
+                "provider_request_id": null,
+                "started_at": "2026-10-24T17:58:40.759476+00:00",
+                "finished_at": "2026-10-24T17:59:40.801581+00:00",
+                "status": "request_error",
+                "usage": null,
+                "dispatch_started_at": "2026-10-24T17:58:40.762605+00:00",
+                "price_reference": "https://api.tokenfactory.nebius.com/v1/models?verbose=true checked 2026-10-24T17:37:23.726642+00:00",
+                "input_per_million": "1.000000",
+                "output_per_million": "3.000000",
+                "cached_input_per_million": "0.12000000",
+                "reservation_usd": "0.029654",
+                "calculated_usd": null,
+                "billed_usd": null,
+                "input_tokens_upper_bound": 11222,
+                "input_bound_reference": "nvidia-byte-bpe-v1:623c34567aebb18582765289fbe23d901c62704d6518d71866e0e58db892b5b7:template:82753bef5cedc4932c1ed509b5c9a12be680fd86d1adb65bc3f7398d11c8eebc:header=2048",
+                "billing_status": "unknown",
+                "prompt_sha256": "78162ca8e7e537cc8e07033aeac13342d2c500670829014bf3ff3f6a0d9f79e7",
+                "request_options": {
+                  "chat_template_kwargs": {
+                    "enable_thinking": true,
+                    "medium_effort": true,
+                    "force_nonempty_content": true
+                  }
+                },
+                "latency_ms": 60040
+              }
+            ]
+          }
+        },
+        "status": "no_candidate"
+      }
+    ],
+    "time_limit_s": 600,
+    "limitations": [
+      "Live PyPI resolution; package versions may change between attempts.",
+      "Development cases have not been approved by upstream maintainers.",
+      "Passing fixtures only verifies the registered workflow."
+    ],
+    "current_phase": "finished",
+    "environment": {
+      "requested_image": "sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704",
+      "image_id": "sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704",
+      "repo_digests": [
+        "python@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704"
+      ],
+      "platform": "linux/arm64",
+      "dependency_mode": "pypi_live",
+      "network": "pypi_proxy_isolated",
+      "offline_wheelhouse": false,
+      "egress_allowlist": [
+        "pypi.org:443",
+        "files.pythonhosted.org:443"
+      ]
+    },
+    "source_export": {
+      "commit_sha": "e0175df5d2144f671435ff32b5d5e9a7d9f8bc86",
+      "materialized_file_links": [],
+      "notice": "Internal file links are materialized from archived target bytes; no host symlink is created."
+    },
+    "wheelhouse": [],
+    "repair_round": 1,
+    "diagnosis": {
+      "route": "nano_ultra",
+      "data_origin": "nebius_api",
+      "status": "unresolved",
+      "classification": {
+        "category": "documentation",
+        "reason": "The README documents both pip install commands but omits the required `pip install -e .[dev]` step for the CLI entrypoint used in the workflow; although setup installs runtime dependencies, the documented usage of `md2html` cannot succeed without the dev extras."
+      },
+      "classification_model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+      "web_research": [
+        {
+          "round": 1,
+          "query": "neobuilding/md2html md2html Python package installation command",
+          "searched_at": "2026-10-24T17:58:39.304713+00:00",
+          "data_origin": "tavily_api",
+          "status": "ok",
+          "results": [
+            {
+              "title": "md2html/README.md at main · neobuilding/md2html · GitHub",
+              "url": "https://github.com/neobuilding/md2html/blob/main/README.md",
+              "content": "## Quick Start\n\n### Requirements\n\n Python 3.9 or higher\n\n### Installation\n\n```\n# or for editable development install #\".[dev]\" \" \"\n```\n\n>  `-r requirements.txt`: standard install, runtime dependencies only. Use this for everyday use.\n>  `-e \".[dev]\"`: editable install + testing tools. Code changes take effect immediately — for development / contributing.\n\n### Standalone Executable (.exe) [...] m\n[TRUNCATED]\n| Command | Notes |\n --- \n| CLI entry point | `md2html input.md` | Requires `pip install -e .`; available globally after install |\n| Package module | `python -m md2html input.md` | No install needed; works from project root |\n| Single script | `python md2html.py input.md` | Standalone, no package structure |\n| Windows wrapper | `md2html.bat input.md` | Auto-activates venv; good for Windows users |"
+            }
+          ],
+          "credits": 1,
+          "latency_ms": 1453,
+          "request_id": "dcc04fed-57e1-48fd-847c-890b5fa64cee"
+        }
+      ],
+      "reason": "request_error",
+      "ledger": {
+        "run_id": "544eb45fae4646d18ee7d7a8c86d141f",
+        "currency": "USD",
+        "max_usd": "0.08",
+        "held_usd": "0.02981666",
+        "model_calls": 2,
+        "engineering_test_calls": 0,
+        "calculated_usd": null,
+        "billed_usd": null,
+        "calls": [
+          {
+            "call_id": "545bdc9db0b34dcfbb33cc1b583bcba2",
+            "run_id": "544eb45fae4646d18ee7d7a8c86d141f",
+            "stage": "classify",
+            "data_origin": "nebius_api",
+            "requested_model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+            "returned_model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+            "provider_request_id": "chatcmpl-8b894a71-e292-460d-bbec-315c661141e7",
+            "started_at": "2026-10-24T17:58:38.328028+00:00",
+            "finished_at": "2026-10-24T17:58:39.302593+00:00",
+            "status": "completed",
+            "usage": {
+              "prompt_tokens": 2427,
+              "completion_tokens": 71,
+              "total_tokens": 2498
+            },
+            "dispatch_started_at": "2026-10-24T17:58:38.329360+00:00",
+            "price_reference": "https://api.tokenfactory.nebius.com/v1/models?verbose=true checked 2026-10-24T17:37:23.726642+00:00",
+            "input_per_million": "0.06000000",
+            "output_per_million": "0.24000000",
+            "cached_input_per_million": null,
+            "reservation_usd": "0.00079380",
+            "calculated_usd": "0.00016266",
+            "billed_usd": null,
+            "input_tokens_upper_bound": 10158,
+            "input_bound_reference": "nvidia-byte-bpe-v1:c6021eb6847e682f89aa52d5eb6e8c7d902a23acfc8137e25211cf84828f1592:template:ab7813c3abdd9cb655905a410728b26c7884eca45ddfab8d9f931553485a7862:header=2048",
+            "billing_status": "usage_calculated_pending_reconciliation",
+            "prompt_sha256": "6c95e4051ccce5af4a4dde53a11973d43b9dce3cd40338e3123dc46977e71983",
+            "request_options": {
+              "chat_template_kwargs": {
+                "enable_thinking": false
+              }
+            },
+            "response_finish_reason": "stop",
+            "response_content_bytes": 311,
+            "latency_ms": 974
+          },
+          {
+            "call_id": "bf5322705b544a43939bdd9ba3d778c4",
+            "run_id": "544eb45fae4646d18ee7d7a8c86d141f",
+            "stage": "diagnose",
+            "data_origin": "nebius_api",
+            "requested_model": "nvidia/Nemotron-3-Ultra-550b-a55b",
+            "returned_model": null,
+            "provider_request_id": null,
+            "started_at": "2026-10-24T17:58:40.759476+00:00",
+            "finished_at": "2026-10-24T17:59:40.801581+00:00",
+            "status": "request_error",
+            "usage": null,
+            "dispatch_started_at": "2026-10-24T17:58:40.762605+00:00",
+            "price_reference": "https://api.tokenfactory.nebius.com/v1/models?verbose=true checked 2026-10-24T17:37:23.726642+00:00",
+            "input_per_million": "1.000000",
+            "output_per_million": "3.000000",
+            "cached_input_per_million": "0.12000000",
+            "reservation_usd": "0.029654",
+            "calculated_usd": null,
+            "billed_usd": null,
+            "input_tokens_upper_bound": 11222,
+            "input_bound_reference": "nvidia-byte-bpe-v1:623c34567aebb18582765289fbe23d901c62704d6518d71866e0e58db892b5b7:template:82753bef5cedc4932c1ed509b5c9a12be680fd86d1adb65bc3f7398d11c8eebc:header=2048",
+            "billing_status": "unknown",
+            "prompt_sha256": "78162ca8e7e537cc8e07033aeac13342d2c500670829014bf3ff3f6a0d9f79e7",
+            "request_options": {
+              "chat_template_kwargs": {
+                "enable_thinking": true,
+                "medium_effort": true,
+                "force_nonempty_content": true
+              }
+            },
+            "latency_ms": 60040
+          }
+        ]
+      }
+    },
+    "reason": "request_error",
+    "finished_at": "2026-10-24T17:59:40.817174+00:00",
+    "evaluation_eligible": false,
+    "trial_plan_sha256": "9be20155ac9d2339154e4880851d6b6fe23f2cb27f99265786a1b513d95059dd",
+    "model_ledger": {
+      "run_id": "544eb45fae4646d18ee7d7a8c86d141f",
+      "currency": "USD",
+      "max_usd": "0.08",
+      "held_usd": "0.02981666",
+      "model_calls": 2,
+      "engineering_test_calls": 0,
+      "calculated_usd": null,
+      "billed_usd": null,
+      "calls": [
+        {
+          "call_id": "545bdc9db0b34dcfbb33cc1b583bcba2",
+          "run_id": "544eb45fae4646d18ee7d7a8c86d141f",
+          "stage": "classify",
+          "data_origin": "nebius_api",
+          "requested_model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+          "returned_model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+          "provider_request_id": "chatcmpl-8b894a71-e292-460d-bbec-315c661141e7",
+          "started_at": "2026-10-24T17:58:38.328028+00:00",
+          "finished_at": "2026-10-24T17:58:39.302593+00:00",
+          "status": "completed",
+          "usage": {
+            "prompt_tokens": 2427,
+            "completion_tokens": 71,
+            "total_tokens": 2498
+          },
+          "dispatch_started_at": "2026-10-24T17:58:38.329360+00:00",
+          "price_reference": "https://api.tokenfactory.nebius.com/v1/models?verbose=true checked 2026-10-24T17:37:23.726642+00:00",
+          "input_per_million": "0.06000000",
+          "output_per_million": "0.24000000",
+          "cached_input_per_million": null,
+          "reservation_usd": "0.00079380",
+          "calculated_usd": "0.00016266",
+          "billed_usd": null,
+          "input_tokens_upper_bound": 10158,
+          "input_bound_reference": "nvidia-byte-bpe-v1:c6021eb6847e682f89aa52d5eb6e8c7d902a23acfc8137e25211cf84828f1592:template:ab7813c3abdd9cb655905a410728b26c7884eca45ddfab8d9f931553485a7862:header=2048",
+          "billing_status": "usage_calculated_pending_reconciliation",
+          "prompt_sha256": "6c95e4051ccce5af4a4dde53a11973d43b9dce3cd40338e3123dc46977e71983",
+          "request_options": {
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "response_finish_reason": "stop",
+          "response_content_bytes": 311,
+          "latency_ms": 974
+        },
+        {
+          "call_id": "bf5322705b544a43939bdd9ba3d778c4",
+          "run_id": "544eb45fae4646d18ee7d7a8c86d141f",
+          "stage": "diagnose",
+          "data_origin": "nebius_api",
+          "requested_model": "nvidia/Nemotron-3-Ultra-550b-a55b",
+          "returned_model": null,
+          "provider_request_id": null,
+          "started_at": "2026-10-24T17:58:40.759476+00:00",
+          "finished_at": "2026-10-24T17:59:40.801581+00:00",
+          "status": "request_error",
+          "usage": null,
+          "dispatch_started_at": "2026-10-24T17:58:40.762605+00:00",
+          "price_reference": "https://api.tokenfactory.nebius.com/v1/models?verbose=true checked 2026-10-24T17:37:23.726642+00:00",
+          "input_per_million": "1.000000",
+          "output_per_million": "3.000000",
+          "cached_input_per_million": "0.12000000",
+          "reservation_usd": "0.029654",
+          "calculated_usd": null,
+          "billed_usd": null,
+          "input_tokens_upper_bound": 11222,
+          "input_bound_reference": "nvidia-byte-bpe-v1:623c34567aebb18582765289fbe23d901c62704d6518d71866e0e58db892b5b7:template:82753bef5cedc4932c1ed509b5c9a12be680fd86d1adb65bc3f7398d11c8eebc:header=2048",
+          "billing_status": "unknown",
+          "prompt_sha256": "78162ca8e7e537cc8e07033aeac13342d2c500670829014bf3ff3f6a0d9f79e7",
+          "request_options": {
+            "chat_template_kwargs": {
+              "enable_thinking": true,
+              "medium_effort": true,
+              "force_nonempty_content": true
+            }
+          },
+          "latency_ms": 60040
+        }
+      ]
+    }
+  },
+  "patch_available": false,
+  "costs": {
+    "currency": "USD",
+    "model_usd": null,
+    "model_calls": [
+      {
+        "call_id": "545bdc9db0b34dcfbb33cc1b583bcba2",
+        "run_id": "544eb45fae4646d18ee7d7a8c86d141f",
+        "stage": "classify",
+        "data_origin": "nebius_api",
+        "requested_model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+        "returned_model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+        "provider_request_id": "chatcmpl-8b894a71-e292-460d-bbec-315c661141e7",
+        "started_at": "2026-10-24T17:58:38.328028+00:00",
+        "finished_at": "2026-10-24T17:58:39.302593+00:00",
+        "status": "completed",
+        "usage": {
+          "prompt_tokens": 2427,
+          "completion_tokens": 71,
+          "total_tokens": 2498
+        },
+        "dispatch_started_at": "2026-10-24T17:58:38.329360+00:00",
+        "price_reference": "https://api.tokenfactory.nebius.com/v1/models?verbose=true checked 2026-10-24T17:37:23.726642+00:00",
+        "input_per_million": "0.06000000",
+        "output_per_million": "0.24000000",
+        "cached_input_per_million": null,
+        "reservation_usd": "0.00079380",
+        "calculated_usd": "0.00016266",
+        "billed_usd": null,
+        "input_tokens_upper_bound": 10158,
+        "input_bound_reference": "nvidia-byte-bpe-v1:c6021eb6847e682f89aa52d5eb6e8c7d902a23acfc8137e25211cf84828f1592:template:ab7813c3abdd9cb655905a410728b26c7884eca45ddfab8d9f931553485a7862:header=2048",
+        "billing_status": "usage_calculated_pending_reconciliation",
+        "prompt_sha256": "6c95e4051ccce5af4a4dde53a11973d43b9dce3cd40338e3123dc46977e71983",
+        "request_options": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "response_finish_reason": "stop",
+        "response_content_bytes": 311,
+        "latency_ms": 974
+      },
+      {
+        "call_id": "bf5322705b544a43939bdd9ba3d778c4",
+        "run_id": "544eb45fae4646d18ee7d7a8c86d141f",
+        "stage": "diagnose",
+        "data_origin": "nebius_api",
+        "requested_model": "nvidia/Nemotron-3-Ultra-550b-a55b",
+        "returned_model": null,
+        "provider_request_id": null,
+        "started_at": "2026-10-24T17:58:40.759476+00:00",
+        "finished_at": "2026-10-24T17:59:40.801581+00:00",
+        "status": "request_error",
+        "usage": null,
+        "dispatch_started_at": "2026-10-24T17:58:40.762605+00:00",
+        "price_reference": "https://api.tokenfactory.nebius.com/v1/models?verbose=true checked 2026-10-24T17:37:23.726642+00:00",
+        "input_per_million": "1.000000",
+        "output_per_million": "3.000000",
+        "cached_input_per_million": "0.12000000",
+        "reservation_usd": "0.029654",
+        "calculated_usd": null,
+        "billed_usd": null,
+        "input_tokens_upper_bound": 11222,
+        "input_bound_reference": "nvidia-byte-bpe-v1:623c34567aebb18582765289fbe23d901c62704d6518d71866e0e58db892b5b7:template:82753bef5cedc4932c1ed509b5c9a12be680fd86d1adb65bc3f7398d11c8eebc:header=2048",
+        "billing_status": "unknown",
+        "prompt_sha256": "78162ca8e7e537cc8e07033aeac13342d2c500670829014bf3ff3f6a0d9f79e7",
+        "request_options": {
+          "chat_template_kwargs": {
+            "enable_thinking": true,
+            "medium_effort": true,
+            "force_nonempty_content": true
+          }
+        },
+        "latency_ms": 60040
+      }
+    ],
+    "paid_calls_enabled": false,
+    "billing_status": "unknown",
+    "billed_usd": null,
+    "runner_usd": null,
+    "total_usd": null
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "run_id": "00000000000000000000000000000007",
+  "data_origin": "example",
+  "executed": false,
+  "example_notice": "STATIC UI EXAMPLE. No repository, model or sandbox was executed. Do not include in history or evaluation.",
+  "case_id": "example-markdown",
+  "repo_url": "https://example.invalid/demo/repo",
+  "commit_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "verification_level": "startup",
+  "acceptance_sha256": null,
+  "review": {
+    "status": "example",
+    "reviewed_by": "Example reviewer, not an actual approval"
+  },
+  "repair_mode": "none",
+  "repair_author": null,
+  "run_state": "completed",
+  "result_status": "unsupported",
+  "phase": "finished",
+  "created_at": "2026-10-18T12:00:00+00:00",
+  "started_at": "2026-10-18T12:00:01+00:00",
+  "finished_at": "2026-10-18T12:00:05+00:00",
+  "reason": "Example of a future support-check view: external database required.",
+  "patch_available": false,
+  "costs": {
+    "currency": "USD",
+    "model_calls": [],
+    "model_usd": null,
+    "runner_usd": null,
+    "billing_status": "example_not_executed",
+    "paid_calls_enabled": false
+  },
+  "evidence": null,
+  "dependency_mode": "offline_snapshot"
+}

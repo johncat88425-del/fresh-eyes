@@ -1,0 +1,28 @@
+{
+  "source": "evaluation/review-intake-20261024-v8/boundary-reviews.json",
+  "source_sha256": "ffad85b78f9bdcbe387d2d092c4f4d421c520afaed98f607472a8c45a8016a6e",
+  "notice": "Copy of the human boundary approvals the demo shows; refresh it when the source changes.",
+  "approvals": [
+    {
+      "case_id": "j2cli-render",
+      "acceptance_sha256": "64e3553828b56cf23c6da75f69058e05e9966859907977af0f5216b763bef63f",
+      "status": "approved",
+      "reviewed_by": "kevin",
+      "approved_at": "2026-10-22T12:55:53-04:00"
+    },
+    {
+      "case_id": "yq-query",
+      "acceptance_sha256": "ebb9dcad69e76e554f005c49b56109e8e7b04d7a8230b0a2b805ad7db945b7b0",
+      "status": "approved",
+      "reviewed_by": "kevin",
+      "approved_at": "2026-10-22T12:56:01-04:00"
+    },
+    {
+      "case_id": "gfm-to-html-convert",
+      "acceptance_sha256": "be140fb45d7eedd7dd89ea87399a5d1ec580f0309433a8fb0180cedc5f53ea62",
+      "status": "approved",
+      "reviewed_by": "kevin",
+      "approved_at": "2026-10-22T12:56:04-04:00"
+    }
+  ]
+}

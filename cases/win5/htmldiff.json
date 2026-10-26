@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "case_id": "htmldiff-identical",
+  "environment": {"platform": "linux/arm64", "image": "python:3.12-slim"},
+  "review": {"status": "draft", "reviewed_by": null, "reviewed_at": null},
+  "goal": "Install as the README says, then run the documented diff command on an HTML file; comparing a file with itself must write HTML that keeps its heading and paragraph text.",
+  "repo": {"url": "https://github.com/cygri/htmldiff", "commit": "85eb33fc532e39c937f5586a244494da63661da5"},
+  "readme_source": "README.md:L18-L24;L34-L43",
+  "setup": [{"argv": ["pip", "install", "."], "source": "README.md:L22-L24"}],
+  "workflow": {"argv": ["htmldiff", "{input}", "{input}", "-o", "result.html"], "output": "result.html"},
+  "fixtures": [
+    {"name": "page.html", "input": "<html><body><h1>Release notes</h1><p>Version one ships today.</p></body></html>\n",
+     "validator": "html_elements", "expected": [["h1", "Release notes"], ["p", "Version one ships today."]]},
+    {"name": "second.html", "input": "<html><body><h2>Install</h2><p>Run the installer once.</p></body></html>\n",
+     "validator": "html_elements", "expected": [["h2", "Install"], ["p", "Run the installer once."]]}
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "environment": {
+    "platform": "linux/arm64",
+    "image": "python:3.12-slim"
+  },
+  "review": {
+    "status": "development_reviewed",
+    "reviewed_by": "Codex development review; no upstream maintainer approval",
+    "reviewed_at": "2026-10-18"
+  },
+  "goal": "Convert the documented Markdown input into HTML containing the expected heading and emphasis.",
+  "case_id": "mistletoe-markdown",
+  "repo": {
+    "url": "https://github.com/miyuchina/mistletoe",
+    "commit": "ebf9ae4e9279f3d8c79b7cf2710f7e73ea6438a7"
+  },
+  "readme_source": "README.md:L73-L77;L146-L155",
+  "setup": [
+    {
+      "argv": [
+        "pip3",
+        "install",
+        "-e",
+        "."
+      ],
+      "source": "README.md:L73-L77"
+    }
+  ],
+  "workflow": {
+    "argv": [
+      "mistletoe",
+      "{input}"
+    ],
+    "output": "stdout"
+  },
+  "fixtures": [
+    {
+      "name": "intro.md",
+      "input": "# Hello\n\nA **bold** start.\n",
+      "validator": "html_elements",
+      "expected": [
+        [
+          "h1",
+          "Hello"
+        ],
+        [
+          "strong",
+          "bold"
+        ]
+      ]
+    },
+    {
+      "name": "second.md",
+      "input": "# Second\n\nAn *italic* finish.\n",
+      "validator": "html_elements",
+      "expected": [
+        [
+          "h1",
+          "Second"
+        ],
+        [
+          "em",
+          "italic"
+        ]
+      ]
+    }
+  ]
+}

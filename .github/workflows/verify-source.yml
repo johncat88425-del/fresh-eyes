@@ -1,0 +1,89 @@
+name: Verify public source and README Action
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Rebuild the recorded viewer
+        run: python3 web/demo/build.py --replace
+      - name: Python engineering checks
+        env:
+          PYTHONPATH: src
+        run: python3 -B -m unittest discover -s tests
+      - name: Frontend engineering checks
+        run: node --test web/tests/*.test.mjs
+
+  action:
+    needs: source
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        fixture: [working, broken]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Prepare a labelled synthetic engineering fixture
+        env:
+          FIXTURE: ${{ matrix.fixture }}
+        run: |
+          python3 - <<'PYCODE'
+          import os
+          from pathlib import Path
+          p = Path(os.environ['RUNNER_TEMP']) / 'readme-fixture'
+          p.mkdir()
+          install = 'pip install .' if os.environ['FIXTURE'] == 'working' else 'pip install -r requirements.txt'
+          (p/'README.md').write_text('# Synthetic engineering fixture\n\n```sh\n'+install+'\n```\n\n```sh\nfe_sample --help\n```\n')
+          (p/'pyproject.toml').write_text('[build-system]\nrequires=["setuptools>=68"]\nbuild-backend="setuptools.build_meta"\n[project]\nname="fresh-eyes-engineering-fixture"\nversion="0.0.0"\n[project.scripts]\nfe_sample="sample:main"\n[tool.setuptools]\npy-modules=["sample"]\n')
+          (p/'sample.py').write_text('import argparse\ndef main():\n    argparse.ArgumentParser(description="Synthetic engineering fixture").parse_args()\n')
+          (p/'requirements.txt').write_text('')
+          (p/'.env').write_text('SYNTHETIC_SECRET=must-not-enter-the-container\n')
+          PYCODE
+      - uses: ./
+        id: checked
+        continue-on-error: true
+        with:
+          path: ${{ runner.temp }}/readme-fixture
+      - name: Check the real Action result, including the expected failure
+        env:
+          FIXTURE: ${{ matrix.fixture }}
+          OUTCOME: ${{ steps.checked.outcome }}
+          REPORT: ${{ steps.checked.outputs.report }}
+        run: |
+          python3 - <<'PYCODE'
+          import os, json
+          from pathlib import Path
+          p = Path(os.environ['REPORT'])
+          report = json.loads((p/'report.json').read_text())
+          expected = ('startup_only','success') if os.environ['FIXTURE']=='working' else ('unresolved','failure')
+          assert (report['status'], os.environ['OUTCOME']) == expected, (report['status'], os.environ['OUTCOME'])
+          assert report['model_calls'] == 0
+          assert report['executed'] is True
+          assert not (p.parent/'source/.env').exists()
+          print(json.dumps({'data_origin':'engineering_execution','synthetic_fixture':os.environ['FIXTURE'],'status':report['status'],'action_outcome':os.environ['OUTCOME'],'model_calls':0}))
+          PYCODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: readme-action-${{ matrix.fixture }}
+          path: ${{ steps.checked.outputs.report }}
+          if-no-files-found: warn
+          retention-days: 14

@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "run_id": "00000000000000000000000000000002",
+  "data_origin": "example",
+  "executed": false,
+  "example_notice": "STATIC UI EXAMPLE. No repository, model or sandbox was executed. Do not include in history or evaluation.",
+  "case_id": "example-markdown",
+  "repo_url": "https://example.invalid/demo/repo",
+  "commit_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "verification_level": "functional",
+  "acceptance_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "review": {
+    "status": "example",
+    "reviewed_by": "Example reviewer, not an actual approval"
+  },
+  "repair_mode": "none",
+  "repair_author": null,
+  "run_state": "running",
+  "result_status": null,
+  "phase": "original_readme",
+  "created_at": "2026-10-18T12:00:00+00:00",
+  "started_at": "2026-10-18T12:00:01+00:00",
+  "finished_at": null,
+  "reason": null,
+  "patch_available": false,
+  "costs": {
+    "currency": "USD",
+    "model_calls": [],
+    "model_usd": null,
+    "runner_usd": null,
+    "billing_status": "example_not_executed",
+    "paid_calls_enabled": false
+  },
+  "evidence": {
+    "schema_version": 1,
+    "run_id": "00000000000000000000000000000002",
+    "case_id": "example-markdown",
+    "goal": "EXAMPLE: convert Markdown to the expected HTML structure.",
+    "repo": {
+      "url": "https://example.invalid/demo/repo",
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "review": {
+      "status": "example",
+      "reviewed_by": "Example reviewer, not an actual approval"
+    },
+    "acceptance_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "model_calls": 0,
+    "environment": {
+      "platform": "linux/arm64",
+      "image_id": "example-not-an-image",
+      "network": "none",
+      "offline_wheelhouse": true
+    },
+    "current_phase": "original_readme",
+    "example_notice": "STATIC UI EXAMPLE. No repository, model or sandbox was executed. Do not include in history or evaluation.",
+    "status": "infrastructure_error",
+    "attempts": [],
+    "dependency_mode": "offline_snapshot"
+  },
+  "dependency_mode": "offline_snapshot"
+}

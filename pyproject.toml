@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fresh-eyes-check"
+version = "0.1.0"
+description = "Verify a README workflow against a fixed functional contract."
+requires-python = ">=3.12"
+license = "MIT"
+dependencies = []
+
+[project.scripts]
+fresh-eyes = "fresh_eyes.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+fresh_eyes = ["worker.py", "egress.py"]
