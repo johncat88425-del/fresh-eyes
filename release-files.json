@@ -1,6 +1,6 @@
 {
-  "release": "20261026-development-v9",
-  "prepared_at": "2026-10-26T00:49:52+00:00",
+  "release": "20261026-development-v10",
+  "prepared_at": "2026-10-26T15:42:23.321933+00:00",
   "files": {
     ".nojekyll": {
       "sha256": "fff3b97ed4f0c8e693570ad4d584a3df8556abbe148b664c2c40a679f6c3bb67",
@@ -11,24 +11,28 @@
       "bytes": 1080
     },
     "README.md": {
-      "sha256": "4fe5d0ae6b7689fde78c30c6f72f5b7baa83a1096c1ab10b91665c6b2ddf1628",
-      "bytes": 5461
+      "sha256": "fa9182d7eb517276f5a8a0a4196e37a0b352935e6d45ce890e1ceecceaac9807",
+      "bytes": 6689
     },
     "fresh-eyes-source.zip": {
       "sha256": "bda281e7139f62a13db62ac3bba2cd744a4cba2f9e18ef25afd743a9b7a9205b",
       "bytes": 9509714
     },
     "index.html": {
-      "sha256": "2b28d8736d96ad8fd29cb28665860fe3e076f85b9ef08c10b0ddd35efc762d5a",
-      "bytes": 3767917
+      "sha256": "e1464c24b2987c5f779c97df4a2757202e7b6ae9ead1d06528eab60826aeab06",
+      "bytes": 3836089
+    },
+    "submission/JUDGE_TESTING_INSTRUCTIONS.md": {
+      "sha256": "bdb68e1b05dcba45f3c301d54fb5bb462e8c5ec3a00bd90cd307efa12fc23216",
+      "bytes": 8580
     }
   },
-  "source_delivery": "Browsable working source, commit 8723eb25ae09710d4a44101781d31f8c7ab53a5b; older v8 source ZIP preserved separately",
-  "source_commit": "8723eb25ae09710d4a44101781d31f8c7ab53a5b",
+  "source_delivery": "Browsable working source at commit 25db15807ec43249d353e15c69a517d13f231abe; legacy v8 source ZIP preserved separately",
+  "source_commit": "25db15807ec43249d353e15c69a517d13f231abe",
   "source_archive_release": "20261024-development-v8",
   "public_paid_api": false,
   "model_calls_on_view": 0,
-  "real_replay_records": 23,
+  "real_replay_records": 24,
   "optional_browser_github_reads": true,
   "formal_evaluation_groups_executed": [
     "A"
@@ -36,5 +40,15 @@
   "formal_evaluation_results_in_viewer": false,
   "model_evaluation_groups_executed": [],
   "reusable_action_commit": "dfcac778f241dc598aea1fe2597d7a254d7154ee",
-  "ci_demo": "https://github.com/johncat88425-del/fresh-eyes-action-demo/actions"
+  "ci_demo": "https://github.com/johncat88425-del/fresh-eyes-action-demo/actions",
+  "confirmed_case_cards": 7,
+  "distinct_ai_repaired_repositories": 2,
+  "engineering_validation": {
+    "python_tests": 395,
+    "web_tests": 44,
+    "failures": 0,
+    "skips": 0,
+    "environment": "owner and isolated public candidate; not a new independent cloud run"
+  },
+  "envdoctor_run_id": "2c3377fca8be40e69ce3d1994a0f15ab"
 }

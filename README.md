@@ -3,7 +3,8 @@
 Check whether a README's first workflow works, then verify a proposed repair twice in clean environments. Built with NVIDIA Nemotron on Nebius Token Factory. MIT licensed.
 
 - [Try your public GitHub README](https://johncat88425-del.github.io/fresh-eyes/?lang=en#/try): reads a pinned README and cites commands; no new code execution or model call.
-- [See the real uninterrupted AI repair](https://johncat88425-del.github.io/fresh-eyes/?lang=en#/runs/5c225204bcd946228a7ef4700c8c0c8c).
+- [See the real uninterrupted md2html AI repair](https://johncat88425-del.github.io/fresh-eyes/?lang=en#/runs/5c225204bcd946228a7ef4700c8c0c8c).
+- [See the second repository, envdoctor](https://johncat88425-del.github.io/fresh-eyes/?lang=en#/runs/2c3377fca8be40e69ce3d1994a0f15ab): the first advertised PyPI install failed; an AI README patch passed both locked functional examples twice. The README already offered source installation. This N=1 challenge was locked before execution and before the full scan completed.
 - [Current development video](https://youtu.be/UnVHDBiDfKY): one development repository, not a formal evaluation score.
 
 > **Legacy archive warning:** `fresh-eyes-source.zip` is the older **v8** snapshot. **Do not use it for judging or current tests.** Clone this repository and build at its root using the commands below. The ZIP is retained only as a historical download.
@@ -21,7 +22,7 @@ node --test web/tests/*.test.mjs
 python3.12 -m http.server 3001 --bind 127.0.0.1 --directory dist/demo
 ```
 
-Open http://127.0.0.1:3001/. Build before frontend tests so the generated-asset checks run. This working tree includes the application, tests and byte-identical replay data already in the public v8 archive. It excludes internal handoff documents, raw report folders, account state and new private evidence. The legacy v8 archive remains only for historical reproducibility; it does not contain the current source-tree/Action release.
+Open http://127.0.0.1:3001/. Build before frontend tests so the generated-asset checks run. This working tree includes the application, tests and preserved replay data from the public v8 archive plus the attributed envdoctor development record. It excludes internal handoff documents, raw report folders, account state and new private evidence. The legacy v8 archive remains only for historical reproducibility; it does not contain the current source-tree/Action release.
 
 ## Run the local application
 
@@ -35,7 +36,7 @@ With a prepared Linux Docker engine and Git, use `python3.12 scripts/fresh-eyes 
 
 ## Evidence and limits
 
-The v8 replay data contains 23 real records and ten labelled synthetic examples. It represents one distinct AI-repaired development repository, md2html. The original failure, new Nano/Ultra patch, candidate checks and independent fresh checks belong to the same uninterrupted run. No human edited its patch. Two calls cost US$0.00546874 when calculated from reported usage; billing is unreconciled. Failed and interrupted attempts stay visible.
+The current viewer contains 24 real records, seven confirmed case cards and ten labelled synthetic examples. It represents two distinct AI-repaired repositories: md2html (development) and envdoctor (the locked N=1 challenge). Neither is a formal evaluation score. The older v8/v9 viewer had 23 replays. The original failure, new Nano/Ultra patch, candidate checks and independent fresh checks belong to the same uninterrupted run. No human edited either patch. The md2html repair used two calls costing US$0.00546874 when calculated from reported usage; billing is unreconciled. Envdoctor used two calls costing US$0.00359120 from returned usage; its per-call invoice is also unconfirmed. Failed and interrupted attempts stay visible.
 
 The four original formal A cases ran on 25 October and all already passed without models. B/C/D have not run; those healthy cases do not demonstrate repair gain. Their new raw evaluation capture is kept in the owner workspace and is not silently included in this source publication. The earlier timeout has no per-request response. Its budget reconciliation is tracked separately; paid execution is off by default.
 
