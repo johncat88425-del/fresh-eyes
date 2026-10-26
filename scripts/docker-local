@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+"""Use this project's Lima Docker socket without changing global Docker context."""
+from pathlib import Path
+import json
+import os
+import sys
+
+project = Path(__file__).resolve().parents[1]
+runtime = project.parents[1] / "work" / "runtime"
+config = runtime / "docker-env.json"
+if not config.is_file():
+    print("Local runtime is not started. Run scripts/start-local-runtime.py in your terminal.", file=sys.stderr)
+    raise SystemExit(2)
+settings = json.loads(config.read_text())
+env = os.environ.copy()
+for key in ("DOCKER_HOST", "DOCKER_CONFIG"):
+    env[key] = settings[key]
+binary = settings["docker_executable"]
+os.execve(binary, [binary, *sys.argv[1:]], env)

@@ -120,7 +120,7 @@ def fence(text):
     return f"{ticks}text\n{text}\n{ticks}"
 
 
-def comment(result):
+def comment(result, where="on a GitHub-hosted runner"):
     symbol, title, explain = VERDICT.get(result.get("status"), ("❔", str(result.get("status")), ""))
     repo = result.get("repo_url") or ""
     if repo and not re.fullmatch(r"https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", repo):
@@ -156,7 +156,7 @@ def comment(result):
                    if environment.get("network") == "pypi_proxy_isolated" else "Network policy: not recorded.")
         platform = environment.get("platform") if re.fullmatch(r"linux/[a-z0-9]{1,16}", str(environment.get("platform") or "")) else "linux"
         lines.append(f"Ran by [Fresh Eyes](https://johncat88425-del.github.io/fresh-eyes/) in a fresh, non-root {platform} "
-                     f"container on a GitHub-hosted runner. {network}")
+                     f"container {where}. {network}")
     else:
         lines.append("Fresh Eyes did not run anything from this repository.")
     lines.append("No AI model was called and no fix was attempted. This is a start-up check only: it does not show that "

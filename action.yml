@@ -1,0 +1,54 @@
+# Fresh Eyes as a GitHub Action for maintainers (B, 2026-10-25): every push, check that the README's own pip install
+# and help/version command still work in a fresh, non-root container that can reach only PyPI. Runs the
+# maintainer's own repository code on their own runner; reads no keys and calls no AI model. Free on public repos.
+#
+#   - uses: actions/checkout@v4
+#   - uses: johncat88425-del/fresh-eyes@main   # pin a release tag or commit once one exists
+name: Fresh Eyes README check
+description: Install and start your Python CLI exactly as your README says, in a clean container, and report in plain words.
+branding:
+  icon: eye
+  color: green
+inputs:
+  path:
+    description: The checked-out repository to check.
+    default: "."
+  fail-on:
+    description: Comma-separated results that fail the job (startup_only, unresolved, needs_input, unsupported, infrastructure_error).
+    default: unresolved
+outputs:
+  report:
+    description: Directory with report.json and report.html.
+    value: ${{ steps.check.outputs.report }}
+runs:
+  using: composite
+  steps:
+    - name: Find Fresh Eyes (release archive, or the source tree itself)
+      shell: bash
+      env:
+        ACTION_DIR: ${{ github.action_path }}
+      run: |
+        if [ -f "$ACTION_DIR/src/fresh_eyes/startup.py" ]; then
+          echo "FE_SRC=$ACTION_DIR" >> "$GITHUB_ENV"
+        elif [ -f "$ACTION_DIR/fresh-eyes-source.zip" ]; then
+          SOURCE_DIR=$(mktemp -d "$RUNNER_TEMP/fresh-eyes-src.XXXXXX")
+          python3 -m zipfile -e "$ACTION_DIR/fresh-eyes-source.zip" "$SOURCE_DIR"
+          cp "$ACTION_DIR/scripts/readme-check.py" "$SOURCE_DIR/fresh-eyes/scripts/readme-check.py"
+          cp "$ACTION_DIR/scripts/github-check.py" "$SOURCE_DIR/fresh-eyes/scripts/github-check.py"
+          cp "$ACTION_DIR/src/fresh_eyes/local_check.py" "$SOURCE_DIR/fresh-eyes/src/fresh_eyes/local_check.py"
+          echo "FE_SRC=$SOURCE_DIR/fresh-eyes" >> "$GITHUB_ENV"
+        else
+          printf 'No runnable Fresh Eyes source found.\n' >&2
+          exit 2
+        fi
+    - name: Follow the README in a clean container
+      id: check
+      shell: bash
+      env:
+        CHECK_PATH: ${{ inputs.path }}
+        FAIL_ON: ${{ inputs.fail-on }}
+      run: |
+        CHECK_DIR=$(mktemp -d "$RUNNER_TEMP/fresh-eyes-check.XXXXXX")
+        echo "report=$CHECK_DIR/check/report" >> "$GITHUB_OUTPUT"
+        python3 -I "$FE_SRC/scripts/readme-check.py" "$CHECK_PATH" --out "$CHECK_DIR/check" \
+          --summary "$GITHUB_STEP_SUMMARY" --fail-on "$FAIL_ON"
