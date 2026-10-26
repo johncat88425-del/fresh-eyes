@@ -1,6 +1,6 @@
 {
-  "release": "20261026-development-v10",
-  "prepared_at": "2026-10-26T15:42:23.321933+00:00",
+  "release": "20261026-development-v10.1",
+  "prepared_at": "2026-10-26T15:50:51.036161+00:00",
   "files": {
     ".nojekyll": {
       "sha256": "fff3b97ed4f0c8e693570ad4d584a3df8556abbe148b664c2c40a679f6c3bb67",
@@ -19,16 +19,16 @@
       "bytes": 9509714
     },
     "index.html": {
-      "sha256": "e1464c24b2987c5f779c97df4a2757202e7b6ae9ead1d06528eab60826aeab06",
-      "bytes": 3836089
+      "sha256": "7ef6406e1c525ef8d715b68b2de0b67f91dad42b28043dab4cfb5861ac0c6dcb",
+      "bytes": 3836401
     },
     "submission/JUDGE_TESTING_INSTRUCTIONS.md": {
       "sha256": "bdb68e1b05dcba45f3c301d54fb5bb462e8c5ec3a00bd90cd307efa12fc23216",
       "bytes": 8580
     }
   },
-  "source_delivery": "Browsable working source at commit 25db15807ec43249d353e15c69a517d13f231abe; legacy v8 source ZIP preserved separately",
-  "source_commit": "25db15807ec43249d353e15c69a517d13f231abe",
+  "source_delivery": "Browsable working source at commit ed6cd9c3221640f28efda41287f2e680e6076717; legacy v8 ZIP retained separately",
+  "source_commit": "ed6cd9c3221640f28efda41287f2e680e6076717",
   "source_archive_release": "20261024-development-v8",
   "public_paid_api": false,
   "model_calls_on_view": 0,
@@ -50,5 +50,6 @@
     "skips": 0,
     "environment": "owner and isolated public candidate; not a new independent cloud run"
   },
-  "envdoctor_run_id": "2c3377fca8be40e69ce3d1994a0f15ab"
+  "envdoctor_run_id": "2c3377fca8be40e69ce3d1994a0f15ab",
+  "refresh_reason": "Explicit AI-failed label in the example list; real recordings and acceptance unchanged"
 }
