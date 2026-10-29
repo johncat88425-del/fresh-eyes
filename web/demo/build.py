@@ -190,7 +190,7 @@ def build(project, out, replace=False, evaluation_records=None):
         stage.mkdir()
         write(stage, MARKER, "Built by web/demo/build.py\n")
         write(stage, ".nojekyll", "")
-        for name in ("index.html", "app.js", "i18n.js", "evaluation.js", "repair_path.js", "readme_plan.js", "github_readme.js"):
+        for name in ("index.html", "app.js", "i18n.js", "evaluation.js", "repair_path.js", "readme_plan.js", "github_readme.js", "nightly.html", "nightly_history.js"):
             shutil.copyfile(project / "web" / name, stage / name)
         shutil.copyfile(project / "web/demo/static-client.js", stage / "client.js")
         (stage / "examples").mkdir()

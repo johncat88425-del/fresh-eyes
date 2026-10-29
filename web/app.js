@@ -112,6 +112,7 @@ const reviewBadge = c => (isLocked(c) ? badge('approved', lbl('review', 'approve
 const apiDown = () => Boolean(state.healthError);
 // The published demo (web/demo/build.py) serves recorded runs as static files and can't run or approve anything.
 const readOnly = () => state.health?.read_only === true;
+const nightlyLink = () => h('a', { href: `https://johncat88425-del.github.io/fresh-eyes/nightly.html?lang=${lang}` }, t('nightly_link'));
 
 function route() {
   const [page, id] = location.hash.replace(/^#\/?/, '').split('/');
@@ -159,9 +160,9 @@ function renderChrome() {
     : readOnly() ? h('div', { class: 'banner info' }, h('div', { class: 'wrap' }, simple ? h('strong', {}, t('b_demo_banner'))
       : [h('strong', {}, t('demo_banner')), h('span', {}, t('demo_banner_hint'))]))
       : null);
-  if (simple) return mount('footer', h('span', {}, t('b_footer')), h('a', { href: '#/dashboard' }, t('b_footer_detailed')));
+  if (simple) return mount('footer', h('span', {}, t('b_footer')), nightlyLink(), h('a', { href: '#/dashboard' }, t('b_footer_detailed')));
   mount('footer', h('span', {}, readOnly() ? t('demo_footer', { at: when(hl.demo_built_at) }) : t('footer', { api: API_BASE })),
-    h('span', {}, hl ? (hl.paid_calls_enabled ? t('paid_on') : t('paid_off')) : null, hl ? ' · ' : null, h('a', { href: '#/states' }, t('nav_states'))));
+    h('span', {}, hl ? (hl.paid_calls_enabled ? t('paid_on') : t('paid_off')) : null, hl ? ' · ' : null, nightlyLink(), ' · ', h('a', { href: '#/states' }, t('nav_states'))));
 }
 
 function render() {
@@ -732,7 +733,7 @@ function viewCase(id) {
     panel('br', t('panel_last'), last ? h('a', { href: `#/runs/${encodeURIComponent(last.run_id)}` }, badge(last.result_status || last.run_state, lbl('result', last.result_status))) : h('span', { class: 'small muted' }, t('case_never')),
       last ? h('span', { class: 'small muted' }, when(last.created_at)) : null));
   const below = h('div', { class: 'grid-main' },
-    h('div', { class: 'stack', id: 'case-approval' }, approvalCard(c), state.health?.nightly_checks ? null : card(h('h2', {}, t('nightly_title')), h('p', { class: 'small muted', style: 'margin:0' }, t('nightly_off')))),
+    h('div', { class: 'stack', id: 'case-approval' }, approvalCard(c), state.health?.nightly_checks ? null : card(h('h2', {}, t('nightly_title')), h('p', { class: 'small muted', style: 'margin:0' }, t('nightly_off')), nightlyLink())),
     h('div', { class: 'stack' }, runCard(c), card(h('h2', {}, t('case_runs')), caseRuns.length ? h('div', { class: 'klist' }, caseRuns.map(r => h('a', { class: 'kcard', href: `#/runs/${encodeURIComponent(r.run_id)}` },
       h('span', { class: 'row2' }, badge(r.result_status || r.run_state, lbl('result', r.result_status)), r.repair_mode ? badge(r.repair_mode, lbl('repair', r.repair_mode)) : null),
       h('span', { class: 'small muted' }, `${short(r.run_id)} · ${r.dependency_mode ? lbl('dep', r.dependency_mode) : ''} · ${when(r.created_at)}`)))) : h('p', { class: 'empty' }, t('case_runs_empty')))));

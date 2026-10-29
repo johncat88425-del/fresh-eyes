@@ -1,0 +1,31 @@
+# Copy to .github/workflows/nightly-readme.yml in your public Python CLI repository.
+name: Nightly README check
+on:
+  schedule:
+    - cron: '17 2 * * *'
+      timezone: Europe/London
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: nightly-readme-check
+  cancel-in-progress: false
+jobs:
+  readme:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: johncat88425-del/fresh-eyes@dfcac778f241dc598aea1fe2597d7a254d7154ee # tested implementation; use final tag when released
+        id: fresh-eyes
+        with:
+          fail-on: unresolved,needs_input,unsupported,infrastructure_error
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: nightly-readme-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ steps.fresh-eyes.outputs.report }}
+          if-no-files-found: error
+          retention-days: 90
