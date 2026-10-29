@@ -5,6 +5,7 @@ Check whether a README's first workflow works, then verify a proposed repair twi
 - [Try your public GitHub README](https://johncat88425-del.github.io/fresh-eyes/?lang=en#/try): reads a pinned README and cites commands; no new code execution or model call.
 - [See the real uninterrupted md2html AI repair](https://johncat88425-del.github.io/fresh-eyes/?lang=en#/runs/5c225204bcd946228a7ef4700c8c0c8c).
 - [See the second repository, envdoctor](https://johncat88425-del.github.io/fresh-eyes/?lang=en#/runs/2c3377fca8be40e69ce3d1994a0f15ab): the first advertised PyPI install failed; an AI README patch passed both locked functional examples twice. The README already offered source installation. This N=1 challenge was locked before execution and before the full scan completed.
+- [Nightly installation/startup monitor](https://johncat88425-del.github.io/fresh-eyes/nightly.html?lang=en): current public GitHub history, with manual and scheduled runs labelled separately.
 - [Current development video](https://youtu.be/UnVHDBiDfKY): one development repository, not a formal evaluation score.
 
 > **Legacy archive warning:** `fresh-eyes-source.zip` is the older **v8** snapshot. **Do not use it for judging or current tests.** Clone this repository and build at its root using the commands below. The ZIP is retained only as a historical download.
@@ -14,7 +15,7 @@ Check whether a README's first workflow works, then verify a proposed repair twi
 Needs Python 3.12+ and Node.js 18+. No Python packages, account or API key are needed for the tests and recorded viewer.
 
 ```sh
-git clone https://github.com/johncat88425-del/fresh-eyes.git
+git clone --branch v1.0.0 https://github.com/johncat88425-del/fresh-eyes.git
 cd fresh-eyes
 python3.12 web/demo/build.py --replace
 PYTHONPATH=src python3.12 -B -m unittest discover -s tests
@@ -42,7 +43,7 @@ The four original formal A cases ran on 25 October and all already passed withou
 
 A human locks functional inputs and expected outputs before repair. Nano classifies; Ultra diagnoses and proposes limited README/dependency edits. Optional Tavily results are untrusted evidence. The model cannot change acceptance. Only a validated candidate passing both fresh functional runs becomes verified_fix. Third-party code runs non-root with resource limits, no host mounts and controlled PyPI-only egress in live mode.
 
-No hosted live AI repair, nightly monitoring, Token Factory Sandboxes execution, broad repair success rate or maintainer adoption is claimed.
+The nightly GitHub Action checks rich-cli installation/startup at 02:17 Europe/London. A manual validation is not evidence that a scheduled run happened; the public history labels the actual GitHub event. See [nightly setup and limits](docs/NIGHTLY_MONITORING.md). No hosted live AI repair, nightly functional/AI repair, Token Factory Sandboxes execution, broad repair success rate or maintainer adoption is claimed.
 
 ## Use Fresh Eyes in your own CI
 
@@ -57,10 +58,10 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: johncat88425-del/fresh-eyes@dfcac778f241dc598aea1fe2597d7a254d7154ee
+      - uses: johncat88425-del/fresh-eyes@v1.0.0
 ```
 
 Pin a tested commit for a stable integration. Needs Python 3.12+ and Linux Docker on the runner. Public GitHub standard runners are free; private or custom runners depend on your own plan. A documented startup failure returns exit 1 and fails CI; runner failure returns 2. Ambiguous READMEs run nothing and are reported separately (`fail-on: unresolved,needs_input` can fail those too). No repair is attempted.
@@ -70,3 +71,5 @@ Locally, with Docker: `python3 scripts/readme-check.py /path/to/your/checkout --
 [Real CI demo: one expected green pass and one expected red failure](https://github.com/johncat88425-del/fresh-eyes-action-demo). These are labelled team-written fixtures, not additional real-world repair successes.
 
 [Judge testing instructions](submission/JUDGE_TESTING_INSTRUCTIONS.md) walk through the public recordings, clean clone and reusable Action.
+
+The immutable software release is [v1.0.0](https://github.com/johncat88425-del/fresh-eyes/releases/tag/v1.0.0). Release notes will link the final video after owner content approval; the development video above remains explicitly labelled.

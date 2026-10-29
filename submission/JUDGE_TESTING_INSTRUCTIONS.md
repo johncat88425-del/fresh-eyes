@@ -31,7 +31,7 @@ Needs Python 3.12 and Node.js 18 or newer. No other packages.
 ```sh
 git clone https://github.com/johncat88425-del/fresh-eyes.git fresh-eyes-release
 cd fresh-eyes-release
-# Preliminary candidate: main; choose a fixed final tag before submission.
+git checkout v1.0.0 # immutable submission software version
 python3.12 web/demo/build.py --replace
 PYTHONPATH=src python3.12 -B -m unittest discover -s tests
 node --test web/tests/*.test.mjs
@@ -71,6 +71,10 @@ The current scope is small Python CLI repositories with explicit README pip inst
 
 Open https://github.com/johncat88425-del/fresh-eyes-action-demo/actions . The green working run is 40249414162; the expected red run is 40249414171. The red summary shows `shout --help` failing with exit 127 because installing only requirements never installed the command. These are two team-written engineering fixtures, not extra repaired projects.
 
-To use the Action in your own public repository, follow the current root README and pin implementation `dfcac778f241dc598aea1fe2597d7a254d7154ee` (or the final submission tag). Needs a Linux runner with Python 3.12+ and Docker. No API key or model is needed. This checks installation and startup, not functional output or AI repair.
+To use the Action in your own public repository, follow the current root README and pin implementation `dfcac778f241dc598aea1fe2597d7a254d7154ee` (use v1.0.0 for the submission). Needs a Linux runner with Python 3.12+ and Docker. No API key or model is needed. This checks installation and startup, not functional output or AI repair.
 
 The current source tree is directly browsable at the repository root (step 2 uses it). `fresh-eyes-source.zip` in the repository is an older v8 archive; do not use it for testing. Exact public source commit 8723eb25 passed 371 Python and 44 frontend tests on an independent GitHub host: https://github.com/johncat88425-del/fresh-eyes/actions/runs/40250425935 .
+
+## Nightly startup monitoring
+
+Open https://johncat88425-del.github.io/fresh-eyes/nightly.html?lang=en. This reads actual GitHub workflow history for the rich-cli monitor. It distinguishes manual validation from scheduled runs; the schedule is 02:17 Europe/London. Open a run for its report and dependency inventory, when available. This is installation/startup monitoring, with zero model calls and no functional-output verification or automatic repair.
